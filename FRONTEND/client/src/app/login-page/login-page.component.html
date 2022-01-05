@@ -1,0 +1,42 @@
+<div class="wallpaper" style="background-image: url('{{ws_assets}}wallpaper.jpg');">
+  <div class="row">
+    <div class="col-2">
+      <i class="m-2 fas fa-brain fa-2x text-light"></i>
+    </div>
+    <div class="col-10 text-right">
+      <div class="btn-group m-2" role="group">
+        <a type="button" class="btn btn-light btn-sm" target="_blank" [href]="ayuda_url">Ayuda</a>
+        <a class="btn btn-light btn-sm" [href]="ws_assets + 'manual.pdf'" target="_blank">Manual</a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4">
+      <div class="login">
+        <div class="row">
+          <h1 class="col-12 mt-5 mb-2">{{opcion_seleccionada}}</h1>
+        </div>
+        <app-auth
+          *ngIf="opcion_seleccionada == 'Autenticación'"
+          (opcion)="opcion_seleccionada = $event"
+        ></app-auth>
+        <app-register
+          *ngIf="opcion_seleccionada == 'Crear Cuenta'"
+          (opcion)="opcion_seleccionada = $event"
+        ></app-register>
+        <app-password-recovery
+          *ngIf="opcion_seleccionada == 'Recuperar Contraseña'"
+          (opcion)="opcion_seleccionada = $event"
+        ></app-password-recovery>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="row">
+      <div class="col-12 text-light text-center mb-2">
+        @Copyright - Todos los derechos reservados
+      </div>
+    </div>
+  </div>
+</div>
+

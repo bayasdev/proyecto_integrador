@@ -1,6 +1,6 @@
 solicitud_id (SERIAL) PK
 solicitud_tipo (VARCHAR 60)
-solicitud_contenido (BYTEA) # archivo
+solicitud_parametros (VARCHAR MAX) # JSON
 solicitud_pago (BYTEA) # archivo
 solicitud_solicitante_ci FK
 solicitud_carrera FK

@@ -4,3 +4,4 @@ usuario_correo (VARCHAR 200)
 usuario_password (VARCHAR 200) # hash argon2
 usuario_rol FK
 usuario_carrera_id FK
+usuario_token (VARCHAR 1024)

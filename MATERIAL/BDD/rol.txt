@@ -1,0 +1,2 @@
+rol_id (SERIAL) PK
+rol_nombre (VARCHAR 60)

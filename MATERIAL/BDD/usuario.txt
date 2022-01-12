@@ -2,5 +2,5 @@ usuario_ci (VARCHAR 10) PK
 usuario_nombre (VARCHAR 200)
 usuario_correo (VARCHAR 200)
 usuario_password (VARCHAR 200) # hash argon2
-usuario_rol (VARCHAR 60)
+usuario_rol FK
 usuario_carrera_id FK

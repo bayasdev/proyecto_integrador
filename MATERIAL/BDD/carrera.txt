@@ -1,0 +1,4 @@
+carrera_id (SERIAL) PK
+carrera_nombre (VARCHAR 200)
+carrera_director_ci FK
+carrera_facultad_id FK

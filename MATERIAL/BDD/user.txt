@@ -1,4 +1,0 @@
-cedula (VARCHAR 10)
-nombre (VARCHAR 60)
-correo (VARCHAR 60)
-telefono

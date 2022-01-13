@@ -12,7 +12,7 @@
 */
 
 $router->get('/', function () use ($router) {
-   return 'Web Wervice Realizado con LSCodeGenerator';
+   return json_encode('Web Wervice Sistema de Modificación de Carga Académica y Retiro Funcionando');
 });
 
 $router->group(['middleware' => []], function () use ($router) {

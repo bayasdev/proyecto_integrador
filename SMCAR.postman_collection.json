@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "5b1b0b1e-c483-4fc6-a505-7b2813c04f11",
+		"name": "SMCAR",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ProfilePicture",
+			"item": [
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "api_token",
+								"value": "{{api_token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"file_type\":\"\",\r\n    \"file_name\":\"\",\r\n    \"file\":\"\"\r\n}"
+						},
+						"url": {
+							"raw": "ws.smcar.com:8787/profilepicture",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"profilepicture"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Inicio",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "ws.smcar.com:8787",
+					"host": [
+						"ws",
+						"smcar",
+						"com"
+					],
+					"port": "8787"
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api_token",
+			"value": "VALOR API TOKEN",
+			"type": "string"
+		}
+	]
+}

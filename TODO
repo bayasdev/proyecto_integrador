@@ -23,3 +23,7 @@ docker exec -it backend_php_1 bash
 ir a la carpeta /public_html/ws desde el docker
 composer install
 levantar la bdd
+
+Materias -> carrea
+Matricula -> materia y el Usuario
+Solicitud -> matricula

@@ -1,279 +1,63 @@
 version: '3'
 
 networks:
-  plantilla_net:
+  smcar:
     ipam:
       config:
-        - subnet: 172.95.0.0/24
+        - subnet: 172.30.0.0/24
 
 services:
-  auth:
-    image: pasthortown/auth:http
-    restart: always
+  web:
     ports:
-    - "6070:5050"
-    env_file:
-    - ./variables.env
-    environment:
-      mongo_bdd: authentication
-      mongo_bdd_server: mongo_auth
-    volumes:
-    - ./templates_auth:/usr/src/app/Templates
-    networks:
-      plantilla_net:
-        ipv4_address: 172.95.0.10
-    links:
-    - mongo_auth
-  mongo_auth:
-    image: mongo:latest
+    - "8787:80"
+    - "443:443"
+    image: nginx:latest
     restart: always
     volumes:
-    - ./db/mongo_auth_data:/data/db
-    env_file:
-    - ./variables.env
+    - ./public_html:/public_html
+    - ./conf.d:/etc/nginx/conf.d
+    - ./ssl_certs:/etc/nginx/ssl_certificates
+    - ./ssl_keys:/etc/nginx/ssl_keys
+    - ./logs:/var/log/nginx
     networks:
-      plantilla_net:
-        ipv4_address: 172.95.0.11
-  mongo_auth_express:
-    image: mongo-express:latest
-    restart: always
-    ports:
-    - "9070:8081"
-    env_file:
-    - ./variables.env
+      smcar:
+        ipv4_address: 172.30.0.11
     environment:
-      ME_CONFIG_MONGODB_SERVER: mongo_auth
-    networks:
-      plantilla_net:
-        ipv4_address: 172.95.0.12
+      TZ: America/Bogota
     links:
-    - mongo_auth
-  audit:
-    image: pasthortown/audit:http
-    restart: always
-    ports:
-    - "6071:5050"
-    env_file:
-    - ./variables.env
-    environment:
-      mongo_bdd: audithory
-      mongo_bdd_server: mongo_audit
-    networks:
-      plantilla_net:
-        ipv4_address: 172.95.0.13
-    links:
-    - mongo_audit
-  mongo_audit:
-    image: mongo:latest
+    - php
+  php:
+    image: pasthortown/php:7.4-lumen
     restart: always
     volumes:
-    - ./db/mongo_audit_data:/data/db
-    env_file:
-    - ./variables.env
+    - ./public_html:/public_html
+    - ./php_confs/php.ini:/usr/local/etc/php/php.ini
+    - ./php_confs/www.conf:/usr/local/etc/php-fpm.d/www.conf
     networks:
-      plantilla_net:
-        ipv4_address: 172.95.0.14
-  mongo_audit_express:
-    image: mongo-express:latest
+      smcar:
+        ipv4_address: 172.30.0.12
+    environment:
+      TZ: America/Bogota
+      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:~/.composer/vendor/bin
+    links:
+    - postgres
+  postgres:
+    image: postgres:latest
     restart: always
     ports:
-    - "9071:8081"
-    env_file:
-    - ./variables.env
-    environment:
-      ME_CONFIG_MONGODB_SERVER: mongo_audit
-    networks:
-      plantilla_net:
-        ipv4_address: 172.95.0.15
-    links:
-    - mongo_audit
-  catalog:
-    image: pasthortown/catalog-admin:http
-    restart: always
-    ports:
-    - "6072:5050"
-    env_file:
-    - ./variables.env
-    environment:
-      mongo_bdd: catalog
-      mongo_bdd_server: mongo_catalog
-    networks:
-      plantilla_net:
-        ipv4_address: 172.95.0.16
-    links:
-    - mongo_catalog
-  mongo_catalog:
-    image: mongo:latest
-    restart: always
+      - 5432:5432
     volumes:
-    - ./db/mongo_catalog_data:/data/db
-    env_file:
-    - ./variables.env
-    networks:
-      plantilla_net:
-        ipv4_address: 172.95.0.17
-  mongo_catalog_express:
-    image: mongo-express:latest
+      - ./postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+  pgadmin4:
+    image: dpage/pgadmin4:latest
     restart: always
     ports:
-    - "9072:8081"
-    env_file:
-    - ./variables.env
-    environment:
-      ME_CONFIG_MONGODB_SERVER: mongo_catalog
-    networks:
-      plantilla_net:
-        ipv4_address: 172.95.0.18
-    links:
-    - mongo_catalog
-  catalog_dmz:
-    image: pasthortown/catalog-dmz-admin:http
-    restart: always
-    ports:
-    - "6073:5050"
-    env_file:
-    - ./variables.env
-    environment:
-      mongo_bdd: catalog
-      mongo_bdd_server: mongo_catalog_dmz
-    networks:
-      plantilla_net:
-        ipv4_address: 172.95.0.19
-    links:
-    - mongo_catalog
-  mongo_catalog_dmz:
-    image: mongo:latest
-    restart: always
+      - 8082:80
     volumes:
-    - ./db/mongo_catalog_dmz_data:/data/db
-    env_file:
-    - ./variables.env
-    networks:
-      plantilla_net:
-        ipv4_address: 172.95.0.20
-  mongo_catalog_dmz_express:
-    image: mongo-express:latest
-    restart: always
-    ports:
-    - "9073:8081"
-    env_file:
-    - ./variables.env
+      - ./pgadmin_data:/var/lib/pgadmin
     environment:
-      ME_CONFIG_MONGODB_SERVER: mongo_catalog_dmz
-    networks:
-      plantilla_net:
-        ipv4_address: 172.95.0.21
-    links:
-    - mongo_catalog_dmz
-  files:
-    image: pasthortown/file-admin:http
-    restart: always
-    ports:
-    - "6074:5050"
-    env_file:
-    - ./variables.env
-    environment:
-      mongo_bdd: files
-      mongo_bdd_server: mongo_files
-    networks:
-      plantilla_net:
-        ipv4_address: 172.95.0.22
-    links:
-    - mongo_files
-  mongo_files:
-    image: mongo:latest
-    restart: always
-    volumes:
-    - ./db/mongo_files_data:/data/db
-    env_file:
-    - ./variables.env
-    networks:
-      plantilla_net:
-        ipv4_address: 172.95.0.23
-  mongo_files_express:
-    image: mongo-express:latest
-    restart: always
-    ports:
-    - "9074:8081"
-    env_file:
-    - ./variables.env
-    environment:
-      ME_CONFIG_MONGODB_SERVER: mongo_files
-    networks:
-      plantilla_net:
-        ipv4_address: 172.95.0.24
-    links:
-    - mongo_files
-  exporter:
-    image: pasthortown/exporter:http
-    restart: always
-    ports:
-    - "6075:5050"
-    env_file:
-    - ./variables.env
-    volumes:
-    - ./templates_exporter:/usr/src/app/Templates
-    networks:
-      plantilla_net:
-        ipv4_address: 172.95.0.25
-  mail:
-    image: pasthortown/mailer:http
-    restart: always
-    ports:
-    - "6076:5050"
-    env_file:
-    - ./variables.env
-    volumes:
-    - ./templates_mailer:/usr/src/app/Templates
-    networks:
-      plantilla_net:
-        ipv4_address: 172.95.0.26
-  assets:
-    image: httpd:latest
-    ports:
-    - "6077:80"
-    restart: always
-    volumes:
-    - ./assets:/usr/local/apache2/htdocs/assets
-    networks:
-      plantilla_net:
-        ipv4_address: 172.95.0.27
-  main_data:
-    image: pasthortown/catalog-admin:http
-    restart: always
-    ports:
-    - "6078:5050"
-    env_file:
-    - ./variables.env
-    environment:
-      mongo_bdd: main_data
-      mongo_bdd_server: mongo_main_data
-    networks:
-      plantilla_net:
-        ipv4_address: 172.95.0.28
-    links:
-    - mongo_main_data
-  mongo_main_data:
-    image: mongo:latest
-    restart: always
-    volumes:
-    - ./db/mongo_main_data:/data/db
-    env_file:
-    - ./variables.env
-    networks:
-      plantilla_net:
-        ipv4_address: 172.95.0.29
-  mongo_main_data_express:
-    image: mongo-express:latest
-    restart: always
-    ports:
-    - "9078:8081"
-    env_file:
-    - ./variables.env
-    environment:
-      ME_CONFIG_MONGODB_SERVER: mongo_main_data
-    networks:
-      plantilla_net:
-        ipv4_address: 172.95.0.30
-    links:
-    - mongo_main_data
+      PGADMIN_DEFAULT_EMAIL: admin@aplicacion.com
+      PGADMIN_DEFAULT_PASSWORD: admin

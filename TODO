@@ -10,9 +10,16 @@ Aprueba o rechaza
 Contabilidad hace una refacturación
 Se notifica al estudiante que esta retirado
 
-
-MATERIAL REQUERIDO:
-- Solicitud de Retiro
-- Estructura BDD relacional
-
 https://github.com/geminis3/proyecto_integrador
+
+PARA LEVANTAR
+Ir a la carpeta PHP_Imagen_Docker
+build [USUARIO DE DOCKERHUB]
+ir a la carpeta BACKEND
+modificar el archivo docker-compose.yml y apuntar php a su imagen de dockerhub de php
+hacer docker-compose up -d
+entrar al docker de php backend_php_1
+docker exec -it backend_php_1 bash
+ir a la carpeta /public_html/ws desde el docker
+composer install
+levantar la bdd

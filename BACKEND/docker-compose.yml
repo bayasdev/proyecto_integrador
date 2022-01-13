@@ -59,5 +59,7 @@ services:
     volumes:
       - ./pgadmin_data:/var/lib/pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@aplicacion.com
+      PGADMIN_DEFAULT_EMAIL: admin@smcar.com
       PGADMIN_DEFAULT_PASSWORD: admin
+    links:
+    - postgres

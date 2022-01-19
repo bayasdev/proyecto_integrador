@@ -62,12 +62,6 @@ class Authenticate
                 'error' => 'Token invalido.'
             ], 400);
         }
-        $user = User::where('api_token', $token)->first();
-        if (!$user) {
-            return response()->json([
-                'error' => 'Token invalido.'
-            ], 400);
-        }
         $request->auth = $user;
         return $next($request);
     }

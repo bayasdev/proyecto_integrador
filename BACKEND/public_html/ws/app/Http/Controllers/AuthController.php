@@ -149,6 +149,7 @@ class AuthController extends Controller
             $message->to($to, $toAlias)->subject($subject);
             $message->from($fromMail,$fromAlias);
         });
+        $response = 'Realizado!';
     } catch (Exception $e) {
         $response = $e->getMessage();
     }

@@ -48,6 +48,9 @@ class Authenticate
         try {
             $credentials = JWT::decode($token, env('JWT_SECRET'), ['HS256']);
             $timeRemaining = $credentials->expiration_time - time();
+            $id_user = $credentials->subject;
+            $user = User::where('id',$id_user)->first();
+            $request->user = $user;
             if ($timeRemaining <= 0) {
                 return response()->json([
                     'error' => 'Token expirado.'

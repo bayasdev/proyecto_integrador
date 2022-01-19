@@ -4,30 +4,30 @@ namespace App\Http\Controllers\CRUD;
 
 use Illuminate\Http\Request;
 Use Exception;
-use App\Models\dean;
+use App\Models\Dean;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class deanController extends Controller
+class DeanController extends Controller
 {
     function get(Request $data)
     {
        $id = $data['id'];
        if ($id == null) {
-          return response()->json(dean::get(),200);
+          return response()->json(Dean::get(),200);
        } else {
-          $dean = dean::findOrFail($id);
+          $dean = Dean::findOrFail($id);
           $attach = [];
-          return response()->json(["dean"=>$dean, "attach"=>$attach],200);
+          return response()->json(["Dean"=>$dean, "attach"=>$attach],200);
        }
     }
 
     function paginate(Request $data)
     {
        $size = $data['size'];
-       return response()->json(dean::paginate($size),200);
+       return response()->json(Dean::paginate($size),200);
     }
 
     function post(Request $data)
@@ -35,10 +35,10 @@ class deanController extends Controller
        try{
           $result = $data->json()->all();
           DB::beginTransaction();
-          $dean = new dean();
-          $lastdean = dean::orderBy('id')->get()->last();
-          if($lastdean) {
-             $dean->id = $lastdean->id + 1;
+          $dean = new Dean();
+          $lastDean = Dean::orderBy('id')->get()->last();
+          if($lastDean) {
+             $dean->id = $lastDean->id + 1;
           } else {
              $dean->id = 1;
           }
@@ -57,7 +57,7 @@ class deanController extends Controller
        try{
           $result = $data->json()->all();
           DB::beginTransaction();
-          $dean = dean::where('id',$result['id'])->update([
+          $dean = Dean::where('id',$result['id'])->update([
              'identification' => $result['identification'],
              'name' => $result['name'],
           ]);
@@ -71,16 +71,16 @@ class deanController extends Controller
     function delete(Request $data)
     {
        $id = $data['id'];
-       return response()->json(dean::destroy($id),200);
+       return response()->json(Dean::destroy($id),200);
     }
 
     function backup(Request $data)
     {
-       $deans = dean::get();
+       $deans = Dean::get();
        $toReturn = [];
        foreach( $deans as $dean) {
           $attach = [];
-          array_push($toReturn, ["dean"=>$dean, "attach"=>$attach]);
+          array_push($toReturn, ["Dean"=>$dean, "attach"=>$attach]);
        }
        return response()->json($toReturn,200);
     }
@@ -92,15 +92,15 @@ class deanController extends Controller
       try{
        DB::beginTransaction();
        foreach($masiveData as $row) {
-         $result = $row['dean'];
-         $exist = dean::where('id',$result['id'])->first();
+         $result = $row['Dean'];
+         $exist = Dean::where('id',$result['id'])->first();
          if ($exist) {
-           dean::where('id', $result['id'])->update([
+           Dean::where('id', $result['id'])->update([
              'identification' => $result['identification'],
              'name' => $result['name'],
            ]);
          } else {
-          $dean = new dean();
+          $dean = new Dean();
           $dean->id = $result['id'];
           $dean->identification = $result['identification'];
           $dean->name = $result['name'];
@@ -111,6 +111,6 @@ class deanController extends Controller
       } catch (Exception $e) {
          return response()->json($e,400);
       }
-      return response()->json('Carga Completa',200);
+      return response()->json('Task Complete',200);
     }
 }

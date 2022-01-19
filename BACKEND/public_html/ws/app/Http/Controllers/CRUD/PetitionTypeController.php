@@ -4,30 +4,30 @@ namespace App\Http\Controllers\CRUD;
 
 use Illuminate\Http\Request;
 Use Exception;
-use App\Models\requestType;
+use App\Models\PetitionType;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class requestTypeController extends Controller
+class PetitionTypeController extends Controller
 {
     function get(Request $data)
     {
        $id = $data['id'];
        if ($id == null) {
-          return response()->json(requestType::get(),200);
+          return response()->json(PetitionType::get(),200);
        } else {
-          $requesttype = requestType::findOrFail($id);
+          $petitiontype = PetitionType::findOrFail($id);
           $attach = [];
-          return response()->json(["requestType"=>$requesttype, "attach"=>$attach],200);
+          return response()->json(["PetitionType"=>$petitiontype, "attach"=>$attach],200);
        }
     }
 
     function paginate(Request $data)
     {
        $size = $data['size'];
-       return response()->json(requestType::paginate($size),200);
+       return response()->json(PetitionType::paginate($size),200);
     }
 
     function post(Request $data)
@@ -35,20 +35,20 @@ class requestTypeController extends Controller
        try{
           $result = $data->json()->all();
           DB::beginTransaction();
-          $requesttype = new requestType();
-          $lastrequestType = requestType::orderBy('id')->get()->last();
-          if($lastrequestType) {
-             $requesttype->id = $lastrequestType->id + 1;
+          $petitiontype = new PetitionType();
+          $lastPetitionType = PetitionType::orderBy('id')->get()->last();
+          if($lastPetitionType) {
+             $petitiontype->id = $lastPetitionType->id + 1;
           } else {
-             $requesttype->id = 1;
+             $petitiontype->id = 1;
           }
-          $requesttype->name = $result['name'];
-          $requesttype->save();
+          $petitiontype->name = $result['name'];
+          $petitiontype->save();
           DB::commit();
        } catch (Exception $e) {
           return response()->json($e,400);
        }
-       return response()->json($requesttype,200);
+       return response()->json($petitiontype,200);
     }
 
     function put(Request $data)
@@ -56,29 +56,29 @@ class requestTypeController extends Controller
        try{
           $result = $data->json()->all();
           DB::beginTransaction();
-          $requesttype = requestType::where('id',$result['id'])->update([
+          $petitiontype = PetitionType::where('id',$result['id'])->update([
              'name' => $result['name'],
           ]);
           DB::commit();
        } catch (Exception $e) {
           return response()->json($e,400);
        }
-       return response()->json($requesttype,200);
+       return response()->json($petitiontype,200);
     }
 
     function delete(Request $data)
     {
        $id = $data['id'];
-       return response()->json(requestType::destroy($id),200);
+       return response()->json(PetitionType::destroy($id),200);
     }
 
     function backup(Request $data)
     {
-       $requesttypes = requestType::get();
+       $petitiontypes = PetitionType::get();
        $toReturn = [];
-       foreach( $requesttypes as $requesttype) {
+       foreach( $petitiontypes as $petitiontype) {
           $attach = [];
-          array_push($toReturn, ["requestType"=>$requesttype, "attach"=>$attach]);
+          array_push($toReturn, ["PetitionType"=>$petitiontype, "attach"=>$attach]);
        }
        return response()->json($toReturn,200);
     }
@@ -90,23 +90,23 @@ class requestTypeController extends Controller
       try{
        DB::beginTransaction();
        foreach($masiveData as $row) {
-         $result = $row['requestType'];
-         $exist = requestType::where('id',$result['id'])->first();
+         $result = $row['PetitionType'];
+         $exist = PetitionType::where('id',$result['id'])->first();
          if ($exist) {
-           requestType::where('id', $result['id'])->update([
+           PetitionType::where('id', $result['id'])->update([
              'name' => $result['name'],
            ]);
          } else {
-          $requesttype = new requestType();
-          $requesttype->id = $result['id'];
-          $requesttype->name = $result['name'];
-          $requesttype->save();
+          $petitiontype = new PetitionType();
+          $petitiontype->id = $result['id'];
+          $petitiontype->name = $result['name'];
+          $petitiontype->save();
          }
        }
        DB::commit();
       } catch (Exception $e) {
          return response()->json($e,400);
       }
-      return response()->json('Carga Completa',200);
+      return response()->json('Task Complete',200);
     }
 }

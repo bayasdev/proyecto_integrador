@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class requestType extends Model
+class PetitionType extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -24,9 +24,9 @@ class requestType extends Model
        
     ];
 
-    function request()
+    function petition()
     {
-       return $this->belongsTo('App\request');
+       return $this->belongsTo('App\Petition');
     }
 
 }

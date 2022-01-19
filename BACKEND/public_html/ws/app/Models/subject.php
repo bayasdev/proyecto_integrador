@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class subject extends Model
+class Subject extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -26,12 +26,12 @@ class subject extends Model
 
     function carreer()
     {
-       return $this->hasOne('App\carreer');
+       return $this->hasOne('App\Carreer');
     }
 
-    function request()
+    function petitions()
     {
-       return $this->belongsTo('App\request');
+       return $this->belongsToMany('App\Petition')->withTimestamps();
     }
 
 }

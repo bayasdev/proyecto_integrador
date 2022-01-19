@@ -4,30 +4,30 @@ namespace App\Http\Controllers\CRUD;
 
 use Illuminate\Http\Request;
 Use Exception;
-use App\Models\faculty;
+use App\Models\Faculty;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class facultyController extends Controller
+class FacultyController extends Controller
 {
     function get(Request $data)
     {
        $id = $data['id'];
        if ($id == null) {
-          return response()->json(faculty::get(),200);
+          return response()->json(Faculty::get(),200);
        } else {
-          $faculty = faculty::findOrFail($id);
+          $faculty = Faculty::findOrFail($id);
           $attach = [];
-          return response()->json(["faculty"=>$faculty, "attach"=>$attach],200);
+          return response()->json(["Faculty"=>$faculty, "attach"=>$attach],200);
        }
     }
 
     function paginate(Request $data)
     {
        $size = $data['size'];
-       return response()->json(faculty::paginate($size),200);
+       return response()->json(Faculty::paginate($size),200);
     }
 
     function post(Request $data)
@@ -35,10 +35,10 @@ class facultyController extends Controller
        try{
           $result = $data->json()->all();
           DB::beginTransaction();
-          $faculty = new faculty();
-          $lastfaculty = faculty::orderBy('id')->get()->last();
-          if($lastfaculty) {
-             $faculty->id = $lastfaculty->id + 1;
+          $faculty = new Faculty();
+          $lastFaculty = Faculty::orderBy('id')->get()->last();
+          if($lastFaculty) {
+             $faculty->id = $lastFaculty->id + 1;
           } else {
              $faculty->id = 1;
           }
@@ -57,7 +57,7 @@ class facultyController extends Controller
        try{
           $result = $data->json()->all();
           DB::beginTransaction();
-          $faculty = faculty::where('id',$result['id'])->update([
+          $faculty = Faculty::where('id',$result['id'])->update([
              'name' => $result['name'],
              'dean_id' => $result['dean_id'],
           ]);
@@ -71,16 +71,16 @@ class facultyController extends Controller
     function delete(Request $data)
     {
        $id = $data['id'];
-       return response()->json(faculty::destroy($id),200);
+       return response()->json(Faculty::destroy($id),200);
     }
 
     function backup(Request $data)
     {
-       $faculties = faculty::get();
+       $faculties = Faculty::get();
        $toReturn = [];
        foreach( $faculties as $faculty) {
           $attach = [];
-          array_push($toReturn, ["faculty"=>$faculty, "attach"=>$attach]);
+          array_push($toReturn, ["Faculty"=>$faculty, "attach"=>$attach]);
        }
        return response()->json($toReturn,200);
     }
@@ -92,15 +92,15 @@ class facultyController extends Controller
       try{
        DB::beginTransaction();
        foreach($masiveData as $row) {
-         $result = $row['faculty'];
-         $exist = faculty::where('id',$result['id'])->first();
+         $result = $row['Faculty'];
+         $exist = Faculty::where('id',$result['id'])->first();
          if ($exist) {
-           faculty::where('id', $result['id'])->update([
+           Faculty::where('id', $result['id'])->update([
              'name' => $result['name'],
              'dean_id' => $result['dean_id'],
            ]);
          } else {
-          $faculty = new faculty();
+          $faculty = new Faculty();
           $faculty->id = $result['id'];
           $faculty->name = $result['name'];
           $faculty->dean_id = $result['dean_id'];
@@ -111,6 +111,6 @@ class facultyController extends Controller
       } catch (Exception $e) {
          return response()->json($e,400);
       }
-      return response()->json('Carga Completa',200);
+      return response()->json('Task Complete',200);
     }
 }

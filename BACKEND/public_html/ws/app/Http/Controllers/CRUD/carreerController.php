@@ -4,30 +4,30 @@ namespace App\Http\Controllers\CRUD;
 
 use Illuminate\Http\Request;
 Use Exception;
-use App\Models\carreer;
+use App\Models\Carreer;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class carreerController extends Controller
+class CarreerController extends Controller
 {
     function get(Request $data)
     {
        $id = $data['id'];
        if ($id == null) {
-          return response()->json(carreer::get(),200);
+          return response()->json(Carreer::get(),200);
        } else {
-          $carreer = carreer::findOrFail($id);
+          $carreer = Carreer::findOrFail($id);
           $attach = [];
-          return response()->json(["carreer"=>$carreer, "attach"=>$attach],200);
+          return response()->json(["Carreer"=>$carreer, "attach"=>$attach],200);
        }
     }
 
     function paginate(Request $data)
     {
        $size = $data['size'];
-       return response()->json(carreer::paginate($size),200);
+       return response()->json(Carreer::paginate($size),200);
     }
 
     function post(Request $data)
@@ -35,10 +35,10 @@ class carreerController extends Controller
        try{
           $result = $data->json()->all();
           DB::beginTransaction();
-          $carreer = new carreer();
-          $lastcarreer = carreer::orderBy('id')->get()->last();
-          if($lastcarreer) {
-             $carreer->id = $lastcarreer->id + 1;
+          $carreer = new Carreer();
+          $lastCarreer = Carreer::orderBy('id')->get()->last();
+          if($lastCarreer) {
+             $carreer->id = $lastCarreer->id + 1;
           } else {
              $carreer->id = 1;
           }
@@ -58,7 +58,7 @@ class carreerController extends Controller
        try{
           $result = $data->json()->all();
           DB::beginTransaction();
-          $carreer = carreer::where('id',$result['id'])->update([
+          $carreer = Carreer::where('id',$result['id'])->update([
              'name' => $result['name'],
              'faculty_id' => $result['faculty_id'],
              'director_id' => $result['director_id'],
@@ -73,16 +73,16 @@ class carreerController extends Controller
     function delete(Request $data)
     {
        $id = $data['id'];
-       return response()->json(carreer::destroy($id),200);
+       return response()->json(Carreer::destroy($id),200);
     }
 
     function backup(Request $data)
     {
-       $carreers = carreer::get();
+       $carreers = Carreer::get();
        $toReturn = [];
        foreach( $carreers as $carreer) {
           $attach = [];
-          array_push($toReturn, ["carreer"=>$carreer, "attach"=>$attach]);
+          array_push($toReturn, ["Carreer"=>$carreer, "attach"=>$attach]);
        }
        return response()->json($toReturn,200);
     }
@@ -94,16 +94,16 @@ class carreerController extends Controller
       try{
        DB::beginTransaction();
        foreach($masiveData as $row) {
-         $result = $row['carreer'];
-         $exist = carreer::where('id',$result['id'])->first();
+         $result = $row['Carreer'];
+         $exist = Carreer::where('id',$result['id'])->first();
          if ($exist) {
-           carreer::where('id', $result['id'])->update([
+           Carreer::where('id', $result['id'])->update([
              'name' => $result['name'],
              'faculty_id' => $result['faculty_id'],
              'director_id' => $result['director_id'],
            ]);
          } else {
-          $carreer = new carreer();
+          $carreer = new Carreer();
           $carreer->id = $result['id'];
           $carreer->name = $result['name'];
           $carreer->faculty_id = $result['faculty_id'];
@@ -115,6 +115,6 @@ class carreerController extends Controller
       } catch (Exception $e) {
          return response()->json($e,400);
       }
-      return response()->json('Carga Completa',200);
+      return response()->json('Task Complete',200);
     }
 }

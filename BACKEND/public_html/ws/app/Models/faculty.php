@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class faculty extends Model
+class Faculty extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -26,12 +26,12 @@ class faculty extends Model
 
     function carreer()
     {
-       return $this->belongsTo('App\carreer');
+       return $this->belongsTo('App\Carreer');
     }
 
     function dean()
     {
-       return $this->hasOne('App\dean');
+       return $this->hasOne('App\Dean');
     }
 
 }

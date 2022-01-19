@@ -4,30 +4,30 @@ namespace App\Http\Controllers\CRUD;
 
 use Illuminate\Http\Request;
 Use Exception;
-use App\Models\director;
+use App\Models\Director;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class directorController extends Controller
+class DirectorController extends Controller
 {
     function get(Request $data)
     {
        $id = $data['id'];
        if ($id == null) {
-          return response()->json(director::get(),200);
+          return response()->json(Director::get(),200);
        } else {
-          $director = director::findOrFail($id);
+          $director = Director::findOrFail($id);
           $attach = [];
-          return response()->json(["director"=>$director, "attach"=>$attach],200);
+          return response()->json(["Director"=>$director, "attach"=>$attach],200);
        }
     }
 
     function paginate(Request $data)
     {
        $size = $data['size'];
-       return response()->json(director::paginate($size),200);
+       return response()->json(Director::paginate($size),200);
     }
 
     function post(Request $data)
@@ -35,10 +35,10 @@ class directorController extends Controller
        try{
           $result = $data->json()->all();
           DB::beginTransaction();
-          $director = new director();
-          $lastdirector = director::orderBy('id')->get()->last();
-          if($lastdirector) {
-             $director->id = $lastdirector->id + 1;
+          $director = new Director();
+          $lastDirector = Director::orderBy('id')->get()->last();
+          if($lastDirector) {
+             $director->id = $lastDirector->id + 1;
           } else {
              $director->id = 1;
           }
@@ -57,7 +57,7 @@ class directorController extends Controller
        try{
           $result = $data->json()->all();
           DB::beginTransaction();
-          $director = director::where('id',$result['id'])->update([
+          $director = Director::where('id',$result['id'])->update([
              'identification' => $result['identification'],
              'name' => $result['name'],
           ]);
@@ -71,16 +71,16 @@ class directorController extends Controller
     function delete(Request $data)
     {
        $id = $data['id'];
-       return response()->json(director::destroy($id),200);
+       return response()->json(Director::destroy($id),200);
     }
 
     function backup(Request $data)
     {
-       $directors = director::get();
+       $directors = Director::get();
        $toReturn = [];
        foreach( $directors as $director) {
           $attach = [];
-          array_push($toReturn, ["director"=>$director, "attach"=>$attach]);
+          array_push($toReturn, ["Director"=>$director, "attach"=>$attach]);
        }
        return response()->json($toReturn,200);
     }
@@ -92,15 +92,15 @@ class directorController extends Controller
       try{
        DB::beginTransaction();
        foreach($masiveData as $row) {
-         $result = $row['director'];
-         $exist = director::where('id',$result['id'])->first();
+         $result = $row['Director'];
+         $exist = Director::where('id',$result['id'])->first();
          if ($exist) {
-           director::where('id', $result['id'])->update([
+           Director::where('id', $result['id'])->update([
              'identification' => $result['identification'],
              'name' => $result['name'],
            ]);
          } else {
-          $director = new director();
+          $director = new Director();
           $director->id = $result['id'];
           $director->identification = $result['identification'];
           $director->name = $result['name'];
@@ -111,6 +111,6 @@ class directorController extends Controller
       } catch (Exception $e) {
          return response()->json($e,400);
       }
-      return response()->json('Carga Completa',200);
+      return response()->json('Task Complete',200);
     }
 }

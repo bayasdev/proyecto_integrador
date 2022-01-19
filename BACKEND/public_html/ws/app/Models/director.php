@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class director extends Model
+class Director extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -26,7 +26,7 @@ class director extends Model
 
     function carreer()
     {
-       return $this->belongsTo('App\carreer');
+       return $this->belongsTo('App\Carreer');
     }
 
 }

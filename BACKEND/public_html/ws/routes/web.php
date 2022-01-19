@@ -42,84 +42,84 @@ $router->group(['middleware' => ['auth']], function () use ($router) {
    $router->put('/user', ['uses' => 'Profile\UserController@put']);
    $router->delete('/user', ['uses' => 'Profile\UserController@delete']);
 
-   //CRUD request
-   $router->post('/request', ['uses' => 'CRUD\requestController@post']);
-   $router->get('/request', ['uses' => 'CRUD\requestController@get']);
-   $router->get('/request/paginate', ['uses' => 'CRUD\requestController@paginate']);
-   $router->get('/request/backup', ['uses' => 'CRUD\requestController@backup']);
-   $router->put('/request', ['uses' => 'CRUD\requestController@put']);
-   $router->delete('/request', ['uses' => 'CRUD\requestController@delete']);
-   $router->post('/request/masive_load', ['uses' => 'CRUD\requestController@masiveLoad']);
+   //CRUD Subject
+   $router->post('/subject', ['uses' => 'CRUD\SubjectController@post']);
+   $router->get('/subject', ['uses' => 'CRUD\SubjectController@get']);
+   $router->get('/subject/paginate', ['uses' => 'CRUD\SubjectController@paginate']);
+   $router->get('/subject/backup', ['uses' => 'CRUD\SubjectController@backup']);
+   $router->put('/subject', ['uses' => 'CRUD\SubjectController@put']);
+   $router->delete('/subject', ['uses' => 'CRUD\SubjectController@delete']);
+   $router->post('/subject/masive_load', ['uses' => 'CRUD\SubjectController@masiveLoad']);
 
-   //CRUD subject
-   $router->post('/subject', ['uses' => 'CRUD\subjectController@post']);
-   $router->get('/subject', ['uses' => 'CRUD\subjectController@get']);
-   $router->get('/subject/paginate', ['uses' => 'CRUD\subjectController@paginate']);
-   $router->get('/subject/backup', ['uses' => 'CRUD\subjectController@backup']);
-   $router->put('/subject', ['uses' => 'CRUD\subjectController@put']);
-   $router->delete('/subject', ['uses' => 'CRUD\subjectController@delete']);
-   $router->post('/subject/masive_load', ['uses' => 'CRUD\subjectController@masiveLoad']);
+   //CRUD Carreer
+   $router->post('/carreer', ['uses' => 'CRUD\CarreerController@post']);
+   $router->get('/carreer', ['uses' => 'CRUD\CarreerController@get']);
+   $router->get('/carreer/paginate', ['uses' => 'CRUD\CarreerController@paginate']);
+   $router->get('/carreer/backup', ['uses' => 'CRUD\CarreerController@backup']);
+   $router->put('/carreer', ['uses' => 'CRUD\CarreerController@put']);
+   $router->delete('/carreer', ['uses' => 'CRUD\CarreerController@delete']);
+   $router->post('/carreer/masive_load', ['uses' => 'CRUD\CarreerController@masiveLoad']);
 
-   //CRUD carreer
-   $router->post('/carreer', ['uses' => 'CRUD\carreerController@post']);
-   $router->get('/carreer', ['uses' => 'CRUD\carreerController@get']);
-   $router->get('/carreer/paginate', ['uses' => 'CRUD\carreerController@paginate']);
-   $router->get('/carreer/backup', ['uses' => 'CRUD\carreerController@backup']);
-   $router->put('/carreer', ['uses' => 'CRUD\carreerController@put']);
-   $router->delete('/carreer', ['uses' => 'CRUD\carreerController@delete']);
-   $router->post('/carreer/masive_load', ['uses' => 'CRUD\carreerController@masiveLoad']);
+   //CRUD Petition
+   $router->post('/petition', ['uses' => 'CRUD\PetitionController@post']);
+   $router->get('/petition', ['uses' => 'CRUD\PetitionController@get']);
+   $router->get('/petition/paginate', ['uses' => 'CRUD\PetitionController@paginate']);
+   $router->get('/petition/backup', ['uses' => 'CRUD\PetitionController@backup']);
+   $router->put('/petition', ['uses' => 'CRUD\PetitionController@put']);
+   $router->delete('/petition', ['uses' => 'CRUD\PetitionController@delete']);
+   $router->post('/petition/masive_load', ['uses' => 'CRUD\PetitionController@masiveLoad']);
 
-   //CRUD faculty
-   $router->post('/faculty', ['uses' => 'CRUD\facultyController@post']);
-   $router->get('/faculty', ['uses' => 'CRUD\facultyController@get']);
-   $router->get('/faculty/paginate', ['uses' => 'CRUD\facultyController@paginate']);
-   $router->get('/faculty/backup', ['uses' => 'CRUD\facultyController@backup']);
-   $router->put('/faculty', ['uses' => 'CRUD\facultyController@put']);
-   $router->delete('/faculty', ['uses' => 'CRUD\facultyController@delete']);
-   $router->post('/faculty/masive_load', ['uses' => 'CRUD\facultyController@masiveLoad']);
+   //CRUD Faculty
+   $router->post('/faculty', ['uses' => 'CRUD\FacultyController@post']);
+   $router->get('/faculty', ['uses' => 'CRUD\FacultyController@get']);
+   $router->get('/faculty/paginate', ['uses' => 'CRUD\FacultyController@paginate']);
+   $router->get('/faculty/backup', ['uses' => 'CRUD\FacultyController@backup']);
+   $router->put('/faculty', ['uses' => 'CRUD\FacultyController@put']);
+   $router->delete('/faculty', ['uses' => 'CRUD\FacultyController@delete']);
+   $router->post('/faculty/masive_load', ['uses' => 'CRUD\FacultyController@masiveLoad']);
 
-   //CRUD director
-   $router->post('/director', ['uses' => 'CRUD\directorController@post']);
-   $router->get('/director', ['uses' => 'CRUD\directorController@get']);
-   $router->get('/director/paginate', ['uses' => 'CRUD\directorController@paginate']);
-   $router->get('/director/backup', ['uses' => 'CRUD\directorController@backup']);
-   $router->put('/director', ['uses' => 'CRUD\directorController@put']);
-   $router->delete('/director', ['uses' => 'CRUD\directorController@delete']);
-   $router->post('/director/masive_load', ['uses' => 'CRUD\directorController@masiveLoad']);
+   //CRUD Director
+   $router->post('/director', ['uses' => 'CRUD\DirectorController@post']);
+   $router->get('/director', ['uses' => 'CRUD\DirectorController@get']);
+   $router->get('/director/paginate', ['uses' => 'CRUD\DirectorController@paginate']);
+   $router->get('/director/backup', ['uses' => 'CRUD\DirectorController@backup']);
+   $router->put('/director', ['uses' => 'CRUD\DirectorController@put']);
+   $router->delete('/director', ['uses' => 'CRUD\DirectorController@delete']);
+   $router->post('/director/masive_load', ['uses' => 'CRUD\DirectorController@masiveLoad']);
 
-   //CRUD dean
-   $router->post('/dean', ['uses' => 'CRUD\deanController@post']);
-   $router->get('/dean', ['uses' => 'CRUD\deanController@get']);
-   $router->get('/dean/paginate', ['uses' => 'CRUD\deanController@paginate']);
-   $router->get('/dean/backup', ['uses' => 'CRUD\deanController@backup']);
-   $router->put('/dean', ['uses' => 'CRUD\deanController@put']);
-   $router->delete('/dean', ['uses' => 'CRUD\deanController@delete']);
-   $router->post('/dean/masive_load', ['uses' => 'CRUD\deanController@masiveLoad']);
+   //CRUD Dean
+   $router->post('/dean', ['uses' => 'CRUD\DeanController@post']);
+   $router->get('/dean', ['uses' => 'CRUD\DeanController@get']);
+   $router->get('/dean/paginate', ['uses' => 'CRUD\DeanController@paginate']);
+   $router->get('/dean/backup', ['uses' => 'CRUD\DeanController@backup']);
+   $router->put('/dean', ['uses' => 'CRUD\DeanController@put']);
+   $router->delete('/dean', ['uses' => 'CRUD\DeanController@delete']);
+   $router->post('/dean/masive_load', ['uses' => 'CRUD\DeanController@masiveLoad']);
 
-   //CRUD rol
-   $router->post('/rol', ['uses' => 'CRUD\rolController@post']);
-   $router->get('/rol', ['uses' => 'CRUD\rolController@get']);
-   $router->get('/rol/paginate', ['uses' => 'CRUD\rolController@paginate']);
-   $router->get('/rol/backup', ['uses' => 'CRUD\rolController@backup']);
-   $router->put('/rol', ['uses' => 'CRUD\rolController@put']);
-   $router->delete('/rol', ['uses' => 'CRUD\rolController@delete']);
-   $router->post('/rol/masive_load', ['uses' => 'CRUD\rolController@masiveLoad']);
+   //CRUD Rol
+   $router->post('/rol', ['uses' => 'CRUD\RolController@post']);
+   $router->get('/rol', ['uses' => 'CRUD\RolController@get']);
+   $router->get('/rol/paginate', ['uses' => 'CRUD\RolController@paginate']);
+   $router->get('/rol/backup', ['uses' => 'CRUD\RolController@backup']);
+   $router->put('/rol', ['uses' => 'CRUD\RolController@put']);
+   $router->delete('/rol', ['uses' => 'CRUD\RolController@delete']);
+   $router->post('/rol/masive_load', ['uses' => 'CRUD\RolController@masiveLoad']);
 
-   //CRUD requestType
-   $router->post('/requesttype', ['uses' => 'CRUD\requestTypeController@post']);
-   $router->get('/requesttype', ['uses' => 'CRUD\requestTypeController@get']);
-   $router->get('/requesttype/paginate', ['uses' => 'CRUD\requestTypeController@paginate']);
-   $router->get('/requesttype/backup', ['uses' => 'CRUD\requestTypeController@backup']);
-   $router->put('/requesttype', ['uses' => 'CRUD\requestTypeController@put']);
-   $router->delete('/requesttype', ['uses' => 'CRUD\requestTypeController@delete']);
-   $router->post('/requesttype/masive_load', ['uses' => 'CRUD\requestTypeController@masiveLoad']);
+   //CRUD PetitionType
+   $router->post('/petitiontype', ['uses' => 'CRUD\PetitionTypeController@post']);
+   $router->get('/petitiontype', ['uses' => 'CRUD\PetitionTypeController@get']);
+   $router->get('/petitiontype/paginate', ['uses' => 'CRUD\PetitionTypeController@paginate']);
+   $router->get('/petitiontype/backup', ['uses' => 'CRUD\PetitionTypeController@backup']);
+   $router->put('/petitiontype', ['uses' => 'CRUD\PetitionTypeController@put']);
+   $router->delete('/petitiontype', ['uses' => 'CRUD\PetitionTypeController@delete']);
+   $router->post('/petitiontype/masive_load', ['uses' => 'CRUD\PetitionTypeController@masiveLoad']);
 
-   //CRUD requestAttachment
-   $router->post('/requestattachment', ['uses' => 'CRUD\requestAttachmentController@post']);
-   $router->get('/requestattachment', ['uses' => 'CRUD\requestAttachmentController@get']);
-   $router->get('/requestattachment/paginate', ['uses' => 'CRUD\requestAttachmentController@paginate']);
-   $router->get('/requestattachment/backup', ['uses' => 'CRUD\requestAttachmentController@backup']);
-   $router->put('/requestattachment', ['uses' => 'CRUD\requestAttachmentController@put']);
-   $router->delete('/requestattachment', ['uses' => 'CRUD\requestAttachmentController@delete']);
-   $router->post('/requestattachment/masive_load', ['uses' => 'CRUD\requestAttachmentController@masiveLoad']);
+   //CRUD PetitionAttachment
+   $router->post('/petitionattachment', ['uses' => 'CRUD\PetitionAttachmentController@post']);
+   $router->get('/petitionattachment', ['uses' => 'CRUD\PetitionAttachmentController@get']);
+   $router->get('/petitionattachment/paginate', ['uses' => 'CRUD\PetitionAttachmentController@paginate']);
+   $router->get('/petitionattachment/backup', ['uses' => 'CRUD\PetitionAttachmentController@backup']);
+   $router->put('/petitionattachment', ['uses' => 'CRUD\PetitionAttachmentController@put']);
+   $router->delete('/petitionattachment', ['uses' => 'CRUD\PetitionAttachmentController@delete']);
+   $router->post('/petitionattachment/masive_load', ['uses' => 'CRUD\PetitionAttachmentController@masiveLoad']);
 });

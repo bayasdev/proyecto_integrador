@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Carreer extends Model
+class Petition extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,7 +12,7 @@ class Carreer extends Model
      * @var array
      */
     protected $fillable = [
-       'name',
+       'parameters',
     ];
 
     /**
@@ -24,19 +24,19 @@ class Carreer extends Model
        
     ];
 
-    function faculty()
+    function petition_type()
     {
-       return $this->hasOne('App\Faculty');
+       return $this->hasOne('App\PetitionType');
     }
 
-    function director()
+    function petition_attachments()
     {
-       return $this->hasOne('App\Director');
+       return $this->belongsToMany('App\PetitionAttachment')->withTimestamps();
     }
 
-    function subject()
+    function subjects()
     {
-       return $this->belongsTo('App\Subject');
+       return $this->belongsToMany('App\Subject')->withTimestamps();
     }
 
 }

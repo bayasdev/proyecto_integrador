@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class request extends Model
+class PetitionAttachment extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,7 +12,7 @@ class request extends Model
      * @var array
      */
     protected $fillable = [
-       'parameters',
+       'request_attachment_file_type','request_attachment_file_name','request_attachment_file',
     ];
 
     /**
@@ -24,19 +24,9 @@ class request extends Model
        
     ];
 
-    function request_type()
+    function petitions()
     {
-       return $this->hasOne('App\requestType');
-    }
-
-    function request_attachments()
-    {
-       return $this->belongsToMany('App\requestAttachment')->withTimestamps();
-    }
-
-    function subject()
-    {
-       return $this->hasOne('App\subject');
+       return $this->belongsToMany('App\Petition')->withTimestamps();
     }
 
 }

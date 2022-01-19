@@ -4,30 +4,30 @@ namespace App\Http\Controllers\CRUD;
 
 use Illuminate\Http\Request;
 Use Exception;
-use App\Models\rol;
+use App\Models\Rol;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class rolController extends Controller
+class RolController extends Controller
 {
     function get(Request $data)
     {
        $id = $data['id'];
        if ($id == null) {
-          return response()->json(rol::get(),200);
+          return response()->json(Rol::get(),200);
        } else {
-          $rol = rol::findOrFail($id);
+          $rol = Rol::findOrFail($id);
           $attach = [];
-          return response()->json(["rol"=>$rol, "attach"=>$attach],200);
+          return response()->json(["Rol"=>$rol, "attach"=>$attach],200);
        }
     }
 
     function paginate(Request $data)
     {
        $size = $data['size'];
-       return response()->json(rol::paginate($size),200);
+       return response()->json(Rol::paginate($size),200);
     }
 
     function post(Request $data)
@@ -35,10 +35,10 @@ class rolController extends Controller
        try{
           $result = $data->json()->all();
           DB::beginTransaction();
-          $rol = new rol();
-          $lastrol = rol::orderBy('id')->get()->last();
-          if($lastrol) {
-             $rol->id = $lastrol->id + 1;
+          $rol = new Rol();
+          $lastRol = Rol::orderBy('id')->get()->last();
+          if($lastRol) {
+             $rol->id = $lastRol->id + 1;
           } else {
              $rol->id = 1;
           }
@@ -56,7 +56,7 @@ class rolController extends Controller
        try{
           $result = $data->json()->all();
           DB::beginTransaction();
-          $rol = rol::where('id',$result['id'])->update([
+          $rol = Rol::where('id',$result['id'])->update([
              'name' => $result['name'],
           ]);
           DB::commit();
@@ -69,16 +69,16 @@ class rolController extends Controller
     function delete(Request $data)
     {
        $id = $data['id'];
-       return response()->json(rol::destroy($id),200);
+       return response()->json(Rol::destroy($id),200);
     }
 
     function backup(Request $data)
     {
-       $rols = rol::get();
+       $rols = Rol::get();
        $toReturn = [];
        foreach( $rols as $rol) {
           $attach = [];
-          array_push($toReturn, ["rol"=>$rol, "attach"=>$attach]);
+          array_push($toReturn, ["Rol"=>$rol, "attach"=>$attach]);
        }
        return response()->json($toReturn,200);
     }
@@ -90,14 +90,14 @@ class rolController extends Controller
       try{
        DB::beginTransaction();
        foreach($masiveData as $row) {
-         $result = $row['rol'];
-         $exist = rol::where('id',$result['id'])->first();
+         $result = $row['Rol'];
+         $exist = Rol::where('id',$result['id'])->first();
          if ($exist) {
-           rol::where('id', $result['id'])->update([
+           Rol::where('id', $result['id'])->update([
              'name' => $result['name'],
            ]);
          } else {
-          $rol = new rol();
+          $rol = new Rol();
           $rol->id = $result['id'];
           $rol->name = $result['name'];
           $rol->save();
@@ -107,6 +107,6 @@ class rolController extends Controller
       } catch (Exception $e) {
          return response()->json($e,400);
       }
-      return response()->json('Carga Completa',200);
+      return response()->json('Task Complete',200);
     }
 }

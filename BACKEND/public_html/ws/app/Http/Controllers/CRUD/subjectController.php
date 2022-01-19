@@ -4,30 +4,30 @@ namespace App\Http\Controllers\CRUD;
 
 use Illuminate\Http\Request;
 Use Exception;
-use App\Models\subject;
+use App\Models\Subject;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class subjectController extends Controller
+class SubjectController extends Controller
 {
     function get(Request $data)
     {
        $id = $data['id'];
        if ($id == null) {
-          return response()->json(subject::get(),200);
+          return response()->json(Subject::get(),200);
        } else {
-          $subject = subject::findOrFail($id);
+          $subject = Subject::findOrFail($id);
           $attach = [];
-          return response()->json(["subject"=>$subject, "attach"=>$attach],200);
+          return response()->json(["Subject"=>$subject, "attach"=>$attach],200);
        }
     }
 
     function paginate(Request $data)
     {
        $size = $data['size'];
-       return response()->json(subject::paginate($size),200);
+       return response()->json(Subject::paginate($size),200);
     }
 
     function post(Request $data)
@@ -35,10 +35,10 @@ class subjectController extends Controller
        try{
           $result = $data->json()->all();
           DB::beginTransaction();
-          $subject = new subject();
-          $lastsubject = subject::orderBy('id')->get()->last();
-          if($lastsubject) {
-             $subject->id = $lastsubject->id + 1;
+          $subject = new Subject();
+          $lastSubject = Subject::orderBy('id')->get()->last();
+          if($lastSubject) {
+             $subject->id = $lastSubject->id + 1;
           } else {
              $subject->id = 1;
           }
@@ -59,7 +59,7 @@ class subjectController extends Controller
        try{
           $result = $data->json()->all();
           DB::beginTransaction();
-          $subject = subject::where('id',$result['id'])->update([
+          $subject = Subject::where('id',$result['id'])->update([
              'code' => $result['code'],
              'name' => $result['name'],
              'credits' => $result['credits'],
@@ -75,16 +75,16 @@ class subjectController extends Controller
     function delete(Request $data)
     {
        $id = $data['id'];
-       return response()->json(subject::destroy($id),200);
+       return response()->json(Subject::destroy($id),200);
     }
 
     function backup(Request $data)
     {
-       $subjects = subject::get();
+       $subjects = Subject::get();
        $toReturn = [];
        foreach( $subjects as $subject) {
           $attach = [];
-          array_push($toReturn, ["subject"=>$subject, "attach"=>$attach]);
+          array_push($toReturn, ["Subject"=>$subject, "attach"=>$attach]);
        }
        return response()->json($toReturn,200);
     }
@@ -96,17 +96,17 @@ class subjectController extends Controller
       try{
        DB::beginTransaction();
        foreach($masiveData as $row) {
-         $result = $row['subject'];
-         $exist = subject::where('id',$result['id'])->first();
+         $result = $row['Subject'];
+         $exist = Subject::where('id',$result['id'])->first();
          if ($exist) {
-           subject::where('id', $result['id'])->update([
+           Subject::where('id', $result['id'])->update([
              'code' => $result['code'],
              'name' => $result['name'],
              'credits' => $result['credits'],
              'carreer_id' => $result['carreer_id'],
            ]);
          } else {
-          $subject = new subject();
+          $subject = new Subject();
           $subject->id = $result['id'];
           $subject->code = $result['code'];
           $subject->name = $result['name'];
@@ -119,6 +119,6 @@ class subjectController extends Controller
       } catch (Exception $e) {
          return response()->json($e,400);
       }
-      return response()->json('Carga Completa',200);
+      return response()->json('Task Complete',200);
     }
 }

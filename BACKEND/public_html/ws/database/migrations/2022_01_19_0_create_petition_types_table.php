@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreaterequestTypesTable extends Migration
+class CreatePetitionTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreaterequestTypesTable extends Migration
      */
     public function up()
     {
-       Schema::create('request_types', function (Blueprint $table) {
+       Schema::create('petition_types', function (Blueprint $table) {
           $table->increments('id');
           $table->timestamps();
           $table->string('name',200)->nullable($value = true);
@@ -27,6 +27,6 @@ class CreaterequestTypesTable extends Migration
      */
     public function down()
     {
-       Schema::dropIfExists('request_types');
+       Schema::dropIfExists('petition_types');
     }
 }

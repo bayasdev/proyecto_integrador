@@ -62,7 +62,6 @@ class Authenticate
                 'error' => 'Token invalido.'
             ], 400);
         }
-        $request->auth = $user;
         return $next($request);
     }
 }

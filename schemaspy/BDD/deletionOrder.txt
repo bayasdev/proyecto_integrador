@@ -1,9 +1,10 @@
 migrations
 rol_user
 request_request_attachment
-carreers
 profile_pictures
 requests
+subjects
+carreers
 faculties
 rols
 request_types

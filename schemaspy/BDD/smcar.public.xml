@@ -13,11 +13,14 @@
       <sequence increment="1" name="requests_id_seq" startValue="1"/>
       <sequence increment="1" name="rol_user_id_seq" startValue="1"/>
       <sequence increment="1" name="rols_id_seq" startValue="1"/>
+      <sequence increment="1" name="subjects_id_seq" startValue="1"/>
       <sequence increment="1" name="users_id_seq" startValue="1"/>
    </sequences>
    <tables>
       <table name="carreers" numRows="0" remarks="" schema="public" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('carreers_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="true" defaultValue="nextval('carreers_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="carreer_id" foreignKey="subjects_carreer_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="subjects"/>
+         </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="name" nullable="true" remarks="" size="200" type="varchar" typeCode="12"/>
@@ -73,7 +76,7 @@
             <column ascending="true" name="id"/>
          </index>
       </table>
-      <table name="migrations" numRows="12" remarks="" schema="public" type="TABLE">
+      <table name="migrations" numRows="13" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('migrations_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="migration" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="batch" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
@@ -148,6 +151,9 @@
          <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="request_type_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
             <parent column="id" foreignKey="requests_request_type_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="request_types"/>
          </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="subject_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="requests_subject_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="subjects"/>
+         </column>
          <primaryKey column="id" sequenceNumberInPK="1"/>
          <index name="requests_pkey" unique="true">
             <column ascending="true" name="id"/>
@@ -177,6 +183,23 @@
          <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="name" nullable="true" remarks="" size="200" type="varchar" typeCode="12"/>
          <primaryKey column="id" sequenceNumberInPK="1"/>
          <index name="rols_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="subjects" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('subjects_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="subject_id" foreignKey="requests_subject_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="requests"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="code" nullable="true" remarks="" size="15" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="name" nullable="true" remarks="" size="200" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="credits" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="carreer_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="subjects_carreer_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="carreers"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="subjects_pkey" unique="true">
             <column ascending="true" name="id"/>
          </index>
       </table>

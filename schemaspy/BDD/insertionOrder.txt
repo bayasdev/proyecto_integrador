@@ -5,9 +5,10 @@ request_attachments
 request_types
 rols
 faculties
+carreers
+subjects
 requests
 profile_pictures
-carreers
 request_request_attachment
 rol_user
 migrations

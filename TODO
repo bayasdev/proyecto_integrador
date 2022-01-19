@@ -27,3 +27,10 @@ levantar la bdd
 Materias -> carrea
 Matricula -> materia y el Usuario
 Solicitud -> matricula
+
+TODO 20/01/22
+
+Crear servicios por cada controller del back (Angular)
+1 solo api en environments
+auth component mover else a un try catch
+e.error

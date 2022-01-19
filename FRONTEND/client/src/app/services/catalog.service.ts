@@ -8,6 +8,9 @@ import { environment } from 'src/environments/environment';
 export class CatalogService {
   options = {};
 
+  // url = environment.api + ""/nombreController (revisar web.php)
+  // url + /accion
+
   constructor(private http: HttpClient) {
     let headers: HttpHeaders = new HttpHeaders().set('token', sessionStorage.getItem('token') as string)
     this.options = {headers: headers};

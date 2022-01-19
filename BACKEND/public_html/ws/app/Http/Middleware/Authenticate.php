@@ -52,7 +52,7 @@ class Authenticate
             $timeRemaining = $credentials->expiration_time - time();
             $user_id = $credentials->subject;
             $user = User::where('id',$user_id)->first();
-            $rols = DB::select('SELECT * FROM rols
+            $rols = DB::select('SELECT rols.name FROM rols
                                         INNER JOIN rol_user ON rol_user.rol_id = rols_id
                                         WHERE rol_user.user_id = :user_id;', ['user_id'=>$user_id]);
             if (!$rols) {

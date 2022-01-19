@@ -1,0 +1,59 @@
+.user-dropdown {
+    position: absolute !important;
+}
+
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    outline: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+}
+
+.barras-navbar {
+  font-size: 30px;
+}
+
+:root {
+  --offcanvas-width: 270px;
+  --topNavbarHeight: 62px;
+}
+
+/* set sidebar width */
+
+.sidebar-nav {
+  width: var(--offcanvas-width);
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-link .right-icon {
+  display: inline-flex;
+}
+
+.sidebar-link[aria-expanded="true"] .right-icon {
+  transform: rotate(180deg);
+  transition: all ease 0.25s;
+}
+
+/* make the sidebar always visible on >= lg also set height */
+
+@media (min-width:992px) {
+  body {
+      overflow: auto !important;
+  }
+  main {
+      margin-left: var(--offcanvas-width);
+  }
+  .sidebar-nav {
+      transform: none;
+      visibility: visible !important;
+      top: var(--topNavbarHeight);
+      height: calc(100% - var(--topNavbarHeight));
+  }
+}

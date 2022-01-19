@@ -1,0 +1,7 @@
+Colores logo UNIB.E
+
+Azul
+#1C2544
+
+Amarillo
+#FECC0D

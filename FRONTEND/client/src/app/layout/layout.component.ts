@@ -17,6 +17,8 @@ export class LayoutComponent implements OnInit {
     this.build_menu();
   }
 
+  // meter json del menú en el componente
+
   build_menu() {
     this.side_menu = [];
     let output_model: any = {

@@ -34,3 +34,7 @@ Crear servicios por cada controller del back (Angular)
 1 solo api en environments
 auth component mover else a un try catch
 e.error
+
+definir las pantallas que tendrá el sistema
+
+hacer menú lateral como json

@@ -53,15 +53,13 @@ class Authenticate
             $user_id = $credentials->subject;
             $user = User::where('id',$user_id)->first();
             $rols = DB::select('SELECT * FROM rols
-                                        INNER JOIN rol_user ON rol_user.rol_id = rols_id
+                                        INNER JOIN rol_user ON rol_user.rol_id = rols.id
                                         WHERE rol_user.user_id = :user_id;', ['user_id'=>$user_id]);
             if (!$rols) {
                 $rols = [];
             }
-            $user_data = new stdClass();
-            $user_data->user = $user;
-            $user_data->rols = $rols;
-            $request->user = $user_data;
+            $user->rols = $rols;
+            $request->user = $user;
             if ($timeRemaining <= 0) {
                 return response()->json([
                     'error' => 'Token expirado.'

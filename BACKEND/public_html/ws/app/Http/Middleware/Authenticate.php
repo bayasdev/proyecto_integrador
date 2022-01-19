@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Contracts\Auth\Factory as Auth;
 use Exception;
 use App\Models\Profile\User;
+use App\Models\Rol;
 use Firebase\JWT\JWT;
 use Firebase\JWT\ExpiredException;
 
@@ -50,6 +51,8 @@ class Authenticate
             $timeRemaining = $credentials->expiration_time - time();
             $id_user = $credentials->subject;
             $user = User::where('id',$id_user)->first();
+            $rols = Rol::where('user_id',$id_user)->get();
+            $user->rols = $rols;
             $request->user = $user;
             if ($timeRemaining <= 0) {
                 return response()->json([

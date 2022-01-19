@@ -6,9 +6,9 @@ use Closure;
 use Illuminate\Contracts\Auth\Factory as Auth;
 use Exception;
 use App\Models\Profile\User;
-use App\Models\Rol;
 use Firebase\JWT\JWT;
 use Firebase\JWT\ExpiredException;
+use Illuminate\Support\Facades\DB;
 use stdClass;
 
 class Authenticate
@@ -50,9 +50,11 @@ class Authenticate
         try {
             $credentials = JWT::decode($token, env('JWT_SECRET'), ['HS256']);
             $timeRemaining = $credentials->expiration_time - time();
-            $id_user = $credentials->subject;
-            $user = User::where('id',$id_user)->first();
-            $rols = Rol::where('user_id',$id_user)->get();
+            $user_id = $credentials->subject;
+            $user = User::where('id',$user_id)->first();
+            $rols = DB::select('SELECT * FROM rols
+                                        INNER JOIN rol_user ON rol_user.rol_id = rols_id
+                                        WHERE rol_user.user_id = :user_id;', ['user_id'=>$user_id]);
             if (!$rols) {
                 $rols = [];
             }

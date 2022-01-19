@@ -15,6 +15,10 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ProfilePictureController extends Controller
 {
+    function prueba(Request $data) {
+        return json_encode($data->user);
+    }
+
     function get(Request $data)
     {
        $user_id = $data['user_id'];

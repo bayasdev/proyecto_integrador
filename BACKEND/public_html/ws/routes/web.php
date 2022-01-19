@@ -29,6 +29,7 @@ $router->group(['middleware' => ['auth']], function () use ($router) {
    //ProyectoIntegrador
 
    //CRUD ProfilePicture
+   $router->post('/prueba', ['uses' => 'Profile\ProfilePictureController@prueba']);
    $router->post('/profilepicture', ['uses' => 'Profile\ProfilePictureController@post']);
    $router->get('/profilepicture', ['uses' => 'Profile\ProfilePictureController@get']);
    $router->get('/profilepicture/paginate', ['uses' => 'Profile\ProfilePictureController@paginate']);

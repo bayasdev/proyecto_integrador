@@ -34,4 +34,9 @@ class request extends Model
        return $this->belongsToMany('App\requestAttachment')->withTimestamps();
     }
 
+    function subject()
+    {
+       return $this->hasOne('App\subject');
+    }
+
 }

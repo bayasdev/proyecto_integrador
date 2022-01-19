@@ -19,6 +19,8 @@ class CreaterequestsTable extends Migration
           $table->longText('parameters')->nullable($value = true);
           $table->unsignedInteger('request_type_id');
           $table->foreign('request_type_id')->references('id')->on('request_types')->onDelete('cascade');
+          $table->unsignedInteger('subject_id');
+          $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
        });
     }
 

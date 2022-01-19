@@ -46,6 +46,7 @@ class requestController extends Controller
           }
           $request->parameters = $result['parameters'];
           $request->request_type_id = $result['request_type_id'];
+          $request->subject_id = $result['subject_id'];
           $request->save();
           $request_attachments_on_request = $result['request_attachments_on_request'];
           foreach( $request_attachments_on_request as $request_attachment) {
@@ -66,6 +67,7 @@ class requestController extends Controller
           $request = request::where('id',$result['id'])->update([
              'parameters' => $result['parameters'],
              'request_type_id' => $result['request_type_id'],
+             'subject_id' => $result['subject_id'],
           ]);
           $request = request::where('id',$result['id'])->first();
           $request_attachments_on_request = $result['request_attachments_on_request'];
@@ -131,12 +133,14 @@ class requestController extends Controller
            request::where('id', $result['id'])->update([
              'parameters' => $result['parameters'],
              'request_type_id' => $result['request_type_id'],
+             'subject_id' => $result['subject_id'],
            ]);
          } else {
           $request = new request();
           $request->id = $result['id'];
           $request->parameters = $result['parameters'];
           $request->request_type_id = $result['request_type_id'];
+          $request->subject_id = $result['subject_id'];
           $request->save();
          }
          $request = request::where('id',$result['id'])->first();

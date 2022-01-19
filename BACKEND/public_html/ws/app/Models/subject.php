@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class carreer extends Model
+class subject extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,7 +12,7 @@ class carreer extends Model
      * @var array
      */
     protected $fillable = [
-       'name',
+       'code','name','credits',
     ];
 
     /**
@@ -24,19 +24,14 @@ class carreer extends Model
        
     ];
 
-    function faculty()
+    function carreer()
     {
-       return $this->hasOne('App\faculty');
+       return $this->hasOne('App\carreer');
     }
 
-    function director()
+    function request()
     {
-       return $this->hasOne('App\director');
-    }
-
-    function subject()
-    {
-       return $this->belongsTo('App\subject');
+       return $this->belongsTo('App\request');
     }
 
 }

@@ -12,7 +12,7 @@
 */
 
 $router->get('/', function () use ($router) {
-   return json_encode('Web Wervice Sistema de Modificación de Carga Académica y Retiro Funcionando');
+   return 'Web Wervice Realizado con LSCodeGenerator';
 });
 
 $router->group(['middleware' => []], function () use ($router) {
@@ -42,6 +42,24 @@ $router->group(['middleware' => ['auth']], function () use ($router) {
    $router->put('/user', ['uses' => 'Profile\UserController@put']);
    $router->delete('/user', ['uses' => 'Profile\UserController@delete']);
 
+   //CRUD request
+   $router->post('/request', ['uses' => 'CRUD\requestController@post']);
+   $router->get('/request', ['uses' => 'CRUD\requestController@get']);
+   $router->get('/request/paginate', ['uses' => 'CRUD\requestController@paginate']);
+   $router->get('/request/backup', ['uses' => 'CRUD\requestController@backup']);
+   $router->put('/request', ['uses' => 'CRUD\requestController@put']);
+   $router->delete('/request', ['uses' => 'CRUD\requestController@delete']);
+   $router->post('/request/masive_load', ['uses' => 'CRUD\requestController@masiveLoad']);
+
+   //CRUD subject
+   $router->post('/subject', ['uses' => 'CRUD\subjectController@post']);
+   $router->get('/subject', ['uses' => 'CRUD\subjectController@get']);
+   $router->get('/subject/paginate', ['uses' => 'CRUD\subjectController@paginate']);
+   $router->get('/subject/backup', ['uses' => 'CRUD\subjectController@backup']);
+   $router->put('/subject', ['uses' => 'CRUD\subjectController@put']);
+   $router->delete('/subject', ['uses' => 'CRUD\subjectController@delete']);
+   $router->post('/subject/masive_load', ['uses' => 'CRUD\subjectController@masiveLoad']);
+
    //CRUD carreer
    $router->post('/carreer', ['uses' => 'CRUD\carreerController@post']);
    $router->get('/carreer', ['uses' => 'CRUD\carreerController@get']);
@@ -59,15 +77,6 @@ $router->group(['middleware' => ['auth']], function () use ($router) {
    $router->put('/faculty', ['uses' => 'CRUD\facultyController@put']);
    $router->delete('/faculty', ['uses' => 'CRUD\facultyController@delete']);
    $router->post('/faculty/masive_load', ['uses' => 'CRUD\facultyController@masiveLoad']);
-
-   //CRUD request
-   $router->post('/request', ['uses' => 'CRUD\requestController@post']);
-   $router->get('/request', ['uses' => 'CRUD\requestController@get']);
-   $router->get('/request/paginate', ['uses' => 'CRUD\requestController@paginate']);
-   $router->get('/request/backup', ['uses' => 'CRUD\requestController@backup']);
-   $router->put('/request', ['uses' => 'CRUD\requestController@put']);
-   $router->delete('/request', ['uses' => 'CRUD\requestController@delete']);
-   $router->post('/request/masive_load', ['uses' => 'CRUD\requestController@masiveLoad']);
 
    //CRUD director
    $router->post('/director', ['uses' => 'CRUD\directorController@post']);

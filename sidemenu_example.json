@@ -1,0 +1,285 @@
+[
+    {
+        name: 'generales',
+        icon: '',
+        text: '',
+        'class': '',
+        expand_class: '',
+        rols_able: [],
+        items: [
+            {
+                link: '/main',
+                icon: 'fas fa-home',
+                text: 'Inicio',
+                'class': 'list-group-item',
+                rols_able: [
+                    'Administrador',
+                    'Administrador Financiero',
+                    'Administrador RUC',
+                    'Administrador Registro y Control',
+                    'Consultor Catastro',
+                    'Especialista Zonal',
+                    'General',
+                    'Gobierno Autónomo Descentralizado',
+                    'Técnico Financiero',
+                    'Técnico Zonal',
+                    'Visor Bandejas'
+                ]
+            },
+            {
+                link: '/simulador-normativa',
+                icon: 'fas fa-tasks',
+                text: 'Simulador Normativa',
+                'class': 'list-group-item',
+                rols_able: [
+                    'General'
+                ]
+            },
+            {
+                link: '/estado-bandejas',
+                icon: 'fas fa-file-contract',
+                text: 'Estado de Bandejas',
+                'class': 'list-group-item',
+                rols_able: [
+                    'Administrador',
+                    'Administrador Financiero',
+                    'Administrador Registro y Control',
+                    'Especialista Zonal',
+                    'Técnico Financiero',
+                    'Técnico Zonal',
+                    'Visor Bandejas'
+                ]
+            },
+            {
+                link: '/bitacora',
+                icon: 'fas fa-route',
+                text: 'Bitácora',
+                'class': 'list-group-item',
+                rols_able: [
+                    'Administrador',
+                    'Administrador Registro y Control',
+                    'Especialista Zonal',
+                    'Técnico Financiero',
+                    'Técnico Zonal',
+                    'Visor Bandejas'
+                ]
+            },
+            {
+                link: '/gestion-actividades-turisticas',
+                icon: 'fas fa-file-signature',
+                text: 'Proceso de Acreditación de<br/>Actividades Turísticas',
+                'class': 'list-group-item',
+                rols_able: [
+                    'Administrador RUC'
+                ]
+            },
+            {
+                link: '/catastro-turistico-nacional',
+                icon: 'fas fa-passport',
+                text: 'Catastro Turístico Nacional',
+                'class': 'list-group-item',
+                rols_able: [
+                    'General'
+                ]
+            }
+        ]
+    },
+    {
+        name: 'interno',
+        icon: '',
+        text: '',
+        'class': '',
+        expand_class: '',
+        rols_able: [],
+        items: [
+            {
+                link: '/especialista-zonal',
+                icon: 'fas fa-user-tie',
+                text: 'Especialista Zonal',
+                'class': 'list-group-item',
+                rols_able: [
+                    'Especialista Zonal'
+                ]
+            },
+            {
+                link: '/tecnico-financiero',
+                icon: 'fas fa-user-tie',
+                text: 'Técnico Financiero',
+                'class': 'list-group-item',
+                rols_able: [
+                    'Técnico Financiero'
+                ]
+            },
+            {
+                link: '/tecnico-dac',
+                icon: 'fas fa-user-tie',
+                text: 'Técnico Zonal',
+                'class': 'list-group-item',
+                rols_able: [
+                    'Técnico Zonal'
+                ]
+            }
+        ]
+    },
+    {
+        name: 'Administrador',
+        icon: 'fas fa-user-cog',
+        text: 'Administrador',
+        'class': 'nested-menu',
+        expand_class: 'Administrador',
+        rols_able: [
+            'Administrador'
+        ],
+        items: [
+            {
+                link: '/admin-sidebar',
+                icon: 'fab fa-elementor',
+                text: 'Menú Lateral',
+                'class': 'list-group-item',
+                rols_able: [
+                    'Administrador'
+                ]
+            },
+            {
+                link: '/admin-roles',
+                icon: 'fas fa-hat-cowboy-side',
+                text: 'Roles del Sistema',
+                'class': 'list-group-item',
+                rols_able: [
+                    'Administrador'
+                ]
+            },
+            {
+                link: '/admin-accounts',
+                icon: 'fas fa-users-cog',
+                text: 'Cuentas de Usuarios',
+                'class': 'list-group-item',
+                rols_able: [
+                    'Administrador'
+                ]
+            },
+            {
+                link: '/dinardap-status',
+                icon: 'fas fa-satellite-dish',
+                text: 'Estado Dinardap',
+                'class': 'list-group-item',
+                rols_able: [
+                    'Administrador'
+                ]
+            },
+            {
+                link: '/activities-admin',
+                icon: 'fas fa-hiking',
+                text: 'Actividades Turísticas',
+                'class': 'list-group-item',
+                rols_able: [
+                    'Administrador'
+                ]
+            },
+            {
+                link: '/migration',
+                icon: 'fas fa-exchange-alt',
+                text: 'Migración de <br/>SITURIN a SITURIN2',
+                'class': 'list-group-item',
+                rols_able: [
+                    'Administrador'
+                ]
+            }
+        ]
+    },
+    {
+        name: 'Admin-DAC',
+        icon: 'fas fa-brain',
+        text: 'Dirección de Acrediteción y Control',
+        'class': 'nested-menu',
+        expand_class: 'Admin-DAC',
+        rols_able: [
+            'Administrador',
+            'Administrador Registro y Control'
+        ],
+        items: [
+            {
+                link: '/admin-zonales',
+                icon: 'fas fa-city',
+                text: 'Direcciones Zonales',
+                'class': 'list-group-item',
+                rols_able: [
+                    'Administrador',
+                    'Administrador Registro y Control'
+                ]
+            },
+            {
+                link: '/admin-dpa',
+                icon: 'fas fa-map-marked',
+                text: 'División Política Administrativa',
+                'class': 'list-group-item',
+                rols_able: [
+                    'Administrador',
+                    'Administrador Registro y Control'
+                ]
+            },
+            {
+                link: '/tipo-personeria-juridica',
+                icon: 'fas fa-funnel-dollar',
+                text: 'Tipos de Personería Jurídica',
+                'class': 'list-group-item',
+                rols_able: [
+                    'Administrador',
+                    'Administrador Registro y Control'
+                ]
+            },
+            {
+                link: '/configurar-asignacion-automatica',
+                icon: 'fas fa-exchange-alt',
+                text: 'Asignación Automática de <br/>Trámites',
+                'class': 'list-group-item',
+                rols_able: [
+                    'Administrador',
+                    'Administrador Registro y Control'
+                ]
+            },
+            {
+                link: '/asignacion-usuarios-zonales',
+                icon: 'fas fa-hands-helping',
+                text: 'Asignación de <br/>Usuarios por Provincias',
+                'class': 'list-group-item',
+                rols_able: [
+                    'Administrador',
+                    'Administrador Registro y Control'
+                ]
+            },
+            {
+                link: '/admin-catastro',
+                icon: 'fas fa-passport',
+                text: 'Administración<br/>Catastro Turístico Nacional',
+                'class': 'list-group-item',
+                rols_able: [
+                    'Administrador Registro y Control'
+                ]
+            }
+        ]
+    },
+    {
+        name: 'DireccionFinanciera',
+        icon: 'fas fa-cash-register',
+        text: 'Dirección Financiera',
+        'class': 'nested-menu',
+        expand_class: 'DireccionFinanciera',
+        rols_able: [
+            'Administrador',
+            'Administrador Financiero'
+        ],
+        items: [
+            {
+                link: '/simulador-1xmil',
+                icon: 'fas fa-funnel-dollar',
+                text: 'Simulador 1 x 1000',
+                'class': 'list-group-item',
+                rols_able: [
+                    'Administrador',
+                    'Administrador Financiero'
+                ]
+            }
+        ]
+    }
+]

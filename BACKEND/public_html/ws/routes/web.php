@@ -12,7 +12,7 @@
 */
 
 $router->get('/', function () use ($router) {
-   return 'Web Wervice Realizado con LSCodeGenerator';
+   return 'Web Service SMCAR OK!';
 });
 
 $router->group(['middleware' => []], function () use ($router) {
@@ -26,7 +26,7 @@ $router->group(['middleware' => ['auth']], function () use ($router) {
    $router->post('/user/password_change', ['uses' => 'AuthController@passwordChange']);
 
 
-   //ProyectoIntegrador
+   //SMCAR
 
    //CRUD ProfilePicture
    $router->post('/prueba', ['uses' => 'Profile\ProfilePictureController@prueba']);

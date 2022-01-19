@@ -29,7 +29,7 @@ class AuthController extends Controller
     $enlace = env('APP_URL').'password_recovery/?r='.$user->api_token;
     $message = 'Para cambiar tu contraseña da click en el siguiente enlace: ' . $enlace;
     $subject = 'Solicitud de Cambio de Contraseña';
-    return $this->send_mail('recovery_mail', $user->email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+    return $this->send_mail('mail', $user->email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
   }
 
   function passwordRecovery(Request $data)
@@ -118,7 +118,6 @@ class AuthController extends Controller
       }
       if ($password === Crypt::decrypt($user->password)) {
         $token = $this->jwt($user);
-        $user->api_token = $token;
         $response = User::where('id',$user->id)->update([
           'api_token'=>$token,
         ]);

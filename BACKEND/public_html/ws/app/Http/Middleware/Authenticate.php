@@ -9,6 +9,7 @@ use App\Models\Profile\User;
 use App\Models\Rol;
 use Firebase\JWT\JWT;
 use Firebase\JWT\ExpiredException;
+use stdClass;
 
 class Authenticate
 {
@@ -52,8 +53,13 @@ class Authenticate
             $id_user = $credentials->subject;
             $user = User::where('id',$id_user)->first();
             $rols = Rol::where('user_id',$id_user)->get();
-            $user->rols = $rols;
-            $request->user = $user;
+            if (!$rols) {
+                $rols = [];
+            }
+            $user_data = new stdClass();
+            $user_data->user = $user;
+            $user_data->rols = $rols;
+            $request->user = $user_data;
             if ($timeRemaining <= 0) {
                 return response()->json([
                     'error' => 'Token expirado.'

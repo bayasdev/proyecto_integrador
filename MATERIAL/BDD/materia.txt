@@ -1,0 +1,5 @@
+materia_id PK SERIAL INT
+materia_cod varchar PAW-404
+materia_nombre varchar
+materia_carrera varchar
+materia_creditos int

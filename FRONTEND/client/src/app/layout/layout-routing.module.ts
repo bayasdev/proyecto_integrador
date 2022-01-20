@@ -33,6 +33,12 @@ const routes: Routes = [
         path: 'not-found',
         loadChildren: () => import('src/app/layout/not-found-page/not-found-page.module').then(m => m.NotFoundPageModule)
       },
+
+      {
+        path: 'denied',
+        loadChildren: () => import('src/app/layout/denied-page/denied-page.module').then(m => m.DeniedPageModule)
+      },
+
       {
          path: '**',
          redirectTo: 'not-found'

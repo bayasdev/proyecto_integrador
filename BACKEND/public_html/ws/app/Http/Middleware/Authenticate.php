@@ -50,6 +50,11 @@ class Authenticate
         try {
             $credentials = JWT::decode($token, env('JWT_SECRET'), ['HS256']);
             $timeRemaining = $credentials->expiration_time - time();
+            if ($timeRemaining <= 0) {
+                return response()->json([
+                    'error' => 'Token expirado.'
+                ], 400);
+            }
             $user_id = $credentials->subject;
             $user = User::where('id',$user_id)->first();
             $rols_BDD = DB::select('SELECT rols.name FROM rols
@@ -63,11 +68,6 @@ class Authenticate
             }
             $user->rols = $rols;
             $request->user = $user;
-            if ($timeRemaining <= 0) {
-                return response()->json([
-                    'error' => 'Token expirado.'
-                ], 400);
-            }
         } catch(ExpiredException $e) {
             return response()->json([
                 'error' => 'Token expirado.'

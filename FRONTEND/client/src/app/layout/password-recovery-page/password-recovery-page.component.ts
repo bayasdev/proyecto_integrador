@@ -25,6 +25,7 @@ export class PasswordRecoveryPageComponent implements OnInit {
 
   reset() {
     this.spinner.show();
+    sessionStorage.clear();
     this.authDataService.password_recovery_confirm(this.token).then( r => {
       this.spinner.hide();
       this.isOk = true;

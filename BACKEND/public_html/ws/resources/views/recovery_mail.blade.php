@@ -16,8 +16,7 @@
                 <br><br><br>
                 Recibe un cordial saludo de {{ $appName }}.<br><br>
                 Hemos recibido una solicitud de reinicio de contraseña. Para confirmar haga click en el siguiente enlace.<br><br>
-                <strong> {{ $body }}</strong>
-                <a href="{{ $url }}">Confirmar Reseteo de Contraseña</a>
+                <a href="{{ $body }}">Confirmar Reseteo de Contraseña</a>
                 <br><br><br>
                 Atentamente,<br>
                 <strong> {{ $appName }}</strong>

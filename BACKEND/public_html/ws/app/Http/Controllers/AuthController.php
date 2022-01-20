@@ -27,9 +27,9 @@ class AuthController extends Controller
       return response()->json('Ocurrió un error',400);
     }
     $enlace = env('APP_URL').'password_recovery/?r='.$user->api_token;
-    $message = 'Para cambiar tu contraseña da click en el siguiente enlace: ' . $enlace;
+    $message = $enlace;
     $subject = 'Solicitud de Cambio de Contraseña';
-    return $this->send_mail('mail', $user->email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+    return $this->send_mail('recovery_mail', $user->email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
   }
 
   function passwordRecovery(Request $data)

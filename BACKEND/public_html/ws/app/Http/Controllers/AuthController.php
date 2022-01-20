@@ -87,6 +87,10 @@ class AuthController extends Controller
       $new_password = Str::random(10);
       $result = $data->json()->all();
       $email = $result['email'];
+      $preview_user = User::where('email', $email)->first();
+      if ($preview_user) {
+        return response()->json('El correo electrónico proporcionado ya tiene una cuenta en el sistema.',400);
+      }
       DB::beginTransaction();
       $user = new User();
       $lastUser = User::orderBy('id')->get()->last();

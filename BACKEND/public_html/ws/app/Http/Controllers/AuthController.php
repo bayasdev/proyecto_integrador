@@ -30,7 +30,8 @@ class AuthController extends Controller
     $enlace = env('APP_URL').'password_recovery/?r='.$token_recovery;
     $message = $enlace;
     $subject = 'Solicitud de Cambio de Contraseña';
-    return $this->send_mail('recovery_mail', $user->email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+    $resp = $this->send_mail('recovery_mail', $user->email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+    return response()->json($resp, 200);
   }
 
   function passwordRecovery(Request $data)
@@ -39,9 +40,7 @@ class AuthController extends Controller
     $credentials = JWT::decode($token, env('JWT_SECRET'), ['HS256']);
     $timeRemaining = $credentials->expiration_time - time();
     if ($timeRemaining <= 0) {
-        return response()->json([
-            'error' => 'Token expirado.'
-        ], 400);
+        return response()->json('Token expirado.', 400);
     }
     try{
       $new_password = Str::random(10);
@@ -59,7 +58,8 @@ class AuthController extends Controller
     $message = 'Tu nueva contraseña es ' . $new_password;
     $subject = 'Recuperación de Contraseña';
     $user = User::where('id', $credentials->subject)->first();
-    return $this->send_mail('mail', $user->email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+    $resp = $this->send_mail('mail', $user->email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+    response()->json($resp,200);
   }
 
   function passwordChange(Request $data)
@@ -76,9 +76,7 @@ class AuthController extends Controller
       ]);
       DB::commit();
     } catch (Exception $e) {
-      return response()->json([
-        'error' => 'Credenciales Incorrectos'
-      ], 400);
+      return response()->json('Credenciales Incorrectos', 400);
     }
     return response()->json('Contraseña Actualizada Correctamente',200);
   }
@@ -105,7 +103,8 @@ class AuthController extends Controller
       DB::commit();
       $message = 'Tu nueva contraseña es ' . $new_password;
       $subject = 'Te damos la bienvenida a ' . env('MAIL_FROM_NAME');
-      return $this->send_mail('mail', $email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+      $resp = $this->send_mail('mail', $email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+      return response()->json('Cuenta creada correctamente. Por favor revise su correo electrónico',200);
     } catch (Exception $e) {
       return response()->json($e,400);
     }
@@ -119,9 +118,7 @@ class AuthController extends Controller
       $password = $result['password'];
       $user = User::where('email', $email)->first();
       if (!$user) {
-        return response()->json([
-          'error' => 'Credenciales Incorrectas'
-        ], 400);
+        return response()->json('Credenciales Incorrectos', 400);
       }
       if ($password === Crypt::decrypt($user->password)) {
         $token = $this->jwt($user, 60);
@@ -134,9 +131,7 @@ class AuthController extends Controller
             'id' => $user->id
         ], 200);
       }
-      return response()->json([
-        'error' => 'Credenciales Incorrectos'
-      ], 400);
+      return response()->json('Credenciales Incorrectos', 400);
   }
 
   protected function jwt(User $user, $lifetime) {
@@ -159,6 +154,6 @@ class AuthController extends Controller
     } catch (Exception $e) {
         $response = $e->getMessage();
     }
-    return response()->json($response,200);
+    return $response;
   }
 }

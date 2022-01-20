@@ -38,16 +38,15 @@ export class AuthComponent implements OnInit {
     this.spinner.show();
     this.authDataService.login(this.email, this.password).then( r => {
       this.spinner.hide();
-      if (r.status == 200) {
-        sessionStorage.setItem('token', r.token);
-        sessionStorage.setItem('user', JSON.stringify(r.userdata));
-        this.router.navigate(['/dashboard']);
-      } else {
-        this.show_alert('Autenticación', r.response, 'error').then( response => {
-          this.email = '';
-          this.password = '';
-        });
-      }
-    }).catch( e => { console.log(e); });
+      sessionStorage.setItem('token', r.token);
+      sessionStorage.setItem('user', JSON.stringify(r.user));
+      this.router.navigate(['/dashboard']);
+    }).catch( e => {
+      this.spinner.hide();
+      this.show_alert('Autenticación', 'Credenciales incorrectas', 'error').then( response => {
+        this.email = '';
+        this.password = '';
+      });
+    });
   }
 }

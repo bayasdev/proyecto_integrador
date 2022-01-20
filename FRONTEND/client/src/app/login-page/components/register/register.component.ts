@@ -12,6 +12,9 @@ import Swal, { SweetAlertIcon } from 'sweetalert2';
 export class RegisterComponent implements OnInit {
   @Output('opcion') opcion: EventEmitter<string> = new EventEmitter<string>();
 
+  email: string = '';
+  name: string = '';
+
   user: any = {
     fullname: '',
     email: ''
@@ -68,7 +71,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this.spinner.show();
-    this.authDataService.register(this.user).then( r => {
+    this.authDataService.register(this.email, this.name).then( r => {
       this.spinner.hide();
       if (r.status == 200) {
         this.show_alert('Crear Cuenta', r.response, 'info').then( response => {
@@ -76,10 +79,8 @@ export class RegisterComponent implements OnInit {
         });
       } else {
         this.show_alert('Crear Cuenta', r.response, 'error').then( response => {
-          this.user = {
-            fullname: '',
-            email: ''
-          };
+          this.email = '';
+          this.name = '';
           this.email_validated = false;
         });
       }

@@ -38,12 +38,12 @@ export class ProfilePageComponent implements OnInit {
       return;
     }
     let toSave: any = {
-      fullname: this.user.fullname
+      name: this.user.name
     };
     if (this.new_password != '') {
       toSave.password = this.new_password;
     }
-    this.authDataService.update_user_data(this.user.item_id, toSave).then( r => {
+    this.authDataService.update_user_data(this.user.id, this.user.name, this.user.password).then( r => {
       Swal.fire({
         title: 'Actualización de Datos',
         html: 'Datos Guardados Correctamente, por favor inicie sesión nuevamente.',

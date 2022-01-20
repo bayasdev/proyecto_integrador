@@ -18,22 +18,22 @@ export class AuthService {
 
   login(email: string, password: string): Promise<any> {
     const data = { email: email, password: password };
-    return this.http.post(environment.api_auth + 'login', JSON.stringify(data)).toPromise();
+    return this.http.post(environment.api + 'login', JSON.stringify(data)).toPromise();
   }
 
-  register(user: any): Promise<any> {
-    const data = { userdata: user, email: user.email };
-    return this.http.post(environment.api_auth + 'register', JSON.stringify(data)).toPromise();
+  register(email: string, name: string): Promise<any> {
+    const data = { email: email, name: name };
+    return this.http.post(environment.api + 'register', JSON.stringify(data)).toPromise();
   }
 
   password_recovery(email: string): Promise<any> {
     const data = { email: email };
-    return this.http.post(environment.api_auth + 'recovery', JSON.stringify(data)).toPromise();
+    return this.http.post(environment.api + 'recovery', JSON.stringify(data)).toPromise();
   }
 
-  update_user_data(item_id: string, userdata: any): Promise<any> {
+  update_user_data(id: number, email: string, name: string): Promise<any> {
     this.build_headers();
-    const data = { item_id: item_id, userdata: userdata };
-    return this.http.post(environment.api_auth + 'admin/users/update_user_data', JSON.stringify(data), this.options).toPromise();
+    const data = { id: id, email: email, name: name };
+    return this.http.post(environment.api + 'admin/users/update_user_data', JSON.stringify(data)).toPromise();
   }
 }

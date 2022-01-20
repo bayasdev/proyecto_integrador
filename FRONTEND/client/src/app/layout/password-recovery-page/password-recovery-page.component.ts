@@ -11,6 +11,7 @@ export class PasswordRecoveryPageComponent implements OnInit {
 
   token: string = '';
   isOk: boolean = false;
+  resp: string = ''
 
   constructor(private route: ActivatedRoute, private authDataService: AuthService) { }
 
@@ -25,8 +26,10 @@ export class PasswordRecoveryPageComponent implements OnInit {
     this.authDataService.password_recovery_confirm(this.token).then( r => {
       console.log(r);
       this.isOk = true;
+      this.resp = r;
     }).catch( e => {
       this.isOk = false;
+      this.resp = e.error;
     });
   }
 

@@ -42,3 +42,4 @@ TODO
 - Definir estrategia para ocultar backend de Internet => para demo en Raspberry Pi (WIP)
 - Exponer e implementar Angular SSR https://angular.io/guide/universal
 - Revisar Dockerización del front
+- Migrar assets a NGINX

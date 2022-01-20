@@ -27,7 +27,7 @@ class AuthController extends Controller
       return response()->json('Ocurrió un error',400);
     }
     $token_recovery = $this->jwt($user, 2);
-    $enlace = env('APP_URL').'password_recovery/?r='.$token_recovery;
+    $enlace = env('FRONT_URL').'password-recovery/?r='.$token_recovery;
     $message = $enlace;
     $subject = 'Solicitud de Cambio de Contraseña';
     $resp = $this->send_mail('recovery_mail', $user->email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
@@ -50,10 +50,10 @@ class AuthController extends Controller
       ]);
       DB::commit();
       if(!$status){
-        return response()->json('Ocurrió un error',400);
+        return redirect(env('FRONT_URL').'denied-main');
       }
     } catch (Exception $e) {
-      return response()->json('Ocurrió un error',400);
+        return redirect(env('FRONT_URL').'denied-main');
     }
     $message = 'Tu nueva contraseña es ' . $new_password;
     $subject = 'Recuperación de Contraseña';

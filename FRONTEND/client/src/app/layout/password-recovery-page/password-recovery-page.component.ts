@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-password-recovery-page',
@@ -9,13 +10,23 @@ import { ActivatedRoute } from '@angular/router';
 export class PasswordRecoveryPageComponent implements OnInit {
 
   token: string = '';
+  isOk: boolean = false;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private authDataService: AuthService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: any) => {
       this.token = params.r;
-      console.log(this.token);
+      this.reset();
+    });
+  }
+
+  reset() {
+    this.authDataService.password_recovery_confirm(this.token).then( r => {
+      console.log(r);
+      this.isOk = true;
+    }).catch( e => {
+      this.isOk = false;
     });
   }
 

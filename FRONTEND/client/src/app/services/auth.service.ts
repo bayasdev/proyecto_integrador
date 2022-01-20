@@ -31,6 +31,10 @@ export class AuthService {
     return this.http.post(environment.api + 'password_recovery_request', JSON.stringify(data)).toPromise();
   }
 
+  password_recovery_confirm(token: string): Promise<any> {
+    return this.http.get(environment.api + 'password_recovery?r=' + token).toPromise();
+  }
+
   update_user_data(id: number, email: string, name: string): Promise<any> {
     this.build_headers();
     const data = { id: id, email: email, name: name };

@@ -36,7 +36,9 @@ TODO
 - Crear las pantallas que tendrá el sistema (WIP)
 - Definir elementos del menú lateral como un JSON (WIP)
 - Implementar Guard para el acceso por roles al dashboard (WIP)
-- Implementar nuevo diseño en frontend (WIP)
+- Implementar nuevo diseño en frontend (DONE)
 - Migrar ng-bootstrap a Bootstrap 5 (DONE)
 - Editar plantillas de mails en backend (WIP)
 - Definir estrategia para ocultar backend de Internet => para demo en Raspberry Pi (WIP)
+- Exponer e implementar Angular SSR https://angular.io/guide/universal
+- Revisar Dockerización del front

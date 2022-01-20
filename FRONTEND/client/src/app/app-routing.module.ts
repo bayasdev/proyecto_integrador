@@ -8,10 +8,18 @@ const routes: Routes = [
     loadChildren: () => import('src/app/login-page/login-page.module').then(m => m.LoginPageModule)
   },
   {
+    path: 'denied-main',
+    loadChildren: () => import('src/app/layout/denied-page/denied-page.module').then(m => m.DeniedPageModule)
+  },
+  {
+    path: 'attended-request',
+    loadChildren: () => import('src/app/layout/attended-request-page/attended-request-page.module').then(m => m.AttendedRequestPageModule)
+  },
+  {
     path: '',
     loadChildren: () => import('src/app/layout/layout.module').then(m => m.LayoutModule),
     canActivate: [AuthGuard]
-  }
+  },
 ];
 
 @NgModule({

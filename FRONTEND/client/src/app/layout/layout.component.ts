@@ -14,27 +14,27 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(sessionStorage.getItem('user') as string);
-    this.build_menu();
+    // this.build_menu();
   }
 
   // meter json del menú en el componente
 
-  build_menu() {
-    this.side_menu = [];
-    let output_model: any = {
-      name: 1,
-      icon: 1,
-      text: 1,
-      class: 1,
-      expand_class: 1,
-      rols_able: 1,
-      items: 1,
-    };
-    this.catalogDataService.get_items('side-menu', output_model).then( r => {
-      if (r.status == 200) {
-        this.side_menu = r.response;
-      }
-    }).catch( e => { console.log(e); });
-  }
+  // build_menu() {
+  //   this.side_menu = [];
+  //   let output_model: any = {
+  //     name: 1,
+  //     icon: 1,
+  //     text: 1,
+  //     class: 1,
+  //     expand_class: 1,
+  //     rols_able: 1,
+  //     items: 1,
+  //   };
+  //   this.catalogDataService.get_items('side-menu', output_model).then( r => {
+  //     if (r.status == 200) {
+  //       this.side_menu = r.response;
+  //     }
+  //   }).catch( e => { console.log(e); });
+  // }
 
 }

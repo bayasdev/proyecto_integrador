@@ -1,28 +1,12 @@
-* {
-  -webkit-transition: margin-left 0.2s ease-in-out;
-  -moz-transition: margin-left 0.2s ease-in-out;
-  -ms-transition: margin-left 0.2s ease-in-out;
-  -o-transition: margin-left 0.2s ease-in-out;
-  transition: margin-left 0.2s ease-in-out;
-}
+// variables
+$offcanvas-width: 270px;
 
-.main_container {
-  position: relative;
-  margin-top: 55px;
-  margin-left: 300px;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-@media screen and (max-width: 992px) {
-  .main_container {
-    margin-left: 0px;
+// mover contenido a la derecha
+@media (min-width: 992px) {
+  body {
+    overflow: auto !important;
   }
-}
-
-@media print {
-  .main_container {
-    margin-left: 0px;
-    margin-top: 0px;
+  main {
+    margin-left: $offcanvas-width;
   }
 }

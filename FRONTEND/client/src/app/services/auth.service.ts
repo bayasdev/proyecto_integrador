@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -10,11 +10,6 @@ export class AuthService {
   options: any = {};
 
   constructor(private http: HttpClient) { }
-
-  build_headers() {
-    let headers: HttpHeaders = new HttpHeaders().set('token', sessionStorage.getItem('token') as string)
-    this.options = {headers: headers};
-  }
 
   login(email: string, password: string): Promise<any> {
     const data = { email: email, password: password };
@@ -33,11 +28,5 @@ export class AuthService {
 
   password_recovery_confirm(token: string): Promise<any> {
     return this.http.get(environment.api + 'password_recovery?r=' + token).toPromise();
-  }
-
-  update_user_data(id: number, email: string, name: string): Promise<any> {
-    this.build_headers();
-    const data = { id: id, email: email, name: name };
-    return this.http.post(environment.api + 'user', JSON.stringify(data)).toPromise();
   }
 }

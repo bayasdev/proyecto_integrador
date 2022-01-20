@@ -10,8 +10,7 @@ export class LoginPageComponent implements OnInit {
 
   opcion_seleccionada: string = 'Autenticación';
   ws_assets: string = environment.ws_assets + 'login/';
-  ayuda_url: string = environment.ayuda_url;
-
+  
   constructor(private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {

@@ -13,24 +13,9 @@ export class SidebarComponent implements OnInit {
   showMenu: string = '0';
 
   constructor(private router: Router) {
-    this.router.events.subscribe( val => {
-      if ( val instanceof NavigationEnd && window.innerWidth <= 992 && this.is_toggled()) {
-        this.toggle_sidebar();
-      }
-    });
   }
 
   ngOnInit(): void {
-  }
-
-  is_toggled(): boolean {
-    const dom: any = document.querySelector('body');
-    return dom.classList.contains('push-right');
-  }
-
-  toggle_sidebar() {
-    const dom: any = document.querySelector('body');
-    dom.classList.toggle('push-right');
   }
 
   logout() {
@@ -38,30 +23,22 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  addExpandClass(element: string) {
-    if (element == this.showMenu) {
-      this.showMenu = '0'
-    } else {
-      this.showMenu = element;
-    }
-  }
-
-  aviable(rol_requireds: any[]): boolean {
-    let roles_usuario: any[] = [];
-    if (typeof this.user.rols !== 'undefined') {
-      roles_usuario = this.user.rols;
-    }
-    if (rol_requireds.length == 0) {
-      return true;
-    }
-    let toReturn: boolean = false;
-    rol_requireds.forEach((rol_required: any) => {
-      roles_usuario.forEach((rol_usuario:any) => {
-        if (rol_required == rol_usuario) {
-          toReturn = true;
-        }
-      });
-    });
-    return toReturn;
-  }
+  // aviable(rol_requireds: any[]): boolean {
+  //   let roles_usuario: any[] = [];
+  //   if (typeof this.user.rols !== 'undefined') {
+  //     roles_usuario = this.user.rols;
+  //   }
+  //   if (rol_requireds.length == 0) {
+  //     return true;
+  //   }
+  //   let toReturn: boolean = false;
+  //   rol_requireds.forEach((rol_required: any) => {
+  //     roles_usuario.forEach((rol_usuario:any) => {
+  //       if (rol_required == rol_usuario) {
+  //         toReturn = true;
+  //       }
+  //     });
+  //   });
+  //   return toReturn;
+  // }
 }

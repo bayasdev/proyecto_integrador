@@ -1,66 +1,38 @@
-<div class="row p-2">
-  <h1 class="col-12 text-right">
-    Edición de Perfil
-  </h1>
+<h1 class="display-5 mb-5">Mi perfil</h1>
+<div class="row d-flex mb-5">
+  <div class="col-lg-2 col-md-12 mb-lg-0 mb-5">
+    <img src="assets/img/dashboard/avatar.svg" width="100" class="img-fluid">
+  </div>
+  <div class="col-lg-10 col-md-12">
+    <h3>{{user.name}}</h3>
+    <p class="lead">{{correo}}</p>
+  </div>
 </div>
-<div class="row p-2">
-  <div class="col-12">
-    <table class="table table-hover mt-2">
-      <tbody>
-        <tr>
-          <th class="col-6 text-right">Correo Electrónico</th>
-          <td class="col-6 text-left">
-            <label class="form-control">{{user.email}}</label>
-          </td>
-        </tr>
-        <tr>
-          <th class="col-6 text-right">Nombre Completo</th>
-          <td class="col-6 text-left">
-            <input type="text" class="form-control" placeholder="Nombre Completo" [(ngModel)]="user.fullname"/>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <h3 class="col-12 mt-5 text-center">Cambio de Contraseña</h3>
-  <div class="col-12">
-    <table class="table table-hover mt-2">
-      <tbody>
-        <tr>
-          <th class="col-6 text-right">Nueva Contraseña</th>
-          <td class="col-6 text-left">
-            <input type="password" class="form-control" placeholder="Nueva Contraseña" [(ngModel)]="new_password" (input)="validate_password()"/>
-          </td>
-        </tr>
-        <tr>
-          <th class="col-6 text-right">Confirmar Contraseña</th>
-          <td class="col-6 text-left">
-            <input type="password" class="form-control" placeholder="Confirmar Contraseña" [(ngModel)]="password_confirm" (input)="validate_password()"/>
-          </td>
-        </tr>
-        <tr *ngIf="new_password !== ''">
-          <td class="text-center" colspan="2">
-            <div class="row mt-1" *ngFor="let error of errores">
-              <div class="col-3"></div>
-              <span class="badge bg-danger col-6 text-light">{{ error }}</span>
-              <div class="col-3"></div>
-            </div>
-            <div class="row" *ngIf="errores.length == 0">
-              <div class="col-2"></div>
-              <div class="col-8 alert alert-success" role="alert">
-                Contraseña Válida
-              </div>
-              <div class="col-2"></div>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="col-12 text-center mt-3">
-    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-      <button type="button" class="btn btn-success" (click)="save_profile()" [disabled]="errores.length !== 0">Guardar</button>
-      <button type="button" class="btn btn-warning" (click)="reset()">Cancelar</button>
+<div class="row d-flex mb-5">
+  <div class="col-lg-6 col-md-12 mb-lg-0 mb-5">
+    <h2 class="mb-5">Datos personales</h2>
+    <div class="mb-5">
+      <label class="form-label">Nombre</label>
+      <label class="form-control">{{user.name}}</label>
     </div>
+    <div class="mb-5">
+      <label class="form-label">Correo electrónico</label>
+      <input type="email" class="form-control" [(ngModel)]="user.email">
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-12">
+    <h2 class="mb-5">Seguridad</h2>
+    <div class="mb-5">
+      <label class="form-label">Nueva contraseña</label>
+      <input type="password" class="form-control" [(ngModel)]="new_password">
+    </div>
+    <div class="mb-5">
+      <label class="form-label">Repetir nueva contraseña</label>
+      <input type="password" class="form-control" [(ngModel)]="password_confirm">
+    </div>
+  </div>
+  <div>
+    <button type="button" class="btn btn-primary" (click)="save_profile()"><i class="las la-save"></i> Guardar cambios</button>
+    <button type="button" class="btn btn-danger" (click)="reset()"><i class="las la-trash"></i> Cancelar</button>
   </div>
 </div>

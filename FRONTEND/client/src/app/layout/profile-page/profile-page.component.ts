@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
-import Swal from 'sweetalert2';
+import { UserService } from 'src/app/services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile-page',
@@ -9,8 +9,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./profile-page.component.scss']
 })
 export class ProfilePageComponent implements OnInit {
-
+  
   user: any = {};
+  correo: string = '';
   password_confirm: string = '';
   new_password: string = '';
   password_min_length: number = 8;
@@ -18,88 +19,64 @@ export class ProfilePageComponent implements OnInit {
   password_caracteres_especiales: boolean = true;
   password_caracteres_mayusculas: boolean = true;
   password_caracteres_minusculas: boolean = true;
-
-  errores: string[] = [];
-
-  constructor(private authDataService: AuthService, private router: Router) { }
-
+  
+  errores: any[] = [];
+  
+  constructor(private userDataService: UserService, private router: Router, private toastr: ToastrService) { }
+  
   ngOnInit(): void {
     this.reset();
+    this.correo = this.user.email;
   }
-
+  
   reset() {
     this.password_confirm = '';
     this.new_password = '';
     this.user = JSON.parse(sessionStorage.getItem('user') as string);
   }
-
-  save_profile() {
-    if (this.errores.length !== 0) {
-      return;
-    }
-    let toSave: any = {
-      name: this.user.name
-    };
-    if (this.new_password != '') {
-      toSave.password = this.new_password;
-    }
-    this.authDataService.update_user_data(this.user.id, this.user.name, this.user.password).then( r => {
-      Swal.fire({
-        title: 'Actualización de Datos',
-        html: 'Datos Guardados Correctamente, por favor inicie sesión nuevamente.',
-        icon: 'success'
-      }).then( (r: any) => {
-        sessionStorage.clear();
-        this.router.navigate(['/login']);
-      });
-    }).catch( e => { console.log(e); })
-  }
-
-  validate_password() {
+  
+  validate_email(): boolean {
     this.errores = [];
-    if (this.new_password !== this.password_confirm) {
-      this.errores.push('Las contraseñas no coinciden');
+    if (this.user.email == '') {
+      this.errores.push( { title: 'Correo Electrónico Incorrecto', message: 'Debe ingresar un Correo Electrónico'} );
+      return false;
     }
-    if (this.new_password.length < this.password_min_length) {
-      this.errores.push('Longitud mínima de 8 caracteres');
+    const isOk = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.user.email.toString());
+    if (!isOk) {
+      this.errores.push( { title: 'Correo Electrónico Incorrecto', message: 'Correo Electrónico no válido.'} );
     }
-    let validated_password_caracteres_numericos = false;
-    let validated_password_caracteres_especiales = false;
-    let validated_password_caracteres_mayusculas = false;
-    let validated_password_caracteres_minusculas = false;
-    this.new_password.split('').forEach(element => {
-      if (element.match('[0-9]')) {
-        validated_password_caracteres_numericos = true;
-      }
-      if (element.match('[^A-Za-z0-9]')) {
-        validated_password_caracteres_especiales = true;
-      }
-      if (element.match('[A-Z]')) {
-        validated_password_caracteres_mayusculas = true;
-      }
-      if (element.match('[a-z]')) {
-        validated_password_caracteres_minusculas = true;
-      }
-    });
-    if (this.password_caracteres_numericos) {
-      if (!validated_password_caracteres_numericos) {
-        this.errores.push('Debe contener al menos un número');
-      }
+    return isOk;
+  }
+  
+  validate_password(): boolean {
+    if(this.new_password != this.password_confirm){
+      this.errores.push( { title: 'Contraseña Incorrecta', message: 'Las contraseñas no coinciden.'} );
+      return false;
     }
-    if (this.password_caracteres_especiales) {
-      if (!validated_password_caracteres_especiales) {
-        this.errores.push('Debe contener al menos un caracter especial');
-      }
+    else {
+      return true;
     }
-    if (this.password_caracteres_mayusculas) {
-      if (!validated_password_caracteres_mayusculas) {
-        this.errores.push('Debe contener al menos una letra mayúscula');
+  }
+  
+  save_profile() {
+    try {
+      this.validate_email();
+      this.validate_password();
+      if (this.errores.length > 0) {
+        this.errores.forEach((error: any) => {
+          this.toastr.error(error.message, error.title);
+        });
+        return;
       }
-    }
-    if (this.password_caracteres_minusculas) {
-      if (!validated_password_caracteres_minusculas) {
-        this.errores.push('Debe contener al menos una letra minúscula');
+      if(this.new_password != ''){
+        this.userDataService.change_password(this.user.id, this.new_password);
       }
+      this.userDataService.update(this.user.id, this.user.name, this.user.email);
+      this.toastr.success('Por favor inicie sesión nuevamente.', 'Perfil Actualizado');
+      sessionStorage.clear();
+      this.router.navigate(['/login']);
+    } catch (e: any) {
+      this.toastr.error(e.error.error, 'Error');
     }
   }
 }

@@ -50,16 +50,16 @@ class AuthController extends Controller
       ]);
       DB::commit();
       if(!$status){
-        return redirect(env('FRONT_URL').'denied-main');
+        return response()->json('Acceso denegado.', 400);
       }
     } catch (Exception $e) {
-        return redirect(env('FRONT_URL').'denied-main');
+        return response()->json('Acceso denegado.', 400);
     }
     $message = 'Tu nueva contraseña es ' . $new_password;
     $subject = 'Recuperación de Contraseña';
     $user = User::where('id', $credentials->subject)->first();
     $resp = $this->send_mail('mail', $user->email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
-    return redirect(env('FRONT_URL').'attended-request?title=Recuperación de Contraseña&message=Revise su Correo Electrónico');
+    return response()->json('Recuperación de Contraseña, Realizado Satisfactoriamente. Por favor revise su Correo Electrónico.', 200);
   }
 
   function passwordChange(Request $data)

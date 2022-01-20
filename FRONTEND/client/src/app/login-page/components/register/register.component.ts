@@ -67,9 +67,8 @@ export class RegisterComponent implements OnInit {
     }
     this.spinner.show();
     this.authDataService.register(this.email, this.name).then( r => {
-      console.log(r);
       this.spinner.hide();
-      this.show_alert('Crear Cuenta', 'Sus credenciales de acceso han sido enviadas al correo electrónico proporcionado', 'success').then( response => {
+      this.show_alert('Crear Cuenta', r, 'success').then( response => {
         this.change_page('Autenticación');
       });
     }).catch( e => {

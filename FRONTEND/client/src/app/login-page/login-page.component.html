@@ -1,42 +1,37 @@
-<div class="wallpaper" style="background-image: url('{{ws_assets}}wallpaper.jpg');">
-  <div class="row">
-    <div class="col-2">
-      <i class="m-2 fas fa-brain fa-2x text-light"></i>
+<div class="container-fluid">
+  <div class="row min-vh-100">
+    <div class="col-lg-7 col-md-12 col-sm-12 bg-light p-5 d-lg-flex flex-column justify-content-center align-items-center d-none">
+      <img src="assets/img/calendario.svg" height="400" class="mb-5">
+      <h4 class="w-50 text-center">Recuerda que puedes realizar cambios a tu carga académica durante los primeros 30 días del periodo académico en curso.</h4>
     </div>
-    <div class="col-10 text-right">
-      <div class="btn-group m-2" role="group">
-        <a type="button" class="btn btn-light btn-sm" target="_blank" [href]="ayuda_url">Ayuda</a>
-        <a class="btn btn-light btn-sm" [href]="ws_assets + 'manual.pdf'" target="_blank">Manual</a>
+    <div class="col-lg-5 col-md-12 col-sm-12 p-5">
+      <div class="mb-5 d-flex justify-content-end">
+        <a href="https://www.unibe.edu.ec/" target="_blank" class="nav-link"><i class="las la-home"></i> UNIB.E</a>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4">
-      <div class="login">
-        <div class="row">
-          <h1 class="col-12 mt-5 mb-2">{{opcion_seleccionada}}</h1>
+      <div class="d-flex flex-column justify-content-center h-75 mb-5">
+        <div class="mb-5">
+          <img src="assets/img/smcar_logo.svg" width="200" class="img-fluid">
         </div>
+        <h1 class="col-12 mt-5 mb-2">{{opcion_seleccionada}}</h1>
         <app-auth
-          *ngIf="opcion_seleccionada == 'Autenticación'"
-          (opcion)="opcion_seleccionada = $event"
+        *ngIf="opcion_seleccionada == 'Autenticación'"
+        (opcion)="opcion_seleccionada = $event"
         ></app-auth>
         <app-register
-          *ngIf="opcion_seleccionada == 'Crear Cuenta'"
-          (opcion)="opcion_seleccionada = $event"
+        *ngIf="opcion_seleccionada == 'Crear Cuenta'"
+        (opcion)="opcion_seleccionada = $event"
         ></app-register>
         <app-password-recovery
-          *ngIf="opcion_seleccionada == 'Recuperar Contraseña'"
-          (opcion)="opcion_seleccionada = $event"
+        *ngIf="opcion_seleccionada == 'Recuperar Contraseña'"
+        (opcion)="opcion_seleccionada = $event"
         ></app-password-recovery>
+        <form>
+          
+        </form>
       </div>
-    </div>
-  </div>
-  <div class="footer">
-    <div class="row">
-      <div class="col-12 text-light text-center mb-2">
-        @Copyright - Todos los derechos reservados
+      <div class="d-flex justify-content-center">
+        <p class="text-muted text-center">(C) Universidad Iberoamericana del Ecuador</p>
       </div>
     </div>
   </div>
 </div>
-

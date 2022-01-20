@@ -28,12 +28,12 @@ export class AuthService {
 
   password_recovery(email: string): Promise<any> {
     const data = { email: email };
-    return this.http.post(environment.api + 'recovery', JSON.stringify(data)).toPromise();
+    return this.http.post(environment.api + 'password_recovery_request', JSON.stringify(data)).toPromise();
   }
 
   update_user_data(id: number, email: string, name: string): Promise<any> {
     this.build_headers();
     const data = { id: id, email: email, name: name };
-    return this.http.post(environment.api + 'admin/users/update_user_data', JSON.stringify(data)).toPromise();
+    return this.http.post(environment.api + 'user', JSON.stringify(data)).toPromise();
   }
 }

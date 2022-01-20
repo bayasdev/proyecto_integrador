@@ -15,11 +15,6 @@ export class RegisterComponent implements OnInit {
   email: string = '';
   name: string = '';
 
-  user: any = {
-    fullname: '',
-    email: ''
-  };
-
   errores: any[] = [];
   email_validated: boolean = false;
 
@@ -38,12 +33,12 @@ export class RegisterComponent implements OnInit {
   validate_email(): boolean {
     this.errores = [];
     this.email_validated = false;
-    if (this.user.email == '') {
+    if (this.email == '') {
       this.errores.push( { title: 'Correo Electrónico Incorrecto', message: 'Debe ingresar el Correo Electrónico'} );
       this.email_validated = false;
       return false;
     }
-    const isOk = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.user.email.toString());
+    const isOk = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email.toString());
     if (!isOk) {
       this.errores.push( { title: 'Correo Electrónico Incorrecto', message: 'El Correo Electrónico no se encuentra escrito correctamente'} );
     }
@@ -61,7 +56,7 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.validate_email();
-    if (this.user.fullname == '') {
+    if (this.name == '') {
       this.errores.push( { title: 'Nombre Completo Incorrecto', message: 'Debe ingresar el Nombre Completo'} );
     }
     if (this.errores.length > 0) {
@@ -73,17 +68,16 @@ export class RegisterComponent implements OnInit {
     this.spinner.show();
     this.authDataService.register(this.email, this.name).then( r => {
       this.spinner.hide();
-      if (r.status == 200) {
-        this.show_alert('Crear Cuenta', r.response, 'info').then( response => {
-          this.change_page('Autenticación');
-        });
-      } else {
-        this.show_alert('Crear Cuenta', r.response, 'error').then( response => {
-          this.email = '';
-          this.name = '';
-          this.email_validated = false;
-        });
-      }
-    }).catch( e => { console.log(e); });
+      this.show_alert('Crear Cuenta', 'Sus credenciales de acceso han sido enviadas al correo electrónico proporcionado', 'success').then( response => {
+        this.change_page('Autenticación');
+      });
+    }).catch( e => {
+      this.spinner.hide();
+      this.show_alert('Crear Cuenta', 'Ha ocurrido un error', 'error').then( response => {
+        this.email = '';
+        this.name = '';
+        this.email_validated = false;
+      });
+    });
   }
 }

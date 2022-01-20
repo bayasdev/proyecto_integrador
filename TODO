@@ -28,13 +28,15 @@ Materias -> carrea
 Matricula -> materia y el Usuario
 Solicitud -> matricula
 
-TODO 20/01/22
+TODO
 
-Crear servicios por cada controller del back (Angular)
-1 solo api en environments
-auth component mover else a un try catch
-e.error
-
-definir las pantallas que tendrá el sistema
-
-hacer menú lateral como json
+- Autenticación funcional con backend Lumen (DONE)
+- Crear servicios por cada controller del backend (WIP)
+- Definir las pantallas que tendrá el sistema (WIP)
+- Crear las pantallas que tendrá el sistema (WIP)
+- Definir elementos del menú lateral como un JSON (WIP)
+- Implementar Guard para el acceso por roles al dashboard (WIP)
+- Implementar nuevo diseño en frontend (WIP)
+- Migrar ng-bootstrap a Bootstrap 5 (DONE)
+- Editar plantillas de mails en backend (WIP)
+- Definir estrategia para ocultar backend de Internet => para demo en Raspberry Pi (WIP)

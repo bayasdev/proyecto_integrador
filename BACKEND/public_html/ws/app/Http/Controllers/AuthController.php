@@ -37,6 +37,12 @@ class AuthController extends Controller
   {
     $token = $data['r'];
     $credentials = JWT::decode($token, env('JWT_SECRET'), ['HS256']);
+    $timeRemaining = $credentials->expiration_time - time();
+    if ($timeRemaining <= 0) {
+        return response()->json([
+            'error' => 'Token expirado.'
+        ], 400);
+    }
     try{
       $new_password = Str::random(10);
       DB::beginTransaction();

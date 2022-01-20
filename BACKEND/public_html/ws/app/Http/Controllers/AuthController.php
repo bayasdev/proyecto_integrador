@@ -26,7 +26,8 @@ class AuthController extends Controller
     if(!$user){
       return response()->json('Ocurrió un error',400);
     }
-    $enlace = env('APP_URL').'password_recovery/?r='.$user->api_token;
+    $token_recovery = $this->jwt($user, 2);
+    $enlace = env('APP_URL').'password_recovery/?r='.$token_recovery;
     $message = $enlace;
     $subject = 'Solicitud de Cambio de Contraseña';
     return $this->send_mail('recovery_mail', $user->email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
@@ -117,7 +118,7 @@ class AuthController extends Controller
         ], 400);
       }
       if ($password === Crypt::decrypt($user->password)) {
-        $token = $this->jwt($user);
+        $token = $this->jwt($user, 60);
         $response = User::where('id',$user->id)->update([
           'api_token'=>$token,
         ]);
@@ -132,11 +133,11 @@ class AuthController extends Controller
       ], 400);
   }
 
-  protected function jwt(User $user) {
+  protected function jwt(User $user, $lifetime) {
     $payload = [
         'subject' => $user->id,
         'creation_time' => time(),
-        'expiration_time' => time() + 60*60
+        'expiration_time' => time() + $lifetime*60
     ];
     return JWT::encode($payload, env('JWT_SECRET'));
   }

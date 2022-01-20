@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Simple Responsive HTML Email With Button</title>
+    <title>SMCAR</title>
   <style>
 @media only screen and (max-width: 620px) {
   table[class=body] h1 {
@@ -96,7 +96,7 @@ table[class=body] .article {
             <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; min-width: 100%; width: 100%;">
               <tr>
                 <td class="align-center" width="100%" style="font-family: sans-serif; font-size: 14px; vertical-align: top; text-align: center;" valign="top" align="center">
-                  <a style="color: #ec0867; text-decoration: underline;"><img src="https://i.ibb.co/LQfyZ9J/smcar-logo.png" height="40" alt="Postdrop" style="border: none; -ms-interpolation-mode: bicubic; max-width: 100%;"></a>
+                  <a style="color: #ec0867; text-decoration: underline;"><img src="https://i.ibb.co/LQfyZ9J/smcar-logo.png" height="40" alt="SMCAR" style="border: none; -ms-interpolation-mode: bicubic; max-width: 100%;"></a>
                 </td>
               </tr>
             </table>
@@ -113,9 +113,31 @@ table[class=body] .article {
                     <tr>
                       <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">
                         <h2 style="color: #06090f; font-family: sans-serif; font-weight: 400; line-height: 1.4; margin: 0; margin-bottom: 30px;">Saludos, {{ $name }}</h2>
-                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Reciba un cordial saludo del {{ $appName }} de la Universidad Iberoamericana del Ecuador.</p>
-                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">A través de este email le informamos que su cuenta ha sido creada satisfactoriamente.</p>
-                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;"><b>{{ $body }}</b></p>
+                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Le informamos que se ha solicitado el restablecimiento de la contraseña de su cuenta del {{ $appName }}.</p>
+                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;"><b>Si usted solicitó esta acción por favor haga click en el siguiente botón, de lo contario, simplemente ignore este mensaje.</b></p>
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; box-sizing: border-box; min-width: 100%; width: 100%;" width="100%">
+                          <tbody>
+                            <tr>
+                              <td align="center" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 15px;" valign="top">
+                                <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; min-width: auto; width: auto;">
+                                  <tbody>
+                                    <tr>
+                                      <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-radius: 5px; text-align: center; background-color: #ec0867;" valign="top" align="center" bgcolor="#ec0867"> <a href="{{ $body }}" target="_blank" style="border: solid 1px #ec0867; border-radius: 5px; box-sizing: border-box; cursor: pointer; display: inline-block; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-decoration: none; text-transform: capitalize; background-color: #ec0867; border-color: #ec0867; color: #ffffff;">Confirmar Restablecimiento</a> </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; min-width: 100%; width: 100%;">
+                          <tr>
+                            <td class="align-center" width="100%" style="font-family: sans-serif; font-size: 14px; vertical-align: top; text-align: center;" valign="top" align="center">
+                              <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Este mensaje caducará en 2 minutos.</p>
+                            </td>
+                          </tr>
+                        </table>
+
                       </td>
                     </tr>
                   </table>
@@ -131,7 +153,7 @@ table[class=body] .article {
                 <tr>
                   <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; color: #9a9ea6; font-size: 12px; text-align: center;" valign="top" align="center">
                     <span class="apple-link" style="color: #9a9ea6; font-size: 12px; text-align: center;"><a href="https://unibe.edu.ec/" target="_blank" style="text-decoration: underline; color: #9a9ea6; font-size: 12px; text-align: center;">Universidad Iberoamericana del Ecuador</a></span>
-                    <br> 9 de Octubre N25-12 y Av. Colón. Quito, Ecuador
+                    <br> 9 de Octubre N25-12 y Av. Colón. Quito, Ecuador.
                   </td>
                 </tr>
                 <tr>

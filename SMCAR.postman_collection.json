@@ -1,15 +1,102 @@
 {
 	"info": {
-		"_postman_id": "5b1b0b1e-c483-4fc6-a505-7b2813c04f11",
+		"_postman_id": "c2e70cdb-469a-4a0a-a1d2-80660c315884",
 		"name": "SMCAR",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "ProfilePicture",
+			"name": "Auth",
 			"item": [
 				{
-					"name": "Crear",
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"victor@bayas.dev\",\n    \"password\": \"ayw9aikj0o\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "ws.smcar.com:8787/login",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"victor@bayas.dev\",\n    \"name\": \"Prueba 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "ws.smcar.com:8787/register",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"victor@bayas.dev\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "ws.smcar.com:8787/password_recovery_request",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"password_recovery_request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cambiar contraseña",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -21,10 +108,15 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"file_type\":\"\",\r\n    \"file_name\":\"\",\r\n    \"file\":\"\"\r\n}"
+							"raw": "{\n    \"new_password\": \"abcd1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
-							"raw": "ws.smcar.com:8787/profilepicture",
+							"raw": "ws.smcar.com:8787/user/password_change",
 							"host": [
 								"ws",
 								"smcar",
@@ -32,7 +124,1338 @@
 							],
 							"port": "8787",
 							"path": [
-								"profilepicture"
+								"user",
+								"password_change"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "ProfilePicture",
+					"item": [
+						{
+							"name": "Crear",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "api_token",
+										"value": "{{api_token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"file_type\":\"\",\r\n    \"file_name\":\"\",\r\n    \"file\":\"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "ws.smcar.com:8787/profilepicture",
+									"host": [
+										"ws",
+										"smcar",
+										"com"
+									],
+									"port": "8787",
+									"path": [
+										"profilepicture"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Obtener usuarios",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "api_token",
+								"value": "{{api_token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "ws.smcar.com:8787/user",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "api_token",
+								"value": "{{api_token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Victor Bayas\",\n    \"email\": \"victorsbayas@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "ws.smcar.com:8787/user",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar usuario",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api_token",
+								"value": "{{api_token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"name\": \"Juan\",\n    \"email\": \"victorsbayas@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "ws.smcar.com:8787/user",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar rol usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "api_token",
+								"value": "{{api_token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "ws.smcar.com:8787/user",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rol",
+			"item": [
+				{
+					"name": "Obtener roles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "api_token",
+								"value": "{{api_token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "ws.smcar.com:8787/rol",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"rol"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear rol",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "api_token",
+								"value": "{{api_token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Administrador\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "ws.smcar.com:8787/rol",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"rol"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar rol",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api_token",
+								"value": "{{api_token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"name\": \"Administrador\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "ws.smcar.com:8787/rol",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"rol"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar rol",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "api_token",
+								"value": "{{api_token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "ws.smcar.com:8787/rol",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"rol"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Faculty",
+			"item": [
+				{
+					"name": "Dean",
+					"item": [
+						{
+							"name": "Obtener decanos",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "api_token",
+										"value": "{{api_token}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "ws.smcar.com:8787/dean",
+									"host": [
+										"ws",
+										"smcar",
+										"com"
+									],
+									"port": "8787",
+									"path": [
+										"dean"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear decano",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "api_token",
+										"value": "{{api_token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Juan Pérez\",\n    \"identification\": \"1309567841\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "ws.smcar.com:8787/dean",
+									"host": [
+										"ws",
+										"smcar",
+										"com"
+									],
+									"port": "8787",
+									"path": [
+										"dean"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar decano",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "api_token",
+										"value": "{{api_token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"name\": \"Luis Pérez\",\n    \"identification\": \"1309567841\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "ws.smcar.com:8787/dean",
+									"host": [
+										"ws",
+										"smcar",
+										"com"
+									],
+									"port": "8787",
+									"path": [
+										"dean"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar decano",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "api_token",
+										"value": "{{api_token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "ws.smcar.com:8787/dean",
+									"host": [
+										"ws",
+										"smcar",
+										"com"
+									],
+									"port": "8787",
+									"path": [
+										"dean"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Obtener facultades",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "api_token",
+								"value": "{{api_token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "ws.smcar.com:8787/faculty",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"faculty"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear facultad",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "api_token",
+								"value": "{{api_token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Escuela de Software\",\n    \"dean_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "ws.smcar.com:8787/faculty",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"faculty"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar facultad",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api_token",
+								"value": "{{api_token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"name\": \"Escuela de Software\",\n    \"dean_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "ws.smcar.com:8787/faculty",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"faculty"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar facultad",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "api_token",
+								"value": "{{api_token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "ws.smcar.com:8787/faculty",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"faculty"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Carreer",
+			"item": [
+				{
+					"name": "Director",
+					"item": [
+						{
+							"name": "Obtener directores",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "api_token",
+										"value": "{{api_token}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "ws.smcar.com:8787/director",
+									"host": [
+										"ws",
+										"smcar",
+										"com"
+									],
+									"port": "8787",
+									"path": [
+										"director"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear director",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "api_token",
+										"value": "{{api_token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Juan Pérez\",\n    \"identification\": \"1309567841\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "ws.smcar.com:8787/director",
+									"host": [
+										"ws",
+										"smcar",
+										"com"
+									],
+									"port": "8787",
+									"path": [
+										"director"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar director",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "api_token",
+										"value": "{{api_token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"name\": \"Luis Pérez\",\n    \"identification\": \"1309567841\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "ws.smcar.com:8787/director",
+									"host": [
+										"ws",
+										"smcar",
+										"com"
+									],
+									"port": "8787",
+									"path": [
+										"director"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar director",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "api_token",
+										"value": "{{api_token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "ws.smcar.com:8787/director",
+									"host": [
+										"ws",
+										"smcar",
+										"com"
+									],
+									"port": "8787",
+									"path": [
+										"director"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Subject",
+					"item": [
+						{
+							"name": "Obtener materias",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "api_token",
+										"value": "{{api_token}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "ws.smcar.com:8787/subject",
+									"host": [
+										"ws",
+										"smcar",
+										"com"
+									],
+									"port": "8787",
+									"path": [
+										"subject"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear materia",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "api_token",
+										"value": "{{api_token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Aplicaciones Web\",\n    \"code\": \"PAW404\",\n    \"credits\": 192,\n    \"carreer_id\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "ws.smcar.com:8787/subject",
+									"host": [
+										"ws",
+										"smcar",
+										"com"
+									],
+									"port": "8787",
+									"path": [
+										"subject"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar materia",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "api_token",
+										"value": "{{api_token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"name\": \"Aplicaciones Web\",\n    \"code\": \"PAW404\",\n    \"credits\": 192,\n    \"carreer_id\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "ws.smcar.com:8787/subject",
+									"host": [
+										"ws",
+										"smcar",
+										"com"
+									],
+									"port": "8787",
+									"path": [
+										"subject"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar materia",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "api_token",
+										"value": "{{api_token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "ws.smcar.com:8787/subject",
+									"host": [
+										"ws",
+										"smcar",
+										"com"
+									],
+									"port": "8787",
+									"path": [
+										"subject"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Obtener carreras",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "api_token",
+								"value": "{{api_token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "ws.smcar.com:8787/carreer",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"carreer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear carrera",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "api_token",
+								"value": "{{api_token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Ingeniería de Software\",\n    \"faculty_id\": 1,\n    \"director_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "ws.smcar.com:8787/carreer",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"carreer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar carrera",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api_token",
+								"value": "{{api_token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"name\": \"Ingeniería de Sistemas\",\n    \"faculty_id\": 1,\n    \"director_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "ws.smcar.com:8787/carreer",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"carreer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar carrera",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "api_token",
+								"value": "{{api_token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "ws.smcar.com:8787/carreer",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"carreer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Petition",
+			"item": [
+				{
+					"name": "PetitionType",
+					"item": [
+						{
+							"name": "Obtener tipos de petición",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "api_token",
+										"value": "{{api_token}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "ws.smcar.com:8787/petitiontype",
+									"host": [
+										"ws",
+										"smcar",
+										"com"
+									],
+									"port": "8787",
+									"path": [
+										"petitiontype"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear tipo de petición",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "api_token",
+										"value": "{{api_token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Modificación de carga académica\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "ws.smcar.com:8787/petitiontype",
+									"host": [
+										"ws",
+										"smcar",
+										"com"
+									],
+									"port": "8787",
+									"path": [
+										"petitiontype"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar tipo de petición",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "api_token",
+										"value": "{{api_token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"name\": \"Modificación de carga académica\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "ws.smcar.com:8787/petitiontype",
+									"host": [
+										"ws",
+										"smcar",
+										"com"
+									],
+									"port": "8787",
+									"path": [
+										"petitiontype"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar tipo de petición",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "api_token",
+										"value": "{{api_token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "ws.smcar.com:8787/petitiontype",
+									"host": [
+										"ws",
+										"smcar",
+										"com"
+									],
+									"port": "8787",
+									"path": [
+										"petitiontype"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PetitionAttachment",
+					"item": [
+						{
+							"name": "Obtener adjuntos petición",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "api_token",
+										"value": "{{api_token}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "ws.smcar.com:8787/petitionattachment",
+									"host": [
+										"ws",
+										"smcar",
+										"com"
+									],
+									"port": "8787",
+									"path": [
+										"petitionattachment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear adjunto petición",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "api_token",
+										"value": "{{api_token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"request_attachment_file_type\": \"image/jpeg\",\n    \"request_attachment_file_name\": \"foto1.jpeg\",\n    \"request_attachment_file\": \"BASE64AQUI\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "ws.smcar.com:8787/petitionattachment",
+									"host": [
+										"ws",
+										"smcar",
+										"com"
+									],
+									"port": "8787",
+									"path": [
+										"petitionattachment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar adjunto petición",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "api_token",
+										"value": "{{api_token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"request_attachment_file_type\": \"image/jpeg\",\n    \"request_attachment_file_name\": \"foto1.jpeg\",\n    \"request_attachment_file\": \"BASE64AQUI\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "ws.smcar.com:8787/petitionattachment",
+									"host": [
+										"ws",
+										"smcar",
+										"com"
+									],
+									"port": "8787",
+									"path": [
+										"petitionattachment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar adjunto petición",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "api_token",
+										"value": "{{api_token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "ws.smcar.com:8787/petitionattachment",
+									"host": [
+										"ws",
+										"smcar",
+										"com"
+									],
+									"port": "8787",
+									"path": [
+										"petitionattachment"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Obtener peticiones",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "api_token",
+								"value": "{{api_token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "ws.smcar.com:8787/petition",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"petition"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear petición",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "api_token",
+								"value": "{{api_token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"parameters\": \"\",\n    \"petition_type_id\": 1,\n    \"attach\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "ws.smcar.com:8787/petition",
+							"host": [
+								"ws",
+								"smcar",
+								"com"
+							],
+							"port": "8787",
+							"path": [
+								"petition"
 							]
 						}
 					},
@@ -53,6 +1476,41 @@
 						"com"
 					],
 					"port": "8787"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Prueba",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api_token",
+						"value": "{{api_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"file_type\":\"\",\r\n    \"file_name\":\"\",\r\n    \"file\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "ws.smcar.com:8787/prueba",
+					"host": [
+						"ws",
+						"smcar",
+						"com"
+					],
+					"port": "8787",
+					"path": [
+						"prueba"
+					]
 				}
 			},
 			"response": []

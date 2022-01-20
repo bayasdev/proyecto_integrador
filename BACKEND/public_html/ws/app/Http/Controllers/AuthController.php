@@ -31,7 +31,7 @@ class AuthController extends Controller
     $message = $enlace;
     $subject = 'Solicitud de Cambio de Contraseña';
     $resp = $this->send_mail('recovery_mail', $user->email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
-    return response()->json($resp, 200);
+    return response()->json('Solicitud recibida. Por favor revise su correo electrónico para confirmar.', 200);
   }
 
   function passwordRecovery(Request $data)

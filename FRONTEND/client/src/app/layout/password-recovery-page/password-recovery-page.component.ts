@@ -15,6 +15,7 @@ export class PasswordRecoveryPageComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: any) => {
       this.token = params.r;
+      console.log(this.token);
     });
   }
 

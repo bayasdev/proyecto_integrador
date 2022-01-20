@@ -16,6 +16,10 @@ const routes: Routes = [
     loadChildren: () => import('src/app/layout/attended-request-page/attended-request-page.module').then(m => m.AttendedRequestPageModule)
   },
   {
+    path: 'password-recovery',
+    loadChildren: () => import('src/app/layout/password-recovery-page/password-recovery-page.module').then(m => m.PasswordRecoveryPageModule)
+  },
+  {
     path: '',
     loadChildren: () => import('src/app/layout/layout.module').then(m => m.LayoutModule),
     canActivate: [AuthGuard]

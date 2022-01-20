@@ -59,7 +59,7 @@ class AuthController extends Controller
     $subject = 'Recuperación de Contraseña';
     $user = User::where('id', $credentials->subject)->first();
     $resp = $this->send_mail('mail', $user->email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
-    return response()->json('Recuperación de Contraseña, Realizado Satisfactoriamente. Por favor revise su Correo Electrónico.', 200);
+    return response()->json('Recuperación de contraseña, realizado satisfactoriamente. Por favor revise su Correo Electrónico.', 200);
   }
 
   function passwordChange(Request $data)

@@ -67,6 +67,9 @@ export class ProfilePageComponent implements OnInit {
           this.toastr.error(error.message, error.title);
         });
         return;
+      } else if (this.user.email == this.correo && this.new_password == '') {
+        this.toastr.info('Ningún cambio realizado.', 'Info');
+        return;
       }
       if(this.new_password != ''){
         this.userDataService.change_password(this.user.id, this.new_password);

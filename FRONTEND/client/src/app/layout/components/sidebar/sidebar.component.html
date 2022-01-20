@@ -5,7 +5,7 @@
         <span *ngFor="let list_group_item of item.items">
           <a *ngIf="aviable(list_group_item.rols_able)"
           [routerLink]="[list_group_item.link]"
-          [routerLinkActive]="['router-link-active']"
+          [routerLinkActive]="['active']"
           [class]="list_group_item.class">
           <i [class]="list_group_item.icon" style="width:25px;"></i>&nbsp;&nbsp;&nbsp;<small [innerHtml]="list_group_item.text"></small>
         </a>
@@ -20,7 +20,7 @@
           <li *ngFor="let list_group_item of item.items">
             <a *ngIf="aviable(list_group_item.rols_able)"
             [routerLink]="[list_group_item.link]"
-            [routerLinkActive]="['router-link-active']"
+            [routerLinkActive]="['active']"
             [class]="list_group_item.class">
             <i [class]="list_group_item.icon" style="width:25px;"></i>&nbsp;&nbsp;&nbsp;<small [innerHtml]="list_group_item.text"></small>
           </a>
@@ -37,7 +37,7 @@
     <li class="nested" [class.expand]="showMenu == 'profile'">
       <ul class="submenu">
         <li>
-          <a [routerLink]="['/profile']" [routerLinkActive]="['router-link-active']">
+          <a [routerLink]="['/profile']" [routerLinkActive]="['active']">
             Perfil
           </a>
         </li>
@@ -61,7 +61,7 @@
           <div class="text-muted small fw-bold px-3">DASHBOARD</div>
         </li>
         <li>
-          <a href="#" class="nav-link px-3 active">
+          <a [routerLink]="['/dashboard']" [routerLinkActive]="['active']" class="nav-link px-3">
             <i class="las la-home me-2"></i> Inicio
           </a>
         </li>
@@ -132,7 +132,7 @@
           <div class="text-muted small fw-bold px-3">CUENTA</div>
         </li>
         <li>
-          <a href="#" class="nav-link px-3">
+          <a [routerLink]="['/profile']" [routerLinkActive]="['active']" class="nav-link px-3">
             <i class="las la-user-edit me-2"></i> Editar perfil
           </a>
         </li>

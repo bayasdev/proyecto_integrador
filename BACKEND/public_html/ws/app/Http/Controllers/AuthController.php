@@ -33,16 +33,16 @@ class AuthController extends Controller
     $resp = $this->send_mail('recovery_mail', $user->email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
     return response()->json('Solicitud recibida. Por favor revise su correo electrónico para confirmar.', 200);
   }
-
+  
   function passwordRecovery(Request $data)
   {
     $token = $data['r'];
-    $credentials = JWT::decode($token, env('JWT_SECRET'), ['HS256']);
-    $timeRemaining = $credentials->expiration_time - time();
-    if ($timeRemaining <= 0) {
-        return response()->json('Token expirado.', 400);
-    }
     try{
+      $credentials = JWT::decode($token, env('JWT_SECRET'), ['HS256']);
+      $timeRemaining = $credentials->expiration_time - time();
+      if ($timeRemaining <= 0) {
+        return response()->json('Token expirado.', 400);
+      }
       $new_password = Str::random(10);
       DB::beginTransaction();
       $status = User::find($credentials->subject)->update([
@@ -53,7 +53,7 @@ class AuthController extends Controller
         return response()->json('Acceso denegado.', 400);
       }
     } catch (Exception $e) {
-        return response()->json('Acceso denegado.', 400);
+      return response()->json('Acceso denegado.', 400);
     }
     $message = 'Tu nueva contraseña es ' . $new_password;
     $subject = 'Recuperación de Contraseña';
@@ -61,7 +61,7 @@ class AuthController extends Controller
     $resp = $this->send_mail('mail', $user->email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
     return response()->json('Recuperación de contraseña, realizado satisfactoriamente. Por favor revise su Correo Electrónico.', 200);
   }
-
+  
   function passwordChange(Request $data)
   {
     $result = $data->json()->all();
@@ -80,7 +80,7 @@ class AuthController extends Controller
     }
     return response()->json('Contraseña Actualizada Correctamente',200);
   }
-
+  
   function register(Request $data)
   {
     try{
@@ -95,9 +95,9 @@ class AuthController extends Controller
       $user = new User();
       $lastUser = User::orderBy('id')->get()->last();
       if($lastUser) {
-         $user->id = $lastUser->id + 1;
+        $user->id = $lastUser->id + 1;
       } else {
-         $user->id = 1;
+        $user->id = 1;
       }
       $user->name = $result['name'];
       $user->email = $email;
@@ -114,49 +114,49 @@ class AuthController extends Controller
     }
     return response()->json($user,200);
   }
-
+  
   function login(Request $data)
   {
-      $result = $data->json()->all();
-      $email = $result['email'];
-      $password = $result['password'];
-      $user = User::where('email', $email)->first();
-      if (!$user) {
-        return response()->json('Credenciales Incorrectos', 400);
-      }
-      if ($password === Crypt::decrypt($user->password)) {
-        $token = $this->jwt($user, 60);
-        $response = User::where('id',$user->id)->update([
-          'api_token'=>$token,
-        ]);
-        return response()->json([
-            'token' => $token,
-            'user' => $user,
-            'id' => $user->id
-        ], 200);
-      }
+    $result = $data->json()->all();
+    $email = $result['email'];
+    $password = $result['password'];
+    $user = User::where('email', $email)->first();
+    if (!$user) {
       return response()->json('Credenciales Incorrectos', 400);
+    }
+    if ($password === Crypt::decrypt($user->password)) {
+      $token = $this->jwt($user, 60);
+      $response = User::where('id',$user->id)->update([
+        'api_token'=>$token,
+      ]);
+      return response()->json([
+        'token' => $token,
+        'user' => $user,
+        'id' => $user->id
+      ], 200);
+    }
+    return response()->json('Credenciales Incorrectos', 400);
   }
-
+  
   protected function jwt(User $user, $lifetime) {
     $payload = [
-        'subject' => $user->id,
-        'creation_time' => time(),
-        'expiration_time' => time() + $lifetime*60
+      'subject' => $user->id,
+      'creation_time' => time(),
+      'expiration_time' => time() + $lifetime*60
     ];
     return JWT::encode($payload, env('JWT_SECRET'));
   }
-
+  
   protected function send_mail($template, $to, $toAlias, $subject, $body, $fromMail,$fromAlias) {
     $data = ['name'=>$toAlias, 'body'=>$body, 'appName'=>env('MAIL_FROM_NAME')];
     try {
-        $response = Mail::send($template, $data, function($message) use ($to, $toAlias, $subject, $fromMail,$fromAlias) {
-            $message->to($to, $toAlias)->subject($subject);
-            $message->from($fromMail,$fromAlias);
-        });
-        $response = 'Realizado!';
+      $response = Mail::send($template, $data, function($message) use ($to, $toAlias, $subject, $fromMail,$fromAlias) {
+        $message->to($to, $toAlias)->subject($subject);
+        $message->from($fromMail,$fromAlias);
+      });
+      $response = 'Realizado!';
     } catch (Exception $e) {
-        $response = $e->getMessage();
+      $response = $e->getMessage();
     }
     return $response;
   }

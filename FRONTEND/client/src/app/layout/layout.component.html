@@ -1,6 +1,8 @@
 <app-navbar [user]="user"></app-navbar>
 <app-sidebar [user]="user" [menu]="side_menu"></app-sidebar>
-<section class="main_container">
-  <router-outlet></router-outlet>
-</section>
+<main class="mt-5 p-t-3">
+  <div class="container-fluid p-5 text-center">
+    <router-outlet></router-outlet>
+  </div>
+</main>
 

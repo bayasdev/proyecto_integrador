@@ -43,6 +43,12 @@ $router->group(['middleware' => ['auth']], function () use ($router) {
    $router->put('/user', ['uses' => 'Profile\UserController@put']);
    $router->delete('/user', ['uses' => 'Profile\UserController@delete']);
 
+   // CRUD User <-> Role
+   $router->post('/user/role', ['uses' => 'Profile\UserController@create_user_role']);
+   $router->get('/user/role', ['uses' => 'Profile\UserController@get_user_role']);
+   $router->put('/user/role', ['uses' => 'Profile\UserController@update_user_role']);
+   $router->delete('/user/role', ['uses' => 'Profile\UserController@delete_user_role']);
+
    //CRUD Subject
    $router->post('/subject', ['uses' => 'CRUD\SubjectController@post']);
    $router->get('/subject', ['uses' => 'CRUD\SubjectController@get']);

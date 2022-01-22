@@ -72,8 +72,9 @@ class PetitionAttachmentController extends Controller
 
     function delete(Request $data)
     {
-       $id = $data['id'];
-       return response()->json(PetitionAttachment::destroy($id),200);
+      $result = $data->json()->all();
+      $id = $result['id'];
+      return response()->json(Rol::destroy($id),200);
     }
 
     function backup(Request $data)

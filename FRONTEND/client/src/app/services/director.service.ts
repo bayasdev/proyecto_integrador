@@ -7,10 +7,11 @@ import { environment } from 'src/environments/environment';
 })
 export class DirectorService {
   options = {};
+  headers = {};
 
   constructor(private http: HttpClient) {
-    const headers = new HttpHeaders({'api_token': sessionStorage.getItem('token') as string});
-    this.options = {headers: headers};
+    this.headers = new HttpHeaders({'api_token': sessionStorage.getItem('token') as string});
+    this.options = {headers: this.headers};
   }
 
   get(): Promise<any>{
@@ -29,6 +30,6 @@ export class DirectorService {
 
   delete(id: number): Promise<any> {
     const data = { id: id };
-    return this.http.delete(environment.api + 'director', {"body": JSON.stringify(data), "headers": this.options}).toPromise();
+    return this.http.delete(environment.api + 'director', {"body": JSON.stringify(data), "headers": this.headers}).toPromise();
   }
 }

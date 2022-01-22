@@ -5,20 +5,45 @@
             <thead class="table-dark">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
+                    <th scope="col">Rol</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- Arréglame: implementar inline edit -->
-                <tr *ngFor="let rol of roles">
-                    <th scope="row">{{rol.id}}</th>
-                    <td>{{rol.name}}</td>
+                <tr *ngFor="let role of roles" (click)="select_role(role)">
+                    <th scope="row">
+                        {{role.id}}
+                    </th>
                     <td>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-primary"><i class="las la-edit"></i> Editar Rol</button>
-                            <button type="button" class="btn btn-danger"><i class="las la-trash"></i> Eliminar Rol</button>
-                        </div>
+                        <span *ngIf="selected_role !== role || (selected_role == role && !isEditing)">{{role.name}}</span>
+                        <input *ngIf="selected_role == role && isEditing" type="text" class="form-control" [(ngModel)]="role.name"/>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary" (click)="edit_role()" *ngIf="!isEditing || selected_role != role">
+                            <i class="las la-edit"></i> Editar rol
+                        </button>
+                        <button type="button" class="btn btn-success" *ngIf="selected_role == role && isEditing" (click)="update_role(role)">
+                            <i class="las la-save"></i> Actualizar rol
+                        </button>
+                        <button type="button" class="btn btn-danger" *ngIf="selected_role == role && isEditing" (click)="delete_role(role)">
+                            <i class="las la-trash"></i> Eliminar rol
+                        </button>
+                        <button type="button" class="btn btn-warning" (click)="edit_role()" *ngIf="selected_role == role && isEditing">
+                            <i class="las la-ban"></i> Cancelar
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="text" class="form-control" id="new_rol_name" [(ngModel)]="new_role_name"/></td>
+                    <td>
+                        <button type="button" class="btn btn-success" (click)="create_role()">
+                            <i class="las la-plus"></i> Crear rol
+                        </button>
+                        <button type="button" class="btn btn-warning" (click)="refresh()">
+                            <i class="las la-ban"></i> Cancelar
+                        </button>
                     </td>
                 </tr>
             </tbody>

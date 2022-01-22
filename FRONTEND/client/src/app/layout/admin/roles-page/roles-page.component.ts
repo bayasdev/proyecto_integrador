@@ -41,13 +41,14 @@ export class RolesPageComponent implements OnInit {
 
   create_role(){
     this.spinner.show();
-    if (this.new_role_name == null) {
-      this.toastr.error('El nombre del rol no puede ser vacio.', 'Rol Inválido');
+    if (this.new_role_name == '') {
+      this.spinner.hide();
+      this.toastr.error('El nombre del rol no puede estar vacio.', 'Error');
       return;
     }
     this.rolDataService.create(this.new_role_name).then( r => {
       this.spinner.hide();
-      this.toastr.success('El rol ha sido guardado correctamente.', 'Rol Guardado');
+      this.toastr.success('El rol ha sido creado correctamente.', 'Rol Creado');
       this.refresh();
     }).catch( e => { console.log(e) });
   }

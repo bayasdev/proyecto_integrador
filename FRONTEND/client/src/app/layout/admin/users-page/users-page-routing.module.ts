@@ -1,11 +1,11 @@
-import { AdminRolsPageComponent } from './admin-rols-page.component';
+import { UsersPageComponent } from './users-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
     path: '',
-    component: AdminRolsPageComponent
+    component: UsersPageComponent
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AdminRolsPageRoutingModule { }
+export class UsersPageRoutingModule { }

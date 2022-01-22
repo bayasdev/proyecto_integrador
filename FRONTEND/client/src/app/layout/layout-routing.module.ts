@@ -34,7 +34,10 @@ const routes: Routes = [
         path: 'admin/roles',
         loadChildren: () => import('src/app/layout/admin/roles-page/roles-page.module').then(m => m.RolesPageModule)
       },
-
+      {
+        path: 'admin/users',
+        loadChildren: () => import('src/app/layout/admin/users-page/users-page.module').then(m => m.UsersPageModule)
+      },
       {
         path: 'not-found',
         loadChildren: () => import('src/app/layout/not-found-page/not-found-page.module').then(m => m.NotFoundPageModule)

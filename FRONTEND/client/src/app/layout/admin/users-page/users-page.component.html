@@ -1,0 +1,60 @@
+<h1 class="display-5 mb-5">Administrador de Usuarios</h1>
+<div class="row d-flex mb-5">
+    <div class="col-12 mb-5">
+        <table class="table table-hover table-bordered table-responsive">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th class="col">Correo Electrónico</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users" (click)="select_user(user)">
+                    <th scope="row">
+                        {{user.id}}
+                    </th>
+                    <td>
+                        <span *ngIf="selected_user !== user || (selected_user == user && !isEditing)">{{user.name}}</span>
+                        <input *ngIf="selected_user == user && isEditing" type="text" class="form-control" [(ngModel)]="user.name"/>
+                    </td>
+                    <td>
+                        <span *ngIf="selected_user !== user || (selected_user == user && !isEditing)">{{user.email}}</span>
+                        <input *ngIf="selected_user == user && isEditing" type="text" class="form-control" [(ngModel)]="user.email"/>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary" (click)="edit_user()" *ngIf="!isEditing || selected_user != user">
+                            <i class="las la-edit"></i> Editar usuario
+                        </button>
+                        <button type="button" class="btn btn-success" *ngIf="selected_user == user && isEditing" (click)="update_user(user)">
+                            <i class="las la-save"></i> Actualizar usuario
+                        </button>
+                        <button type="button" class="btn btn-danger" *ngIf="selected_user == user && isEditing" (click)="reset_user_password(user)">
+                            <i class="las la-key"></i> Restablecer contraseña
+                        </button>
+                        <button type="button" class="btn btn-danger" *ngIf="selected_user == user && isEditing" (click)="delete_user(user)">
+                            <i class="las la-trash"></i> Eliminar usuario
+                        </button>
+                        <button type="button" class="btn btn-warning" (click)="edit_user()" *ngIf="selected_user == user && isEditing">
+                            <i class="las la-ban"></i> Cancelar
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="text" class="form-control" [(ngModel)]="new_user.name"/></td>
+                    <td><input type="text" class="form-control" [(ngModel)]="new_user.email"/></td>
+                    <td>
+                        <button type="button" class="btn btn-success" (click)="create_user()">
+                            <i class="las la-plus"></i> Crear usuario
+                        </button>
+                        <button type="button" class="btn btn-warning" (click)="refresh()">
+                            <i class="las la-ban"></i> Cancelar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

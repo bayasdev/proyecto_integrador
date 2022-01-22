@@ -121,11 +121,14 @@ class AuthController extends Controller
     $email = $result['email'];
     $password = $result['password'];
     $user = User::where('email', $email)->first();
+    $rol_user = collect(\DB::select('SELECT rols.name FROM rols
+                            INNER JOIN rol_user ON rol_user.rol_id = rols.id
+                            WHERE rol_user.user_id = :user_id;', ['user_id'=>$user->id]))->first();
     if (!$user) {
       return response()->json('Credenciales Incorrectas', 400);
     }
     if ($password === Crypt::decrypt($user->password)) {
-      $token = $this->jwt($user, 60);
+      $token = $this->jwt($user, $rol_user, 60);
       $response = User::where('id',$user->id)->update([
         'api_token'=>$token,
       ]);
@@ -138,9 +141,10 @@ class AuthController extends Controller
     return response()->json('Credenciales Incorrectas', 400);
   }
   
-  protected function jwt(User $user, $lifetime) {
+  protected function jwt(User $user, $rol_user, $lifetime) {
     $payload = [
       'subject' => $user->id,
+      'role' => $rol_user->name,
       'creation_time' => time(),
       'expiration_time' => time() + $lifetime*60
     ];

@@ -72,7 +72,7 @@ class DeanController extends Controller
     {
       $result = $data->json()->all();
       $id = $result['id'];
-      return response()->json(Rol::destroy($id),200);
+      return response()->json(Dean::destroy($id),200);
     }
 
     function backup(Request $data)

@@ -7,6 +7,7 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
+      // Common
       {
         path: 'dashboard',
         loadChildren: () => import('src/app/layout/dashboard-page/dashboard-page.module').then(m => m.DashboardPageModule)
@@ -15,19 +16,6 @@ const routes: Routes = [
         path: 'profile',
         loadChildren: () => import('src/app/layout/profile-page/profile-page.module').then(m => m.ProfilePageModule)
       },
-      // ADMINISTRACION
-      // {
-      //   path: 'admin-users',
-      //   loadChildren: () => import('src/app/layout/admin/admin-users-page/admin-users-page.module').then(m => m.AdminUsersPageModule)
-      // },
-      // {
-      //   path: 'admin-rols',
-      //   loadChildren: () => import('src/app/layout/admin/admin-rols-page/admin-rols-page.module').then(m => m.AdminRolsPageModule)
-      // },
-      // {
-      //   path: 'admin-menu',
-      //   loadChildren: () => import('src/app/layout/admin/admin-side-menu-page/admin-side-menu-page.module').then(m => m.AdminSideMenuPageModule)
-      // },
 
       // Admin
       {
@@ -39,15 +27,25 @@ const routes: Routes = [
         loadChildren: () => import('src/app/layout/admin/users-page/users-page.module').then(m => m.UsersPageModule)
       },
       {
-        path: 'not-found',
-        loadChildren: () => import('src/app/layout/not-found-page/not-found-page.module').then(m => m.NotFoundPageModule)
+        path: 'admin/directors',
+        loadChildren: () => import('src/app/layout/admin/directors-page/directors-page.module').then(m => m.DirectorsPageModule)
       },
-
+      {
+        path: 'admin/deans',
+        loadChildren: () => import('src/app/layout/admin/deans-page/deans-page.module').then(m => m.DeansPageModule)
+      },
+      
+      // 403
       {
         path: 'denied',
         loadChildren: () => import('src/app/layout/denied-page/denied-page.module').then(m => m.DeniedPageModule)
       },
 
+      // 404
+      {
+        path: 'not-found',
+        loadChildren: () => import('src/app/layout/not-found-page/not-found-page.module').then(m => m.NotFoundPageModule)
+      },
       {
          path: '**',
          redirectTo: 'not-found'

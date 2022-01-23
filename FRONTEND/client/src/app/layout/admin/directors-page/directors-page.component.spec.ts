@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminSideMenuPageComponent } from './admin-side-menu-page.component';
+import { DirectorsPageComponent } from './directors-page.component';
 
-describe('AdminSideMenuPageComponent', () => {
-  let component: AdminSideMenuPageComponent;
-  let fixture: ComponentFixture<AdminSideMenuPageComponent>;
+describe('DirectorsPageComponent', () => {
+  let component: DirectorsPageComponent;
+  let fixture: ComponentFixture<DirectorsPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminSideMenuPageComponent ]
+      declarations: [ DirectorsPageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminSideMenuPageComponent);
+    fixture = TestBed.createComponent(DirectorsPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

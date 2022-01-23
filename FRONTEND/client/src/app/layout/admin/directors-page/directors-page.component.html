@@ -1,0 +1,61 @@
+<h1 class="display-5 mb-5">Administrador de Directores de Carrera</h1>
+<div class="row d-flex mb-5">
+    <div class="col-12 table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre del Director</th>
+                    <th scope="col">Número de cédula</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let director of directors | orderBy: order" (click)="select_director(director)">
+                    <th scope="row">
+                        {{director.id}}
+                    </th>
+                    <td>
+                        <span *ngIf="selected_director !== director || (selected_director == director && !isEditing)">{{director.name}}</span>
+                        <input *ngIf="selected_director == director && isEditing" type="text" class="form-control" [(ngModel)]="director.name"/>
+                    </td>
+                    <td>
+                        <span *ngIf="selected_director !== director || (selected_director == director && !isEditing)">{{director.identification}}</span>
+                        <input *ngIf="selected_director == director && isEditing" type="text" class="form-control" [maxlength]="10" [(ngModel)]="director.identification"/>
+                    </td>
+                    <td>
+                        <div class="d-grid gap-2 d-md-block">
+                            <button type="button" class="btn btn-primary" *ngIf="!isEditing || selected_director != director" (click)="edit_director()">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button type="button" class="btn btn-success" *ngIf="selected_director == director && isEditing" (click)="update_director(director)">
+                                <i class="fas fa-save"></i>
+                            </button>
+                            <button type="button" class="btn btn-warning" *ngIf="selected_director == director && isEditing" (click)="edit_director()">
+                                <i class="fas fa-ban"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger" *ngIf="!isEditing || selected_director != director" (click)="delete_director(director)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="text" class="form-control" [(ngModel)]="new_director.name"/></td>
+                    <td><input type="text" class="form-control" [maxLength]="10" [(ngModel)]="new_director.identification"/></td>
+                    <td>
+                        <div class="d-grid gap-2 d-md-block">
+                            <button type="button" class="btn btn-success" (click)="create_director()">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<button type="button" class="btn btn-primary mb-5" (click)="refresh()">
+    <i class="fas fa-redo"></i> Refrescar
+</button>

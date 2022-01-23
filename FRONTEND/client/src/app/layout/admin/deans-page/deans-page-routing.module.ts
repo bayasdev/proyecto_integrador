@@ -1,11 +1,11 @@
-import { AdminSideMenuPageComponent } from './admin-side-menu-page.component';
+import { DeansPageComponent } from './deans-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
     path: '',
-    component: AdminSideMenuPageComponent
+    component: DeansPageComponent
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AdminSideMenuPageRoutingModule { }
+export class DeansPageRoutingModule { }

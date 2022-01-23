@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -64,12 +65,13 @@ class UserController extends Controller
          ]);
          DB::commit();
          // also update or create role
-         if ($result['rol_id'] != null){
+         if (isset($result['rol_id'])){
             DB::table('rol_user')->updateOrInsert(
                ['user_id' => $result['id']],
                [
                   'user_id' => $result['id'],
-                  'rol_id' => $result['rol_id']
+                  'rol_id' => $result['rol_id'],
+                  'updated_at' => Carbon::now()
                ]
             );
          }

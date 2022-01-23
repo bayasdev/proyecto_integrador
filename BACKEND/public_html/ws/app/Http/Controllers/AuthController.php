@@ -16,6 +16,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -107,26 +108,25 @@ class AuthController extends Controller
       DB::commit();
       // assign Estudiante role to self registered users
       // if doesn't exist create it
-      if ($result['rol_id'] == null){
-        try {
-          DB::table('rol_user')->insert([
-            'user_id' => $user->id,
-            'rol_id' => 1
-          ]);
-        } catch (Exception $e) {
-          DB::table('rols')->insertOrIgnore([
-            'name' => 'Estudiante',
-            'id' => 1
-          ]);
-          DB::table('rol_user')->insert([
-            'user_id' => $user->id,
-            'rol_id' => 1
-          ]);
-        }
-      } else {
+      if(isset($result['rol_id'])){
         DB::table('rol_user')->insert([
           'user_id' => $user->id,
-          'rol_id' => $result['rol_id']
+          'rol_id' => $result['rol_id'],
+          'created_at' => Carbon::now(),
+          'updated_at' => Carbon::now()
+        ]);
+      } else {
+        DB::table('rols')->insertOrIgnore([
+          'name' => 'Estudiante',
+          'id' => 1,
+          'created_at' => Carbon::now(),
+          'updated_at' => Carbon::now()
+        ]);
+        DB::table('rol_user')->insert([
+          'user_id' => $user->id,
+          'rol_id' => 1,
+          'created_at' => Carbon::now(),
+          'updated_at' => Carbon::now()
         ]);
       }
       $message = 'Su contraseña de acceso al sistema es: '.$new_password;

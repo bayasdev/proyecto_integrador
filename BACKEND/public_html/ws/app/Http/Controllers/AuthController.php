@@ -105,6 +105,30 @@ class AuthController extends Controller
       $user->api_token = Str::random(64);
       $user->save();
       DB::commit();
+      // assign Estudiante role to self registered users
+      // if doesn't exist create it
+      if ($result['rol_id'] == null){
+        try {
+          DB::table('rol_user')->insert([
+            'user_id' => $user->id,
+            'rol_id' => 1
+          ]);
+        } catch (Exception $e) {
+          DB::table('rols')->insertOrIgnore([
+            'name' => 'Estudiante',
+            'id' => 1
+          ]);
+          DB::table('rol_user')->insert([
+            'user_id' => $user->id,
+            'rol_id' => 1
+          ]);
+        }
+      } else {
+        DB::table('rol_user')->insert([
+          'user_id' => $user->id,
+          'rol_id' => $result['rol_id']
+        ]);
+      }
       $message = 'Su contraseña de acceso al sistema es: '.$new_password;
       $subject = 'Te damos la bienvenida al '.env('MAIL_FROM_NAME');
       $resp = $this->send_mail('mail', $email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));

@@ -14,6 +14,8 @@ export class RolesPageComponent implements OnInit {
   selected_role: any = {};
   isEditing: boolean = false;
 
+  order: string = 'id';
+
   constructor(private spinner: NgxSpinnerService, private toastr: ToastrService, private rolDataService: RolService) { }
 
   ngOnInit(): void {

@@ -7,11 +7,12 @@
                     <th scope="col">ID</th>
                     <th scope="col">Nombre</th>
                     <th class="col">Correo Electrónico</th>
+                    <th class="col">Rol</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let user of users" (click)="select_user(user)">
+                <tr *ngFor="let user of users | orderBy: order" (click)="select_user(user)">
                     <th scope="row">
                         {{user.id}}
                     </th>
@@ -22,6 +23,14 @@
                     <td>
                         <span *ngIf="selected_user !== user || (selected_user == user && !isEditing)">{{user.email}}</span>
                         <input *ngIf="selected_user == user && isEditing" type="text" class="form-control" [(ngModel)]="user.email"/>
+                    </td>
+                    <td>
+                        <select class="form-select" *ngIf="selected_user !== user || (selected_user == user && !isEditing)"  [(ngModel)]="user.rol_id" disabled>
+                            <option [ngValue]="role.id" *ngFor="let role of roles">{{role.name}}</option>
+                        </select>
+                        <select class="form-select" *ngIf="selected_user == user && isEditing" [(ngModel)]="user.rol_id">
+                            <option [ngValue]="role.id" *ngFor="let role of roles">{{role.name}}</option>
+                        </select>
                     </td>
                     <td>
                         <button type="button" class="btn btn-primary" (click)="edit_user()" *ngIf="!isEditing || selected_user != user">
@@ -45,6 +54,11 @@
                     <td></td>
                     <td><input type="text" class="form-control" [(ngModel)]="new_user.name"/></td>
                     <td><input type="text" class="form-control" [(ngModel)]="new_user.email"/></td>
+                    <td>
+                        <select class="form-select" [(ngModel)]="new_user.role">
+                            <option [ngValue]="role.id" *ngFor="let role of roles">{{role.name}}</option>
+                        </select>
+                    </td>
                     <td>
                         <button type="button" class="btn btn-success" (click)="create_user()">
                             <i class="las la-plus"></i> Crear usuario

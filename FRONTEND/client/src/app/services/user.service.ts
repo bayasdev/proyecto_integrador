@@ -23,8 +23,8 @@ export class UserService {
     return this.http.post(environment.api + 'user', JSON.stringify(data), this.options).toPromise();
   }
 
-  update(id: number, name: string, email: string): Promise<any> {
-    const data = { id: id, name: name, email: email};
+  update(id: number, name: string, email: string, role_id?: number): Promise<any> {
+    const data = { id: id, name: name, email: email, rol_id: role_id };
     return this.http.put(environment.api + 'user', JSON.stringify(data), this.options).toPromise();
   }
   

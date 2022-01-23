@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-profile-page',
@@ -22,7 +23,7 @@ export class ProfilePageComponent implements OnInit {
   
   errores: any[] = [];
   
-  constructor(private userDataService: UserService, private router: Router, private toastr: ToastrService) { }
+  constructor(private spinner: NgxSpinnerService ,private userDataService: UserService, private router: Router, private toastr: ToastrService) { }
   
   ngOnInit(): void {
     this.reset();
@@ -60,24 +61,35 @@ export class ProfilePageComponent implements OnInit {
   
   save_profile() {
     try {
+      this.spinner.show();
       this.validate_email();
       this.validate_password();
       if (this.errores.length > 0) {
+        this.spinner.hide();
         this.errores.forEach((error: any) => {
           this.toastr.error(error.message, error.title);
         });
         return;
       } else if (this.user.email == this.correo && this.new_password == '') {
+        this.spinner.hide();
         this.toastr.info('Ningún cambio realizado.', 'Info');
         return;
       }
       if(this.new_password != ''){
+        this.spinner.hide();
         this.userDataService.change_password(this.user.id, this.new_password);
+        this.userDataService.change_password(this.user.id, this.new_password).then( r => {
+          this.spinner.hide();
+          this.toastr.success('Su contraseña ha sido actualizada correctamente.', 'Contraseña Actualizada');
+        }).catch( e => { console.log(e) });
       }
-      this.userDataService.update(this.user.id, this.user.name, this.user.email);
-      this.toastr.success('Por favor inicie sesión nuevamente.', 'Perfil Actualizado');
-      sessionStorage.clear();
-      this.router.navigate(['/login']);
+      this.spinner.show();
+      this.userDataService.update(this.user.id, this.user.name, this.user.email).then( r => {
+        this.spinner.hide();
+        this.toastr.success('Por favor inicie sesión nuevamente.', 'Perfil Actualizado');
+        sessionStorage.clear();
+        this.router.navigate(['/login']);
+      }).catch( e => { console.log(e) });
     } catch (e: any) {
       this.toastr.error(e.error.error, 'Error');
     }

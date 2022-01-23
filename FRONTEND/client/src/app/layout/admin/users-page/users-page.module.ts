@@ -5,6 +5,7 @@ import { UsersPageRoutingModule } from './users-page-routing.module';
 import { UsersPageComponent } from './users-page.component';
 import { FormsModule } from '@angular/forms';
 import { RolService } from 'src/app/services/rol.service';
+import { OrderModule } from 'ngx-order-pipe';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { RolService } from 'src/app/services/rol.service';
   imports: [
     CommonModule,
     UsersPageRoutingModule,
-    FormsModule
+    FormsModule,
+    OrderModule
   ],
   providers: [
     RolService

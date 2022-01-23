@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { RolService } from 'src/app/services/rol.service';
 
 @Component({
   selector: 'app-users-page',
@@ -13,12 +14,16 @@ export class UsersPageComponent implements OnInit {
   users: any[] = [];
   new_user: any = {
     name: '',
-    email: ''
+    email: '',
+    role: 1,
   };
   selected_user: any = {};
+  roles: any[] = [];
   isEditing: boolean = false;
 
-  constructor(private spinner: NgxSpinnerService, private toastr: ToastrService, private userDataService: UserService, private authDataService: AuthService) { }
+  order: string = 'id';
+
+  constructor(private spinner: NgxSpinnerService, private toastr: ToastrService, private userDataService: UserService, private authDataService: AuthService, private rolDataService: RolService) { }
 
   ngOnInit(): void {
     this.refresh();
@@ -27,7 +32,9 @@ export class UsersPageComponent implements OnInit {
   refresh() {
     this.new_user.name = '';
     this.new_user.email = '';
+    this.new_user.role = 1;
     this.isEditing = false;
+    this.get_roles();
     this.get_users();
   }
 
@@ -35,7 +42,7 @@ export class UsersPageComponent implements OnInit {
     this.selected_user = user;
   }
 
-  get_users(){
+  async get_users(){
     this.spinner.show();
     this.users = [];
     this.userDataService.get().then( r => {
@@ -51,7 +58,12 @@ export class UsersPageComponent implements OnInit {
       this.toastr.error('El nombre y/o correo no pueden estar vacios.', 'Error');
       return;
     }
-    this.authDataService.register(this.new_user.email, this.new_user.name).then( r => {
+    if (!this.validate_email(this.new_user.email)){
+      this.spinner.hide();
+      this.toastr.error('El correo electrónico ingresado no es válido.', 'Error');
+      return;
+    }
+    this.authDataService.register(this.new_user.email, this.new_user.name, this.new_user.role).then( r => {
       this.spinner.hide();
       this.toastr.success('El usuario ha sido registrado correctamente.', 'Usuario Creado');
       this.refresh();
@@ -60,7 +72,17 @@ export class UsersPageComponent implements OnInit {
 
   update_user(user: any){
     this.spinner.show();
-    this.userDataService.update(user.id, user.name, user.email).then( r => {
+    if (user.name == '' || user.email == ''){
+      this.spinner.hide();
+      this.toastr.error('El nombre y/o correo no pueden estar vacios.', 'Error');
+      return;
+    }
+    if (!this.validate_email(user.email)){
+      this.spinner.hide();
+      this.toastr.error('El correo electrónico ingresado no es válido.', 'Error');
+      return;
+    }
+    this.userDataService.update(user.id, user.name, user.email, user.rol_id).then( r => {
       this.spinner.hide();
       this.toastr.success('El usuario ha sido actualizado correctamente.', 'Usuario Actualizado');
       this.refresh();
@@ -87,6 +109,20 @@ export class UsersPageComponent implements OnInit {
 
   edit_user() {
     this.isEditing = !this.isEditing;
+  }
+
+  get_roles(){
+    this.spinner.show();
+    this.roles = [];
+    this.rolDataService.get().then( r => {
+      this.spinner.hide();
+      this.roles = r;
+    }).catch( e => { console.log(e) });
+  }
+
+  validate_email(email: string): boolean {
+    const isOk = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.toString());
+    return isOk;
   }
 
 }

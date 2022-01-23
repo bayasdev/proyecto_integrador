@@ -10,7 +10,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let role of roles" (click)="select_role(role)">
+                <tr *ngFor="let role of roles | orderBy: order" (click)="select_role(role)">
                     <th scope="row">
                         {{role.id}}
                     </th>

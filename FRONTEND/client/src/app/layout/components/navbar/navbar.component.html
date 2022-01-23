@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container-fluid">
         <button class="navbar-toggler me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu" aria-expanded="false" aria-label="Toggle offcanvas">
-            <i class="las la-bars barras-navbar"></i>
+            <i class="fas fa-bars barras-navbar"></i>
         </button>
         <a [routerLink]="['/dashboard']">
             <img src="assets/img/smcar_logo.svg" height="30">
@@ -15,14 +15,14 @@
                 <ul class="dropdown-menu dropdown-menu-end user-dropdown" aria-labelledby="navbarDropdown">
                     <li>
                         <a class="dropdown-item" [routerLink]="['/profile']" [routerLinkActive]="['active']">
-                            <i class="las la-user-edit"></i> Editar perfil </a>
+                            <i class="fas fa-user-edit"></i> Editar perfil </a>
                     </li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
                     <li>
                         <a class="dropdown-item" (click)="logout()">
-                            <i class="las la-sign-out-alt"></i> Cerrar sesión </a>
+                            <i class="fas fa-sign-out-alt"></i> Cerrar sesión </a>
                     </li>
                 </ul>
             </li>

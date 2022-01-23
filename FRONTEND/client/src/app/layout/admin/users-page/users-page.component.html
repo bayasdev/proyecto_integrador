@@ -1,7 +1,7 @@
 <h1 class="display-5 mb-5">Administrador de Usuarios</h1>
 <div class="row d-flex mb-5">
-    <div class="col-12 mb-5">
-        <table class="table table-hover table-bordered table-responsive">
+    <div class="col-12 table-responsive">
+        <table class="table table-hover table-bordered">
             <thead class="table-dark">
                 <tr>
                     <th scope="col">ID</th>
@@ -33,21 +33,23 @@
                         </select>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-primary" (click)="edit_user()" *ngIf="!isEditing || selected_user != user">
-                            <i class="las la-edit"></i> Editar usuario
-                        </button>
-                        <button type="button" class="btn btn-success" *ngIf="selected_user == user && isEditing" (click)="update_user(user)">
-                            <i class="las la-save"></i> Actualizar usuario
-                        </button>
-                        <button type="button" class="btn btn-danger" *ngIf="selected_user == user && isEditing" (click)="reset_user_password(user)">
-                            <i class="las la-key"></i> Restablecer contraseña
-                        </button>
-                        <button type="button" class="btn btn-danger" *ngIf="selected_user == user && isEditing" (click)="delete_user(user)">
-                            <i class="las la-trash"></i> Eliminar usuario
-                        </button>
-                        <button type="button" class="btn btn-warning" (click)="edit_user()" *ngIf="selected_user == user && isEditing">
-                            <i class="las la-ban"></i> Cancelar
-                        </button>
+                        <div class="d-grid gap-2 d-md-block">
+                            <button type="button" class="btn btn-primary" *ngIf="!isEditing || selected_user != user" (click)="edit_user()">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button type="button" class="btn btn-success" *ngIf="selected_user == user && isEditing" (click)="update_user(user)">
+                                <i class="fas fa-save"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger" *ngIf="selected_user == user && isEditing" (click)="reset_user_password(user)">
+                                <i class="fas fa-key"></i>
+                            </button>
+                            <button type="button" class="btn btn-warning" *ngIf="selected_user == user && isEditing" (click)="edit_user()">
+                                <i class="fas fa-ban"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger" *ngIf="!isEditing || selected_user != user" (click)="delete_user(user)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -60,15 +62,17 @@
                         </select>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-success" (click)="create_user()">
-                            <i class="las la-plus"></i> Crear usuario
-                        </button>
-                        <button type="button" class="btn btn-warning" (click)="refresh()">
-                            <i class="las la-ban"></i> Cancelar
-                        </button>
+                        <div class="d-grid gap-2 d-md-block">
+                            <button type="button" class="btn btn-success" (click)="create_user()">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
+<button type="button" class="btn btn-primary mb-5" (click)="refresh()">
+    <i class="fas fa-redo"></i> Refrescar
+</button>

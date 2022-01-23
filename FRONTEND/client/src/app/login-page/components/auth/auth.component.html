@@ -4,10 +4,10 @@
 </div>
 <div class="mb-5">
   <label for="password" class="form-label">Contraseña</label>
-  <a class="float-end text-decoration-none" (click)="change_page('Recuperar Contraseña')">Olvidé mi contraseña <i class="las la-question-circle"></i></a>
+  <a class="float-end text-decoration-none" (click)="change_page('Recuperar Contraseña')">Olvidé mi contraseña <i class="fas fa-question-circle"></i></a>
   <input type="password" class="form-control" id="password" [(ngModel)]="password" (keyup.enter)="login()">
 </div>
 <div class="d-grid gap-2">
-  <button type="button" class="btn btn-primary" (click)="login()"><i class="las la-sign-in-alt"></i> Iniciar sesión</button>
-  <button type="button" class="btn btn-success" (click)="change_page('Crear Cuenta')"><i class="las la-user-plus"></i> Crear cuenta</button>
+  <button type="button" class="btn btn-primary" (click)="login()"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</button>
+  <button type="button" class="btn btn-success" (click)="change_page('Crear Cuenta')"><i class="fas fa-user-plus"></i> Crear cuenta</button>
 </div>

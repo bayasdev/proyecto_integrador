@@ -1,7 +1,7 @@
 <h1 class="display-5 mb-5">Administrador de Roles</h1>
 <div class="row d-flex mb-5">
-    <div class="col-12 mb-5">
-        <table class="table table-hover table-bordered table-responsive">
+    <div class="col-12 table-responsive">
+        <table class="table table-hover table-bordered">
             <thead class="table-dark">
                 <tr>
                     <th scope="col">ID</th>
@@ -19,33 +19,37 @@
                         <input *ngIf="selected_role == role && isEditing" type="text" class="form-control" [(ngModel)]="role.name"/>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-primary" (click)="edit_role()" *ngIf="!isEditing || selected_role != role">
-                            <i class="las la-edit"></i> Editar rol
-                        </button>
-                        <button type="button" class="btn btn-success" *ngIf="selected_role == role && isEditing" (click)="update_role(role)">
-                            <i class="las la-save"></i> Actualizar rol
-                        </button>
-                        <button type="button" class="btn btn-danger" *ngIf="selected_role == role && isEditing" (click)="delete_role(role)">
-                            <i class="las la-trash"></i> Eliminar rol
-                        </button>
-                        <button type="button" class="btn btn-warning" (click)="edit_role()" *ngIf="selected_role == role && isEditing">
-                            <i class="las la-ban"></i> Cancelar
-                        </button>
+                        <div class="d-grid gap-2 d-md-block">
+                            <button type="button" class="btn btn-primary" *ngIf="!isEditing || selected_role != role" (click)="edit_role()">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button type="button" class="btn btn-success" *ngIf="selected_role == role && isEditing" (click)="update_role(role)">
+                                <i class="fas fa-save"></i>
+                            </button>
+                            <button type="button" class="btn btn-warning" *ngIf="selected_role == role && isEditing" (click)="edit_role()">
+                                <i class="fas fa-ban"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger" *ngIf="!isEditing || selected_role != role" (click)="delete_role(role)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td><input type="text" class="form-control" id="new_rol_name" [(ngModel)]="new_role_name"/></td>
                     <td>
-                        <button type="button" class="btn btn-success" (click)="create_role()">
-                            <i class="las la-plus"></i> Crear rol
-                        </button>
-                        <button type="button" class="btn btn-warning" (click)="refresh()">
-                            <i class="las la-ban"></i> Cancelar
-                        </button>
+                        <div class="d-grid gap-2 d-md-block">
+                            <button type="button" class="btn btn-success" (click)="create_role()">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
+<button type="button" class="btn btn-primary mb-5" (click)="refresh()">
+    <i class="fas fa-redo"></i> Refrescar
+</button>

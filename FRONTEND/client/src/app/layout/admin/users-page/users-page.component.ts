@@ -42,7 +42,7 @@ export class UsersPageComponent implements OnInit {
     this.selected_user = user;
   }
 
-  async get_users(){
+  get_users(){
     this.spinner.show();
     this.users = [];
     this.userDataService.get().then( r => {

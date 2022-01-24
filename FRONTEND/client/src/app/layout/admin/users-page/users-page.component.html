@@ -6,8 +6,8 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Nombre</th>
-                    <th class="col">Correo Electrónico</th>
-                    <th class="col">Rol</th>
+                    <th scope="col">Correo Electrónico</th>
+                    <th scope="col">Rol</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -29,7 +29,7 @@
                             <option [ngValue]="role.id" *ngFor="let role of roles">{{role.name}}</option>
                         </select>
                         <select class="form-select" *ngIf="selected_user == user && isEditing" [(ngModel)]="user.rol_id">
-                            <option [ngValue]="role.id" *ngFor="let role of roles">{{role.name}}</option>
+                            <option [ngValue]="role.id" *ngFor="let role of roles | orderBy: order">{{role.name}}</option>
                         </select>
                     </td>
                     <td>
@@ -58,7 +58,7 @@
                     <td><input type="text" class="form-control" [(ngModel)]="new_user.email"/></td>
                     <td>
                         <select class="form-select" [(ngModel)]="new_user.role">
-                            <option [ngValue]="role.id" *ngFor="let role of roles">{{role.name}}</option>
+                            <option [ngValue]="role.id" *ngFor="let role of roles | orderBy: order">{{role.name}}</option>
                         </select>
                     </td>
                     <td>

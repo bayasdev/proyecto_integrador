@@ -23,6 +23,83 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  // sidebar links
+
+  links: any[] = [
+    // dashboard
+    {
+      name: 'DASHBOARD',
+      items: [
+        {
+          name: 'Inicio',
+          icon: 'fas fa-home',
+          link: '/dashboard'
+        }
+      ]
+    },
+    // servicios
+    {},
+    // historico
+    {},
+    // admin
+    {
+      name: 'ADMINISTRACIÓN',
+      items: [
+        {
+          name: 'Usuarios',
+          icon: 'fas fa-users-cog',
+          link: '/admin/users'
+        },
+        {
+          name: 'Roles',
+          icon: 'fas fa-user-tag',
+          link: '/admin/roles'
+        },
+        {
+          name: 'Carreras',
+          icon: 'fas fa-graduation-cap',
+          link: '/admin/careers'
+        },
+        {
+          name: 'Materias',
+          icon: 'fas fa-book',
+          link: '/admin/subjects'
+        },
+        {
+          name: 'Directores de Carrera',
+          icon: 'fas fa-chalkboard-teacher',
+          link: '/admin/directors'
+        },
+        {
+          name: 'Facultades',
+          icon: 'fas fa-university',
+          link: '/admin/faculties'
+        },
+        {
+          name: 'Decanos',
+          icon: 'fas fa-user-tie',
+          link: '/admin/deans'
+        },
+      ]
+    },
+    // cuenta
+    {
+      name: 'CUENTA',
+      items: [
+        {
+          name: 'Editar perfil',
+          icon: 'fas fa-user-edit',
+          link: '/profile'
+        },
+        {
+          name: 'Cerrar sesión',
+          icon: 'fas fa-sign-out-alt',
+          link: ''
+        }
+      ]
+    },
+  ]
+
   // aviable(rol_requireds: any[]): boolean {
   //   let roles_usuario: any[] = [];
   //   if (typeof this.user.rols !== 'undefined') {

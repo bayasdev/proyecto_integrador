@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { FacultiesPageRoutingModule } from './faculties-page-routing.module';
-import { FacultiesPageComponent } from './faculties-page.component';
+import { SubjectsPageRoutingModule } from './subjects-page-routing.module';
+import { SubjectsPageComponent } from './subjects-page.component';
 import { FormsModule } from '@angular/forms';
 import { RolService } from 'src/app/services/rol.service';
 import { OrderModule } from 'ngx-order-pipe';
@@ -10,11 +10,11 @@ import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [
-    FacultiesPageComponent
+    SubjectsPageComponent
   ],
   imports: [
     CommonModule,
-    FacultiesPageRoutingModule,
+    SubjectsPageRoutingModule,
     FormsModule,
     OrderModule
   ],
@@ -22,4 +22,4 @@ import { OrderModule } from 'ngx-order-pipe';
     RolService
   ]
 })
-export class FacultiesPageModule { }
+export class SubjectsPageModule { }

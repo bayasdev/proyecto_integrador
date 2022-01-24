@@ -1,0 +1,83 @@
+<h1 class="display-5 mb-5">Administrador de Carreras</h1>
+<div class="row d-flex mb-5">
+    <div class="col-12 table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Director de Carrera</th>
+                    <th scope="col">Facultad</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let career of careers | orderBy: order" (click)="select_career(career)">
+                    <th scope="row">
+                        {{career.id}}
+                    </th>
+                    <td>
+                        <span *ngIf="selected_career !== career || (selected_career == career && !isEditing)">{{career.name}}</span>
+                        <input *ngIf="selected_career == career && isEditing" type="text" class="form-control" [(ngModel)]="career.name"/>
+                    </td>
+                    <td>
+                        <select class="form-select" *ngIf="selected_career !== career || (selected_career == career && !isEditing)"  [(ngModel)]="career.director_id" [disabled]="true">
+                            <option [ngValue]="director.id" *ngFor="let director of directors">{{director.name}}</option>
+                        </select>
+                        <select class="form-select" *ngIf="selected_career == career && isEditing" [(ngModel)]="career.director_id">
+                            <option [ngValue]="director.id" *ngFor="let director of directors | orderBy: order">{{director.name}}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-select" *ngIf="selected_career !== career || (selected_career == career && !isEditing)"  [(ngModel)]="career.faculty_id" [disabled]="true">
+                            <option [ngValue]="faculty.id" *ngFor="let faculty of faculties">{{faculty.name}}</option>
+                        </select>
+                        <select class="form-select" *ngIf="selected_career == career && isEditing" [(ngModel)]="career.faculty_id">
+                            <option [ngValue]="faculty.id" *ngFor="let faculty of faculties | orderBy: order">{{faculty.name}}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <div class="d-grid gap-2 d-md-block">
+                            <button type="button" class="btn btn-primary" *ngIf="!isEditing || selected_career != career" (click)="edit_career()">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button type="button" class="btn btn-success" *ngIf="selected_career == career && isEditing" (click)="update_career(career)">
+                                <i class="fas fa-save"></i>
+                            </button>
+                            <button type="button" class="btn btn-warning" *ngIf="selected_career == career && isEditing" (click)="edit_career()">
+                                <i class="fas fa-ban"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger" *ngIf="!isEditing || selected_career != career" (click)="delete_career(career)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="text" class="form-control" [(ngModel)]="new_career.name"/></td>
+                    <td>
+                        <select class="form-select" [(ngModel)]="new_career.director">
+                            <option [ngValue]="director.id" *ngFor="let director of directors | orderBy: order">{{director.name}}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-select" [(ngModel)]="new_career.faculty">
+                            <option [ngValue]="faculty.id" *ngFor="let faculty of faculties | orderBy: order">{{faculty.name}}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <div class="d-grid gap-2 d-md-block">
+                            <button type="button" class="btn btn-success" (click)="create_career()">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<button type="button" class="btn btn-primary mb-5" (click)="refresh()">
+    <i class="fas fa-redo"></i> Refrescar
+</button>

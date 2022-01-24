@@ -18,12 +18,12 @@ export class CareerService {
     return this.http.get(environment.api + 'carreer', this.options).toPromise();
   }
 
-  create(name: string, faculty_id: number, director_id: number): Promise<any> {
+  create(name: string, director_id: number, faculty_id: number): Promise<any> {
     const data = { name: name, faculty_id: faculty_id, director_id: director_id };
     return this.http.post(environment.api + 'carreer', JSON.stringify(data), this.options).toPromise();
   }
 
-  update(id: number, name: string, faculty_id: number, director_id: number): Promise<any> {
+  update(id: number, name: string, director_id: number, faculty_id: number): Promise<any> {
     const data = { id: id, name: name, faculty_id: faculty_id, director_id: director_id };
     return this.http.put(environment.api + 'carreer', JSON.stringify(data), this.options).toPromise();
   }

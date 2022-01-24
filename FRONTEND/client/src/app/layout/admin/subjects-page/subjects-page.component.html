@@ -1,0 +1,81 @@
+<h1 class="display-5 mb-5">Administrador de Materias</h1>
+<div class="row d-flex mb-5">
+    <div class="col-12 table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Código</th>
+                    <th scope="col">Créditos</th>
+                    <th scope="col">Carrera</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let subject of subjects | orderBy: order" (click)="select_subject(subject)">
+                    <th scope="row">
+                        {{subject.id}}
+                    </th>
+                    <td>
+                        <span *ngIf="selected_subject !== subject || (selected_subject == subject && !isEditing)">{{subject.name}}</span>
+                        <input *ngIf="selected_subject == subject && isEditing" type="text" class="form-control" [(ngModel)]="subject.name"/>
+                    </td>
+                    <td>
+                        <span *ngIf="selected_subject !== subject || (selected_subject == subject && !isEditing)">{{subject.code}}</span>
+                        <input *ngIf="selected_subject == subject && isEditing" type="text" class="form-control" [(ngModel)]="subject.code"/>
+                    </td>
+                    <td>
+                        <span *ngIf="selected_subject !== subject || (selected_subject == subject && !isEditing)">{{subject.credits}}</span>
+                        <input *ngIf="selected_subject == subject && isEditing" type="number" class="form-control" [(ngModel)]="subject.credits"/>
+                    </td>
+                    <td>
+                        <select class="form-select" *ngIf="selected_subject !== subject || (selected_subject == subject && !isEditing)"  [(ngModel)]="subject.carreer_id" [disabled]="true">
+                            <option [ngValue]="career.id" *ngFor="let career of careers">{{career.name}}</option>
+                        </select>
+                        <select class="form-select" *ngIf="selected_subject == subject && isEditing" [(ngModel)]="subject.carreer_id">
+                            <option [ngValue]="career.id" *ngFor="let career of careers | orderBy: order">{{career.name}}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <div class="d-grid gap-2 d-md-block">
+                            <button type="button" class="btn btn-primary" *ngIf="!isEditing || selected_subject != subject" (click)="edit_subject()">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button type="button" class="btn btn-success" *ngIf="selected_subject == subject && isEditing" (click)="update_subject(subject)">
+                                <i class="fas fa-save"></i>
+                            </button>
+                            <button type="button" class="btn btn-warning" *ngIf="selected_subject == subject && isEditing" (click)="edit_subject()">
+                                <i class="fas fa-ban"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger" *ngIf="!isEditing || selected_subject != subject" (click)="delete_subject(subject)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="text" class="form-control" [(ngModel)]="new_subject.name"/></td>
+                    <td><input type="text" class="form-control" [(ngModel)]="new_subject.code"/></td>
+                    <td><input type="text" class="form-control" [(ngModel)]="new_subject.credits"/></td>
+                    <td>
+                        <select class="form-select" [(ngModel)]="new_subject.career">
+                            <option [ngValue]="career.id" *ngFor="let career of careers | orderBy: order">{{career.name}}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <div class="d-grid gap-2 d-md-block">
+                            <button type="button" class="btn btn-success" (click)="create_subject()">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<button type="button" class="btn btn-primary mb-5" (click)="refresh()">
+    <i class="fas fa-redo"></i> Refrescar
+</button>

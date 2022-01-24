@@ -53,7 +53,9 @@
 </div>
 </nav> -->
 
-<div class="offcanvas offcanvas-start bg-dark text-white sidebar-nav" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+<!-- new design -->
+
+<!-- <div class="offcanvas offcanvas-start bg-dark text-white sidebar-nav" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
   <div class="offcanvas-body px-0">
     <nav class="navbar-dark">
       <ul class="navbar-nav">
@@ -140,6 +142,35 @@
           <a (click)="logout()" class="nav-link px-3">
             <i class="fas fa-sign-out-alt me-2"></i> Cerrar sesión
           </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div> -->
+
+<!-- start working on dynamic sidebar -->
+
+<div class="offcanvas offcanvas-start bg-dark text-white sidebar-nav" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+  <div class="offcanvas-body px-0">
+    <nav class="navbar-dark">
+      <ul class="navbar-nav" *ngFor="let link of links">
+        <li>
+          <div class="text-muted small fw-bold px-3">{{link.name}}</div>
+        </li>
+        <li *ngFor="let link_child of link.items">
+          <ng-container *ngIf="link_child.name != 'Cerrar sesión'; else logOutLink">
+            <a [routerLink]="[link_child.link]" [routerLinkActive]="['active']" class="nav-link px-3">
+              <i class="{{link_child.icon}} me-2"></i> {{link_child.name}}
+            </a>
+          </ng-container>
+          <ng-template #logOutLink>
+            <a (click)="logout()" class="nav-link px-3">
+              <i class="{{link_child.icon}} me-2"></i> {{link_child.name}}
+            </a>
+          </ng-template>
+        </li>
+        <li class="my-4">
+          <hr class="dropdown-divider">
         </li>
       </ul>
     </nav>

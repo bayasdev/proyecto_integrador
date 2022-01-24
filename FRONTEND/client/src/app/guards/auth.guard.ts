@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 import jwt_decode from "jwt-decode";
 
 @Injectable({
@@ -8,7 +9,7 @@ import jwt_decode from "jwt-decode";
 })
 export class AuthGuard implements CanActivate {
   
-  constructor(private router: Router) {}
+  constructor(private router: Router, private toastr: ToastrService) {}
   
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -16,6 +17,7 @@ export class AuthGuard implements CanActivate {
       let token: string = sessionStorage.getItem('token') as string;
       let isValid: boolean = this.check_token(token);
       if (token == null || !isValid) {
+        this.toastr.info('Por favor vuelva a iniciar sesión nuevamente.', 'Sesión Expirada');
         sessionStorage.clear();
         this.router.navigate(['/login']);
         return false;

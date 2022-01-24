@@ -1,40 +1,44 @@
-<h1 class="display-5 mb-5">Administrador de Decanos</h1>
+<h1 class="display-5 mb-5">Administrador de Facultades</h1>
 <div class="row d-flex mb-5">
     <div class="col-12 table-responsive">
         <table class="table table-hover table-bordered">
             <thead class="table-light">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Nombre del Decano</th>
-                    <th scope="col">Número de cédula</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Decano</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let dean of deans | orderBy: order" (click)="select_dean(dean)">
+                <tr *ngFor="let faculty of faculties | orderBy: order" (click)="select_faculty(faculty)">
                     <th scope="row">
-                        {{dean.id}}
+                        {{faculty.id}}
                     </th>
                     <td>
-                        <span *ngIf="selected_dean !== dean || (selected_dean == dean && !isEditing)">{{dean.name}}</span>
-                        <input *ngIf="selected_dean == dean && isEditing" type="text" class="form-control" [(ngModel)]="dean.name"/>
+                        <span *ngIf="selected_faculty !== faculty || (selected_faculty == faculty && !isEditing)">{{faculty.name}}</span>
+                        <input *ngIf="selected_faculty == faculty && isEditing" type="text" class="form-control" [(ngModel)]="faculty.name"/>
                     </td>
                     <td>
-                        <span *ngIf="selected_dean !== dean || (selected_dean == dean && !isEditing)">{{dean.identification}}</span>
-                        <input *ngIf="selected_dean == dean && isEditing" type="text" class="form-control" [maxlength]="10" [(ngModel)]="dean.identification"/>
+                        <select class="form-select" *ngIf="selected_faculty !== faculty || (selected_faculty == faculty && !isEditing)"  [(ngModel)]="faculty.dean_id" [disabled]="true">
+                            <option [ngValue]="dean.id" *ngFor="let dean of deans">{{dean.name}}</option>
+                        </select>
+                        <select class="form-select" *ngIf="selected_faculty == faculty && isEditing" [(ngModel)]="faculty.dean_id">
+                            <option [ngValue]="dean.id" *ngFor="let dean of deans | orderBy: order">{{dean.name}}</option>
+                        </select>
                     </td>
                     <td>
                         <div class="d-grid gap-2 d-md-block">
-                            <button type="button" class="btn btn-primary" *ngIf="!isEditing || selected_dean != dean" (click)="edit_dean()">
+                            <button type="button" class="btn btn-primary" *ngIf="!isEditing || selected_faculty != faculty" (click)="edit_faculty()">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button type="button" class="btn btn-success" *ngIf="selected_dean == dean && isEditing" (click)="update_dean(dean)">
+                            <button type="button" class="btn btn-success" *ngIf="selected_faculty == faculty && isEditing" (click)="update_faculty(faculty)">
                                 <i class="fas fa-save"></i>
                             </button>
-                            <button type="button" class="btn btn-warning" *ngIf="selected_dean == dean && isEditing" (click)="edit_dean()">
+                            <button type="button" class="btn btn-warning" *ngIf="selected_faculty == faculty && isEditing" (click)="edit_faculty()">
                                 <i class="fas fa-ban"></i>
                             </button>
-                            <button type="button" class="btn btn-danger" *ngIf="!isEditing || selected_dean != dean" (click)="delete_dean(dean)">
+                            <button type="button" class="btn btn-danger" *ngIf="!isEditing || selected_faculty != faculty" (click)="delete_faculty(faculty)">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
@@ -42,11 +46,15 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="text" class="form-control" [(ngModel)]="new_dean.name"/></td>
-                    <td><input type="text" class="form-control" [maxlength]="10" [(ngModel)]="new_dean.identification"/></td>
+                    <td><input type="text" class="form-control" [(ngModel)]="new_faculty.name"/></td>
+                    <td>
+                        <select class="form-select" [(ngModel)]="new_faculty.dean">
+                            <option [ngValue]="dean.id" *ngFor="let dean of deans | orderBy: order">{{dean.name}}</option>
+                        </select>
+                    </td>
                     <td>
                         <div class="d-grid gap-2 d-md-block">
-                            <button type="button" class="btn btn-success" (click)="create_dean()">
+                            <button type="button" class="btn btn-success" (click)="create_faculty()">
                                 <i class="fas fa-plus"></i>
                             </button>
                         </div>

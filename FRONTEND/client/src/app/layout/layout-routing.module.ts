@@ -18,21 +18,40 @@ const routes: Routes = [
       },
 
       // Admin
-      {
-        path: 'admin/roles',
-        loadChildren: () => import('src/app/layout/admin/roles-page/roles-page.module').then(m => m.RolesPageModule)
-      },
+      // Usuarios
       {
         path: 'admin/users',
         loadChildren: () => import('src/app/layout/admin/users-page/users-page.module').then(m => m.UsersPageModule)
       },
+      // Roles
+      {
+        path: 'admin/roles',
+        loadChildren: () => import('src/app/layout/admin/roles-page/roles-page.module').then(m => m.RolesPageModule)
+      },
+      // Directores de Carrera
       {
         path: 'admin/directors',
         loadChildren: () => import('src/app/layout/admin/directors-page/directors-page.module').then(m => m.DirectorsPageModule)
       },
+      // Decanos
       {
         path: 'admin/deans',
         loadChildren: () => import('src/app/layout/admin/deans-page/deans-page.module').then(m => m.DeansPageModule)
+      },
+      // Facultades
+      {
+        path: 'admin/faculties',
+        loadChildren: () => import('src/app/layout/admin/faculties-page/faculties-page.module').then(m => m.FacultiesPageModule)
+      },
+      // Carreras
+      {
+        path: 'admin/careers',
+        loadChildren: () => import('src/app/layout/admin/careers-page/careers-page.module').then(m => m.CareersPageModule)
+      },
+      // Materias
+      {
+        path: 'admin/subjects',
+        loadChildren: () => import('src/app/layout/admin/subjects-page/subjects-page.module').then(m => m.SubjectsPageModule)
       },
       
       // 403

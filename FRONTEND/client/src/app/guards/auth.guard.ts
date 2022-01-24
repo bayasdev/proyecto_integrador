@@ -16,13 +16,16 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       let token: string = sessionStorage.getItem('token') as string;
       let isValid: boolean = this.check_token(token);
-      if (token == null || !isValid) {
-        this.toastr.info('Por favor vuelva a iniciar sesión nuevamente.', 'Sesión Expirada');
-        sessionStorage.clear();
-        this.router.navigate(['/login']);
+      if (token == null) {
+        this.clear_session();
         return false;
+      } else if (!isValid) {
+        this.toastr.info('Por favor vuelva a iniciar sesión nuevamente.', 'Sesión Expirada');
+        this.clear_session();
+        return false;
+      } else {
+        return true;
       }
-      return true;
     }
     
     canActivateChild(route: ActivatedRouteSnapshot,
@@ -42,6 +45,11 @@ export class AuthGuard implements CanActivate {
       } catch (e) {
         return false;
       }
+    }
+
+    clear_session() {
+      sessionStorage.clear();
+      this.router.navigate(['/login']);
     }
     
   }

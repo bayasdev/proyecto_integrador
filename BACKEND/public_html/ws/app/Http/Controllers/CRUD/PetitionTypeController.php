@@ -70,7 +70,7 @@ class PetitionTypeController extends Controller
     {
       $result = $data->json()->all();
       $id = $result['id'];
-      return response()->json(Rol::destroy($id),200);
+      return response()->json(PetitionType::destroy($id),200);
     }
 
     function backup(Request $data)

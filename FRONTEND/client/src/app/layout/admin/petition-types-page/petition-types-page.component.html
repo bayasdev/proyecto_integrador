@@ -1,0 +1,55 @@
+<h1 class="display-5 mb-5">Administrador de Tipos de Solicitud</h1>
+<div class="row d-flex mb-5">
+    <div class="col-12 table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let petitiontype of petitiontypes | orderBy: order" (click)="select_petitiontype(petitiontype)">
+                    <th scope="row">
+                        {{petitiontype.id}}
+                    </th>
+                    <td>
+                        <span *ngIf="selected_petitiontype !== petitiontype || (selected_petitiontype == petitiontype && !isEditing)">{{petitiontype.name}}</span>
+                        <input *ngIf="selected_petitiontype == petitiontype && isEditing" type="text" class="form-control" [(ngModel)]="petitiontype.name"/>
+                    </td>
+                    <td>
+                        <div class="d-grid gap-2 d-md-block">
+                            <button type="button" class="btn btn-primary" *ngIf="!isEditing || selected_petitiontype != petitiontype" (click)="edit_petitiontype()">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button type="button" class="btn btn-success" *ngIf="selected_petitiontype == petitiontype && isEditing" (click)="update_petitiontype(petitiontype)">
+                                <i class="fas fa-save"></i>
+                            </button>
+                            <button type="button" class="btn btn-warning" *ngIf="selected_petitiontype == petitiontype && isEditing" (click)="edit_petitiontype()">
+                                <i class="fas fa-ban"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger" *ngIf="!isEditing || selected_petitiontype != petitiontype" (click)="delete_petitiontype(petitiontype)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="text" class="form-control" id="new_rol_name" [(ngModel)]="new_petitiontype_name"/></td>
+                    <td>
+                        <div class="d-grid gap-2 d-md-block">
+                            <button type="button" class="btn btn-success" (click)="create_petitiontype()">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<button type="button" class="btn btn-primary mb-5" (click)="refresh()">
+    <i class="fas fa-redo"></i> Refrescar
+</button>

@@ -53,6 +53,11 @@ const routes: Routes = [
         path: 'admin/subjects',
         loadChildren: () => import('src/app/layout/admin/subjects-page/subjects-page.module').then(m => m.SubjectsPageModule)
       },
+      // Tipos de Solicitud
+      {
+        path: 'admin/petition/types',
+        loadChildren: () => import('src/app/layout/admin/petition-types-page/petition-types-page.module').then(m => m.PetitionTypesPageModule)
+      },
       
       // 403
       {

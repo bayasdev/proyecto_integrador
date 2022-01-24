@@ -38,9 +38,27 @@ export class SidebarComponent implements OnInit {
       ]
     },
     // servicios
-    {},
+    {
+      name: 'SERVICIOS',
+      items: [
+        {
+          name: 'Crear Solicitud',
+          icon: 'fas fa-plus-circle',
+          link: '/student/petition'
+        }
+      ]
+    },
     // historico
-    {},
+    {
+      name: 'HISTÓRICO',
+      items: [
+        {
+          name: 'Mis Solicitudes',
+          icon: 'fas fa-history',
+          link: '/student/petitions'
+        }
+      ]
+    },
     // admin
     {
       name: 'ADMINISTRACIÓN',
@@ -79,6 +97,11 @@ export class SidebarComponent implements OnInit {
           name: 'Decanos',
           icon: 'fas fa-user-tie',
           link: '/admin/deans'
+        },
+        {
+          name: 'Tipos de Solicitud',
+          icon: 'fas fa-folder-plus',
+          link: '/admin/petition/types'
         },
       ]
     },

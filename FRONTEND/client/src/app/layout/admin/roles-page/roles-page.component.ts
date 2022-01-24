@@ -57,6 +57,11 @@ export class RolesPageComponent implements OnInit {
 
   update_role(role: any){
     this.spinner.show();
+    if (role.name == '') {
+      this.spinner.hide();
+      this.toastr.error('El nombre del rol no puede estar vacio.', 'Error');
+      return;
+    }
     this.rolDataService.update(role.id, role.name).then( r => {
       this.spinner.hide();
       this.toastr.success('El rol ha sido actualizado correctamente.', 'Rol Actualizado');

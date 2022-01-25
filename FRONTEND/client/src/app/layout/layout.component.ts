@@ -8,13 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
   user: any = {};
-  side_menu: any[] = [];
-
   constructor(private catalogDataService: CatalogService) { }
 
   ngOnInit(): void {
     this.user = JSON.parse(sessionStorage.getItem('user') as string);
-    // this.build_menu();
   }
 
   // meter json del menú en el componente

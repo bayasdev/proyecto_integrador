@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard-page.component.scss']
 })
 export class DashboardPageComponent implements OnInit {
+  user: any = {};
+  date = this.datepipe.transform(new Date(), 'dd/MM/yyyy');
 
-  constructor() { }
+  constructor(
+    private datepipe: DatePipe,
+  ) {  }
 
   ngOnInit(): void {
+    this.user = JSON.parse(sessionStorage.getItem('user') as string);
   }
 
 }

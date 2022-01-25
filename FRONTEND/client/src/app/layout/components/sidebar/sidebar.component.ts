@@ -7,11 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  @Input('user') user: any = {};
-  @Input('menu') menu: any[] = [];
-
-  showMenu: string = '0';
-
+  
   constructor(private router: Router) {
   }
 

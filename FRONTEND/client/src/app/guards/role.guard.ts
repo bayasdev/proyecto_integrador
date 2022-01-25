@@ -14,7 +14,7 @@ export class RoleGuard implements CanActivate, CanActivateChild {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       const expectedRole = route.data['expectedRole'];
       const user = JSON.parse(sessionStorage.getItem('user') as string);
-      if(expectedRole == 2 && user.role_id != 2){
+      if(expectedRole != user.role_id){
         this.router.navigate(['/denied']);
         return false;
       }

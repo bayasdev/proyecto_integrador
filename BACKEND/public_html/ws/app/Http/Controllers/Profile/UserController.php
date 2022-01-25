@@ -31,26 +31,26 @@ class UserController extends Controller
       return response()->json(User::paginate($size),200);
    }
    
-   function post(Request $data)
-   {
-      try{
-         $result = $data->json()->all();
-         DB::beginTransaction();
-         $user = new User();
-         $user->name = $result['identification'];
-         $user->name = $result['name'];
-         $user->email = $result['email'];
-         $user->role_id = $result['role_id'];
-         $user->attempts = 0;
-         $user->password = Crypt::encrypt(Str::random(32));
-         $user->api_token = Str::random(32);
-         $user->save();
-         DB::commit();
-         return response()->json($user,200);
-      } catch (Exception $e) {
-         return response()->json($e,400);
-      }
-   }
+   // function post(Request $data)
+   // {
+   //    try{
+   //       $result = $data->json()->all();
+   //       DB::beginTransaction();
+   //       $user = new User();
+   //       $user->name = $result['identification'];
+   //       $user->name = $result['name'];
+   //       $user->email = $result['email'];
+   //       $user->role_id = $result['role_id'];
+   //       $user->attempts = 0;
+   //       $user->password = Crypt::encrypt(Str::random(32));
+   //       $user->api_token = Str::random(32);
+   //       $user->save();
+   //       DB::commit();
+   //       return response()->json($user,200);
+   //    } catch (Exception $e) {
+   //       return response()->json($e,400);
+   //    }
+   // }
    
    function put(Request $data)
    {

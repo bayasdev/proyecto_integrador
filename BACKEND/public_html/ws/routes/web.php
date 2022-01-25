@@ -12,7 +12,7 @@
 */
 
 $router->get('/', function () use ($router) {
-   return 'Web Service del SMCAR operativo';
+   return 'API SMCAR operativa';
 });
 
 // Authentication
@@ -29,7 +29,7 @@ $router->group(['middleware' => ['auth']], function () use ($router) {
    $router->post('/user/password_change', ['uses' => 'AuthController@passwordChange']);
 
    //CRUD User
-   $router->post('/user', ['uses' => 'Profile\UserController@post']);
+   // $router->post('/user', ['uses' => 'Profile\UserController@post']);
    $router->get('/user', ['uses' => 'Profile\UserController@get']);
    $router->get('/user/paginate', ['uses' => 'Profile\UserController@paginate']);
    $router->put('/user', ['uses' => 'Profile\UserController@put']);

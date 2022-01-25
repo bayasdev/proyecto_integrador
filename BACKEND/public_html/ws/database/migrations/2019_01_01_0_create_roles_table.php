@@ -18,6 +18,15 @@ class CreateRolesTable extends Migration
           $table->timestamps();
           $table->string('name',200)->nullable($value = true);
        });
+       
+      //  Create default roles
+       DB::table('users')->insert([
+         ['name' => 'Administrador'],
+         ['name' => 'Decano'],
+         ['name' => 'Director de Carrera'],
+         ['name' => 'Contabilidad'],
+         ['name' => 'Estudiante']
+       ]);
     }
 
     /**

@@ -25,7 +25,7 @@ const routes: Routes = [
         loadChildren: () => import('src/app/layout/admin/users-page/users-page.module').then(m => m.UsersPageModule),
         canActivate: [RoleGuard],
         data: {
-          expectedRole: 2
+          expectedRole: 1
         }
       },
       // Roles
@@ -34,7 +34,7 @@ const routes: Routes = [
         loadChildren: () => import('src/app/layout/admin/roles-page/roles-page.module').then(m => m.RolesPageModule),
         canActivate: [RoleGuard],
         data: {
-          expectedRole: 2
+          expectedRole: 1
         }
       },
       // Directores de Carrera
@@ -43,7 +43,7 @@ const routes: Routes = [
         loadChildren: () => import('src/app/layout/admin/directors-page/directors-page.module').then(m => m.DirectorsPageModule),
         canActivate: [RoleGuard],
         data: {
-          expectedRole: 2
+          expectedRole: 1
         }
       },
       // Decanos
@@ -52,7 +52,7 @@ const routes: Routes = [
         loadChildren: () => import('src/app/layout/admin/deans-page/deans-page.module').then(m => m.DeansPageModule),
         canActivate: [RoleGuard],
         data: {
-          expectedRole: 2
+          expectedRole: 1
         }
       },
       // Facultades
@@ -61,7 +61,7 @@ const routes: Routes = [
         loadChildren: () => import('src/app/layout/admin/faculties-page/faculties-page.module').then(m => m.FacultiesPageModule),
         canActivate: [RoleGuard],
         data: {
-          expectedRole: 2
+          expectedRole: 1
         }
       },
       // Carreras
@@ -70,7 +70,7 @@ const routes: Routes = [
         loadChildren: () => import('src/app/layout/admin/careers-page/careers-page.module').then(m => m.CareersPageModule),
         canActivate: [RoleGuard],
         data: {
-          expectedRole: 2
+          expectedRole: 1
         }
       },
       // Materias
@@ -79,7 +79,7 @@ const routes: Routes = [
         loadChildren: () => import('src/app/layout/admin/subjects-page/subjects-page.module').then(m => m.SubjectsPageModule),
         canActivate: [RoleGuard],
         data: {
-          expectedRole: 2
+          expectedRole: 1
         }
       },
       // Tipos de Solicitud

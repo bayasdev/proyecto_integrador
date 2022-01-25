@@ -107,35 +107,15 @@ class AuthController extends Controller
       $user->email = $email;
       if(isset($result['role_id'])){
         $user->role_id = $result['role_id'];
+      } else {
+        // self registered users have "Estudiante" role
+        $user->role_id = 5;
       }
       $user->password = Crypt::encrypt($new_password);
       $user->attempts = 0;
       $user->api_token = Str::random(64);
       $user->save();
       DB::commit();
-      // // assign Estudiante role to self registered users
-      // // if doesn't exist create it
-      // if(isset($result['rol_id'])){
-      //   DB::table('rol_user')->insert([
-      //     'user_id' => $user->id,
-      //     'rol_id' => $result['rol_id'],
-      //     'created_at' => Carbon::now(),
-      //     'updated_at' => Carbon::now()
-      //   ]);
-      // } else {
-      //   DB::table('roles')->insertOrIgnore([
-      //     'name' => 'Estudiante',
-      //     'id' => 1,
-      //     'created_at' => Carbon::now(),
-      //     'updated_at' => Carbon::now()
-      //   ]);
-      //   DB::table('rol_user')->insert([
-      //     'user_id' => $user->id,
-      //     'rol_id' => 1,
-      //     'created_at' => Carbon::now(),
-      //     'updated_at' => Carbon::now()
-      //   ]);
-      // }
       $message = 'Su contraseña de acceso al sistema es: '.$new_password;
       $subject = 'Te damos la bienvenida al '.env('MAIL_FROM_NAME');
       $resp = $this->send_mail('mail', $email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));

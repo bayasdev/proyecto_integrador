@@ -1,5 +1,6 @@
 import { Router, NavigationEnd } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-sidebar',
@@ -15,7 +16,9 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = JSON.parse(sessionStorage.getItem('user') as string).role_id;
-    console.log(this.role);
+      const token: string = sessionStorage.getItem('token') as string;
+      const decoded: any = jwt_decode(token);
+      this.role = decoded.role;
   }
 
   logout() {

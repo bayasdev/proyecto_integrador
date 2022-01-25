@@ -20,7 +20,7 @@ class CreateRolesTable extends Migration
        });
        
       //  Create default roles
-       DB::table('users')->insert([
+       DB::table('roles')->insert([
          ['name' => 'Administrador'],
          ['name' => 'Decano'],
          ['name' => 'Director de Carrera'],

@@ -144,8 +144,12 @@ class AuthController extends Controller
       ]);
       return response()->json([
         'token' => $token,
-        'user' => $user,
-        // 'id' => $user->id
+        'user' => [
+          'id' => $user->id,
+          'identification' => $user->identification,
+          'name' => $user->name,
+          'email' => $user->email,
+        ],
       ], 200);
     } else {
       // increase attempts
@@ -159,6 +163,7 @@ class AuthController extends Controller
   protected function jwt(User $user, $lifetime) {
     $payload = [
       'subject' => $user->id,
+      'role' => $user->role_id,
       'creation_time' => time(),
       'expiration_time' => time() + $lifetime*60
     ];

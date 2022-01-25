@@ -16,8 +16,8 @@ export class AuthService {
     return this.http.post(environment.api + 'login', JSON.stringify(data)).toPromise();
   }
 
-  register(email: string, name: string, role_id?: number): Promise<any> {
-    const data = { email: email, name: name, rol_id: role_id };
+  register(email: string, identification: string, name: string, role_id?: number): Promise<any> {
+    const data = { email: email, identification: identification, name: name, role_id: role_id };
     return this.http.post(environment.api + 'register', JSON.stringify(data)).toPromise();
   }
 

@@ -13,6 +13,7 @@ import { RolService } from 'src/app/services/rol.service';
 export class UsersPageComponent implements OnInit {
   users: any[] = [];
   new_user: any = {
+    identification: '',
     name: '',
     email: '',
     role: 1,
@@ -30,6 +31,7 @@ export class UsersPageComponent implements OnInit {
   }
 
   refresh() {
+    this.new_user.identification = '';
     this.new_user.name = '';
     this.new_user.email = '';
     this.new_user.role = 1;
@@ -53,9 +55,9 @@ export class UsersPageComponent implements OnInit {
 
   create_user(){
     this.spinner.show();
-    if (this.new_user.name == '' || this.new_user.email == '') {
+    if (this.new_user.identification == '' || this.new_user.name == '' || this.new_user.email == '') {
       this.spinner.hide();
-      this.toastr.error('El nombre y/o correo no pueden estar vacios.', 'Error');
+      this.toastr.error('La cédula, nombre y/o correo no pueden estar vacios.', 'Error');
       return;
     }
     if (!this.validate_email(this.new_user.email)){
@@ -63,7 +65,7 @@ export class UsersPageComponent implements OnInit {
       this.toastr.error('El correo electrónico ingresado no es válido.', 'Error');
       return;
     }
-    this.authDataService.register(this.new_user.email, this.new_user.name, this.new_user.role).then( r => {
+    this.authDataService.register(this.new_user.email, this.new_user.identification, this.new_user.name, this.new_user.role).then( r => {
       this.spinner.hide();
       this.toastr.success('El usuario ha sido registrado correctamente.', 'Usuario Creado');
       this.refresh();
@@ -72,9 +74,9 @@ export class UsersPageComponent implements OnInit {
 
   update_user(user: any){
     this.spinner.show();
-    if (user.name == '' || user.email == ''){
+    if (user.identification == '' || user.name == '' || user.email == ''){
       this.spinner.hide();
-      this.toastr.error('El nombre y/o correo no pueden estar vacios.', 'Error');
+      this.toastr.error('La cédula, nombre y/o correo no pueden estar vacios.', 'Error');
       return;
     }
     if (!this.validate_email(user.email)){
@@ -82,7 +84,7 @@ export class UsersPageComponent implements OnInit {
       this.toastr.error('El correo electrónico ingresado no es válido.', 'Error');
       return;
     }
-    this.userDataService.update(user.id, user.name, user.email, user.rol_id).then( r => {
+    this.userDataService.update(user.id, user.identification, user.name, user.email, user.role_id).then( r => {
       this.spinner.hide();
       this.toastr.success('El usuario ha sido actualizado correctamente.', 'Usuario Actualizado');
       this.refresh();

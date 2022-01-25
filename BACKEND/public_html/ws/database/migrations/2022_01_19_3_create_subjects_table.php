@@ -19,8 +19,8 @@ class CreateSubjectsTable extends Migration
           $table->string('code',15)->nullable($value = true);
           $table->string('name',200)->nullable($value = true);
           $table->integer('credits')->nullable($value = true);
-          $table->unsignedInteger('carreer_id');
-          $table->foreign('carreer_id')->references('id')->on('carreers')->onDelete('cascade');
+          $table->unsignedInteger('career_id');
+          $table->foreign('career_id')->references('id')->on('careers')->onDelete('cascade');
        });
     }
 

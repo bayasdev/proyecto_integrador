@@ -16,6 +16,8 @@ class CreatePetitionsTable extends Migration
        Schema::create('petitions', function (Blueprint $table) {
           $table->increments('id');
           $table->timestamps();
+          $table->unsignedInteger('user_id')->nullable($value = true);
+          $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
           $table->longText('parameters')->nullable($value = true);
           $table->unsignedInteger('petition_type_id');
           $table->foreign('petition_type_id')->references('id')->on('petition_types')->onDelete('cascade');

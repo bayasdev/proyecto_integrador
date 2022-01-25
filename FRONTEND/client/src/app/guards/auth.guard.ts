@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree, Router, CanActivateChild } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import jwt_decode from "jwt-decode";
@@ -7,14 +7,14 @@ import jwt_decode from "jwt-decode";
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate, CanActivateChild {
   
   constructor(private router: Router, private toastr: ToastrService) {}
   
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      let token: string = sessionStorage.getItem('token') as string;
+      const token: string = sessionStorage.getItem('token') as string;
       let isValid: boolean = this.check_token(token);
       if (token == null) {
         this.clear_session();
@@ -28,9 +28,10 @@ export class AuthGuard implements CanActivate {
       }
     }
     
-    canActivateChild(route: ActivatedRouteSnapshot,
+    canActivateChild(
+      childRoute: ActivatedRouteSnapshot,
       state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      return this.canActivate(route, state);
+      return this.canActivate(childRoute, state);
     }
     
     check_token(token: string): boolean {

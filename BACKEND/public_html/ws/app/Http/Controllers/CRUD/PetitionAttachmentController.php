@@ -74,7 +74,7 @@ class PetitionAttachmentController extends Controller
     {
       $result = $data->json()->all();
       $id = $result['id'];
-      return response()->json(Rol::destroy($id),200);
+      return response()->json(PetitionAttachment::destroy($id),200);
     }
 
     function backup(Request $data)

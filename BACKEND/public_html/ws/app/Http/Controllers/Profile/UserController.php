@@ -19,12 +19,7 @@ class UserController extends Controller
    {
       $id = $data['id'];
       if ($id == null) {
-         //  return role on GET
-         $users = DB::table('users')->select('id', 'name', 'email')->get();
-         foreach( $users as $user ) {
-            $user -> rol_id = DB::table('rol_user')->where('user_id', $user->id)->value('rol_id');
-         };
-         return response()->json($users, 200);
+         return response()->json(User::get(),200);
       } else {
          return response()->json(User::findOrFail($id),200);
       }
@@ -42,8 +37,11 @@ class UserController extends Controller
          $result = $data->json()->all();
          DB::beginTransaction();
          $user = new User();
+         $user->name = $result['identification'];
          $user->name = $result['name'];
          $user->email = $result['email'];
+         $user->role_id = $result['role_id'];
+         $user->attempts = 0;
          $user->password = Crypt::encrypt(Str::random(32));
          $user->api_token = Str::random(32);
          $user->save();
@@ -60,21 +58,13 @@ class UserController extends Controller
          $result = $data->json()->all();
          DB::beginTransaction();
          $user = User::where('id', $result['id'])->update([
+            'identification'=>$result['identification'],
             'name'=>$result['name'],
             'email'=>$result['email'],
+            'role_id'=>$result['role_id'],
+            'attempts'=>0
          ]);
          DB::commit();
-         // also update or create role
-         if (isset($result['rol_id'])){
-            DB::table('rol_user')->updateOrInsert(
-               ['user_id' => $result['id']],
-               [
-                  'user_id' => $result['id'],
-                  'rol_id' => $result['rol_id'],
-                  'updated_at' => Carbon::now()
-               ]
-            );
-         }
          return response()->json($user,200);
       } catch (Exception $e) {
          return response()->json($e,400);

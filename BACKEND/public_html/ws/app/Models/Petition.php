@@ -12,7 +12,7 @@ class Petition extends Model
      * @var array
      */
     protected $fillable = [
-       'parameters',
+       'user_id','parameters',
     ];
 
     /**

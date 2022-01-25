@@ -30,10 +30,10 @@
                         <input *ngIf="selected_subject == subject && isEditing" type="number" class="form-control" [(ngModel)]="subject.credits"/>
                     </td>
                     <td>
-                        <select class="form-select" *ngIf="selected_subject !== subject || (selected_subject == subject && !isEditing)"  [(ngModel)]="subject.carreer_id" [disabled]="true">
+                        <select class="form-select" *ngIf="selected_subject !== subject || (selected_subject == subject && !isEditing)"  [(ngModel)]="subject.career_id" [disabled]="true">
                             <option [ngValue]="career.id" *ngFor="let career of careers">{{career.name}}</option>
                         </select>
-                        <select class="form-select" *ngIf="selected_subject == subject && isEditing" [(ngModel)]="subject.carreer_id">
+                        <select class="form-select" *ngIf="selected_subject == subject && isEditing" [(ngModel)]="subject.career_id">
                             <option [ngValue]="career.id" *ngFor="let career of careers | orderBy: order">{{career.name}}</option>
                         </select>
                     </td>

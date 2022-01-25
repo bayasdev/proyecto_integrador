@@ -13,7 +13,7 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-       'name','email','password','api_token',
+       'identification','name','email','role_id','attempts','password','api_token',
     ];
 
     /**
@@ -22,8 +22,13 @@ class User extends Model
      * @var array
      */
     protected $hidden = [
-       'password','api_token',
+       'password', 'attempts','api_token',
     ];
+
+    function role()
+    {
+       return $this->hasOne('App\Role');
+    }
 
     function profile_picture()
     {

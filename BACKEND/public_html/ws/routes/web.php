@@ -12,8 +12,10 @@
 */
 
 $router->get('/', function () use ($router) {
-   return 'Web Service SMCAR OK!';
+   return 'Web Service del SMCAR operativo';
 });
+
+// Authentication
 
 $router->group(['middleware' => []], function () use ($router) {
    $router->post('/login', ['uses' => 'AuthController@login']);
@@ -22,19 +24,9 @@ $router->group(['middleware' => []], function () use ($router) {
    $router->get('/password_recovery', ['uses' => 'AuthController@passwordRecovery']);
 });
 
+// Check token on middleware
 $router->group(['middleware' => ['auth']], function () use ($router) {
    $router->post('/user/password_change', ['uses' => 'AuthController@passwordChange']);
-
-
-   //SMCAR
-
-   //CRUD ProfilePicture
-   $router->post('/prueba', ['uses' => 'Profile\ProfilePictureController@prueba']);
-   $router->post('/profilepicture', ['uses' => 'Profile\ProfilePictureController@post']);
-   $router->get('/profilepicture', ['uses' => 'Profile\ProfilePictureController@get']);
-   $router->get('/profilepicture/paginate', ['uses' => 'Profile\ProfilePictureController@paginate']);
-   $router->put('/profilepicture', ['uses' => 'Profile\ProfilePictureController@put']);
-   $router->delete('/profilepicture', ['uses' => 'Profile\ProfilePictureController@delete']);
 
    //CRUD User
    $router->post('/user', ['uses' => 'Profile\UserController@post']);
@@ -52,14 +44,14 @@ $router->group(['middleware' => ['auth']], function () use ($router) {
    $router->delete('/subject', ['uses' => 'CRUD\SubjectController@delete']);
    $router->post('/subject/masive_load', ['uses' => 'CRUD\SubjectController@masiveLoad']);
 
-   //CRUD Carreer
-   $router->post('/carreer', ['uses' => 'CRUD\CarreerController@post']);
-   $router->get('/carreer', ['uses' => 'CRUD\CarreerController@get']);
-   $router->get('/carreer/paginate', ['uses' => 'CRUD\CarreerController@paginate']);
-   $router->get('/carreer/backup', ['uses' => 'CRUD\CarreerController@backup']);
-   $router->put('/carreer', ['uses' => 'CRUD\CarreerController@put']);
-   $router->delete('/carreer', ['uses' => 'CRUD\CarreerController@delete']);
-   $router->post('/carreer/masive_load', ['uses' => 'CRUD\CarreerController@masiveLoad']);
+   //CRUD Career
+   $router->post('/career', ['uses' => 'CRUD\CareerController@post']);
+   $router->get('/career', ['uses' => 'CRUD\CareerController@get']);
+   $router->get('/career/paginate', ['uses' => 'CRUD\CareerController@paginate']);
+   $router->get('/career/backup', ['uses' => 'CRUD\CareerController@backup']);
+   $router->put('/career', ['uses' => 'CRUD\CareerController@put']);
+   $router->delete('/career', ['uses' => 'CRUD\CareerController@delete']);
+   $router->post('/career/masive_load', ['uses' => 'CRUD\CareerController@masiveLoad']);
 
    //CRUD Petition
    $router->post('/petition', ['uses' => 'CRUD\PetitionController@post']);
@@ -97,14 +89,14 @@ $router->group(['middleware' => ['auth']], function () use ($router) {
    $router->delete('/dean', ['uses' => 'CRUD\DeanController@delete']);
    $router->post('/dean/masive_load', ['uses' => 'CRUD\DeanController@masiveLoad']);
 
-   //CRUD Rol
-   $router->post('/rol', ['uses' => 'CRUD\RolController@post']);
-   $router->get('/rol', ['uses' => 'CRUD\RolController@get']);
-   $router->get('/rol/paginate', ['uses' => 'CRUD\RolController@paginate']);
-   $router->get('/rol/backup', ['uses' => 'CRUD\RolController@backup']);
-   $router->put('/rol', ['uses' => 'CRUD\RolController@put']);
-   $router->delete('/rol', ['uses' => 'CRUD\RolController@delete']);
-   $router->post('/rol/masive_load', ['uses' => 'CRUD\RolController@masiveLoad']);
+   //CRUD Role
+   $router->post('/role', ['uses' => 'CRUD\RoleController@post']);
+   $router->get('/role', ['uses' => 'CRUD\RoleController@get']);
+   $router->get('/role/paginate', ['uses' => 'CRUD\RoleController@paginate']);
+   $router->get('/role/backup', ['uses' => 'CRUD\RoleController@backup']);
+   $router->put('/role', ['uses' => 'CRUD\RoleController@put']);
+   $router->delete('/role', ['uses' => 'CRUD\RoleController@delete']);
+   $router->post('/role/masive_load', ['uses' => 'CRUD\RoleController@masiveLoad']);
 
    //CRUD PetitionType
    $router->post('/petitiontype', ['uses' => 'CRUD\PetitionTypeController@post']);

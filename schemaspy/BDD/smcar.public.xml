@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <database name="smcar" schema="public" type="PostgreSQL - 14.1 (Debian 14.1-1.pgdg110+1)">
    <sequences>
-      <sequence increment="1" name="carreers_id_seq" startValue="1"/>
+      <sequence increment="1" name="careers_id_seq" startValue="1"/>
       <sequence increment="1" name="deans_id_seq" startValue="1"/>
       <sequence increment="1" name="directors_id_seq" startValue="1"/>
       <sequence increment="1" name="faculties_id_seq" startValue="1"/>
       <sequence increment="1" name="migrations_id_seq" startValue="1"/>
-      <sequence increment="1" name="profile_pictures_id_seq" startValue="1"/>
-      <sequence increment="1" name="request_attachments_id_seq" startValue="1"/>
-      <sequence increment="1" name="request_request_attachment_id_seq" startValue="1"/>
-      <sequence increment="1" name="request_types_id_seq" startValue="1"/>
-      <sequence increment="1" name="requests_id_seq" startValue="1"/>
-      <sequence increment="1" name="rol_user_id_seq" startValue="1"/>
-      <sequence increment="1" name="rols_id_seq" startValue="1"/>
+      <sequence increment="1" name="petition_attachments_id_seq" startValue="1"/>
+      <sequence increment="1" name="petition_petition_attachment_id_seq" startValue="1"/>
+      <sequence increment="1" name="petition_subject_id_seq" startValue="1"/>
+      <sequence increment="1" name="petition_types_id_seq" startValue="1"/>
+      <sequence increment="1" name="petitions_id_seq" startValue="1"/>
+      <sequence increment="1" name="roles_id_seq" startValue="1"/>
       <sequence increment="1" name="subjects_id_seq" startValue="1"/>
       <sequence increment="1" name="users_id_seq" startValue="1"/>
    </sequences>
    <tables>
-      <table name="carreers" numRows="0" remarks="" schema="public" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('carreers_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
-            <child column="carreer_id" foreignKey="subjects_carreer_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="subjects"/>
+      <table name="careers" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('careers_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="career_id" foreignKey="subjects_career_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="subjects"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="name" nullable="true" remarks="" size="200" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="faculty_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
-            <parent column="id" foreignKey="carreers_faculty_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="faculties"/>
+            <parent column="id" foreignKey="careers_faculty_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="faculties"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="director_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
-            <parent column="id" foreignKey="carreers_director_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="directors"/>
+            <parent column="id" foreignKey="careers_director_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="directors"/>
          </column>
          <primaryKey column="id" sequenceNumberInPK="1"/>
-         <index name="carreers_pkey" unique="true">
+         <index name="careers_pkey" unique="true">
             <column ascending="true" name="id"/>
          </index>
       </table>
@@ -50,7 +49,7 @@
       </table>
       <table name="directors" numRows="0" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('directors_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
-            <child column="director_id" foreignKey="carreers_director_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="carreers"/>
+            <child column="director_id" foreignKey="careers_director_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="careers"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
@@ -63,7 +62,7 @@
       </table>
       <table name="faculties" numRows="0" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('faculties_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
-            <child column="faculty_id" foreignKey="carreers_faculty_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="carreers"/>
+            <child column="faculty_id" foreignKey="careers_faculty_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="careers"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
@@ -76,7 +75,7 @@
             <column ascending="true" name="id"/>
          </index>
       </table>
-      <table name="migrations" numRows="13" remarks="" schema="public" type="TABLE">
+      <table name="migrations" numRows="12" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('migrations_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="migration" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="batch" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
@@ -85,24 +84,9 @@
             <column ascending="true" name="id"/>
          </index>
       </table>
-      <table name="profile_pictures" numRows="0" remarks="" schema="public" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('profile_pictures_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="file_type" nullable="true" remarks="" size="50" type="varchar" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="file_name" nullable="true" remarks="" size="50" type="varchar" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="file" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="id_user" nullable="false" remarks="" size="10" type="int4" typeCode="4">
-            <parent column="id" foreignKey="profile_pictures_id_user_foreign" implied="false" onDeleteCascade="true" schema="public" table="users"/>
-         </column>
-         <primaryKey column="id" sequenceNumberInPK="1"/>
-         <index name="profile_pictures_pkey" unique="true">
-            <column ascending="true" name="id"/>
-         </index>
-      </table>
-      <table name="request_attachments" numRows="0" remarks="" schema="public" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('request_attachments_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
-            <child column="request_attachment_id" foreignKey="request_request_attachment_request_attachment_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="request_request_attachment"/>
+      <table name="petition_attachments" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('petition_attachments_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="petition_attachment_id" foreignKey="petition_petition_attachment_petition_attachment_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="petition_petition_attachment"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
@@ -110,93 +94,94 @@
          <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="request_attachment_file_name" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="request_attachment_file" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
          <primaryKey column="id" sequenceNumberInPK="1"/>
-         <index name="request_attachments_pkey" unique="true">
+         <index name="petition_attachments_pkey" unique="true">
             <column ascending="true" name="id"/>
          </index>
       </table>
-      <table name="request_request_attachment" numRows="0" remarks="" schema="public" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('request_request_attachment_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+      <table name="petition_petition_attachment" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('petition_petition_attachment_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="request_attachment_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
-            <parent column="id" foreignKey="request_request_attachment_request_attachment_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="request_attachments"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="petition_attachment_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="petition_petition_attachment_petition_attachment_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="petition_attachments"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="request_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
-            <parent column="id" foreignKey="request_request_attachment_request_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="requests"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="petition_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="petition_petition_attachment_petition_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="petitions"/>
          </column>
          <primaryKey column="id" sequenceNumberInPK="1"/>
-         <index name="request_request_attachment_pkey" unique="true">
+         <index name="petition_petition_attachment_pkey" unique="true">
             <column ascending="true" name="id"/>
          </index>
       </table>
-      <table name="request_types" numRows="0" remarks="" schema="public" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('request_types_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
-            <child column="request_type_id" foreignKey="requests_request_type_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="requests"/>
-         </column>
+      <table name="petition_subject" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('petition_subject_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="name" nullable="true" remarks="" size="200" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="subject_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="petition_subject_subject_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="subjects"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="petition_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="petition_subject_petition_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="petitions"/>
+         </column>
          <primaryKey column="id" sequenceNumberInPK="1"/>
-         <index name="request_types_pkey" unique="true">
+         <index name="petition_subject_pkey" unique="true">
             <column ascending="true" name="id"/>
          </index>
       </table>
-      <table name="requests" numRows="0" remarks="" schema="public" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('requests_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
-            <child column="request_id" foreignKey="request_request_attachment_request_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="request_request_attachment"/>
-         </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="parameters" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="request_type_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
-            <parent column="id" foreignKey="requests_request_type_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="request_types"/>
-         </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="subject_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
-            <parent column="id" foreignKey="requests_subject_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="subjects"/>
-         </column>
-         <primaryKey column="id" sequenceNumberInPK="1"/>
-         <index name="requests_pkey" unique="true">
-            <column ascending="true" name="id"/>
-         </index>
-      </table>
-      <table name="rol_user" numRows="0" remarks="" schema="public" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('rol_user_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="rol_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
-            <parent column="id" foreignKey="rol_user_rol_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="rols"/>
-         </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="user_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
-            <parent column="id" foreignKey="rol_user_user_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="users"/>
-         </column>
-         <primaryKey column="id" sequenceNumberInPK="1"/>
-         <index name="rol_user_pkey" unique="true">
-            <column ascending="true" name="id"/>
-         </index>
-      </table>
-      <table name="rols" numRows="0" remarks="" schema="public" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('rols_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
-            <child column="rol_id" foreignKey="rol_user_rol_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="rol_user"/>
+      <table name="petition_types" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('petition_types_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="petition_type_id" foreignKey="petitions_petition_type_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="petitions"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="name" nullable="true" remarks="" size="200" type="varchar" typeCode="12"/>
          <primaryKey column="id" sequenceNumberInPK="1"/>
-         <index name="rols_pkey" unique="true">
+         <index name="petition_types_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="petitions" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('petitions_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="petition_id" foreignKey="petition_petition_attachment_petition_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="petition_petition_attachment"/>
+            <child column="petition_id" foreignKey="petition_subject_petition_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="petition_subject"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="user_id" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="petitions_user_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="users"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="parameters" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="petition_type_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="petitions_petition_type_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="petition_types"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="petitions_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="roles" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('roles_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="role_id" foreignKey="users_role_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="users"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="name" nullable="true" remarks="" size="200" type="varchar" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="roles_pkey" unique="true">
             <column ascending="true" name="id"/>
          </index>
       </table>
       <table name="subjects" numRows="0" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('subjects_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
-            <child column="subject_id" foreignKey="requests_subject_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="requests"/>
+            <child column="subject_id" foreignKey="petition_subject_subject_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="petition_subject"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="code" nullable="true" remarks="" size="15" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="name" nullable="true" remarks="" size="200" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="credits" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="carreer_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
-            <parent column="id" foreignKey="subjects_carreer_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="carreers"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="career_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="subjects_career_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="careers"/>
          </column>
          <primaryKey column="id" sequenceNumberInPK="1"/>
          <index name="subjects_pkey" unique="true">
@@ -205,15 +190,19 @@
       </table>
       <table name="users" numRows="0" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('users_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
-            <child column="id_user" foreignKey="profile_pictures_id_user_foreign" implied="false" onDeleteCascade="true" schema="public" table="profile_pictures"/>
-            <child column="user_id" foreignKey="rol_user_user_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="rol_user"/>
+            <child column="user_id" foreignKey="petitions_user_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="petitions"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="name" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="email" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="password" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="api_token" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="identification" nullable="true" remarks="" size="10" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="name" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="email" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="role_id" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="users_role_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="roles"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="attempts" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="password" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="api_token" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
          <primaryKey column="id" sequenceNumberInPK="1"/>
          <index name="users_pkey" unique="true">
             <column ascending="true" name="id"/>

@@ -6,6 +6,7 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Nombre</th>
+                    <th scope="col">Número de cédula</th>
                     <th scope="col">Correo Electrónico</th>
                     <th scope="col">Rol</th>
                     <th scope="col">Acciones</th>
@@ -21,14 +22,18 @@
                         <input *ngIf="selected_user == user && isEditing" type="text" class="form-control" [(ngModel)]="user.name"/>
                     </td>
                     <td>
+                        <span *ngIf="selected_user !== user || (selected_user == user && !isEditing)">{{user.identification}}</span>
+                        <input *ngIf="selected_user == user && isEditing" type="text" class="form-control" [(ngModel)]="user.identification" [maxlength]="10"/>
+                    </td>
+                    <td>
                         <span *ngIf="selected_user !== user || (selected_user == user && !isEditing)">{{user.email}}</span>
                         <input *ngIf="selected_user == user && isEditing" type="text" class="form-control" [(ngModel)]="user.email"/>
                     </td>
                     <td>
-                        <select class="form-select" *ngIf="selected_user !== user || (selected_user == user && !isEditing)"  [(ngModel)]="user.rol_id" [disabled]="true">
+                        <select class="form-select" *ngIf="selected_user !== user || (selected_user == user && !isEditing)"  [(ngModel)]="user.role_id" [disabled]="true">
                             <option [ngValue]="role.id" *ngFor="let role of roles">{{role.name}}</option>
                         </select>
-                        <select class="form-select" *ngIf="selected_user == user && isEditing" [(ngModel)]="user.rol_id">
+                        <select class="form-select" *ngIf="selected_user == user && isEditing" [(ngModel)]="user.role_id">
                             <option [ngValue]="role.id" *ngFor="let role of roles | orderBy: order">{{role.name}}</option>
                         </select>
                     </td>
@@ -55,6 +60,7 @@
                 <tr>
                     <td></td>
                     <td><input type="text" class="form-control" [(ngModel)]="new_user.name"/></td>
+                    <td><input type="text" class="form-control" [(ngModel)]="new_user.identification" [maxlength]="10"/></td>
                     <td><input type="text" class="form-control" [(ngModel)]="new_user.email"/></td>
                     <td>
                         <select class="form-select" [(ngModel)]="new_user.role">

@@ -24,9 +24,9 @@ class Director extends Model
        
     ];
 
-    function carreer()
+    function career()
     {
-       return $this->belongsTo('App\Carreer');
+       return $this->belongsTo('App\Career');
     }
 
 }

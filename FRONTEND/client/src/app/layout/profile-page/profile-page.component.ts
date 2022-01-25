@@ -84,7 +84,7 @@ export class ProfilePageComponent implements OnInit {
         }).catch( e => { console.log(e) });
       }
       this.spinner.show();
-      this.userDataService.update(this.user.id, this.user.name, this.user.email).then( r => {
+      this.userDataService.update(this.user.id, this.user.identification, this.user.name, this.user.email).then( r => {
         this.spinner.hide();
         this.toastr.success('Por favor inicie sesión nuevamente.', 'Perfil Actualizado');
         sessionStorage.clear();

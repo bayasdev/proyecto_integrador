@@ -18,13 +18,13 @@ export class SubjectService {
     return this.http.get(environment.api + 'subject', this.options).toPromise();
   }
 
-  create(name: string, code: string, credits: number, carreer_id: string): Promise<any> {
-    const data = { name: name, code: code, credits: credits, carreer_id: carreer_id };
+  create(name: string, code: string, credits: number, career_id: string): Promise<any> {
+    const data = { name: name, code: code, credits: credits, career_id: career_id };
     return this.http.post(environment.api + 'subject', JSON.stringify(data), this.options).toPromise();
   }
 
-  update(id: number, name: string, code: string, credits: number, carreer_id: string): Promise<any> {
-    const data = { id: id, name: name, code: code, credits: credits, carreer_id: carreer_id };
+  update(id: number, name: string, code: string, credits: number, career_id: string): Promise<any> {
+    const data = { id: id, name: name, code: code, credits: credits, career_id: career_id };
     return this.http.put(environment.api + 'subject', JSON.stringify(data), this.options).toPromise();
   }
 

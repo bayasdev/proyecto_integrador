@@ -77,7 +77,7 @@ export class SubjectsPageComponent implements OnInit {
       this.toastr.error('El nombre, código y/o créditos no pueden estar vacios.', 'Error');
       return;
     }
-    this.subjectDataService.update(subject.id, subject.name, subject.code, subject.credits, subject.carreer_id).then( r => {
+    this.subjectDataService.update(subject.id, subject.name, subject.code, subject.credits, subject.career_id).then( r => {
       this.spinner.hide();
       this.toastr.success('La materia ha sido actualizada correctamente.', 'Materia Actualizada');
       this.refresh();

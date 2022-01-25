@@ -18,13 +18,8 @@ export class UserService {
     return this.http.get(environment.api + 'user', this.options).toPromise();
   }
 
-  create(name: string, email: string): Promise<any> {
-    const data = { name: name, email: email};
-    return this.http.post(environment.api + 'user', JSON.stringify(data), this.options).toPromise();
-  }
-
-  update(id: number, name: string, email: string, role_id?: number): Promise<any> {
-    const data = { id: id, name: name, email: email, rol_id: role_id };
+  update(id: number, identification: string, name: string, email: string, role_id?: number): Promise<any> {
+    const data = { id: id, identification: identification, name: name, email: email, role_id: role_id };
     return this.http.put(environment.api + 'user', JSON.stringify(data), this.options).toPromise();
   }
   

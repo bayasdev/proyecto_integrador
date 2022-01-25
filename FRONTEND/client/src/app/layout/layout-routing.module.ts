@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RoleGuard } from '../guards/role.guard';
 import { LayoutComponent } from './layout.component';
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
       // Usuarios
       {
         path: 'admin/users',
-        loadChildren: () => import('src/app/layout/admin/users-page/users-page.module').then(m => m.UsersPageModule)
+        loadChildren: () => import('src/app/layout/admin/users-page/users-page.module').then(m => m.UsersPageModule),
+        canActivate: [RoleGuard]
       },
       // Roles
       {
@@ -80,6 +82,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [RoleGuard]
 })
 export class LayoutRoutingModule { }

@@ -122,10 +122,10 @@ class AuthController extends Controller
     }
     
     protected function send_mail($template, $to, $toAlias, $subject, $body, $fromMail,$fromAlias) {
-        $data = ['name'=>$toAlias, 'body'=>$body, 'appName'=>env('MAIL_FROM_NAME')];
+        $data = ['name'=>$toAlias, 'body'=>$body, 'appName'=>env('APP_NAME')];
         try {
             $response = Mail::send($template, $data, function($message) use ($to, $toAlias, $subject, $fromMail,$fromAlias) {
-                $message->to($to, $toAlias)->subject($subject);
+                $message->to($to)->subject($subject);
                 $message->from($fromMail,$fromAlias);
             });
             $response = 'Realizado!';

@@ -96,7 +96,6 @@ $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 $app->register(Illuminate\Mail\MailServiceProvider::class);
-$app->register(\SwaggerLume\ServiceProvider::class);
 
 
 /*
@@ -109,8 +108,6 @@ $app->register(\SwaggerLume\ServiceProvider::class);
 | can respond to, as well as the controllers that may handle them.
 |
 */
-
-$app->configure('swagger-lume');
 
 $app->configure('mail');
 

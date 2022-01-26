@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Firebase\JWT\JWT;
@@ -19,7 +18,7 @@ class AuthController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'identification' => 'required|unique:users',
+            'identification' => 'required|max:10|unique:users',
             'role_id' => 'integer'
         ]);
         $new_password = Str::random(16);

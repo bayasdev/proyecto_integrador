@@ -31,5 +31,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'password',
     ];
 
+    function role()
+    {
+       return $this->hasOne('App\Role');
+    }
+
 }
 

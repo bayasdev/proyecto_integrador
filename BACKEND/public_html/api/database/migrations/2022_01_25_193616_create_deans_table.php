@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateDeansTable extends Migration
 {
@@ -13,10 +13,12 @@ class CreateDeansTable extends Migration
      */
     public function up()
     {
-        Schema::create('deans', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+       Schema::create('deans', function (Blueprint $table) {
+          $table->increments('id');
+          $table->timestamps();
+          $table->string('identification',10)->nullable($value = true);
+          $table->string('name',200)->nullable($value = true);
+       });
     }
 
     /**
@@ -26,6 +28,6 @@ class CreateDeansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deans');
+       Schema::dropIfExists('deans');
     }
 }

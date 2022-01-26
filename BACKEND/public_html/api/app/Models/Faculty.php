@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
-class Dean extends Model implements AuthenticatableContract, AuthorizableContract
+class Faculty extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable, HasFactory;
 
@@ -19,7 +19,7 @@ class Dean extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'name', 'identification',
+        'name', 'dean_id',
     ];
 
     /**
@@ -29,8 +29,13 @@ class Dean extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     protected $hidden = [];
 
-    function faculty()
+    function career()
     {
-       return $this->belongsTo('App\Models\Faculty');
+       return $this->belongsTo('App\Models\Career');
+    }
+
+    function dean()
+    {
+       return $this->hasOne('App\Models\Dean');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class UserController extends Controller
@@ -22,7 +23,7 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'identification' => 'required|unique:users',
+            'identification' => 'required|max:10|unique:users',
             'role_id' => 'required',
         ]);
         $user = User::create($request->all());

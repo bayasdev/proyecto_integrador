@@ -22,13 +22,15 @@ class RoleController extends Controller
         $this->validate($request, [
             'name' => 'required'
         ]);
-        
         $role = Role::create($request->all());
         return response()->json($role, 201);
     }
     
     public function update($id, Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
         $role = Role::findOrFail($id);
         $role->update($request->all());
         

@@ -15,21 +15,21 @@ export class SubjectService {
   }
 
   get(): Promise<any>{
-    return this.http.get(environment.api + 'subject', this.options).toPromise();
+    return this.http.get(environment.api + 'subjects', this.options).toPromise();
   }
 
   create(name: string, code: string, credits: number, career_id: string): Promise<any> {
     const data = { name: name, code: code, credits: credits, career_id: career_id };
-    return this.http.post(environment.api + 'subject', JSON.stringify(data), this.options).toPromise();
+    return this.http.post(environment.api + 'subjects', data, this.options).toPromise();
   }
 
   update(id: number, name: string, code: string, credits: number, career_id: string): Promise<any> {
     const data = { id: id, name: name, code: code, credits: credits, career_id: career_id };
-    return this.http.put(environment.api + 'subject', JSON.stringify(data), this.options).toPromise();
+    return this.http.put(environment.api + 'subjects/'+id, data, this.options).toPromise();
   }
 
   delete(id: number): Promise<any> {
     const data = { id: id };
-    return this.http.delete(environment.api + 'subject', {"body": JSON.stringify(data), "headers": this.headers}).toPromise();
+    return this.http.delete(environment.api + 'subjects/'+id, this.options).toPromise();
   }
 }

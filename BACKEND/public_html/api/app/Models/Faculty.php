@@ -31,11 +31,11 @@ class Faculty extends Model implements AuthenticatableContract, AuthorizableCont
 
     function career()
     {
-       return $this->belongsTo('App\Models\Career');
+       return $this->belongsTo('App\Career');
     }
 
     function dean()
     {
-       return $this->hasOne('App\Models\Dean');
+       return $this->hasOne('App\Dean');
     }
 }

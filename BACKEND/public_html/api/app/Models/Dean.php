@@ -31,6 +31,6 @@ class Dean extends Model implements AuthenticatableContract, AuthorizableContrac
 
     function faculty()
     {
-       return $this->belongsTo('App\Models\Faculty');
+       return $this->belongsTo('App\Faculty');
     }
 }

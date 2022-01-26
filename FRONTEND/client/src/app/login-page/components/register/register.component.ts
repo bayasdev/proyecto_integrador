@@ -74,7 +74,7 @@ export class RegisterComponent implements OnInit {
       });
     }).catch( e => {
       this.spinner.hide();
-      this.show_alert('Crear Cuenta', e.error, 'error').then( response => {
+      this.show_alert('Crear Cuenta', e.error.message, 'error').then( response => {
         this.email = '';
         this.name = '';
         this.email_validated = false;

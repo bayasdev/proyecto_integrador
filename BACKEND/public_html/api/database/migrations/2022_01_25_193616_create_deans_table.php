@@ -16,8 +16,8 @@ class CreateDeansTable extends Migration
        Schema::create('deans', function (Blueprint $table) {
           $table->increments('id');
           $table->timestamps();
-          $table->string('identification',10)->nullable($value = true);
-          $table->string('name',200)->nullable($value = true);
+          $table->string('identification')->nullable($value = true);
+          $table->string('name')->nullable($value = true);
        });
     }
 

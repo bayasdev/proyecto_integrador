@@ -15,21 +15,21 @@ export class CareerService {
   }
 
   get(): Promise<any>{
-    return this.http.get(environment.api + 'career', this.options).toPromise();
+    return this.http.get(environment.api + 'careers', this.options).toPromise();
   }
 
   create(name: string, director_id: number, faculty_id: number): Promise<any> {
     const data = { name: name, faculty_id: faculty_id, director_id: director_id };
-    return this.http.post(environment.api + 'career', JSON.stringify(data), this.options).toPromise();
+    return this.http.post(environment.api + 'careers', data, this.options).toPromise();
   }
 
   update(id: number, name: string, director_id: number, faculty_id: number): Promise<any> {
     const data = { id: id, name: name, faculty_id: faculty_id, director_id: director_id };
-    return this.http.put(environment.api + 'career', JSON.stringify(data), this.options).toPromise();
+    return this.http.put(environment.api + 'careers/'+id, data, this.options).toPromise();
   }
 
   delete(id: number): Promise<any> {
     const data = { id: id };
-    return this.http.delete(environment.api + 'career', {"body": JSON.stringify(data), "headers": this.headers}).toPromise();
+    return this.http.delete(environment.api + 'careers/'+id, this.options).toPromise();
   }
 }

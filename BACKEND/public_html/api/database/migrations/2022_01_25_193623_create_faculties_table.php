@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateFacultiesTable extends Migration
 {
@@ -13,10 +13,13 @@ class CreateFacultiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('faculties', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+       Schema::create('faculties', function (Blueprint $table) {
+          $table->increments('id');
+          $table->timestamps();
+          $table->string('name')->nullable($value = true);
+          $table->integer('dean_id');
+          $table->foreign('dean_id')->references('id')->on('deans')->onDelete('cascade');
+       });
     }
 
     /**
@@ -26,6 +29,6 @@ class CreateFacultiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('faculties');
+       Schema::dropIfExists('faculties');
     }
 }

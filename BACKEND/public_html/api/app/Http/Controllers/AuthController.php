@@ -18,7 +18,7 @@ class AuthController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'identification' => 'required|max:10|unique:users',
+            'identification' => 'required|min:10|max:10|unique:users',
             'role_id' => 'integer'
         ]);
         $new_password = Str::random(16);
@@ -91,7 +91,11 @@ class AuthController extends Controller
             User::where('id', $decoded->id)->update([
                 'password' => Hash::make($new_password)
             ]);
-            return response()->json(['message' => $new_password], 200);
+            $message = 'Su nueva contraseña de acceso al sistema es: '.$new_password;
+            $subject = 'Recuperación de Contraseña';
+            $user = User::where('id', $decoded->id)->first();
+            $this->send_mail('recovery_mail', $user->email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+            return response()->json(['message' => 'Contraseña restablecida, por favor revise su correo electrónico'], 200);
         } catch (Exception $e) {
             return response()->json(['message' => 'Ocurrió un error'], 400);
         }

@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateCareersTable extends Migration
 {
@@ -13,10 +13,15 @@ class CreateCareersTable extends Migration
      */
     public function up()
     {
-        Schema::create('careers', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+       Schema::create('careers', function (Blueprint $table) {
+          $table->increments('id');
+          $table->timestamps();
+          $table->string('name')->nullable($value = true);
+          $table->integer('faculty_id');
+          $table->foreign('faculty_id')->references('id')->on('faculties')->onDelete('cascade');
+          $table->integer('director_id');
+          $table->foreign('director_id')->references('id')->on('directors')->onDelete('cascade');
+       });
     }
 
     /**
@@ -26,6 +31,6 @@ class CreateCareersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('careers');
+       Schema::dropIfExists('careers');
     }
 }

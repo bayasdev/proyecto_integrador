@@ -23,7 +23,7 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'identification' => 'required|max:10|unique:users',
+            'identification' => 'required|min:10|max:10|unique:users',
             'role_id' => 'required',
         ]);
         $user = User::create($request->all());
@@ -32,12 +32,11 @@ class UserController extends Controller
     
     public function update($id, Request $request)
     {
-        $this->validate($request, [
-            'email' => 'unique:users',
-            'identification' => 'unique:users',
-        ]);
         $request->request->add(['attempts' => 0]);
         $user = User::findOrFail($id);
+        if(isset($request->password)){
+            $request->request->add(['password' => Hash::make($request->password)]);
+        }
         $user->update($request->all());
         return response()->json($user, 200);
     }

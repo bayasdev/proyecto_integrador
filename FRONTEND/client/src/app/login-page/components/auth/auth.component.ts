@@ -39,11 +39,10 @@ export class AuthComponent implements OnInit {
     this.authDataService.login(this.email, this.password).then( r => {
       this.spinner.hide();
       sessionStorage.setItem('token', r.token);
-      sessionStorage.setItem('user', JSON.stringify(r.user));
       this.router.navigate(['/dashboard']);
     }).catch( e => {
       this.spinner.hide();
-      this.show_alert('Autenticación', e.error, 'error').then( response => {
+      this.show_alert('Autenticación', e.error.message, 'error').then( response => {
         this.email = '';
         this.password = '';
       });

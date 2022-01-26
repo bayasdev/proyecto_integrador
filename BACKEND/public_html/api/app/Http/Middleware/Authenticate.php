@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\Factory as Auth;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Firebase\JWT\ExpiredException;
+use Firebase\JWT\SignatureInvalidException;
 use Exception;
 use App\Models\User;
 
@@ -48,7 +49,7 @@ class Authenticate
 
         $token = $request->header('api_token');
         if(!$token) {
-            return response(['message' => 'No autorizado'], 403);
+            return response(['message' => 'No autorizado'], 401);
         }
         try {
             $decoded = JWT::decode($token, new Key(env('JWT_SECRET'), 'HS256'));
@@ -59,9 +60,11 @@ class Authenticate
             $user = User::where('id',$decoded->id)->first();
             $request->user = $user;
         } catch(ExpiredException $e) {
-            return response(['message' => 'Token expirado'], 400);
+            return response(['message' => 'Token expirado'], 401);
+        } catch (SignatureInvalidException $e) {
+            return response(['message' => 'Token no válido'], 401);
         } catch(Exception $e) {
-            return response(['message' => 'No autorizado'], 403);
+            return response(['message' => 'No autorizado'], 401);
         }
         return $next($request);
     }

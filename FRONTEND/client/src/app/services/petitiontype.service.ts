@@ -20,16 +20,16 @@ export class PetitionTypeService {
 
   create(name: string): Promise<any> {
     const data = { name: name };
-    return this.http.post(environment.api + 'petitiontype', JSON.stringify(data), this.options).toPromise();
+    return this.http.post(environment.api + 'petitiontype', data, this.options).toPromise();
   }
 
   update(id: number, name: string): Promise<any> {
     const data = { id: id, name: name };
-    return this.http.put(environment.api + 'petitiontype', JSON.stringify(data), this.options).toPromise();
+    return this.http.put(environment.api + 'petitiontype', data, this.options).toPromise();
   }
 
   delete(id: number): Promise<any> {
     const data = { id: id };
-    return this.http.delete(environment.api + 'petitiontype', {"body": JSON.stringify(data), "headers": this.headers}).toPromise();
+    return this.http.delete(environment.api + 'petitiontype', {"body": data, "headers": this.headers}).toPromise();
   }
 }

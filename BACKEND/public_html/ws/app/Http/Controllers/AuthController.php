@@ -167,7 +167,7 @@ class AuthController extends Controller
       'creation_time' => time(),
       'expiration_time' => time() + $lifetime*60
     ];
-    return JWT::encode($payload, env('JWT_SECRET'));
+    return JWT::encode($payload, env('JWT_SECRET'), 'HS256');
   }
   
   protected function send_mail($template, $to, $toAlias, $subject, $body, $fromMail,$fromAlias) {

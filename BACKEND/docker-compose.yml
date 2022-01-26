@@ -27,7 +27,7 @@ services:
     links:
     - php
   php:
-    image: pasthortown/php:7.4-lumen
+    image: geminis3/php:fpm-lumen
     restart: always
     volumes:
     - ./public_html:/public_html

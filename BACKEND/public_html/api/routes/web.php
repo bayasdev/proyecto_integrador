@@ -38,65 +38,72 @@ $router->group(['prefix' => 'api/v2'], function () use ($router) {
     });
 
     $router->group(['middleware' => ['auth:1']], function () use ($router){
-        // CRUD User
+        
+        //  User
         $router->get('users',  ['uses' => 'UserController@showAllUsers']);
         $router->get('users/{id}', ['uses' => 'UserController@showOneUser']);    
         $router->delete('users/{id}', ['uses' => 'UserController@delete']);
 
-        // CRUD Role
+        //  Role
         $router->get('roles',  ['uses' => 'RoleController@showAllRoles']);
         $router->get('roles/{id}', ['uses' => 'RoleController@showOneRole']);
         $router->post('roles',  ['uses' => 'RoleController@create']);
         $router->delete('roles/{id}', ['uses' => 'RoleController@delete']);
         $router->put('roles/{id}', ['uses' => 'RoleController@update']);
 
-        // CRUD Dean
+        //  Dean
         $router->get('deans',  ['uses' => 'DeanController@showAllDeans']);
         $router->get('deans/{id}', ['uses' => 'DeanController@showOneDean']);
         $router->post('deans', ['uses' => 'DeanController@create']);
         $router->delete('deans/{id}', ['uses' => 'DeanController@delete']);
         $router->put('deans/{id}', ['uses' => 'DeanController@update']);
 
-        // CRUD Faculty
+        //  Faculty
         $router->get('faculties',  ['uses' => 'FacultyController@showAllFaculties']);
         $router->get('faculties/{id}', ['uses' => 'FacultyController@showOneFaculty']);
         $router->post('faculties', ['uses' => 'FacultyController@create']);
         $router->delete('faculties/{id}', ['uses' => 'FacultyController@delete']);
         $router->put('faculties/{id}', ['uses' => 'FacultyController@update']);
 
-        // CRUD Director
+        //  Director
         $router->get('directors',  ['uses' => 'DirectorController@showAllDirectors']);
         $router->get('directors/{id}', ['uses' => 'DirectorController@showOneDirector']);
         $router->post('directors', ['uses' => 'DirectorController@create']);
         $router->delete('directors/{id}', ['uses' => 'DirectorController@delete']);
         $router->put('directors/{id}', ['uses' => 'DirectorController@update']);
 
-        // CRUD Careers
+        //  Careers
         $router->get('careers',  ['uses' => 'CareerController@showAllCareers']);
         $router->get('careers/{id}', ['uses' => 'CareerController@showOneCareer']);
         $router->post('careers', ['uses' => 'CareerController@create']);
         $router->delete('careers/{id}', ['uses' => 'CareerController@delete']);
         $router->put('careers/{id}', ['uses' => 'CareerController@update']);
 
-        // CRUD Subjects
+        //  Subjects
         $router->get('subjects',  ['uses' => 'SubjectController@showAllSubjects']);
         $router->get('subjects/{id}', ['uses' => 'SubjectController@showOneSubject']);
         $router->post('subjects', ['uses' => 'SubjectController@create']);
         $router->delete('subjects/{id}', ['uses' => 'SubjectController@delete']);
         $router->put('subjects/{id}', ['uses' => 'SubjectController@update']);
 
-        // CRUD RequestTypes
-        $router->get('request_type',  ['uses' => 'RequestTypeController@showAllRequestTypes']);
-        $router->get('request_type/{id}', ['uses' => 'RequestTypeController@showOneRequestType']);
-        $router->post('request_type', ['uses' => 'RequestTypeController@create']);
-        $router->delete('request_type/{id}', ['uses' => 'RequestTypeController@delete']);
-        $router->put('request_type/{id}', ['uses' => 'RequestTypeController@update']);
+        //  RequestTypes
+        $router->get('request_types',  ['uses' => 'RequestTypeController@showAllRequestTypes']);
+        $router->get('request_types/{id}', ['uses' => 'RequestTypeController@showOneRequestType']);
+        $router->post('request_types', ['uses' => 'RequestTypeController@create']);
+        $router->delete('request_types/{id}', ['uses' => 'RequestTypeController@delete']);
+        $router->put('request_types/{id}', ['uses' => 'RequestTypeController@update']);
 
-        // CRUD Requests
-        $router->get('request_type',  ['uses' => 'RequestTypeController@showAllRequestTypes']);
-        $router->get('request_type/{id}', ['uses' => 'RequestTypeController@showOneRequestType']);
-        $router->post('request_type', ['uses' => 'RequestTypeController@create']);
-        $router->delete('request_type/{id}', ['uses' => 'RequestTypeController@delete']);
-        $router->put('request_type/{id}', ['uses' => 'RequestTypeController@update']);
+        //  RequestAttachments
+        $router->get('request_attachments',  ['uses' => 'RequestAttachmentController@showAllRequestAttachments']);
+        $router->get('request_attachments/{id}', ['uses' => 'RequestAttachmentController@showOneRequestAttachment']);
+        $router->post('request_attachments', ['uses' => 'RequestAttachmentController@create']);
+        $router->delete('request_attachments/{id}', ['uses' => 'RequestAttachmentController@delete']);
+
+        //  Requests
+        $router->get('requests',  ['uses' => 'RequestController@showAllRequests']);
+        $router->get('requests/{id}', ['uses' => 'RequestController@showOneRequest']);
+        $router->post('requests', ['uses' => 'RequestController@create']);
+        $router->delete('requests/{id}', ['uses' => 'RequestController@delete']);
+        $router->put('requests/{id}', ['uses' => 'RequestController@update']);
     });
 });

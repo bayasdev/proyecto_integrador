@@ -114,6 +114,7 @@ $app->register(Illuminate\Mail\MailServiceProvider::class);
 | can respond to, as well as the controllers that may handle them.
 |
 */
+$app->configure('filesystems');
 
 $app->configure('mail');
 

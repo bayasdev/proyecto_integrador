@@ -3,42 +3,60 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\RequestAttachment as Petition;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
+use App\Models\RequestAttachment;
 
 class RequestAttachmentController extends Controller
 {
     public function showAllRequestAttachments()
     {
-        return response()->json(Petition::all());
+        $attachments = RequestAttachment::all();
+        foreach ($attachments as $attachment) {
+            $attachment->file_content = Storage::disk('attachments')->get($attachment->file_path);
+        }
+        return response()->json($attachments, 200);
     }
     
     public function showOneRequestAttachment($id)
     {
-        return response()->json(Petition::find($id));
+        $response = RequestAttachment::find($id);
+        // get file from storage
+        $content = Storage::disk('attachments')->get($response->file_path);
+        // return DB values plus file in base64
+        $response->file_content = $content;
+        return response()->json($response, 200);
     }
     
     public function create(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'user_id' => 'required|integer',
-            'request_type_id' => 'required|integer'
+            'file_name' => 'required|string',
+            'file_type' => 'required|string',
+            'file_content' => 'required',
+            'attachment_type' => 'required|integer|between:1,2'
         ]);
-        $request_attachment = Petition::create($request->all());
-        return response()->json($request_attachment, 201);
-    }
-    
-    public function update($id, Request $request)
-    {
-        $request_attachment = Petition::findOrFail($id);
-        $request_attachment->update($request->all());
-        
-        return response()->json($request_attachment, 200);
+        // handle file upload to storage
+        // generate unique name for file
+        $file_path = uniqid($request->file_name);
+        // save base64 to storage
+        Storage::disk('attachments')->put($file_path, $request->file_content);
+        // need to insert file_path
+        RequestAttachment::create([
+            'file_name' => $request->file_name,
+            'file_path' => $file_path,
+            'file_type' => $request->file_type,
+            'attachment_type' => $request->attachment_type
+        ]);
+        return response()->json(['message' => 'Archivo creado correctamente'], 201);
     }
     
     public function delete($id)
     {
-        Petition::findOrFail($id)->delete();
+        // delete file from storage first
+        Storage::disk('attachments')->delete(RequestAttachment::where('id', $id)->value('file_path'));
+        // then delete db registry
+        RequestAttachment::findOrFail($id)->delete();
         return response(['message' => 'Eliminado correctamente'], 200);
     }
 }

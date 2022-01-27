@@ -19,8 +19,7 @@ class CreateRequestAttachmentsTable extends Migration
             $table->string('file_name')->nullable($value = true);
             $table->string('file_path')->nullable($value = true);
             $table->string('file_type')->nullable($value = true);
-            $table->integer('request_id');
-            $table->foreign('request_id')->references('id')->on('requests')->onDelete('cascade');
+            $table->integer('attachment_type')->nullable($value = true);
         });
     }
 

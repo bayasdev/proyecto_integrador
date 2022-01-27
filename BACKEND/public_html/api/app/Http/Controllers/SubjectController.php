@@ -25,16 +25,16 @@ class SubjectController extends Controller
             'credits' => 'required|integer',
             'career_id' => 'required|integer'
         ]);
-        $role = Subject::create($request->all());
-        return response()->json($role, 201);
+        $subject = Subject::create($request->all());
+        return response()->json($subject, 201);
     }
     
     public function update($id, Request $request)
     {
-        $role = Subject::findOrFail($id);
-        $role->update($request->all());
+        $subject = Subject::findOrFail($id);
+        $subject->update($request->all());
         
-        return response()->json($role, 200);
+        return response()->json($subject, 200);
     }
     
     public function delete($id)

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>subjects - smcar Database</title>
+        <title>subjects - smcar_v2 Database</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <link rel="icon" type="image/png" sizes="16x16" href="../favicon.png">
@@ -46,7 +46,7 @@
                 <nav class="navbar navbar-static-top">
                     <div class="container">
                         <div class="navbar-header">
-                            <a href="../index.html" class="navbar-brand"><b>smcar</b> Database</a>
+                            <a href="../index.html" class="navbar-brand"><b>smcar_v2</b> Database</a>
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
                         </div>
 
@@ -112,8 +112,8 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="petition_subject.subject_id references subjects.id via petition_subject_subject_id_foreign"><a href='petition_subject.html'>petition_subject</a><span class='relatedKey'>.subject_id</span></td>
-                                                <td class="constraint detail">petition_subject_subject_id_foreign<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                                <td title="request_subject.subject_id references subjects.id via request_subject_subject_id_foreign"><a href='request_subject.html'>request_subject</a><span class='relatedKey'>.subject_id</span></td>
+                                                <td class="constraint detail">request_subject_subject_id_foreign<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                         </table>
                                     </td>
@@ -177,7 +177,7 @@
                                 <tr>
                                     <td><span id="name">name</span></td>
                                     <td>varchar</td>
-                                    <td>200</td>
+                                    <td>255</td>
                                     <td title='nullable'>√</td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -282,20 +282,20 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="petition_subject.html" target="_top" title="petition_subject" alt="" coords="499,5,692,181">
-<area shape="rect" id="node2" href="subjects.html" target="_top" title="subjects" alt="" coords="200,32,455,307">
-<area shape="rect" id="node3" href="careers.html" target="_top" title="careers" alt="" coords="5,211,156,387">
+<area shape="rect" id="node1" href="request_subject.html" target="_top" title="request_subject" alt="" coords="499,5,692,181">
+<area shape="rect" id="node2" href="subjects.html" target="_top" title="subjects" alt="" coords="200,61,455,336">
+<area shape="rect" id="node3" href="careers.html" target="_top" title="careers" alt="" coords="5,240,156,416">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/subjects.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="careers.html" target="_top" title="careers" alt="" coords="193,184,344,360">
-<area shape="rect" id="node2" href="directors.html" target="_top" title="directors" alt="" coords="5,283,149,371">
-<area shape="rect" id="node3" href="faculties.html" target="_top" title="faculties" alt="" coords="7,177,147,265">
-<area shape="rect" id="node4" href="petition_subject.html" target="_top" title="petition_subject" alt="" coords="687,108,880,284">
-<area shape="rect" id="node5" href="petitions.html" target="_top" title="petitions" alt="" coords="445,297,586,385">
-<area shape="rect" id="node6" href="subjects.html" target="_top" title="subjects" alt="" coords="388,5,643,280">
+<area shape="rect" id="node1" href="careers.html" target="_top" title="careers" alt="" coords="193,289,344,465">
+<area shape="rect" id="node2" href="directors.html" target="_top" title="directors" alt="" coords="5,388,149,476">
+<area shape="rect" id="node3" href="faculties.html" target="_top" title="faculties" alt="" coords="7,283,147,371">
+<area shape="rect" id="node4" href="request_subject.html" target="_top" title="request_subject" alt="" coords="687,15,880,191">
+<area shape="rect" id="node5" href="requests.html" target="_top" title="requests" alt="" coords="445,5,586,93">
+<area shape="rect" id="node6" href="subjects.html" target="_top" title="subjects" alt="" coords="388,111,643,385">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/subjects.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>

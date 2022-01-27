@@ -23,16 +23,16 @@ class FacultyController extends Controller
             'name' => 'required',
             'dean_id' => 'required|integer'
         ]);
-        $role = Faculty::create($request->all());
-        return response()->json($role, 201);
+        $faculty = Faculty::create($request->all());
+        return response()->json($faculty, 201);
     }
     
     public function update($id, Request $request)
     {
-        $role = Faculty::findOrFail($id);
-        $role->update($request->all());
+        $faculty = Faculty::findOrFail($id);
+        $faculty->update($request->all());
         
-        return response()->json($role, 200);
+        return response()->json($faculty, 200);
     }
     
     public function delete($id)

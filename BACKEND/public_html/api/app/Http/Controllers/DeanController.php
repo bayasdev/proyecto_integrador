@@ -23,16 +23,16 @@ class DeanController extends Controller
             'name' => 'required',
             'identification' => 'required|min:10|max:10|unique:deans'
         ]);
-        $role = Dean::create($request->all());
-        return response()->json($role, 201);
+        $dean = Dean::create($request->all());
+        return response()->json($dean, 201);
     }
     
     public function update($id, Request $request)
     {
-        $role = Dean::findOrFail($id);
-        $role->update($request->all());
+        $dean = Dean::findOrFail($id);
+        $dean->update($request->all());
         
-        return response()->json($role, 200);
+        return response()->json($dean, 200);
     }
     
     public function delete($id)

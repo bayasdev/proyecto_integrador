@@ -24,16 +24,16 @@ class CareerController extends Controller
             'director_id' => 'required|integer',
             'faculty_id' => 'required|integer'
         ]);
-        $role = Career::create($request->all());
-        return response()->json($role, 201);
+        $career = Career::create($request->all());
+        return response()->json($career, 201);
     }
     
     public function update($id, Request $request)
     {
-        $role = Career::findOrFail($id);
-        $role->update($request->all());
+        $career = Career::findOrFail($id);
+        $career->update($request->all());
         
-        return response()->json($role, 200);
+        return response()->json($career, 200);
     }
     
     public function delete($id)

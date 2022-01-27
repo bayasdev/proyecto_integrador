@@ -12,7 +12,7 @@ class Request extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'request_type_id', 'file_type', 'request_id',
+        'user_id', 'request_type_id', 'parameters',
     ];
 
     /**
@@ -21,9 +21,25 @@ class Request extends Model
      * @var array
      */
     protected $hidden = [];
+    
+    // relaciones
+    public function users()
+    {
+        return $this->hasOne('App\User');
+    }
+
+    public function types()
+    {
+        return $this->hasOne('App\PetitionAttachment');
+    }
 
     public function requestAttachments()
     {
-        return $this->hasMany(RequestAttachment::class);
+        return $this->hasMany('App\PetitionAttachment')->withTimestamps();
+    }
+
+    public function subjects()
+    {
+        return $this->hasMany('App\Subject')->withTimestamps();
     }
 }

@@ -18,8 +18,12 @@ class RequestAttachment extends Model implements AuthenticatableContract, Author
      *
      * @var array
      */
+    //  Tipos (attachment_type):
+    // payment (pago) = 1
+    // attachment (arhivo adjunto cualquiera) = 2
+    // validar en RequestController
     protected $fillable = [
-        'file_name', 'file_path', 'file_type', 'request_id',
+        'file_name', 'file_path', 'file_type', 'attachment_type',
     ];
 
     /**
@@ -29,8 +33,8 @@ class RequestAttachment extends Model implements AuthenticatableContract, Author
      */
     protected $hidden = [];
 
-    function request()
+    function requests()
     {
-       return $this->belongsTo('App\Request');
+       return $this->belongsToMany('App\Request')->withTimestamps();
     }
 }

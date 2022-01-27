@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>petitions - smcar Database</title>
+        <title>request_types - smcar_v2 Database</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <link rel="icon" type="image/png" sizes="16x16" href="../favicon.png">
@@ -46,7 +46,7 @@
                 <nav class="navbar navbar-static-top">
                     <div class="container">
                         <div class="navbar-header">
-                            <a href="../index.html" class="navbar-brand"><b>smcar</b> Database</a>
+                            <a href="../index.html" class="navbar-brand"><b>smcar_v2</b> Database</a>
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
                         </div>
 
@@ -73,7 +73,7 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    <h1>petitions</h1><p><span id="recordNumber">0</span> rows</p><br />
+                    <h1>request_types</h1><p><span id="recordNumber">0</span> rows</p><br />
                 </section>
                 <!-- Main content -->
                 <section class="content">
@@ -104,20 +104,16 @@
                                 <tbody>
                                 <tr>
                                     <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="id">id</span></td>
-                                    <td>serial</td>
-                                    <td>10</td>
+                                    <td>bigserial</td>
+                                    <td>19</td>
                                     <td title=''></td>
                                     <td title='Automatically updated by the database'>√</td>
-                                    <td>nextval(&#39;petitions_id_seq&#39;::regclass)</td>
+                                    <td>nextval(&#39;request_types_id_seq&#39;::regclass)</td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="petition_petition_attachment.petition_id references petitions.id via petition_petition_attachment_petition_id_foreign"><a href='petition_petition_attachment.html'>petition_petition_attachment</a><span class='relatedKey'>.petition_id</span></td>
-                                                <td class="constraint detail">petition_petition_attachment_petition_id_foreign<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td title="petition_subject.petition_id references petitions.id via petition_subject_petition_id_foreign"><a href='petition_subject.html'>petition_subject</a><span class='relatedKey'>.petition_id</span></td>
-                                                <td class="constraint detail">petition_subject_petition_id_foreign<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                                <td title="requests.request_type_id references request_types.id via requests_request_type_id_foreign"><a href='requests.html'>requests</a><span class='relatedKey'>.request_type_id</span></td>
+                                                <td class="constraint detail">requests_request_type_id_foreign<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                         </table>
                                     </td>
@@ -162,47 +158,9 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="user_id">user_id</span></td>
-                                    <td>int4</td>
-                                    <td>10</td>
-                                    <td title='nullable'>√</td>
-                                    <td title=''></td>
-                                    <td>null</td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                            <tr>
-                                                <td title="petitions.user_id references users.id via petitions_user_id_foreign"><a href='users.html'>users</a><span class='relatedKey'>.id</span></td>
-                                                <td class="constraint detail">petitions_user_id_foreign<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><span id="parameters">parameters</span></td>
-                                    <td>text</td>
-                                    <td>2147483647</td>
-                                    <td title='nullable'>√</td>
-                                    <td title=''></td>
-                                    <td>null</td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="petition_type_id">petition_type_id</span></td>
-                                    <td>int4</td>
-                                    <td>10</td>
+                                    <td><span id="name">name</span></td>
+                                    <td>varchar</td>
+                                    <td>255</td>
                                     <td title=''></td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -212,10 +170,6 @@
                                     </td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
-                                            <tr>
-                                                <td title="petitions.petition_type_id references petition_types.id via petitions_petition_type_id_foreign"><a href='petition_types.html'>petition_types</a><span class='relatedKey'>.id</span></td>
-                                                <td class="constraint detail">petitions_petition_type_id_foreign<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
-                                            </tr>
                                         </table>
                                     </td>
                                     <td></td>
@@ -245,7 +199,7 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey'></i> petitions_pkey</td>
+                                    <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey'></i> request_types_pkey</td>
                                     <td>Primary key</td>
                                     <td><span title='Ascending'>Asc</span></td>
                                     <td>id</td>
@@ -273,26 +227,20 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="petition_petition_attachment.html" target="_top" title="petition_petition_attachment" alt="" coords="592,5,903,181">
-<area shape="rect" id="node2" href="petitions.html" target="_top" title="petitions" alt="" coords="229,159,548,404">
-<area shape="rect" id="node4" href="petition_types.html" target="_top" title="petition_types" alt="" coords="5,360,185,477">
-<area shape="rect" id="node5" href="users.html" target="_top" title="users" alt="" coords="11,196,180,343">
-<area shape="rect" id="node3" href="petition_subject.html" target="_top" title="petition_subject" alt="" coords="651,199,844,375">
+<area shape="rect" id="node1" href="requests.html" target="_top" title="requests" alt="" coords="329,5,521,181">
+<area shape="rect" id="node2" href="request_types.html" target="_top" title="request_types" alt="" coords="5,61,285,248">
 </map>
-                                        <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/petitions.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                        <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/request_types.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="petition_petition_attachment.html" target="_top" title="petition_petition_attachment" alt="" coords="756,15,1067,191">
-<area shape="rect" id="node2" href="petition_attachments.html" target="_top" title="petition_attachments" alt="" coords="439,5,667,93">
-<area shape="rect" id="node3" href="petitions.html" target="_top" title="petitions" alt="" coords="393,111,712,356">
-<area shape="rect" id="node6" href="petition_types.html" target="_top" title="petition_types" alt="" coords="169,313,349,431">
-<area shape="rect" id="node7" href="users.html" target="_top" title="users" alt="" coords="175,149,344,296">
-<area shape="rect" id="node4" href="petition_subject.html" target="_top" title="petition_subject" alt="" coords="815,275,1008,451">
-<area shape="rect" id="node5" href="subjects.html" target="_top" title="subjects" alt="" coords="483,373,623,461">
-<area shape="rect" id="node8" href="roles.html" target="_top" title="roles" alt="" coords="5,181,125,269">
+<area shape="rect" id="node1" href="request_request_attachment.html" target="_top" title="request_request_attachment" alt="" coords="565,5,847,93">
+<area shape="rect" id="node2" href="requests.html" target="_top" title="requests" alt="" coords="329,56,521,232">
+<area shape="rect" id="node4" href="request_types.html" target="_top" title="request_types" alt="" coords="5,152,285,339">
+<area shape="rect" id="node5" href="users.html" target="_top" title="users" alt="" coords="83,47,208,135">
+<area shape="rect" id="node3" href="request_subject.html" target="_top" title="request_subject" alt="" coords="609,111,803,199">
 </map>
-                                        <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/petitions.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                        <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/request_types.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                 </div>
                             </div>

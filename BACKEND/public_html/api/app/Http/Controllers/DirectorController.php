@@ -23,16 +23,16 @@ class DirectorController extends Controller
             'name' => 'required',
             'identification' => 'required|min:10|max:10|unique:directors'
         ]);
-        $role = Director::create($request->all());
-        return response()->json($role, 201);
+        $director = Director::create($request->all());
+        return response()->json($director, 201);
     }
     
     public function update($id, Request $request)
     {
-        $role = Director::findOrFail($id);
-        $role->update($request->all());
+        $director = Director::findOrFail($id);
+        $director->update($request->all());
         
-        return response()->json($role, 200);
+        return response()->json($director, 200);
     }
     
     public function delete($id)

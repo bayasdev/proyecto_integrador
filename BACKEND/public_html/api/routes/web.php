@@ -84,5 +84,19 @@ $router->group(['prefix' => 'api/v2'], function () use ($router) {
         $router->post('subjects', ['uses' => 'SubjectController@create']);
         $router->delete('subjects/{id}', ['uses' => 'SubjectController@delete']);
         $router->put('subjects/{id}', ['uses' => 'SubjectController@update']);
+
+        // CRUD RequestTypes
+        $router->get('request_type',  ['uses' => 'RequestTypeController@showAllRequestTypes']);
+        $router->get('request_type/{id}', ['uses' => 'RequestTypeController@showOneRequestType']);
+        $router->post('request_type', ['uses' => 'RequestTypeController@create']);
+        $router->delete('request_type/{id}', ['uses' => 'RequestTypeController@delete']);
+        $router->put('request_type/{id}', ['uses' => 'RequestTypeController@update']);
+
+        // CRUD Requests
+        $router->get('request_type',  ['uses' => 'RequestTypeController@showAllRequestTypes']);
+        $router->get('request_type/{id}', ['uses' => 'RequestTypeController@showOneRequestType']);
+        $router->post('request_type', ['uses' => 'RequestTypeController@create']);
+        $router->delete('request_type/{id}', ['uses' => 'RequestTypeController@delete']);
+        $router->put('request_type/{id}', ['uses' => 'RequestTypeController@update']);
     });
 });

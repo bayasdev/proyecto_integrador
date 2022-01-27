@@ -24,13 +24,24 @@ $router->group(['prefix' => 'api/v2'], function () use ($router) {
     $router->post('recovery_request', ['uses' => 'AuthController@passwordRecoveryRequest']);
     $router->get('recovery', ['uses' => 'AuthController@passwordRecovery']);
 
-    // validate token
-    $router->group(['middleware' => ['auth']], function () use ($router){
+    // Roles
+    // 1 Administrador
+    // 2 Decano
+    // 3 Director de Carrera
+    // 4 Contabilidad
+    // 5 Estudiante
+    // 99 cualquiera
+
+    $router->group(['middleware' => ['auth:99']], function () use ($router){
+        // Allow to update User profile
+        $router->put('users/{id}', ['uses' => 'UserController@update']);
+    });
+
+    $router->group(['middleware' => ['auth:1']], function () use ($router){
         // CRUD User
         $router->get('users',  ['uses' => 'UserController@showAllUsers']);
         $router->get('users/{id}', ['uses' => 'UserController@showOneUser']);    
         $router->delete('users/{id}', ['uses' => 'UserController@delete']);
-        $router->put('users/{id}', ['uses' => 'UserController@update']);
 
         // CRUD Role
         $router->get('roles',  ['uses' => 'RoleController@showAllRoles']);

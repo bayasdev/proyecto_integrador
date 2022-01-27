@@ -39,14 +39,8 @@ class Authenticate
      * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next, int $role)
     {
-        // if ($this->auth->guard($guard)->guest()) {
-        //     return response('Unauthorized.', 401);
-        // }
-
-        // return $next($request);
-
         $token = $request->header('api_token');
         if(!$token) {
             return response(['message' => 'No autorizado'], 401);
@@ -55,7 +49,10 @@ class Authenticate
             $decoded = JWT::decode($token, new Key(env('JWT_SECRET'), 'HS256'));
             $remaining = $decoded->expiration_time - time();
             if ($remaining <= 0) {
-                return response(['message' => 'Token expirado'], 400);
+                return response(['message' => 'Token expirado'], 401);
+            }
+            if ($decoded->role != $role && $role != 99) {
+                return response(['message' => 'Acceso denegado'], 403);
             }
             $user = User::where('id',$decoded->id)->first();
             $request->user = $user;

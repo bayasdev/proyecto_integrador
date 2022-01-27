@@ -4,7 +4,7 @@
   <div class="offcanvas-body px-0">
     <nav class="navbar-dark">
       <ul class="navbar-nav" *ngFor="let link of links">
-        <ng-container *ngIf="this.user.role == link.expectedRole || link.expectedRole == 'any'">
+        <ng-container *ngIf="this.user.role == link.expectedRole || link.expectedRole == 99">
           <li>
             <div class="text-muted small fw-bold px-3">{{link.name}}</div>
           </li>

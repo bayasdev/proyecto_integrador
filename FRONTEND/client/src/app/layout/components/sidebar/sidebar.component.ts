@@ -27,7 +27,7 @@ export class SidebarComponent implements OnInit {
     // dashboard
     {
       name: 'DASHBOARD',
-      expectedRole: 'any',
+      expectedRole: 99,
       items: [
         {
           name: 'Inicio',
@@ -110,7 +110,7 @@ export class SidebarComponent implements OnInit {
     // cuenta
     {
       name: 'CUENTA',
-      expectedRole: 'any',
+      expectedRole: 99,
       items: [
         {
           name: 'Editar perfil',

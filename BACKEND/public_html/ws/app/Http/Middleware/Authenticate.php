@@ -57,16 +57,6 @@ class Authenticate
             }
             $user_id = $credentials->subject;
             $user = User::where('id',$user_id)->first();
-            $rols_BDD = DB::select('SELECT rols.name FROM rols
-                                        INNER JOIN rol_user ON rol_user.rol_id = rols.id
-                                        WHERE rol_user.user_id = :user_id;', ['user_id'=>$user_id]);
-            $rols = [];
-            if ($rols_BDD) {
-                foreach($rols_BDD as $rol) {
-                    array_push($rols,$rol->name);
-                }
-            }
-            $user->rols = $rols;
             $request->user = $user;
         } catch(ExpiredException $e) {
             return response()->json([

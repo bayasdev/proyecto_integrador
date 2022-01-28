@@ -48,6 +48,7 @@ class AuthController extends Controller
       DB::beginTransaction();
       $status = User::find($credentials->subject)->update([
         'password'=>Crypt::encrypt($new_password),
+        'attempts'=>0
       ]);
       DB::commit();
       if(!$status){
@@ -74,6 +75,7 @@ class AuthController extends Controller
       DB::beginTransaction();
       $user = User::find($id)->update([
         'password'=>Crypt::encrypt($new_password),
+        'attempts'=>0
       ]);
       DB::commit();
     } catch (Exception $e) {
@@ -100,35 +102,20 @@ class AuthController extends Controller
       } else {
         $user->id = 1;
       }
+      $user->identification = $result['identification'];
       $user->name = $result['name'];
       $user->email = $email;
+      if(isset($result['role_id'])){
+        $user->role_id = $result['role_id'];
+      } else {
+        // self registered users have "Estudiante" role
+        $user->role_id = 5;
+      }
       $user->password = Crypt::encrypt($new_password);
+      $user->attempts = 0;
       $user->api_token = Str::random(64);
       $user->save();
       DB::commit();
-      // assign Estudiante role to self registered users
-      // if doesn't exist create it
-      if(isset($result['rol_id'])){
-        DB::table('rol_user')->insert([
-          'user_id' => $user->id,
-          'rol_id' => $result['rol_id'],
-          'created_at' => Carbon::now(),
-          'updated_at' => Carbon::now()
-        ]);
-      } else {
-        DB::table('rols')->insertOrIgnore([
-          'name' => 'Estudiante',
-          'id' => 1,
-          'created_at' => Carbon::now(),
-          'updated_at' => Carbon::now()
-        ]);
-        DB::table('rol_user')->insert([
-          'user_id' => $user->id,
-          'rol_id' => 1,
-          'created_at' => Carbon::now(),
-          'updated_at' => Carbon::now()
-        ]);
-      }
       $message = 'Su contraseña de acceso al sistema es: '.$new_password;
       $subject = 'Te damos la bienvenida al '.env('MAIL_FROM_NAME');
       $resp = $this->send_mail('mail', $email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
@@ -147,28 +134,40 @@ class AuthController extends Controller
     $user = User::where('email', $email)->first();
     if (!$user) {
       return response()->json('Credenciales Incorrectas', 400);
-    }
-    if ($password === Crypt::decrypt($user->password)) {
+    } else if ($user->attempts >= 3) {
+      return response()->json('Su Cuenta está Bloqueada por superar el límite de intentos fallidos', 400);
+    } else if ($password === Crypt::decrypt($user->password)) {
       $token = $this->jwt($user, 60);
       $response = User::where('id',$user->id)->update([
         'api_token'=>$token,
+        'attempts'=>0
       ]);
       return response()->json([
         'token' => $token,
-        'user' => $user,
-        'id' => $user->id
+        'user' => [
+          'id' => $user->id,
+          'identification' => $user->identification,
+          'name' => $user->name,
+          'email' => $user->email,
+        ],
       ], 200);
+    } else {
+      // increase attempts
+      User::where('id',$user->id)->update([
+        'attempts'=>$user->attempts + 1
+      ]);
+      return response()->json('Credenciales Incorrectas, intento fallido registrado', 400);
     }
-    return response()->json('Credenciales Incorrectas', 400);
   }
   
   protected function jwt(User $user, $lifetime) {
     $payload = [
       'subject' => $user->id,
+      'role' => $user->role_id,
       'creation_time' => time(),
       'expiration_time' => time() + $lifetime*60
     ];
-    return JWT::encode($payload, env('JWT_SECRET'));
+    return JWT::encode($payload, env('JWT_SECRET'), 'HS256');
   }
   
   protected function send_mail($template, $to, $toAlias, $subject, $body, $fromMail,$fromAlias) {

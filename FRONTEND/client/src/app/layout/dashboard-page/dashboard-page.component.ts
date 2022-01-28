@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-dashboard-page',
@@ -15,7 +16,9 @@ export class DashboardPageComponent implements OnInit {
   ) {  }
 
   ngOnInit(): void {
-    this.user = JSON.parse(sessionStorage.getItem('user') as string);
+    const token: string = sessionStorage.getItem('token') as string;
+    const decoded: any = jwt_decode(token);
+    this.user = decoded;
   }
 
 }

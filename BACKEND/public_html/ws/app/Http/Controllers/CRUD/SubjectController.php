@@ -45,7 +45,7 @@ class SubjectController extends Controller
           $subject->code = $result['code'];
           $subject->name = $result['name'];
           $subject->credits = $result['credits'];
-          $subject->carreer_id = $result['carreer_id'];
+          $subject->career_id = $result['career_id'];
           $subject->save();
           DB::commit();
        } catch (Exception $e) {
@@ -63,7 +63,7 @@ class SubjectController extends Controller
              'code' => $result['code'],
              'name' => $result['name'],
              'credits' => $result['credits'],
-             'carreer_id' => $result['carreer_id'],
+             'career_id' => $result['career_id'],
           ]);
           DB::commit();
        } catch (Exception $e) {
@@ -104,7 +104,7 @@ class SubjectController extends Controller
              'code' => $result['code'],
              'name' => $result['name'],
              'credits' => $result['credits'],
-             'carreer_id' => $result['carreer_id'],
+             'career_id' => $result['career_id'],
            ]);
          } else {
           $subject = new Subject();
@@ -112,7 +112,7 @@ class SubjectController extends Controller
           $subject->code = $result['code'];
           $subject->name = $result['name'];
           $subject->credits = $result['credits'];
-          $subject->carreer_id = $result['carreer_id'];
+          $subject->career_id = $result['career_id'];
           $subject->save();
          }
        }

@@ -15,26 +15,16 @@ export class UserService {
   }
 
   get(): Promise<any>{
-    return this.http.get(environment.api + 'user', this.options).toPromise();
+    return this.http.get(environment.api + 'users', this.options).toPromise();
   }
 
-  create(name: string, email: string): Promise<any> {
-    const data = { name: name, email: email};
-    return this.http.post(environment.api + 'user', JSON.stringify(data), this.options).toPromise();
-  }
-
-  update(id: number, name: string, email: string, role_id?: number): Promise<any> {
-    const data = { id: id, name: name, email: email, rol_id: role_id };
-    return this.http.put(environment.api + 'user', JSON.stringify(data), this.options).toPromise();
+  update(id: number, identification: string, name: string, email: string, role_id?: number, password?: string): Promise<any> {
+    const data = { id: id, identification: identification, name: name, email: email, role_id: role_id, password: password };
+    return this.http.put(environment.api + 'users/'+id, data, this.options).toPromise();
   }
   
-  change_password(id: number, password: string): Promise<any> {
-    const data = { id: id, new_password: password };
-    return this.http.post(environment.api + 'user/password_change', JSON.stringify(data), this.options).toPromise();
-  }
-
   delete(id: number): Promise<any> {
     const data = { id: id };
-    return this.http.delete(environment.api + 'user', {"body": JSON.stringify(data), "headers": this.headers}).toPromise();
+    return this.http.delete(environment.api + 'users/'+id, this.options).toPromise();
   }
 }

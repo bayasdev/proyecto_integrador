@@ -24,9 +24,9 @@ class Subject extends Model
        
     ];
 
-    function carreer()
+    function career()
     {
-       return $this->hasOne('App\Carreer');
+       return $this->hasOne('App\Career');
     }
 
     function petitions()

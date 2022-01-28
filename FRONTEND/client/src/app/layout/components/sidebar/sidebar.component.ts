@@ -8,6 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
   
+  @Input('user') user: any = {};
+
   constructor(private router: Router) {
   }
 
@@ -25,6 +27,7 @@ export class SidebarComponent implements OnInit {
     // dashboard
     {
       name: 'DASHBOARD',
+      expectedRole: 99,
       items: [
         {
           name: 'Inicio',
@@ -36,6 +39,7 @@ export class SidebarComponent implements OnInit {
     // servicios
     {
       name: 'SERVICIOS',
+      expectedRole: 5,
       items: [
         {
           name: 'Crear Solicitud',
@@ -47,6 +51,7 @@ export class SidebarComponent implements OnInit {
     // historico
     {
       name: 'HISTÓRICO',
+      expectedRole: 5,
       items: [
         {
           name: 'Mis Solicitudes',
@@ -58,6 +63,7 @@ export class SidebarComponent implements OnInit {
     // admin
     {
       name: 'ADMINISTRACIÓN',
+      expectedRole: 1,
       items: [
         {
           name: 'Usuarios',
@@ -104,6 +110,7 @@ export class SidebarComponent implements OnInit {
     // cuenta
     {
       name: 'CUENTA',
+      expectedRole: 99,
       items: [
         {
           name: 'Editar perfil',
@@ -119,22 +126,4 @@ export class SidebarComponent implements OnInit {
     },
   ]
 
-  // aviable(rol_requireds: any[]): boolean {
-  //   let roles_usuario: any[] = [];
-  //   if (typeof this.user.rols !== 'undefined') {
-  //     roles_usuario = this.user.rols;
-  //   }
-  //   if (rol_requireds.length == 0) {
-  //     return true;
-  //   }
-  //   let toReturn: boolean = false;
-  //   rol_requireds.forEach((rol_required: any) => {
-  //     roles_usuario.forEach((rol_usuario:any) => {
-  //       if (rol_required == rol_usuario) {
-  //         toReturn = true;
-  //       }
-  //     });
-  //   });
-  //   return toReturn;
-  // }
 }

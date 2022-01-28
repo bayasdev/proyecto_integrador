@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-profile-page',
@@ -23,75 +24,83 @@ export class ProfilePageComponent implements OnInit {
   
   errores: any[] = [];
   
-  constructor(private spinner: NgxSpinnerService ,private userDataService: UserService, private router: Router, private toastr: ToastrService) { }
-  
-  ngOnInit(): void {
-    this.reset();
-    this.correo = this.user.email;
-  }
-  
-  reset() {
-    this.password_confirm = '';
-    this.new_password = '';
-    this.user = JSON.parse(sessionStorage.getItem('user') as string);
-  }
-  
-  validate_email(): boolean {
-    this.errores = [];
-    if (this.user.email == '') {
-      this.errores.push( { title: 'Correo Electrónico Incorrecto', message: 'Debe ingresar un Correo Electrónico'} );
-      return false;
+  constructor(private spinner: NgxSpinnerService,
+    private userDataService: UserService,
+    private router: Router,
+    private toastr: ToastrService) { }
+    
+    ngOnInit(): void {
+      this.reset();
+      this.correo = this.user.email;
     }
-    const isOk = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.user.email.toString());
-    if (!isOk) {
-      this.errores.push( { title: 'Correo Electrónico Incorrecto', message: 'Correo Electrónico no válido.'} );
+    
+    reset() {
+      this.password_confirm = '';
+      this.new_password = '';
+      const token: string = sessionStorage.getItem('token') as string;
+      const decoded: any = jwt_decode(token);
+      this.user = decoded;
     }
-    return isOk;
-  }
-  
-  validate_password(): boolean {
-    if(this.new_password != this.password_confirm){
-      this.errores.push( { title: 'Contraseña Incorrecta', message: 'Las contraseñas no coinciden.'} );
-      return false;
-    }
-    else {
-      return true;
-    }
-  }
-  
-  save_profile() {
-    try {
-      this.spinner.show();
-      this.validate_email();
-      this.validate_password();
-      if (this.errores.length > 0) {
-        this.spinner.hide();
-        this.errores.forEach((error: any) => {
-          this.toastr.error(error.message, error.title);
-        });
-        return;
-      } else if (this.user.email == this.correo && this.new_password == '') {
-        this.spinner.hide();
-        this.toastr.info('Ningún cambio realizado.', 'Info');
-        return;
+    
+    validate_email(): boolean {
+      this.errores = [];
+      if (this.user.email == '') {
+        this.errores.push( { title: 'Correo Electrónico Incorrecto', message: 'Debe ingresar un Correo Electrónico'} );
+        return false;
       }
-      if(this.new_password != ''){
-        this.spinner.hide();
-        this.userDataService.change_password(this.user.id, this.new_password);
-        this.userDataService.change_password(this.user.id, this.new_password).then( r => {
+      const isOk = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.user.email.toString());
+      if (!isOk) {
+        this.errores.push( { title: 'Correo Electrónico Incorrecto', message: 'Correo Electrónico no válido.'} );
+      }
+      return isOk;
+    }
+    
+    validate_password(): boolean {
+      if(this.new_password != this.password_confirm){
+        this.errores.push( { title: 'Contraseña Incorrecta', message: 'Las contraseñas no coinciden.'} );
+        return false;
+      }
+      else {
+        return true;
+      }
+    }
+    
+    save_profile() {
+      try {
+        this.spinner.show();
+        this.validate_email();
+        this.validate_password();
+        if (this.errores.length > 0) {
           this.spinner.hide();
-          this.toastr.success('Su contraseña ha sido actualizada correctamente.', 'Contraseña Actualizada');
-        }).catch( e => { console.log(e) });
+          this.errores.forEach((error: any) => {
+            this.toastr.error(error.message, error.title);
+          });
+          return;
+        } else if (this.user.email == this.correo && this.new_password == '') {
+          this.spinner.hide();
+          this.toastr.info('Ningún cambio realizado.', 'Info');
+          return;
+        }
+        if(this.new_password != ''){
+          this.spinner.hide();
+          this.userDataService.update(this.user.id, this.user.identification, this.user.name, this.user.email, undefined, this.new_password).then( r => {
+            this.spinner.hide();
+            this.toastr.success('Por favor inicie sesión nuevamente.', 'Perfil Actualizado');
+            sessionStorage.clear();
+            this.router.navigate(['/login']);
+          }).catch( e => { console.log(e) });
+        } else {
+          this.spinner.hide();
+          this.userDataService.update(this.user.id, this.user.identification, this.user.name, this.user.email).then( r => {
+            this.spinner.hide();
+            this.toastr.success('Por favor inicie sesión nuevamente.', 'Perfil Actualizado');
+            sessionStorage.clear();
+            this.router.navigate(['/login']);
+          }).catch( e => { console.log(e) });
+        }
+      } catch (e: any) {
+        this.toastr.error(e.error.error, 'Error');
       }
-      this.spinner.show();
-      this.userDataService.update(this.user.id, this.user.name, this.user.email).then( r => {
-        this.spinner.hide();
-        this.toastr.success('Por favor inicie sesión nuevamente.', 'Perfil Actualizado');
-        sessionStorage.clear();
-        this.router.navigate(['/login']);
-      }).catch( e => { console.log(e) });
-    } catch (e: any) {
-      this.toastr.error(e.error.error, 'Error');
     }
   }
-}
+  

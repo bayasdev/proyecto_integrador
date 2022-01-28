@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
 
   email: string = '';
   name: string = '';
+  identification: string = '';
 
   errores: any[] = [];
   email_validated: boolean = false;
@@ -66,14 +67,14 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this.spinner.show();
-    this.authDataService.register(this.email, this.name).then( r => {
+    this.authDataService.register(this.email, this.identification, this.name).then( r => {
       this.spinner.hide();
       this.show_alert('Crear Cuenta', r, 'success').then( response => {
         this.change_page('Autenticación');
       });
     }).catch( e => {
       this.spinner.hide();
-      this.show_alert('Crear Cuenta', e.error, 'error').then( response => {
+      this.show_alert('Crear Cuenta', e.error.message, 'error').then( response => {
         this.email = '';
         this.name = '';
         this.email_validated = false;

@@ -15,21 +15,21 @@ export class DirectorService {
   }
 
   get(): Promise<any>{
-    return this.http.get(environment.api + 'director', this.options).toPromise();
+    return this.http.get(environment.api + 'directors', this.options).toPromise();
   }
 
   create(name: string, identification: string): Promise<any> {
     const data = { name: name, identification: identification };
-    return this.http.post(environment.api + 'director', JSON.stringify(data), this.options).toPromise();
+    return this.http.post(environment.api + 'directors', data, this.options).toPromise();
   }
 
   update(id: number, name: string, identification: string): Promise<any> {
     const data = { id: id, name: name, identification: identification };
-    return this.http.put(environment.api + 'director', JSON.stringify(data), this.options).toPromise();
+    return this.http.put(environment.api + 'directors/'+id, data, this.options).toPromise();
   }
 
   delete(id: number): Promise<any> {
     const data = { id: id };
-    return this.http.delete(environment.api + 'director', {"body": JSON.stringify(data), "headers": this.headers}).toPromise();
+    return this.http.delete(environment.api + 'directors/'+id, this.options).toPromise();
   }
 }

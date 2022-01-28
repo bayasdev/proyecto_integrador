@@ -64,12 +64,12 @@ export class PasswordRecoveryComponent implements OnInit {
     this.spinner.show();
     this.authDataService.password_recovery(this.email).then( r => {
     this.spinner.hide();
-      this.show_alert('Recuperar Contraseña', r, 'info').then( response => {
+      this.show_alert('Recuperar Contraseña', r.message, 'info').then( response => {
         this.change_page('Autenticación');
       });
     }).catch( e => {
       this.spinner.hide();
-      this.show_alert('Recuperar Contraseña', e.error, 'error').then( response => {
+      this.show_alert('Recuperar Contraseña', e.error.message, 'error').then( response => {
         this.email = '';
         this.email_validated = false;
       });

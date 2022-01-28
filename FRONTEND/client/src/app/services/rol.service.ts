@@ -15,21 +15,21 @@ export class RolService {
   }
 
   get(): Promise<any>{
-    return this.http.get(environment.api + 'rol', this.options).toPromise();
+    return this.http.get(environment.api + 'roles', this.options).toPromise();
   }
 
   create(name: string): Promise<any> {
     const data = { name: name };
-    return this.http.post(environment.api + 'rol', JSON.stringify(data), this.options).toPromise();
+    return this.http.post(environment.api + 'roles', data, this.options).toPromise();
   }
 
   update(id: number, name: string): Promise<any> {
     const data = { id: id, name: name };
-    return this.http.put(environment.api + 'rol', JSON.stringify(data), this.options).toPromise();
+    return this.http.put(environment.api + 'roles/'+id, data, this.options).toPromise();
   }
 
   delete(id: number): Promise<any> {
     const data = { id: id };
-    return this.http.delete(environment.api + 'rol', {"body": JSON.stringify(data), "headers": this.headers}).toPromise();
+    return this.http.delete(environment.api + 'roles/'+id, this.options).toPromise();
   }
 }

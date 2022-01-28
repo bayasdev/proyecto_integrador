@@ -3,6 +3,10 @@
   <input type="text" class="form-control" id="nombre" [(ngModel)]="name">
 </div>
 <div class="mb-5">
+  <label for="cedula" class="form-label">Número de cédula <span *ngIf="identification == ''" class="ms-2 badge bg-danger">Incorrecto</span></label>
+  <input type="text" class="form-control" id="cedula" [(ngModel)]="identification" [maxlength]="10">
+</div>
+<div class="mb-5">
   <label for="correo" class="form-label">Correo electrónico <span *ngIf="!email_validated" class="ms-2 badge bg-danger">Incorrecto</span></label>
   <input type="email" class="form-control" id="correo" [(ngModel)]="email" (input)="validate_email()">
 </div>

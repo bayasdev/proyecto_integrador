@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>requests - smcar Database</title>
+        <title>requests - smcar_v2 Database</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <link rel="icon" type="image/png" sizes="16x16" href="../favicon.png">
@@ -46,7 +46,7 @@
                 <nav class="navbar navbar-static-top">
                     <div class="container">
                         <div class="navbar-header">
-                            <a href="../index.html" class="navbar-brand"><b>smcar</b> Database</a>
+                            <a href="../index.html" class="navbar-brand"><b>smcar_v2</b> Database</a>
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
                         </div>
 
@@ -104,8 +104,8 @@
                                 <tbody>
                                 <tr>
                                     <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="id">id</span></td>
-                                    <td>serial</td>
-                                    <td>10</td>
+                                    <td>bigserial</td>
+                                    <td>19</td>
                                     <td title=''></td>
                                     <td title='Automatically updated by the database'>√</td>
                                     <td>nextval(&#39;requests_id_seq&#39;::regclass)</td>
@@ -114,6 +114,10 @@
                                             <tr>
                                                 <td title="request_request_attachment.request_id references requests.id via request_request_attachment_request_id_foreign"><a href='request_request_attachment.html'>request_request_attachment</a><span class='relatedKey'>.request_id</span></td>
                                                 <td class="constraint detail">request_request_attachment_request_id_foreign<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="request_subject.request_id references requests.id via request_subject_request_id_foreign"><a href='request_subject.html'>request_subject</a><span class='relatedKey'>.request_id</span></td>
+                                                <td class="constraint detail">request_subject_request_id_foreign<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                         </table>
                                     </td>
@@ -158,10 +162,10 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><span id="parameters">parameters</span></td>
-                                    <td>text</td>
-                                    <td>2147483647</td>
-                                    <td title='nullable'>√</td>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="user_id">user_id</span></td>
+                                    <td>int4</td>
+                                    <td>10</td>
+                                    <td title=''></td>
                                     <td title=''></td>
                                     <td>null</td>
                                     <td>
@@ -170,6 +174,10 @@
                                     </td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="requests.user_id references users.id via requests_user_id_foreign"><a href='users.html'>users</a><span class='relatedKey'>.id</span></td>
+                                                <td class="constraint detail">requests_user_id_foreign<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                            </tr>
                                         </table>
                                     </td>
                                     <td></td>
@@ -196,10 +204,10 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="subject_id">subject_id</span></td>
-                                    <td>int4</td>
-                                    <td>10</td>
-                                    <td title=''></td>
+                                    <td><span id="parameters">parameters</span></td>
+                                    <td>text</td>
+                                    <td>2147483647</td>
+                                    <td title='nullable'>√</td>
                                     <td title=''></td>
                                     <td>null</td>
                                     <td>
@@ -208,10 +216,6 @@
                                     </td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
-                                            <tr>
-                                                <td title="requests.subject_id references subjects.id via requests_subject_id_foreign"><a href='subjects.html'>subjects</a><span class='relatedKey'>.id</span></td>
-                                                <td class="constraint detail">requests_subject_id_foreign<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
-                                            </tr>
                                         </table>
                                     </td>
                                     <td></td>
@@ -270,20 +274,23 @@
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
 <area shape="rect" id="node1" href="request_request_attachment.html" target="_top" title="request_request_attachment" alt="" coords="591,5,899,181">
-<area shape="rect" id="node2" href="requests.html" target="_top" title="requests" alt="" coords="229,61,547,307">
-<area shape="rect" id="node3" href="request_types.html" target="_top" title="request_types" alt="" coords="5,128,185,245">
-<area shape="rect" id="node4" href="subjects.html" target="_top" title="subjects" alt="" coords="20,263,171,409">
+<area shape="rect" id="node2" href="requests.html" target="_top" title="requests" alt="" coords="229,129,547,375">
+<area shape="rect" id="node4" href="request_types.html" target="_top" title="request_types" alt="" coords="5,316,185,433">
+<area shape="rect" id="node5" href="users.html" target="_top" title="users" alt="" coords="11,152,180,299">
+<area shape="rect" id="node3" href="request_subject.html" target="_top" title="request_subject" alt="" coords="648,199,841,375">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/requests.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="request_request_attachment.html" target="_top" title="request_request_attachment" alt="" coords="773,15,1081,191">
-<area shape="rect" id="node2" href="request_attachments.html" target="_top" title="request_attachments" alt="" coords="457,5,685,93">
-<area shape="rect" id="node3" href="requests.html" target="_top" title="requests" alt="" coords="412,111,729,356">
-<area shape="rect" id="node4" href="request_types.html" target="_top" title="request_types" alt="" coords="188,177,368,295">
-<area shape="rect" id="node5" href="subjects.html" target="_top" title="subjects" alt="" coords="203,312,353,459">
-<area shape="rect" id="node6" href="carreers.html" target="_top" title="carreers" alt="" coords="5,344,144,432">
+<area shape="rect" id="node1" href="request_request_attachment.html" target="_top" title="request_request_attachment" alt="" coords="755,15,1063,191">
+<area shape="rect" id="node2" href="request_attachments.html" target="_top" title="request_attachments" alt="" coords="438,5,666,93">
+<area shape="rect" id="node3" href="requests.html" target="_top" title="requests" alt="" coords="393,111,711,356">
+<area shape="rect" id="node6" href="request_types.html" target="_top" title="request_types" alt="" coords="169,299,349,416">
+<area shape="rect" id="node7" href="users.html" target="_top" title="users" alt="" coords="175,135,344,281">
+<area shape="rect" id="node4" href="request_subject.html" target="_top" title="request_subject" alt="" coords="812,225,1005,401">
+<area shape="rect" id="node5" href="subjects.html" target="_top" title="subjects" alt="" coords="482,373,622,461">
+<area shape="rect" id="node8" href="roles.html" target="_top" title="roles" alt="" coords="5,167,125,255">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/requests.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>

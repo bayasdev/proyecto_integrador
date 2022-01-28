@@ -46,6 +46,7 @@ class PetitionController extends Controller
           } else {
              $petition->id = 1;
           }
+          $petition->user_id = $result['user_id'];
           $petition->parameters = $result['parameters'];
           $petition->petition_type_id = $result['petition_type_id'];
           $petition->save();
@@ -134,7 +135,7 @@ class PetitionController extends Controller
     {
       $result = $data->json()->all();
       $id = $result['id'];
-      return response()->json(Rol::destroy($id),200);
+      return response()->json(Petition::destroy($id),200);
     }
 
     function backup(Request $data)

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>faculties - smcar Database</title>
+        <title>faculties - smcar_v2 Database</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <link rel="icon" type="image/png" sizes="16x16" href="../favicon.png">
@@ -46,7 +46,7 @@
                 <nav class="navbar navbar-static-top">
                     <div class="container">
                         <div class="navbar-header">
-                            <a href="../index.html" class="navbar-brand"><b>smcar</b> Database</a>
+                            <a href="../index.html" class="navbar-brand"><b>smcar_v2</b> Database</a>
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
                         </div>
 
@@ -112,8 +112,8 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="carreers.faculty_id references faculties.id via carreers_faculty_id_foreign"><a href='carreers.html'>carreers</a><span class='relatedKey'>.faculty_id</span></td>
-                                                <td class="constraint detail">carreers_faculty_id_foreign<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                                <td title="careers.faculty_id references faculties.id via careers_faculty_id_foreign"><a href='careers.html'>careers</a><span class='relatedKey'>.faculty_id</span></td>
+                                                <td class="constraint detail">careers_faculty_id_foreign<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                         </table>
                                     </td>
@@ -160,7 +160,7 @@
                                 <tr>
                                     <td><span id="name">name</span></td>
                                     <td>varchar</td>
-                                    <td>200</td>
+                                    <td>255</td>
                                     <td title='nullable'>√</td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -248,7 +248,7 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="carreers.html" target="_top" title="carreers" alt="" coords="517,5,668,181">
+<area shape="rect" id="node1" href="careers.html" target="_top" title="careers" alt="" coords="517,5,668,181">
 <area shape="rect" id="node2" href="faculties.html" target="_top" title="faculties" alt="" coords="219,32,473,248">
 <area shape="rect" id="node3" href="deans.html" target="_top" title="deans" alt="" coords="5,152,175,269">
 </map>
@@ -256,7 +256,7 @@
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="carreers.html" target="_top" title="carreers" alt="" coords="517,79,668,255">
+<area shape="rect" id="node1" href="careers.html" target="_top" title="careers" alt="" coords="517,79,668,255">
 <area shape="rect" id="node2" href="directors.html" target="_top" title="directors" alt="" coords="274,239,418,327">
 <area shape="rect" id="node3" href="faculties.html" target="_top" title="faculties" alt="" coords="219,5,473,221">
 <area shape="rect" id="node4" href="deans.html" target="_top" title="deans" alt="" coords="5,125,175,243">

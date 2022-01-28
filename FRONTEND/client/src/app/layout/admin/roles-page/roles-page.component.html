@@ -19,7 +19,8 @@
                         <input *ngIf="selected_role == role && isEditing" type="text" class="form-control" [(ngModel)]="role.name"/>
                     </td>
                     <td>
-                        <div class="d-grid gap-2 d-md-block">
+                        <!-- don't allow to modify essential roles -->
+                        <div class="d-grid gap-2 d-md-block" *ngIf="![1, 2, 3, 4, 5].includes(role.id)">
                             <button type="button" class="btn btn-primary" *ngIf="!isEditing || selected_role != role" (click)="edit_role()">
                                 <i class="fas fa-edit"></i>
                             </button>

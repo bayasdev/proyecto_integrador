@@ -13,20 +13,20 @@ export class AuthService {
 
   login(email: string, password: string): Promise<any> {
     const data = { email: email, password: password };
-    return this.http.post(environment.api + 'login', JSON.stringify(data)).toPromise();
+    return this.http.post(environment.api + 'login', data).toPromise();
   }
 
-  register(email: string, name: string, role_id?: number): Promise<any> {
-    const data = { email: email, name: name, rol_id: role_id };
-    return this.http.post(environment.api + 'register', JSON.stringify(data)).toPromise();
+  register(email: string, identification: string, name: string, role_id?: number): Promise<any> {
+    const data = { email: email, identification: identification, name: name, role_id: role_id };
+    return this.http.post(environment.api + 'register', data).toPromise();
   }
 
   password_recovery(email: string): Promise<any> {
     const data = { email: email };
-    return this.http.post(environment.api + 'password_recovery_request', JSON.stringify(data)).toPromise();
+    return this.http.post(environment.api + 'recovery_request', data).toPromise();
   }
 
   password_recovery_confirm(token: string): Promise<any> {
-    return this.http.get(environment.api + 'password_recovery?r=' + token).toPromise();
+    return this.http.get(environment.api + 'recovery?r=' + token).toPromise();
   }
 }

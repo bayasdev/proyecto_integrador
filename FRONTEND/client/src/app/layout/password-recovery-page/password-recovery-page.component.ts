@@ -29,11 +29,11 @@ export class PasswordRecoveryPageComponent implements OnInit {
     this.authDataService.password_recovery_confirm(this.token).then( r => {
       this.spinner.hide();
       this.isOk = true;
-      this.resp = r;
+      this.resp = r.message;
     }).catch( e => {
       this.spinner.hide();
       this.isOk = false;
-      this.resp = e.error;
+      this.resp = e.error.message;
     });
   }
 

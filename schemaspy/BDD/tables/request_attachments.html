@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>request_attachments - smcar Database</title>
+        <title>request_attachments - smcar_v2 Database</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <link rel="icon" type="image/png" sizes="16x16" href="../favicon.png">
@@ -46,7 +46,7 @@
                 <nav class="navbar navbar-static-top">
                     <div class="container">
                         <div class="navbar-header">
-                            <a href="../index.html" class="navbar-brand"><b>smcar</b> Database</a>
+                            <a href="../index.html" class="navbar-brand"><b>smcar_v2</b> Database</a>
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
                         </div>
 
@@ -104,16 +104,16 @@
                                 <tbody>
                                 <tr>
                                     <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="id">id</span></td>
-                                    <td>serial</td>
-                                    <td>10</td>
+                                    <td>bigserial</td>
+                                    <td>19</td>
                                     <td title=''></td>
                                     <td title='Automatically updated by the database'>√</td>
                                     <td>nextval(&#39;request_attachments_id_seq&#39;::regclass)</td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="request_request_attachment.request_attachment_id references request_attachments.id via request_request_attachment_request_attachment_id_foreign"><a href='request_request_attachment.html'>request_request_attachment</a><span class='relatedKey'>.request_attachment_id</span></td>
-                                                <td class="constraint detail">request_request_attachment_request_attachment_id_foreign<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                                <td title="request_request_attachment.attachments_id references request_attachments.id via request_request_attachment_attachments_id_foreign"><a href='request_request_attachment.html'>request_request_attachment</a><span class='relatedKey'>.attachments_id</span></td>
+                                                <td class="constraint detail">request_request_attachment_attachments_id_foreign<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                         </table>
                                     </td>
@@ -158,24 +158,7 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><span id="request_attachment_file_type">request_attachment_file_type</span></td>
-                                    <td>varchar</td>
-                                    <td>50</td>
-                                    <td title='nullable'>√</td>
-                                    <td title=''></td>
-                                    <td>null</td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><span id="request_attachment_file_name">request_attachment_file_name</span></td>
+                                    <td><span id="file_name">file_name</span></td>
                                     <td>varchar</td>
                                     <td>255</td>
                                     <td title='nullable'>√</td>
@@ -192,9 +175,43 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><span id="request_attachment_file">request_attachment_file</span></td>
-                                    <td>text</td>
-                                    <td>2147483647</td>
+                                    <td><span id="file_path">file_path</span></td>
+                                    <td>varchar</td>
+                                    <td>255</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="file_type">file_type</span></td>
+                                    <td>varchar</td>
+                                    <td>255</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="attachment_type">attachment_type</span></td>
+                                    <td>int4</td>
+                                    <td>10</td>
                                     <td title='nullable'>√</td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -261,16 +278,16 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="request_request_attachment.html" target="_top" title="request_request_attachment" alt="" coords="500,5,808,181">
-<area shape="rect" id="node2" href="request_attachments.html" target="_top" title="request_attachments" alt="" coords="5,32,456,277">
+<area shape="rect" id="node1" href="request_request_attachment.html" target="_top" title="request_request_attachment" alt="" coords="393,5,701,181">
+<area shape="rect" id="node2" href="request_attachments.html" target="_top" title="request_attachments" alt="" coords="5,61,349,336">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/request_attachments.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="request_request_attachment.html" target="_top" title="request_request_attachment" alt="" coords="500,93,808,269">
-<area shape="rect" id="node2" href="request_attachments.html" target="_top" title="request_attachments" alt="" coords="5,5,456,251">
-<area shape="rect" id="node3" href="requests.html" target="_top" title="requests" alt="" coords="160,268,301,356">
+<area shape="rect" id="node1" href="request_request_attachment.html" target="_top" title="request_request_attachment" alt="" coords="393,15,701,191">
+<area shape="rect" id="node2" href="request_attachments.html" target="_top" title="request_attachments" alt="" coords="5,111,349,385">
+<area shape="rect" id="node3" href="requests.html" target="_top" title="requests" alt="" coords="107,5,248,93">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/request_attachments.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>

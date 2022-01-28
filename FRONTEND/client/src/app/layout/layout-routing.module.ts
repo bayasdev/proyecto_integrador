@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RoleGuard } from '../guards/role.guard';
 import { LayoutComponent } from './layout.component';
 
 const routes: Routes = [
@@ -21,42 +22,74 @@ const routes: Routes = [
       // Usuarios
       {
         path: 'admin/users',
-        loadChildren: () => import('src/app/layout/admin/users-page/users-page.module').then(m => m.UsersPageModule)
+        loadChildren: () => import('src/app/layout/admin/users-page/users-page.module').then(m => m.UsersPageModule),
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 1
+        }
       },
       // Roles
       {
         path: 'admin/roles',
-        loadChildren: () => import('src/app/layout/admin/roles-page/roles-page.module').then(m => m.RolesPageModule)
+        loadChildren: () => import('src/app/layout/admin/roles-page/roles-page.module').then(m => m.RolesPageModule),
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 1
+        }
       },
       // Directores de Carrera
       {
         path: 'admin/directors',
-        loadChildren: () => import('src/app/layout/admin/directors-page/directors-page.module').then(m => m.DirectorsPageModule)
+        loadChildren: () => import('src/app/layout/admin/directors-page/directors-page.module').then(m => m.DirectorsPageModule),
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 1
+        }
       },
       // Decanos
       {
         path: 'admin/deans',
-        loadChildren: () => import('src/app/layout/admin/deans-page/deans-page.module').then(m => m.DeansPageModule)
+        loadChildren: () => import('src/app/layout/admin/deans-page/deans-page.module').then(m => m.DeansPageModule),
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 1
+        }
       },
       // Facultades
       {
         path: 'admin/faculties',
-        loadChildren: () => import('src/app/layout/admin/faculties-page/faculties-page.module').then(m => m.FacultiesPageModule)
+        loadChildren: () => import('src/app/layout/admin/faculties-page/faculties-page.module').then(m => m.FacultiesPageModule),
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 1
+        }
       },
       // Carreras
       {
         path: 'admin/careers',
-        loadChildren: () => import('src/app/layout/admin/careers-page/careers-page.module').then(m => m.CareersPageModule)
+        loadChildren: () => import('src/app/layout/admin/careers-page/careers-page.module').then(m => m.CareersPageModule),
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 1
+        }
       },
       // Materias
       {
         path: 'admin/subjects',
-        loadChildren: () => import('src/app/layout/admin/subjects-page/subjects-page.module').then(m => m.SubjectsPageModule)
+        loadChildren: () => import('src/app/layout/admin/subjects-page/subjects-page.module').then(m => m.SubjectsPageModule),
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 1
+        }
       },
       // Tipos de Solicitud
       {
         path: 'admin/petition/types',
-        loadChildren: () => import('src/app/layout/admin/petition-types-page/petition-types-page.module').then(m => m.PetitionTypesPageModule)
+        loadChildren: () => import('src/app/layout/admin/petition-types-page/petition-types-page.module').then(m => m.PetitionTypesPageModule),
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 2
+        }
       },
       
       // 403
@@ -80,6 +113,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [RoleGuard]
 })
 export class LayoutRoutingModule { }

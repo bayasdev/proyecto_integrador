@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use App\Models\RequestAttachment;
 
@@ -42,13 +41,13 @@ class RequestAttachmentController extends Controller
         // save base64 to storage
         Storage::disk('attachments')->put($file_path, $request->file_content);
         // need to insert file_path
-        RequestAttachment::create([
+        $attachment = RequestAttachment::create([
             'file_name' => $request->file_name,
             'file_path' => $file_path,
             'file_type' => $request->file_type,
             'attachment_type' => $request->attachment_type
         ]);
-        return response()->json(['message' => 'Archivo creado correctamente'], 201);
+        return response()->json(['message' => $attachment], 201);
     }
     
     public function delete($id)
@@ -57,6 +56,6 @@ class RequestAttachmentController extends Controller
         Storage::disk('attachments')->delete(RequestAttachment::where('id', $id)->value('file_path'));
         // then delete db registry
         RequestAttachment::findOrFail($id)->delete();
-        return response(['message' => 'Eliminado correctamente'], 200);
+        return response()->json(['message' => 'Eliminado correctamente'], 200);
     }
 }

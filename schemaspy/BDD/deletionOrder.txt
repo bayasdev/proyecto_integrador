@@ -8,6 +8,7 @@ users
 faculties
 roles
 request_types
+request_statuses
 request_attachments
 directors
 deans

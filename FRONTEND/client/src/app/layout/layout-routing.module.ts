@@ -8,6 +8,11 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
+
+      // Roles
+      // 1 administrador
+      // 2 
+
       // Common
       {
         path: 'dashboard',
@@ -84,11 +89,29 @@ const routes: Routes = [
       },
       // Tipos de Solicitud
       {
-        path: 'admin/petition/types',
-        loadChildren: () => import('src/app/layout/admin/petition-types-page/petition-types-page.module').then(m => m.PetitionTypesPageModule),
+        path: 'admin/request/types',
+        loadChildren: () => import('src/app/layout/admin/reqest-types-page/request-types-page.module').then(m => m.RequestTypesPageModule),
         canActivate: [RoleGuard],
         data: {
-          expectedRole: 2
+          expectedRole: 1
+        }
+      },
+      // Estados de Solicitud
+      {
+        path: 'admin/request/statuses',
+        loadChildren: () => import('src/app/layout/admin/request-statuses-page/request-statuses-page.module').then(m => m.RequestStatusesPageModule),
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 1
+        }
+      },
+      // Archivos Subidos
+      {
+        path: 'admin/files',
+        loadChildren: () => import('src/app/layout/admin/files-page/files-page.module').then(m => m.FilesPageModule),
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 1
         }
       },
       

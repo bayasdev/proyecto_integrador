@@ -20,6 +20,8 @@ class CreateRequestsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('request_type_id');
             $table->foreign('request_type_id')->references('id')->on('request_types')->onDelete('cascade');
+            $table->integer('request_status_id');
+            $table->foreign('request_status_id')->references('id')->on('request_statuses')->onDelete('cascade');
             // esto será un JSON
             $table->text('parameters')->nullable($value = true);;
         });

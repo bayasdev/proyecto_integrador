@@ -1,6 +1,7 @@
 deans
 directors
 request_attachments
+request_statuses
 request_types
 roles
 faculties

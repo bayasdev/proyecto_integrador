@@ -103,7 +103,17 @@ export class SidebarComponent implements OnInit {
         {
           name: 'Tipos de Solicitud',
           icon: 'fas fa-folder-plus',
-          link: '/admin/petition/types'
+          link: '/admin/request/types'
+        },
+        {
+          name: 'Estados de Solicitud',
+          icon: 'fas fa-toggle-on',
+          link: '/admin/request/statuses'
+        },
+        {
+          name: 'Archivos',
+          icon: 'fas fa-cloud-upload-alt',
+          link: '/admin/files'
         },
       ]
     },

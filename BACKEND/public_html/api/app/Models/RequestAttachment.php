@@ -2,17 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Lumen\Auth\Authorizable;
 
-class RequestAttachment extends Model implements AuthenticatableContract, AuthorizableContract
+class RequestAttachment extends Model
 {
-    use Authenticatable, Authorizable, HasFactory;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -33,8 +26,8 @@ class RequestAttachment extends Model implements AuthenticatableContract, Author
      */
     protected $hidden = [];
 
-    function requests()
+    public function requests()
     {
-       return $this->belongsToMany('App\Request')->withTimestamps();
+        return $this->belongsToMany(Request::class)->withTimestamps();;
     }
 }

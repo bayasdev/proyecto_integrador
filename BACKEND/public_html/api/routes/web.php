@@ -35,6 +35,19 @@ $router->group(['prefix' => 'api/v2'], function () use ($router) {
     $router->group(['middleware' => ['auth:99']], function () use ($router){
         // Allow to update User profile
         $router->put('users/{id}', ['uses' => 'UserController@update']);
+
+        //  RequestAttachments
+        $router->get('request_attachments',  ['uses' => 'RequestAttachmentController@showAllRequestAttachments']);
+        $router->get('request_attachments/{id}', ['uses' => 'RequestAttachmentController@showOneRequestAttachment']);
+        $router->post('request_attachments', ['uses' => 'RequestAttachmentController@create']);
+        $router->delete('request_attachments/{id}', ['uses' => 'RequestAttachmentController@delete']);
+
+        //  Requests
+        $router->get('requests',  ['uses' => 'RequestController@showAllRequests']);
+        $router->get('requests/{id}', ['uses' => 'RequestController@showOneRequest']);
+        $router->post('requests', ['uses' => 'RequestController@create']);
+        $router->delete('requests/{id}', ['uses' => 'RequestController@delete']);
+        $router->put('requests/{id}', ['uses' => 'RequestController@update']);
     });
 
     $router->group(['middleware' => ['auth:1']], function () use ($router){
@@ -93,17 +106,11 @@ $router->group(['prefix' => 'api/v2'], function () use ($router) {
         $router->delete('request_types/{id}', ['uses' => 'RequestTypeController@delete']);
         $router->put('request_types/{id}', ['uses' => 'RequestTypeController@update']);
 
-        //  RequestAttachments
-        $router->get('request_attachments',  ['uses' => 'RequestAttachmentController@showAllRequestAttachments']);
-        $router->get('request_attachments/{id}', ['uses' => 'RequestAttachmentController@showOneRequestAttachment']);
-        $router->post('request_attachments', ['uses' => 'RequestAttachmentController@create']);
-        $router->delete('request_attachments/{id}', ['uses' => 'RequestAttachmentController@delete']);
-
-        //  Requests
-        $router->get('requests',  ['uses' => 'RequestController@showAllRequests']);
-        $router->get('requests/{id}', ['uses' => 'RequestController@showOneRequest']);
-        $router->post('requests', ['uses' => 'RequestController@create']);
-        $router->delete('requests/{id}', ['uses' => 'RequestController@delete']);
-        $router->put('requests/{id}', ['uses' => 'RequestController@update']);
+        //  RequestStatuses
+        $router->get('request_statuses',  ['uses' => 'RequestStatusController@showAllRequestStatuses']);
+        $router->get('request_statuses/{id}', ['uses' => 'RequestStatusController@showOneRequestStatus']);
+        $router->post('request_statuses', ['uses' => 'RequestStatusController@create']);
+        $router->delete('request_statuses/{id}', ['uses' => 'RequestStatusController@delete']);
+        $router->put('request_statuses/{id}', ['uses' => 'RequestStatusController@update']);
     });
 });

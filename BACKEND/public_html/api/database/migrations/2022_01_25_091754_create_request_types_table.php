@@ -18,6 +18,12 @@ class CreateRequestTypesTable extends Migration
             $table->timestamps();
             $table->string('name');
         });
+
+        //  Create default tables
+        DB::table('request_types')->insert([
+            ['name' => 'Modificación de Carga Académica'],
+            ['name' => 'Retiro en Asignatura']
+        ]);
     }
 
     /**

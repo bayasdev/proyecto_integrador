@@ -29,9 +29,9 @@ class Subject extends Model
        return $this->hasOne('App\Career');
     }
 
-    function petitions()
+    function requests()
     {
-       return $this->belongsToMany('App\Petition')->withTimestamps();
+      return $this->belongsToMany(Request::class)->withTimestamps();;
     }
 
 }

@@ -5,7 +5,8 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class PetitionTypeService {
+export class RequestStatusService {
+
   options = {};
   headers = {};
 
@@ -15,21 +16,21 @@ export class PetitionTypeService {
   }
 
   get(): Promise<any>{
-    return this.http.get(environment.api + 'petitiontype', this.options).toPromise();
+    return this.http.get(environment.api + 'request_statuses', this.options).toPromise();
   }
 
   create(name: string): Promise<any> {
     const data = { name: name };
-    return this.http.post(environment.api + 'petitiontype', data, this.options).toPromise();
+    return this.http.post(environment.api + 'request_statuses', data, this.options).toPromise();
   }
 
   update(id: number, name: string): Promise<any> {
     const data = { id: id, name: name };
-    return this.http.put(environment.api + 'petitiontype', data, this.options).toPromise();
+    return this.http.put(environment.api + 'request_statuses/'+id, data, this.options).toPromise();
   }
 
   delete(id: number): Promise<any> {
     const data = { id: id };
-    return this.http.delete(environment.api + 'petitiontype', {"body": data, "headers": this.headers}).toPromise();
+    return this.http.delete(environment.api + 'request_statuses/'+id, this.options).toPromise();
   }
 }

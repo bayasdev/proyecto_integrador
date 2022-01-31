@@ -175,7 +175,7 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="attachments_id">attachments_id</span></td>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="request_attachment_id">request_attachment_id</span></td>
                                     <td>int4</td>
                                     <td>10</td>
                                     <td title=''></td>
@@ -188,8 +188,8 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="request_request_attachment.attachments_id references request_attachments.id via request_request_attachment_attachments_id_foreign"><a href='request_attachments.html'>request_attachments</a><span class='relatedKey'>.id</span></td>
-                                                <td class="constraint detail">request_request_attachment_attachments_id_foreign<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                                <td title="request_request_attachment.request_attachment_id references request_attachments.id via request_request_attachment_request_attachment_id_foreign"><a href='request_attachments.html'>request_attachments</a><span class='relatedKey'>.id</span></td>
+                                                <td class="constraint detail">request_request_attachment_request_attachment_id_foreign<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                         </table>
                                     </td>
@@ -248,20 +248,21 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="request_request_attachment.html" target="_top" title="request_request_attachment" alt="" coords="289,5,701,221">
-<area shape="rect" id="node2" href="request_attachments.html" target="_top" title="request_attachments" alt="" coords="5,207,245,324">
-<area shape="rect" id="node3" href="requests.html" target="_top" title="requests" alt="" coords="29,13,221,189">
+<area shape="rect" id="node1" href="request_request_attachment.html" target="_top" title="request_request_attachment" alt="" coords="289,12,701,228">
+<area shape="rect" id="node2" href="request_attachments.html" target="_top" title="request_attachments" alt="" coords="5,228,245,345">
+<area shape="rect" id="node3" href="requests.html" target="_top" title="requests" alt="" coords="21,5,229,211">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/request_request_attachment.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="request_request_attachment.html" target="_top" title="request_request_attachment" alt="" coords="513,111,925,327">
-<area shape="rect" id="node2" href="request_attachments.html" target="_top" title="request_attachments" alt="" coords="229,231,469,348">
-<area shape="rect" id="node3" href="requests.html" target="_top" title="requests" alt="" coords="253,20,445,196">
-<area shape="rect" id="node5" href="request_types.html" target="_top" title="request_types" alt="" coords="5,120,185,208">
-<area shape="rect" id="node6" href="users.html" target="_top" title="users" alt="" coords="33,15,158,103">
-<area shape="rect" id="node4" href="request_subject.html" target="_top" title="request_subject" alt="" coords="623,5,816,93">
+<area shape="rect" id="node1" href="request_request_attachment.html" target="_top" title="request_request_attachment" alt="" coords="535,155,947,371">
+<area shape="rect" id="node2" href="request_attachments.html" target="_top" title="request_attachments" alt="" coords="251,275,491,392">
+<area shape="rect" id="node3" href="requests.html" target="_top" title="requests" alt="" coords="267,49,475,255">
+<area shape="rect" id="node5" href="request_statuses.html" target="_top" title="request_statuses" alt="" coords="5,216,207,304">
+<area shape="rect" id="node6" href="request_types.html" target="_top" title="request_types" alt="" coords="16,111,196,199">
+<area shape="rect" id="node7" href="users.html" target="_top" title="users" alt="" coords="43,5,169,93">
+<area shape="rect" id="node4" href="request_subject.html" target="_top" title="request_subject" alt="" coords="644,49,837,137">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/request_request_attachment.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>

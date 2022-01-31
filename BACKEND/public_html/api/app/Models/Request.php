@@ -12,7 +12,7 @@ class Request extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'request_type_id', 'parameters',
+        'user_id', 'request_type_id', 'request_status_id', 'parameters',
     ];
 
     /**
@@ -33,13 +33,13 @@ class Request extends Model
         return $this->hasOne('App\PetitionAttachment');
     }
 
-    public function requestAttachments()
+    public function attachments()
     {
-        return $this->hasMany('App\PetitionAttachment')->withTimestamps();
+        return $this->belongsToMany(RequestAttachment::class)->withTimestamps();;
     }
 
     public function subjects()
     {
-        return $this->hasMany('App\Subject')->withTimestamps();
+        return $this->belongsToMany(Subject::class)->withTimestamps();
     }
 }

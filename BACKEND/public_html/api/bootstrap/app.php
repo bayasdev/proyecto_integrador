@@ -77,7 +77,8 @@ $app->configure('app');
 // ]);
 
 $app->middleware([
-    palanik\lumen\Middleware\LumenCors::class
+    // palanik\lumen\Middleware\LumenCors::class
+    \Fruitcake\Cors\HandleCors::class
 ]);
 
 $app->routeMiddleware([
@@ -100,6 +101,7 @@ $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 $app->register(Illuminate\Mail\MailServiceProvider::class);
+$app->register(Fruitcake\Cors\CorsServiceProvider::class);
 
 
 

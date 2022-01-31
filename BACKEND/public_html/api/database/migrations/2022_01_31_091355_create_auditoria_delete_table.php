@@ -15,9 +15,11 @@ class CreateAuditoriaDeleteTable extends Migration
     {
         Schema::create('auditoria_delete', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('identification');
-            $table->string('name');
-            $table->string('email');
+            $table->timestamp('date')->nullable($value = true);
+            $table->integer('user_id')->nullable($value = true);
+            $table->string('identification')->nullable($value = true);
+            $table->string('name')->nullable($value = true);
+            $table->string('email')->nullable($value = true);
             $table->integer('role_id')->nullable($value = true);
             $table->integer('attempts')->nullable($value = true);
             $table->string('password')->nullable($value = true);
@@ -27,7 +29,7 @@ class CreateAuditoriaDeleteTable extends Migration
         CREATE OR REPLACE FUNCTION insertar_trigger_delete()
         RETURNS trigger AS $insertar$
         BEGIN
-            INSERT INTO auditoria_delete (identification, name, email, role_id, attempts, password) VALUES (OLD.identification, OLD.name, OLD.email, OLD.role_id, OLD.attempts, OLD.password);
+            INSERT INTO auditoria_delete (date, identification, name, email, role_id, attempts, password) VALUES (current_timestamp, OLD.id, OLD.identification, OLD.name, OLD.email, OLD.role_id, OLD.attempts, OLD.password);
             RETURN NULL;
         END
         $insertar$ LANGUAGE plpgsql;

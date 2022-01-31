@@ -82,16 +82,14 @@ export class ProfilePageComponent implements OnInit {
           return;
         }
         if(this.new_password != ''){
-          this.spinner.hide();
-          this.userDataService.update(this.user.id, this.user.identification, this.user.name, this.user.email, undefined, this.new_password).then( r => {
+          this.userDataService.update(this.user.sub, this.user.identification, this.user.name, this.user.email, undefined, this.new_password).then( r => {
             this.spinner.hide();
             this.toastr.success('Por favor inicie sesión nuevamente.', 'Perfil Actualizado');
             sessionStorage.clear();
             this.router.navigate(['/login']);
           }).catch( e => { console.log(e) });
         } else {
-          this.spinner.hide();
-          this.userDataService.update(this.user.id, this.user.identification, this.user.name, this.user.email).then( r => {
+          this.userDataService.update(this.user.sub, this.user.identification, this.user.name, this.user.email).then( r => {
             this.spinner.hide();
             this.toastr.success('Por favor inicie sesión nuevamente.', 'Perfil Actualizado');
             sessionStorage.clear();

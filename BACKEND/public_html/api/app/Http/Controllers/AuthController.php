@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+use Firebase\JWT\ExpiredException;
+use Firebase\JWT\SignatureInvalidException;
 use Exception;
 use App\Models\User;
 
@@ -89,7 +91,7 @@ class AuthController extends Controller
             ]);
             $message = 'Su nueva contraseña de acceso al sistema es: '.$new_password;
             $subject = 'Recuperación de Contraseña';
-            $user = User::where('id', $decoded->id)->first();
+            $user = User::where('id', $decoded->sub)->first();
             $this->send_mail('recovery_mail', $user->email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
             return response()->json(['message' => 'Contraseña restablecida, por favor revise su correo electrónico'], 200);
         } catch(ExpiredException $e) {
@@ -107,18 +109,16 @@ class AuthController extends Controller
         if ($type == 1) {
             $payload = [
                 'sub' => $user->id,
+                'exp' => time() + $lifetime*60,
                 'identification' => $user->identification,
                 'name' => $user->name,
                 'email' => $user->email,
-                'role' => $user->role_id,
-                'exp' => time() + $lifetime*60,
-                'iat' => time()
+                'role' => $user->role_id
             ];
         } else if ($type == 2) {
             $payload = [
                 'sub' => $user->id,
-                'exp' => time() + $lifetime*60,
-                'iat' => time(),
+                'exp' => time() + $lifetime*60
             ];
         }
         return JWT::encode($payload, env('JWT_SECRET'), 'HS256');

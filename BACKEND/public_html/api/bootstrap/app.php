@@ -61,6 +61,14 @@ $app->singleton(
 
 $app->configure('app');
 
+$app->configure('filesystems');
+
+$app->configure('mail');
+
+$app->configure('hashing');
+
+$app->configure('cors');
+
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -116,9 +124,6 @@ $app->register(Fruitcake\Cors\CorsServiceProvider::class);
 | can respond to, as well as the controllers that may handle them.
 |
 */
-$app->configure('filesystems');
-
-$app->configure('mail');
 
 $app->alias('mail.manager', Illuminate\Mail\MailManager::class);
 $app->alias('mail.manager', Illuminate\Contracts\Mail\Factory::class);

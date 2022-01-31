@@ -38,7 +38,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       try {
         let decoded: any = jwt_decode(token);
         let current_time: number = Math.round((new Date()).getTime() / 1000);
-        if (decoded.expiration_time - current_time <= 0){
+        if (decoded.exp - current_time <= 0){
           return false;
         } else {
           return true;

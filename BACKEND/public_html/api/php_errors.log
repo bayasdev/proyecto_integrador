@@ -1,0 +1,7 @@
+[31-Jan-2022 08:19:09 America/Bogota] PHP Warning:  require_once(/public_html/api/bootstrap/../vendor/autoload.php): Failed to open stream: No such file or directory in /public_html/api/bootstrap/app.php on line 3
+[31-Jan-2022 08:19:09 America/Bogota] PHP Fatal error:  Uncaught Error: Failed opening required '/public_html/api/bootstrap/../vendor/autoload.php' (include_path='.:/usr/local/lib/php') in /public_html/api/bootstrap/app.php:3
+Stack trace:
+#0 /public_html/api/artisan(18): require()
+#1 {main}
+  thrown in /public_html/api/bootstrap/app.php on line 3
+[31-Jan-2022 09:49:13 America/Guayaquil] PHP Fatal error:  Cannot declare class CreateAuditTable, because the name is already in use in /public_html/api/database/migrations/2022_01_31_094811_create_auditoria_update_table.php on line 7

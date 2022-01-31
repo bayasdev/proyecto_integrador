@@ -83,12 +83,8 @@ class AuthController extends Controller
         $token = $request->get('r');
         try {
             $decoded = JWT::decode($token, new Key(env('JWT_SECRET'), 'HS256'));
-            $remaining = $decoded->expiration_time - time();
-            if ($remaining <= 0) {
-                return response()->json(['message' => 'Token caducado'], 400);
-            }
             $new_password = Str::random(16);
-            User::where('id', $decoded->id)->update([
+            User::where('id', $decoded->sub)->update([
                 'password' => Hash::make($new_password)
             ]);
             $message = 'Su nueva contraseña de acceso al sistema es: '.$new_password;
@@ -96,6 +92,10 @@ class AuthController extends Controller
             $user = User::where('id', $decoded->id)->first();
             $this->send_mail('recovery_mail', $user->email, $user->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
             return response()->json(['message' => 'Contraseña restablecida, por favor revise su correo electrónico'], 200);
+        } catch(ExpiredException $e) {
+            return response(['message' => 'Token expirado'], 401);
+        } catch (SignatureInvalidException $e) {
+            return response(['message' => 'Token no válido'], 401);
         } catch (Exception $e) {
             return response()->json(['message' => 'Ocurrió un error'], 400);
         }
@@ -106,19 +106,19 @@ class AuthController extends Controller
         // 2 recovery
         if ($type == 1) {
             $payload = [
-                'id' => $user->id,
+                'sub' => $user->id,
                 'identification' => $user->identification,
                 'name' => $user->name,
                 'email' => $user->email,
                 'role' => $user->role_id,
-                'creation_time' => time(),
-                'expiration_time' => time() + $lifetime*60
+                'exp' => time() + $lifetime*60,
+                'iat' => time()
             ];
         } else if ($type == 2) {
             $payload = [
-                'id' => $user->id,
-                'creation_time' => time(),
-                'expiration_time' => time() + $lifetime*60
+                'sub' => $user->id,
+                'exp' => time() + $lifetime*60,
+                'iat' => time(),
             ];
         }
         return JWT::encode($payload, env('JWT_SECRET'), 'HS256');

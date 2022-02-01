@@ -11,6 +11,12 @@ class SubjectController extends Controller
     {
         return response()->json(Subject::all());
     }
+
+    public function showAllByCareer($id)
+    {
+        return response()->json(Subject::where('career_id', $id)->get());
+    }
+
     
     public function showOneSubject($id)
     {
@@ -20,8 +26,8 @@ class SubjectController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'code' => 'required',
+            'name' => 'required|string',
+            'code' => 'required|string',
             'credits' => 'required|integer',
             'career_id' => 'required|integer'
         ]);

@@ -7,30 +7,30 @@ use Illuminate\Database\Migrations\Migration;
 class CreateCareersTable extends Migration
 {
     /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    * Run the migrations.
+    *
+    * @return void
+    */
     public function up()
     {
-       Schema::create('careers', function (Blueprint $table) {
-          $table->increments('id');
-          $table->timestamps();
-          $table->string('name')->nullable($value = true);
-          $table->integer('faculty_id');
-          $table->foreign('faculty_id')->references('id')->on('faculties')->onDelete('cascade');
-          $table->integer('director_id');
-          $table->foreign('director_id')->references('id')->on('directors')->onDelete('cascade');
-       });
+        Schema::create('careers', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('name');
+            $table->integer('faculty_id');
+            $table->foreign('faculty_id')->references('id')->on('faculties')->onDelete('cascade');
+            $table->integer('director_id');
+            $table->foreign('director_id')->references('id')->on('users');
+        });
     }
-
+    
     /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    * Reverse the migrations.
+    *
+    * @return void
+    */
     public function down()
     {
-       Schema::dropIfExists('careers');
+        Schema::dropIfExists('careers');
     }
 }

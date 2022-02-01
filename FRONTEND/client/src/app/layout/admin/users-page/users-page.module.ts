@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { UsersPageRoutingModule } from './users-page-routing.module';
 import { UsersPageComponent } from './users-page.component';
 import { FormsModule } from '@angular/forms';
-import { RolService } from 'src/app/services/rol.service';
 import { OrderModule } from 'ngx-order-pipe';
 
 
@@ -18,8 +17,6 @@ import { OrderModule } from 'ngx-order-pipe';
     FormsModule,
     OrderModule
   ],
-  providers: [
-    RolService
-  ]
+  providers: []
 })
 export class UsersPageModule { }

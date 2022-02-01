@@ -12,7 +12,7 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'identification', 'attempts', 'role_id', 'password',
+        'identification', 'name', 'email', 'role', 'password', 'attempts', 'last_login',
     ];
 
     /**
@@ -21,13 +21,7 @@ class User extends Model
      * @var array
      */
     protected $hidden = [
-        'password',
+        'password', 'attempts', 'last_login',
     ];
-
-    function role()
-    {
-       return $this->hasOne('App\Role');
-    }
-
 }
 

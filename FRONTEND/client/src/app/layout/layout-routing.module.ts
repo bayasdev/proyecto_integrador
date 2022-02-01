@@ -8,11 +8,14 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-
+      
       // Roles
-      // 1 administrador
-      // 2 
-
+      // 1 Administrador
+      // 2 Decano
+      // 3 Director de Carrera
+      // 4 Contabilidad
+      // 5 Estudiante
+            
       // Common
       {
         path: 'dashboard',
@@ -26,39 +29,23 @@ const routes: Routes = [
         path: 'profile',
         loadChildren: () => import('src/app/layout/profile-page/profile-page.module').then(m => m.ProfilePageModule)
       },
-
+      
+      // Estudiante
+      // Crear solicitud
+      {
+        path: 'student/new-request',
+        loadChildren: () => import('src/app/layout/student/new-request-page/new-request-page.module').then(m => m.NewRequestPageModule),
+        // canActivate: [RoleGuard],
+        // data: {
+        //   expectedRole: 5
+        // }
+      },
+      
       // Admin
       // Usuarios
       {
         path: 'admin/users',
         loadChildren: () => import('src/app/layout/admin/users-page/users-page.module').then(m => m.UsersPageModule),
-        canActivate: [RoleGuard],
-        data: {
-          expectedRole: 1
-        }
-      },
-      // Roles
-      {
-        path: 'admin/roles',
-        loadChildren: () => import('src/app/layout/admin/roles-page/roles-page.module').then(m => m.RolesPageModule),
-        canActivate: [RoleGuard],
-        data: {
-          expectedRole: 1
-        }
-      },
-      // Directores de Carrera
-      {
-        path: 'admin/directors',
-        loadChildren: () => import('src/app/layout/admin/directors-page/directors-page.module').then(m => m.DirectorsPageModule),
-        canActivate: [RoleGuard],
-        data: {
-          expectedRole: 1
-        }
-      },
-      // Decanos
-      {
-        path: 'admin/deans',
-        loadChildren: () => import('src/app/layout/admin/deans-page/deans-page.module').then(m => m.DeansPageModule),
         canActivate: [RoleGuard],
         data: {
           expectedRole: 1
@@ -91,48 +78,21 @@ const routes: Routes = [
           expectedRole: 1
         }
       },
-      // Tipos de Solicitud
-      {
-        path: 'admin/request/types',
-        loadChildren: () => import('src/app/layout/admin/reqest-types-page/request-types-page.module').then(m => m.RequestTypesPageModule),
-        canActivate: [RoleGuard],
-        data: {
-          expectedRole: 1
-        }
-      },
-      // Estados de Solicitud
-      {
-        path: 'admin/request/statuses',
-        loadChildren: () => import('src/app/layout/admin/request-statuses-page/request-statuses-page.module').then(m => m.RequestStatusesPageModule),
-        canActivate: [RoleGuard],
-        data: {
-          expectedRole: 1
-        }
-      },
-      // Archivos Subidos
-      {
-        path: 'admin/files',
-        loadChildren: () => import('src/app/layout/admin/files-page/files-page.module').then(m => m.FilesPageModule),
-        canActivate: [RoleGuard],
-        data: {
-          expectedRole: 1
-        }
-      },
       
       // 403
       {
         path: 'denied',
         loadChildren: () => import('src/app/layout/denied-page/denied-page.module').then(m => m.DeniedPageModule)
       },
-
+      
       // 404
       {
         path: 'not-found',
         loadChildren: () => import('src/app/layout/not-found-page/not-found-page.module').then(m => m.NotFoundPageModule)
       },
       {
-         path: '**',
-         redirectTo: 'not-found'
+        path: '**',
+        redirectTo: 'not-found'
       }
     ]
   }

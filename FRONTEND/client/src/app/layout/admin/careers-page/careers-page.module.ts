@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { CareersPageRoutingModule } from './careers-page-routing.module';
 import { CareersPageComponent } from './careers-page.component';
 import { FormsModule } from '@angular/forms';
-import { RolService } from 'src/app/services/rol.service';
 import { OrderModule } from 'ngx-order-pipe';
 
 
@@ -18,8 +17,6 @@ import { OrderModule } from 'ngx-order-pipe';
     FormsModule,
     OrderModule
   ],
-  providers: [
-    RolService
-  ]
+  providers: []
 })
 export class CareersPageModule { }

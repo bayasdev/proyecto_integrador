@@ -1,0 +1,78 @@
+<h1 class="display-5 mb-5">Crear Solicitud</h1>
+<div class="row mb-5">
+    <div class="col-lg-6 col-md-12 mb-lg-0 mb-5">
+        <label class="form-label"><i class="fas fa-list-ul"></i> Seleccione el tipo de solicitud</label>
+        <select class="form-select" [(ngModel)]="new_request.type">
+            <option [ngValue]="request_type.id" *ngFor="let request_type of request_types">{{request_type.name}}</option>
+        </select>
+    </div>
+    <div class="col-lg-6 col-md-12">
+        <label class="form-label"><i class="fas fa-graduation-cap"></i> Seleccione su carrera</label>
+        <select class="form-select" [(ngModel)]="new_request.career">
+            <option [ngValue]="career.id" *ngFor="let career of careers" (click)="get_subjects()">{{career.name}}</option>
+        </select>
+    </div>
+</div>
+<div class="mb-5 table-responsive">
+    <ng-container *ngIf="new_request.type == 1; else labelRetirar">
+        <label class="form-label"><i class="fas fa-book"></i> Agregue las materias a modificar</label>
+    </ng-container>
+    <ng-template #labelRetirar>
+        <label class="form-label"><i class="fas fa-book"></i> Agregue las materias a retirar</label>
+    </ng-template>
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">Código</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let new_subject of new_subjects">
+                <th scope="row">{{new_subject.code}}</th>
+                <td>{{new_subject.name}}</td>
+                <td>
+                    <button type="button" class="btn btn-danger" (click)="remove_subject(new_subject)">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <select class="form-select" [(ngModel)]="temp_subject">
+                        <option [ngValue]="subject" *ngFor="let subject of subjects">{{subject.name}}</option>
+                    </select>
+                </td>
+                <td>
+                    <div class="d-grid gap-2 d-md-block">
+                        <button type="button" class="btn btn-primary" (click)="add_subject(temp_subject)">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="mb-5">
+    <label class="form-label"><i class="fas fa-edit"></i> Explique a detalle su solicitud</label>
+    <textarea class="form-control" rows="10" [(ngModel)]="new_request.parameters.student_message"></textarea>
+</div>
+<div class="mb-5">
+    <label class="form-label"><i class="fas fa-file"></i> Adjunte el comprobante de pago del derecho de solicitud</label><br>
+    <div class="alert alert-info" role="alert">
+        <i class="fas fa-hand-holding-usd"></i> Deberá realizar una trasferencia bancaria o depósito de <b>10 USD</b> en la <b>Cuenta Corriente de Banco Pichincha No. 2100015196</b> con los siguientes datos: <b>Razón Social: Universidad Iberoamericana del Ecuador UNIBE</b>, <b>RUC: 1792378133001</b>.
+    </div>
+    <div class="alert alert-warning" role="alert">
+        <i class="fas fa-info-circle"></i> Tamaño máximo 5MB, formatos soportados: jpeg, jpg, png
+    </div>
+    <input #fileUploader class="form-control" type="file" (change)="file_selected($event)">
+</div>
+<button type="button" class="btn btn-primary mb-5" (click)="create_request()">
+    <i class="fas fa-paper-plane"></i> Enviar Solicitud
+</button>
+<button type="button" class="btn btn-danger mb-5" (click)="reset()">
+    <i class="fas fa-ban"></i> Limpiar Formulario
+</button>

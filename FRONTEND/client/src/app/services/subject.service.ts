@@ -18,6 +18,10 @@ export class SubjectService {
     return this.http.get(environment.api + 'subjects', this.options).toPromise();
   }
 
+  getByCareer(id: number): Promise<any>{
+    return this.http.get(environment.api + 'careers/'+id+'/subjects', this.options).toPromise();
+  }
+
   create(name: string, code: string, credits: number, career_id: string): Promise<any> {
     const data = { name: name, code: code, credits: credits, career_id: career_id };
     return this.http.post(environment.api + 'subjects', data, this.options).toPromise();

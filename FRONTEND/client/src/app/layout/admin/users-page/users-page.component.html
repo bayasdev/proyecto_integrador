@@ -30,10 +30,10 @@
                         <input *ngIf="selected_user == user && isEditing" type="text" class="form-control" [(ngModel)]="user.email"/>
                     </td>
                     <td>
-                        <select class="form-select" *ngIf="selected_user !== user || (selected_user == user && !isEditing)"  [(ngModel)]="user.role_id" [disabled]="true">
+                        <select class="form-select" *ngIf="selected_user !== user || (selected_user == user && !isEditing)"  [(ngModel)]="user.role" [disabled]="true">
                             <option [ngValue]="role.id" *ngFor="let role of roles">{{role.name}}</option>
                         </select>
-                        <select class="form-select" *ngIf="selected_user == user && isEditing" [(ngModel)]="user.role_id">
+                        <select class="form-select" *ngIf="selected_user == user && isEditing" [(ngModel)]="user.role">
                             <option [ngValue]="role.id" *ngFor="let role of roles | orderBy: order">{{role.name}}</option>
                         </select>
                     </td>

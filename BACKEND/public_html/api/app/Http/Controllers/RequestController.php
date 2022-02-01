@@ -21,25 +21,40 @@ class RequestController extends Controller
     
     public function create(Request $request)
     {
+        // types
+        // 1 modificación de carga
+        // 2 retiro en asignatura
+
+        // statuses
+        // 1 pago pendiente
+        // 2 pago aprobado
+        // 3 pago rechazado
+        // 4 aprobado por director
+        // 5 rechazado por director
+        // 6 aprobado por decano
+        // 7 rechazado por decano
+
         $this->validate($request, [
-            'user_id' => 'required|integer',
-            'request_type_id' => 'required|integer',
+            'student_id' => 'required|integer',
+            'career_id' => 'required|integer',
+            'request_type' => 'required|integer|between:1,2',
             'parameters' => 'required|json',
-            'attachment_id' => 'required|array',
+            'attachment_id' => 'required|integer',
             'subject_id' => 'required|array'
         ]);
         // insert into main table
         // new requests have 'voucher pendiente' status
         $petition = Petition::create([
-            'name' => $request->name,
-            'user_id' => $request->user_id,
-            'request_type_id' => $request->request_type_id,
-            'request_status_id' => 1,
+            'student_id' => $request->student_id,
+            'career_id' => $request->career_id,
+            'request_type' => $request->request_type,
+            'request_status' => 1,
             'parameters' => $request->parameters
         ]);
         // insert into pivot table
         $petition->attachments()->attach($request->attachment_id);
         $petition->subjects()->attach($request->subject_id);
+        
         return response()->json($petition, 201);
     }
     

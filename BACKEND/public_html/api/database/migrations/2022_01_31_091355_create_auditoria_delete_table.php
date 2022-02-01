@@ -20,7 +20,7 @@ class CreateAuditoriaDeleteTable extends Migration
             $table->string('identification')->nullable($value = true);
             $table->string('name')->nullable($value = true);
             $table->string('email')->nullable($value = true);
-            $table->integer('role_id')->nullable($value = true);
+            $table->integer('role')->nullable($value = true);
             $table->integer('attempts')->nullable($value = true);
             $table->string('password')->nullable($value = true);
         });
@@ -29,7 +29,7 @@ class CreateAuditoriaDeleteTable extends Migration
         CREATE OR REPLACE FUNCTION insertar_trigger_delete()
         RETURNS trigger AS $insertar$
         BEGIN
-            INSERT INTO auditoria_delete (date, user_id, identification, name, email, role_id, attempts, password) VALUES (current_timestamp, OLD.id, OLD.identification, OLD.name, OLD.email, OLD.role_id, OLD.attempts, OLD.password);
+            INSERT INTO auditoria_delete (date, user_id, identification, name, email, role, attempts, password) VALUES (current_timestamp, OLD.id, OLD.identification, OLD.name, OLD.email, OLD.role, OLD.attempts, OLD.password);
             RETURN NULL;
         END
         $insertar$ LANGUAGE plpgsql;

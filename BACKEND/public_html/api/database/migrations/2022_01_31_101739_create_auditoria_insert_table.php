@@ -20,7 +20,7 @@ class CreateAuditoriaInsertTable extends Migration
             $table->string('identification')->nullable($value = true);
             $table->string('name')->nullable($value = true);
             $table->string('email')->nullable($value = true);
-            $table->integer('role_id')->nullable($value = true);
+            $table->integer('role')->nullable($value = true);
             $table->integer('attempts')->nullable($value = true);
             $table->string('password')->nullable($value = true);
         });
@@ -29,7 +29,7 @@ class CreateAuditoriaInsertTable extends Migration
         CREATE OR REPLACE FUNCTION insertar_trigger_insert()
         RETURNS trigger AS $insertar$
         BEGIN
-            INSERT INTO auditoria_insert (date, user_id, identification, name, email, role_id, attempts, password) VALUES (current_timestamp, NEW.id, NEW.identification, NEW.name, NEW.email, NEW.role_id, NEW.attempts, NEW.password);
+            INSERT INTO auditoria_insert (date, user_id, identification, name, email, role, attempts, password) VALUES (current_timestamp, NEW.id, NEW.identification, NEW.name, NEW.email, NEW.role, NEW.attempts, NEW.password);
             RETURN NULL;
         END
         $insertar$ LANGUAGE plpgsql;

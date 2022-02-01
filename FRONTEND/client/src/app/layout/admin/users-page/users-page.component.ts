@@ -3,7 +3,6 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { RolService } from 'src/app/services/rol.service';
 
 @Component({
   selector: 'app-users-page',
@@ -19,12 +18,33 @@ export class UsersPageComponent implements OnInit {
     role: 1,
   };
   selected_user: any = {};
-  roles: any[] = [];
+  roles = [
+    {
+      id: 1,
+      name: 'Administrador'
+    },
+    {
+      id: 2,
+      name: 'Decano'
+    },
+    {
+      id: 3,
+      name: 'Director de Carrera'
+    },
+    {
+      id: 4,
+      name: 'Contabilidad'
+    },
+    {
+      id: 5,
+      name: 'Estudiante'
+    },
+  ];
   isEditing: boolean = false;
 
   order: string = 'id';
 
-  constructor(private spinner: NgxSpinnerService, private toastr: ToastrService, private userDataService: UserService, private authDataService: AuthService, private rolDataService: RolService) { }
+  constructor(private spinner: NgxSpinnerService, private toastr: ToastrService, private userDataService: UserService, private authDataService: AuthService) { }
 
   ngOnInit(): void {
     this.refresh();
@@ -36,7 +56,6 @@ export class UsersPageComponent implements OnInit {
     this.new_user.email = '';
     this.new_user.role = 1;
     this.isEditing = false;
-    this.get_roles();
     this.get_users();
   }
 
@@ -65,7 +84,7 @@ export class UsersPageComponent implements OnInit {
       this.toastr.error('El correo electrónico ingresado no es válido.', 'Error');
       return;
     }
-    this.authDataService.register(this.new_user.email, this.new_user.identification, this.new_user.name, this.new_user.role).then( r => {
+    this.userDataService.create(this.new_user.identification, this.new_user.name, this.new_user.email, this.new_user.role).then( r => {
       this.spinner.hide();
       this.toastr.success('El usuario ha sido registrado correctamente.', 'Usuario Creado');
       this.refresh();
@@ -84,7 +103,7 @@ export class UsersPageComponent implements OnInit {
       this.toastr.error('El correo electrónico ingresado no es válido.', 'Error');
       return;
     }
-    this.userDataService.update(user.id, user.identification, user.name, user.email, user.role_id).then( r => {
+    this.userDataService.update(user.id, user.identification, user.name, user.email, user.role).then( r => {
       this.spinner.hide();
       this.toastr.success('El usuario ha sido actualizado correctamente.', 'Usuario Actualizado');
       this.refresh();
@@ -111,15 +130,6 @@ export class UsersPageComponent implements OnInit {
 
   edit_user() {
     this.isEditing = !this.isEditing;
-  }
-
-  get_roles(){
-    this.spinner.show();
-    this.roles = [];
-    this.rolDataService.get().then( r => {
-      this.spinner.hide();
-      this.roles = r;
-    }).catch( e => { console.log(e) });
   }
 
   validate_email(email: string): boolean {

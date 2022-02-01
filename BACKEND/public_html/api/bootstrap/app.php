@@ -61,6 +61,14 @@ $app->singleton(
 
 $app->configure('app');
 
+$app->configure('filesystems');
+
+$app->configure('mail');
+
+$app->configure('hashing');
+
+$app->configure('cors');
+
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -77,7 +85,8 @@ $app->configure('app');
 // ]);
 
 $app->middleware([
-    palanik\lumen\Middleware\LumenCors::class
+    // palanik\lumen\Middleware\LumenCors::class
+    \Fruitcake\Cors\HandleCors::class
 ]);
 
 $app->routeMiddleware([
@@ -100,6 +109,7 @@ $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 $app->register(Illuminate\Mail\MailServiceProvider::class);
+$app->register(Fruitcake\Cors\CorsServiceProvider::class);
 
 
 
@@ -114,9 +124,6 @@ $app->register(Illuminate\Mail\MailServiceProvider::class);
 | can respond to, as well as the controllers that may handle them.
 |
 */
-$app->configure('filesystems');
-
-$app->configure('mail');
 
 $app->alias('mail.manager', Illuminate\Mail\MailManager::class);
 $app->alias('mail.manager', Illuminate\Contracts\Mail\Factory::class);

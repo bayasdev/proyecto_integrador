@@ -16,13 +16,13 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('identification');
+            $table->string('identification', 10);
             $table->string('name');
             $table->string('email');
-            $table->integer('role_id')->nullable($value = true);
-            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
-            $table->integer('attempts')->nullable($value = true);
-            $table->string('password')->nullable($value = true);
+            $table->integer('role');
+            $table->string('password');
+            $table->integer('attempts');
+            $table->timestamp('last_login')->nullable();
         });
     }
 

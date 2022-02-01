@@ -18,18 +18,4 @@ export class DeanService {
     return this.http.get(environment.api + 'deans', this.options).toPromise();
   }
 
-  create(name: string, identification: string): Promise<any> {
-    const data = { name: name, identification: identification };
-    return this.http.post(environment.api + 'deans', data, this.options).toPromise();
-  }
-
-  update(id: number, name: string, identification: string): Promise<any> {
-    const data = { id: id, name: name, identification: identification };
-    return this.http.put(environment.api + 'deans/'+id, data, this.options).toPromise();
-  }
-
-  delete(id: number): Promise<any> {
-    const data = { id: id };
-    return this.http.delete(environment.api + 'deans/'+id, this.options).toPromise();
-  }
 }

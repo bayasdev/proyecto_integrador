@@ -20,7 +20,7 @@ class FacultyController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|string',
             'dean_id' => 'required|integer'
         ]);
         $faculty = Faculty::create($request->all());

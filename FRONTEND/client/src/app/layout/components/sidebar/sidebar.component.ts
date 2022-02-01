@@ -39,24 +39,24 @@ export class SidebarComponent implements OnInit {
     // servicios
     {
       name: 'SERVICIOS',
-      expectedRole: 5,
+      expectedRole: 99,
       items: [
         {
           name: 'Crear Solicitud',
           icon: 'fas fa-plus-circle',
-          link: '/student/petition'
+          link: '/student/new-request'
         }
       ]
     },
     // historico
     {
       name: 'HISTÓRICO',
-      expectedRole: 5,
+      expectedRole: 99,
       items: [
         {
           name: 'Mis Solicitudes',
           icon: 'fas fa-history',
-          link: '/student/petitions'
+          link: '/student/requests'
         }
       ]
     },
@@ -71,9 +71,9 @@ export class SidebarComponent implements OnInit {
           link: '/admin/users'
         },
         {
-          name: 'Roles',
-          icon: 'fas fa-user-tag',
-          link: '/admin/roles'
+          name: 'Facultades',
+          icon: 'fas fa-university',
+          link: '/admin/faculties'
         },
         {
           name: 'Carreras',
@@ -84,26 +84,6 @@ export class SidebarComponent implements OnInit {
           name: 'Materias',
           icon: 'fas fa-book',
           link: '/admin/subjects'
-        },
-        {
-          name: 'Directores de Carrera',
-          icon: 'fas fa-chalkboard-teacher',
-          link: '/admin/directors'
-        },
-        {
-          name: 'Facultades',
-          icon: 'fas fa-university',
-          link: '/admin/faculties'
-        },
-        {
-          name: 'Decanos',
-          icon: 'fas fa-user-tie',
-          link: '/admin/deans'
-        },
-        {
-          name: 'Tipos de Solicitud',
-          icon: 'fas fa-folder-plus',
-          link: '/admin/petition/types'
         },
       ]
     },

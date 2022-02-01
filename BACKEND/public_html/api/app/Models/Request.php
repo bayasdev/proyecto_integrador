@@ -7,39 +7,41 @@ use Illuminate\Database\Eloquent\Model;
 class Request extends Model
 {
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    * The attributes that are mass assignable.
+    *
+    * @var array
+    */
     protected $fillable = [
-        'user_id', 'request_type_id', 'parameters',
+        'student_id', 'career_id', 'request_type', 'request_status', 'parameters',
     ];
-
+    
     /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
+    * The attributes excluded from the model's JSON form.
+    *
+    * @var array
+    */
     protected $hidden = [];
     
-    // relaciones
-    public function users()
+    // relations
+    
+    public function students()
     {
-        return $this->hasOne('App\User');
+        return $this->hasOne(User::class);
     }
-
-    public function types()
+    
+    public function careers()
     {
-        return $this->hasOne('App\PetitionAttachment');
+        return $this->hasOne(Career::class);
     }
-
-    public function requestAttachments()
-    {
-        return $this->hasMany('App\PetitionAttachment')->withTimestamps();
-    }
-
+    
     public function subjects()
     {
-        return $this->hasMany('App\Subject')->withTimestamps();
+        return $this->belongsToMany(Subject::class)->withTimestamps();
     }
+    
+    public function attachments()
+    {
+        return $this->belongsToMany(RequestAttachment::class)->withTimestamps();;
+    }
+    
 }

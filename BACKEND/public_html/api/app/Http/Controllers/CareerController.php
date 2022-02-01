@@ -20,7 +20,7 @@ class CareerController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|string',
             'director_id' => 'required|integer',
             'faculty_id' => 'required|integer'
         ]);

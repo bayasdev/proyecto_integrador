@@ -7,36 +7,28 @@ use Illuminate\Database\Eloquent\Model;
 class Career extends Model
 {
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    * The attributes that are mass assignable.
+    *
+    * @var array
+    */
     protected $fillable = [
-       'name', 'director_id', 'faculty_id',
+        'name', 'director_id', 'faculty_id',
     ];
-
+    
     /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = [
-       
-    ];
-
-    function faculty()
+    * The attributes excluded from the model's JSON form.
+    *
+    * @var array
+    */
+    protected $hidden = [];
+    
+    public function subjects()
     {
-       return $this->hasOne('App\Faculty');
+        return $this->hasOne(Subject::class);
     }
 
-    function director()
+    public function faculties()
     {
-       return $this->hasOne('App\Director');
+        return $this->belongsTo(Faculty::class);
     }
-
-    function subject()
-    {
-       return $this->belongsTo('App\Subject');
-    }
-
 }

@@ -16,10 +16,10 @@ class CreateRequestRequestAttachmentTable extends Migration
         Schema::create('request_request_attachment', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->integer('request_attachment_id');
+            $table->foreign('request_attachment_id')->references('id')->on('request_attachments')->onDelete('cascade');
             $table->integer('request_id');
             $table->foreign('request_id')->references('id')->on('requests')->onDelete('cascade');
-            $table->integer('attachments_id');
-            $table->foreign('attachments_id')->references('id')->on('request_attachments')->onDelete('cascade');
         });
     }
 

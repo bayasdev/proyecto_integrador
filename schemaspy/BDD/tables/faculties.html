@@ -104,8 +104,8 @@
                                 <tbody>
                                 <tr>
                                     <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="id">id</span></td>
-                                    <td>serial</td>
-                                    <td>10</td>
+                                    <td>bigserial</td>
+                                    <td>19</td>
                                     <td title=''></td>
                                     <td title='Automatically updated by the database'>√</td>
                                     <td>nextval(&#39;faculties_id_seq&#39;::regclass)</td>
@@ -161,7 +161,7 @@
                                     <td><span id="name">name</span></td>
                                     <td>varchar</td>
                                     <td>255</td>
-                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
                                     <td title=''></td>
                                     <td>null</td>
                                     <td>
@@ -188,7 +188,7 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="faculties.dean_id references deans.id via faculties_dean_id_foreign"><a href='deans.html'>deans</a><span class='relatedKey'>.id</span></td>
+                                                <td title="faculties.dean_id references users.id via faculties_dean_id_foreign"><a href='users.html'>users</a><span class='relatedKey'>.id</span></td>
                                                 <td class="constraint detail">faculties_dean_id_foreign<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                         </table>
@@ -248,19 +248,19 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="careers.html" target="_top" title="careers" alt="" coords="517,5,668,181">
-<area shape="rect" id="node2" href="faculties.html" target="_top" title="faculties" alt="" coords="219,32,473,248">
-<area shape="rect" id="node3" href="deans.html" target="_top" title="deans" alt="" coords="5,152,175,269">
+<area shape="rect" id="node1" href="careers.html" target="_top" title="careers" alt="" coords="517,60,668,236">
+<area shape="rect" id="node2" href="users.html" target="_top" title="users" alt="" coords="5,163,175,280">
+<area shape="rect" id="node3" href="faculties.html" target="_top" title="faculties" alt="" coords="219,5,473,221">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/faculties.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="careers.html" target="_top" title="careers" alt="" coords="517,79,668,255">
-<area shape="rect" id="node2" href="directors.html" target="_top" title="directors" alt="" coords="274,239,418,327">
+<area shape="rect" id="node1" href="careers.html" target="_top" title="careers" alt="" coords="517,81,668,257">
+<area shape="rect" id="node2" href="users.html" target="_top" title="users" alt="" coords="5,199,175,316">
 <area shape="rect" id="node3" href="faculties.html" target="_top" title="faculties" alt="" coords="219,5,473,221">
-<area shape="rect" id="node4" href="deans.html" target="_top" title="deans" alt="" coords="5,125,175,243">
-<area shape="rect" id="node5" href="subjects.html" target="_top" title="subjects" alt="" coords="712,81,852,169">
+<area shape="rect" id="node4" href="requests.html" target="_top" title="requests" alt="" coords="712,213,853,301">
+<area shape="rect" id="node5" href="subjects.html" target="_top" title="subjects" alt="" coords="713,84,853,172">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/faculties.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>

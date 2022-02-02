@@ -18,7 +18,7 @@ class CreateFacultiesTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->integer('dean_id');
-            $table->foreign('dean_id')->references('id')->on('deans');
+            $table->foreign('dean_id')->references('id')->on('users');
         });
     }
     

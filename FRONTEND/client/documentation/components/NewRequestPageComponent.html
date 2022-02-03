@@ -1,0 +1,1413 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>client documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">client documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  NewRequestPageComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/layout/student/new-request-page/new-request-page.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-new-request-page</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./new-request-page.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./new-request-page.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#careers" >careers</a>
+                            </li>
+                            <li>
+                                <a href="#file" >file</a>
+                            </li>
+                            <li>
+                                <a href="#fileUploader" >fileUploader</a>
+                            </li>
+                            <li>
+                                <a href="#new_request" >new_request</a>
+                            </li>
+                            <li>
+                                <a href="#new_subjects" >new_subjects</a>
+                            </li>
+                            <li>
+                                <a href="#request_types" >request_types</a>
+                            </li>
+                            <li>
+                                <a href="#subjects" >subjects</a>
+                            </li>
+                            <li>
+                                <a href="#temp_subject" >temp_subject</a>
+                            </li>
+                            <li>
+                                <a href="#user" >user</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#add_subject" >add_subject</a>
+                            </li>
+                            <li>
+                                <a href="#create_request" >create_request</a>
+                            </li>
+                            <li>
+                                <a href="#file_selected" >file_selected</a>
+                            </li>
+                            <li>
+                                <a href="#get_careers" >get_careers</a>
+                            </li>
+                            <li>
+                                <a href="#get_subjects" >get_subjects</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#refresh" >refresh</a>
+                            </li>
+                            <li>
+                                <a href="#remove_subject" >remove_subject</a>
+                            </li>
+                            <li>
+                                <a href="#reset" >reset</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(spinner: NgxSpinnerService, toastr: ToastrService, subjectDataService: <a href="../injectables/SubjectService.html" target="_self">SubjectService</a>, careerDataService: <a href="../injectables/CareerService.html" target="_self">CareerService</a>, requestDataService: <a href="../injectables/RequestService.html" target="_self">RequestService</a>, requestAttachmentDataService: <a href="../injectables/RequestAttachmentService.html" target="_self">RequestAttachmentService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/layout/student/new-request-page/new-request-page.component.ts:45</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>spinner</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgxSpinnerService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>toastr</td>
+                                                  
+                                                        <td>
+                                                                    <code>ToastrService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>subjectDataService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SubjectService.html" target="_self" >SubjectService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>careerDataService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CareerService.html" target="_self" >CareerService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>requestDataService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/RequestService.html" target="_self" >RequestService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>requestAttachmentDataService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/RequestAttachmentService.html" target="_self" >RequestAttachmentService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="add_subject"></a>
+                    <span class="name">
+                        <span ><b>add_subject</b></span>
+                        <a href="#add_subject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>add_subject(subject: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">src/app/layout/student/new-request-page/new-request-page.component.ts:92</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>subject</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="create_request"></a>
+                    <span class="name">
+                        <span ><b>create_request</b></span>
+                        <a href="#create_request"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>create_request()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="109"
+                            class="link-to-prism">src/app/layout/student/new-request-page/new-request-page.component.ts:109</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="file_selected"></a>
+                    <span class="name">
+                        <span ><b>file_selected</b></span>
+                        <a href="#file_selected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>file_selected(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">src/app/layout/student/new-request-page/new-request-page.component.ts:105</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="get_careers"></a>
+                    <span class="name">
+                        <span ><b>get_careers</b></span>
+                        <a href="#get_careers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>get_careers()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/app/layout/student/new-request-page/new-request-page.component.ts:74</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="get_subjects"></a>
+                    <span class="name">
+                        <span ><b>get_subjects</b></span>
+                        <a href="#get_subjects"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>get_subjects()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">src/app/layout/student/new-request-page/new-request-page.component.ts:83</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/app/layout/student/new-request-page/new-request-page.component.ts:55</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="refresh"></a>
+                    <span class="name">
+                        <span ><b>refresh</b></span>
+                        <a href="#refresh"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>refresh()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/app/layout/student/new-request-page/new-request-page.component.ts:61</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="remove_subject"></a>
+                    <span class="name">
+                        <span ><b>remove_subject</b></span>
+                        <a href="#remove_subject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>remove_subject(subject: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/app/layout/student/new-request-page/new-request-page.component.ts:100</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>subject</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reset"></a>
+                    <span class="name">
+                        <span ><b>reset</b></span>
+                        <a href="#reset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>reset()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/app/layout/student/new-request-page/new-request-page.component.ts:68</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="careers"></a>
+                    <span class="name">
+                        <span ><b>careers</b></span>
+                        <a href="#careers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/layout/student/new-request-page/new-request-page.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="file"></a>
+                    <span class="name">
+                        <span ><b>file</b></span>
+                        <a href="#file"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/layout/student/new-request-page/new-request-page.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fileUploader"></a>
+                    <span class="name">
+                        <span ><b>fileUploader</b></span>
+                        <a href="#fileUploader"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;fileUploader&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/layout/student/new-request-page/new-request-page.component.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="new_request"></a>
+                    <span class="name">
+                        <span ><b>new_request</b></span>
+                        <a href="#new_request"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    type: 1,
+    career: 1,
+    parameters: {
+      student_message: &#x27;&#x27;
+    }
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/layout/student/new-request-page/new-request-page.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="new_subjects"></a>
+                    <span class="name">
+                        <span ><b>new_subjects</b></span>
+                        <a href="#new_subjects"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/layout/student/new-request-page/new-request-page.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="request_types"></a>
+                    <span class="name">
+                        <span ><b>request_types</b></span>
+                        <a href="#request_types"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+      id: 1,
+      name: &#x27;Modificación de Carga Académica&#x27;
+    },
+    {
+      id: 2,
+      name: &#x27;Retiro en Asignatura&#x27;
+    }
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/layout/student/new-request-page/new-request-page.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subjects"></a>
+                    <span class="name">
+                        <span ><b>subjects</b></span>
+                        <a href="#subjects"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/layout/student/new-request-page/new-request-page.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="temp_subject"></a>
+                    <span class="name">
+                        <span ><b>temp_subject</b></span>
+                        <a href="#temp_subject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/layout/student/new-request-page/new-request-page.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="user"></a>
+                    <span class="name">
+                        <span ><b>user</b></span>
+                        <a href="#user"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/layout/student/new-request-page/new-request-page.component.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ElementRef, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
+import { NgxSpinnerService } from &#x27;ngx-spinner&#x27;;
+import { ToastrService } from &#x27;ngx-toastr&#x27;;
+import { CareerService } from &#x27;src/app/services/career.service&#x27;;
+import { SubjectService } from &#x27;src/app/services/subject.service&#x27;;
+import { RequestService } from &#x27;src/app/services/request.service&#x27;;
+import { RequestAttachmentService } from &#x27;src/app/services/request-attachment.service&#x27;;
+import jwt_decode from &quot;jwt-decode&quot;;
+
+@Component({
+  selector: &#x27;app-new-request-page&#x27;,
+  templateUrl: &#x27;./new-request-page.component.html&#x27;,
+  styleUrls: [&#x27;./new-request-page.component.scss&#x27;]
+})
+export class NewRequestPageComponent implements OnInit {
+  @ViewChild(&#x27;fileUploader&#x27;) fileUploader!:ElementRef;
+  
+  user: any &#x3D; {};
+
+  request_types &#x3D; [
+    {
+      id: 1,
+      name: &#x27;Modificación de Carga Académica&#x27;
+    },
+    {
+      id: 2,
+      name: &#x27;Retiro en Asignatura&#x27;
+    }
+  ]
+  careers: any[] &#x3D; [];
+  subjects: any[] &#x3D; [];
+
+  new_request &#x3D; {
+    type: 1,
+    career: 1,
+    parameters: {
+      student_message: &#x27;&#x27;
+    }
+  }
+
+  new_subjects: any[] &#x3D; [];
+
+  temp_subject: any;
+
+  file: any;
+
+  constructor(private spinner: NgxSpinnerService,
+              private toastr: ToastrService,
+              private subjectDataService: SubjectService,
+              private careerDataService: CareerService,
+              private requestDataService: RequestService,
+              private requestAttachmentDataService: RequestAttachmentService
+  ) { }
+
+  ngOnInit(): void {
+    const token: string &#x3D; sessionStorage.getItem(&#x27;token&#x27;) as string;
+    this.user &#x3D; jwt_decode(token);;
+    this.refresh();
+  }
+
+  refresh() {
+    this.new_request.parameters.student_message &#x3D; &#x27;&#x27;;
+    this.new_subjects &#x3D; [];
+    this.get_careers();
+    this.get_subjects();
+  }
+
+  reset() {
+    this.file &#x3D; null;
+    this.fileUploader.nativeElement.value &#x3D; null;
+    this.refresh();
+  }
+
+  get_careers(){
+    this.spinner.show();
+    this.careers &#x3D; [];
+    this.careerDataService.get().then( r &#x3D;&gt; {
+      this.spinner.hide();
+      this.careers &#x3D; r;
+    }).catch( e &#x3D;&gt; { console.log(e) });
+  }
+
+  get_subjects(){
+    this.spinner.show();
+    this.subjects &#x3D; [];
+    this.subjectDataService.getByCareer(this.new_request.career).then( r &#x3D;&gt; {
+      this.spinner.hide();
+      this.subjects &#x3D; r;
+    }).catch( e &#x3D;&gt; { console.log(e) });
+  }
+
+  add_subject(subject: any){
+    if (this.new_subjects.includes(subject)) {
+      this.toastr.error(&#x27;La materia ya está seleccionada.&#x27;, &#x27;Error&#x27;);
+      return;
+    }
+    this.new_subjects.push(subject);
+  }
+
+  remove_subject(subject: any){
+    let index &#x3D; this.new_subjects.indexOf(subject);
+    this.new_subjects.splice(index, 1);
+  }
+
+  file_selected(event: any) {
+    this.file &#x3D; event.target.files[0];
+  }
+
+  create_request(){
+    // checks
+    this.spinner.show();
+    if (this.new_request.parameters.student_message &#x3D;&#x3D; &#x27;&#x27;){
+      this.spinner.hide();
+      this.toastr.error(&#x27;El campo de mensaje no puede estar vacio.&#x27;, &#x27;Error&#x27;);
+      return;
+    } else if (this.new_subjects.length &#x3D;&#x3D; 0) {
+      this.spinner.hide();
+      this.toastr.error(&#x27;La lista de materias no puede estar vacia.&#x27;, &#x27;Error&#x27;);
+      return;
+    } else if (this.new_subjects.some(subject &#x3D;&gt; subject[&#x27;career_id&#x27;] !&#x3D;&#x3D; this.new_request.career)) {
+      this.spinner.hide();
+      this.toastr.error(&#x27;La lista de materias contiene materias de otra carrera.&#x27;, &#x27;Error&#x27;);
+      return;
+    } else if (!this.file) {
+      this.spinner.hide();
+      this.toastr.error(&#x27;Debe adjuntar un archivo.&#x27;, &#x27;Error&#x27;);
+      return;
+    } else if (!([&#x27;image/jpeg&#x27;, &#x27;image/png&#x27;].includes(this.file.type))) {
+      this.spinner.hide();
+      this.toastr.error(&#x27;Tipo de archivo no soportado.&#x27;, &#x27;Error&#x27;);
+      return;
+    } else if (this.file.size &gt; 5242880) {
+      this.spinner.hide();
+      this.toastr.error(&#x27;El archivo es muy grande.&#x27;, &#x27;Error&#x27;);
+      return;
+    } else {
+      // convert file input to base64
+      const reader &#x3D; new FileReader();
+      reader.readAsDataURL(this.file);
+      reader.onload &#x3D; () &#x3D;&gt; {
+        const base64 &#x3D; (&lt;string&gt;reader.result).split(&#x27;,&#x27;)[1];
+        // upload file to storage and wait for id
+        this.requestAttachmentDataService.create(this.file.name, this.file.type, base64, 1).then( r &#x3D;&gt; {
+          // now create the request
+          this.requestDataService.create(this.user.sub, this.new_request.career, this.new_request.type, this.new_request.parameters, r.id, this.new_subjects).then( r &#x3D;&gt; {
+            this.spinner.hide();
+            this.toastr.success(&#x27;La solicitud ha sido enviada correctamente.&#x27;, &#x27;Solicitud Enviada&#x27;)
+            this.reset();
+          }).catch( e &#x3D;&gt; { console.log(e) });
+        }).catch( e &#x3D;&gt; { console.log(e) });
+      }
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;h1 class&#x3D;&quot;display-5 mb-5&quot;&gt;Crear Solicitud&lt;/h1&gt;
+&lt;div class&#x3D;&quot;row mb-5&quot;&gt;
+    &lt;div class&#x3D;&quot;col-lg-6 col-md-12 mb-lg-0 mb-5&quot;&gt;
+        &lt;label class&#x3D;&quot;form-label&quot;&gt;&lt;i class&#x3D;&quot;fas fa-list-ul&quot;&gt;&lt;/i&gt; Seleccione el tipo de solicitud&lt;/label&gt;
+        &lt;select class&#x3D;&quot;form-select&quot; [(ngModel)]&#x3D;&quot;new_request.type&quot;&gt;
+            &lt;option [ngValue]&#x3D;&quot;request_type.id&quot; *ngFor&#x3D;&quot;let request_type of request_types&quot;&gt;{{request_type.name}}&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;col-lg-6 col-md-12&quot;&gt;
+        &lt;label class&#x3D;&quot;form-label&quot;&gt;&lt;i class&#x3D;&quot;fas fa-graduation-cap&quot;&gt;&lt;/i&gt; Seleccione su carrera&lt;/label&gt;
+        &lt;select class&#x3D;&quot;form-select&quot; [(ngModel)]&#x3D;&quot;new_request.career&quot;&gt;
+            &lt;option [ngValue]&#x3D;&quot;career.id&quot; *ngFor&#x3D;&quot;let career of careers&quot; (click)&#x3D;&quot;get_subjects()&quot;&gt;{{career.name}}&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class&#x3D;&quot;mb-5 table-responsive&quot;&gt;
+    &lt;ng-container *ngIf&#x3D;&quot;new_request.type &#x3D;&#x3D; 1; else labelRetirar&quot;&gt;
+        &lt;label class&#x3D;&quot;form-label&quot;&gt;&lt;i class&#x3D;&quot;fas fa-book&quot;&gt;&lt;/i&gt; Agregue las materias a modificar&lt;/label&gt;
+    &lt;/ng-container&gt;
+    &lt;ng-template #labelRetirar&gt;
+        &lt;label class&#x3D;&quot;form-label&quot;&gt;&lt;i class&#x3D;&quot;fas fa-book&quot;&gt;&lt;/i&gt; Agregue las materias a retirar&lt;/label&gt;
+    &lt;/ng-template&gt;
+    &lt;table class&#x3D;&quot;table table-bordered table-hover&quot;&gt;
+        &lt;thead class&#x3D;&quot;table-light&quot;&gt;
+            &lt;tr&gt;
+                &lt;th scope&#x3D;&quot;col&quot;&gt;Código&lt;/th&gt;
+                &lt;th scope&#x3D;&quot;col&quot;&gt;Nombre&lt;/th&gt;
+                &lt;th scope&#x3D;&quot;col&quot;&gt;Acción&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr *ngFor&#x3D;&quot;let new_subject of new_subjects&quot;&gt;
+                &lt;th scope&#x3D;&quot;row&quot;&gt;{{new_subject.code}}&lt;/th&gt;
+                &lt;td&gt;{{new_subject.name}}&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-danger&quot; (click)&#x3D;&quot;remove_subject(new_subject)&quot;&gt;
+                        &lt;i class&#x3D;&quot;fas fa-trash&quot;&gt;&lt;/i&gt;
+                    &lt;/button&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;select class&#x3D;&quot;form-select&quot; [(ngModel)]&#x3D;&quot;temp_subject&quot;&gt;
+                        &lt;option [ngValue]&#x3D;&quot;subject&quot; *ngFor&#x3D;&quot;let subject of subjects&quot;&gt;{{subject.name}}&lt;/option&gt;
+                    &lt;/select&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;div class&#x3D;&quot;d-grid gap-2 d-md-block&quot;&gt;
+                        &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-primary&quot; (click)&#x3D;&quot;add_subject(temp_subject)&quot;&gt;
+                            &lt;i class&#x3D;&quot;fas fa-plus&quot;&gt;&lt;/i&gt;
+                        &lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+&lt;div class&#x3D;&quot;mb-5&quot;&gt;
+    &lt;label class&#x3D;&quot;form-label&quot;&gt;&lt;i class&#x3D;&quot;fas fa-edit&quot;&gt;&lt;/i&gt; Explique a detalle su solicitud&lt;/label&gt;
+    &lt;textarea class&#x3D;&quot;form-control&quot; rows&#x3D;&quot;10&quot; [(ngModel)]&#x3D;&quot;new_request.parameters.student_message&quot;&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+&lt;div class&#x3D;&quot;mb-5&quot;&gt;
+    &lt;label class&#x3D;&quot;form-label&quot;&gt;&lt;i class&#x3D;&quot;fas fa-paperclip&quot;&gt;&lt;/i&gt; Adjunte el comprobante de pago del derecho de solicitud&lt;/label&gt;&lt;br&gt;
+    &lt;div class&#x3D;&quot;alert alert-info&quot; role&#x3D;&quot;alert&quot;&gt;
+        &lt;i class&#x3D;&quot;fas fa-hand-holding-usd&quot;&gt;&lt;/i&gt; Deberá realizar una trasferencia bancaria o depósito de &lt;b&gt;10 USD&lt;/b&gt; en la &lt;b&gt;Cuenta Corriente de Banco Pichincha No. 2100015196&lt;/b&gt; con los siguientes datos: &lt;b&gt;Razón Social: Universidad Iberoamericana del Ecuador UNIBE&lt;/b&gt;, &lt;b&gt;RUC: 1792378133001&lt;/b&gt;.
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;alert alert-warning&quot; role&#x3D;&quot;alert&quot;&gt;
+        &lt;i class&#x3D;&quot;fas fa-info-circle&quot;&gt;&lt;/i&gt; Tamaño máximo 5MB, formatos soportados: jpeg, jpg, png
+    &lt;/div&gt;
+    &lt;input #fileUploader class&#x3D;&quot;form-control&quot; type&#x3D;&quot;file&quot; (change)&#x3D;&quot;file_selected($event)&quot;&gt;
+&lt;/div&gt;
+&lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-primary mb-5&quot; (click)&#x3D;&quot;create_request()&quot;&gt;
+    &lt;i class&#x3D;&quot;fas fa-paper-plane&quot;&gt;&lt;/i&gt; Enviar Solicitud
+&lt;/button&gt;
+&lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-danger mb-5&quot; (click)&#x3D;&quot;reset()&quot;&gt;
+    &lt;i class&#x3D;&quot;fas fa-ban&quot;&gt;&lt;/i&gt; Limpiar Formulario
+&lt;/button&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./new-request-page.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">textarea {
+    resize: none;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><h1 class="display-5 mb-5">Crear Solicitud</h1><div class="row mb-5">    <div class="col-lg-6 col-md-12 mb-lg-0 mb-5">        <label class="form-label"><i class="fas fa-list-ul"></i> Seleccione el tipo de solicitud</label>        <select class="form-select" [(ngModel)]="new_request.type">            <option [ngValue]="request_type.id" *ngFor="let request_type of request_types">{{request_type.name}}</option>        </select>    </div>    <div class="col-lg-6 col-md-12">        <label class="form-label"><i class="fas fa-graduation-cap"></i> Seleccione su carrera</label>        <select class="form-select" [(ngModel)]="new_request.career">            <option [ngValue]="career.id" *ngFor="let career of careers" (click)="get_subjects()">{{career.name}}</option>        </select>    </div></div><div class="mb-5 table-responsive">    <ng-container *ngIf="new_request.type == 1; else labelRetirar">        <label class="form-label"><i class="fas fa-book"></i> Agregue las materias a modificar</label>    </ng-container>    <ng-template #labelRetirar>        <label class="form-label"><i class="fas fa-book"></i> Agregue las materias a retirar</label>    </ng-template>    <table class="table table-bordered table-hover">        <thead class="table-light">            <tr>                <th scope="col">Código</th>                <th scope="col">Nombre</th>                <th scope="col">Acción</th>            </tr>        </thead>        <tbody>            <tr *ngFor="let new_subject of new_subjects">                <th scope="row">{{new_subject.code}}</th>                <td>{{new_subject.name}}</td>                <td>                    <button type="button" class="btn btn-danger" (click)="remove_subject(new_subject)">                        <i class="fas fa-trash"></i>                    </button>                </td>            </tr>            <tr>                <td></td>                <td>                    <select class="form-select" [(ngModel)]="temp_subject">                        <option [ngValue]="subject" *ngFor="let subject of subjects">{{subject.name}}</option>                    </select>                </td>                <td>                    <div class="d-grid gap-2 d-md-block">                        <button type="button" class="btn btn-primary" (click)="add_subject(temp_subject)">                            <i class="fas fa-plus"></i>                        </button>                    </div>                </td>            </tr>        </tbody>    </table></div><div class="mb-5">    <label class="form-label"><i class="fas fa-edit"></i> Explique a detalle su solicitud</label>    <textarea class="form-control" rows="10" [(ngModel)]="new_request.parameters.student_message"></textarea></div><div class="mb-5">    <label class="form-label"><i class="fas fa-paperclip"></i> Adjunte el comprobante de pago del derecho de solicitud</label><br>    <div class="alert alert-info" role="alert">        <i class="fas fa-hand-holding-usd"></i> Deberá realizar una trasferencia bancaria o depósito de <b>10 USD</b> en la <b>Cuenta Corriente de Banco Pichincha No. 2100015196</b> con los siguientes datos: <b>Razón Social: Universidad Iberoamericana del Ecuador UNIBE</b>, <b>RUC: 1792378133001</b>.    </div>    <div class="alert alert-warning" role="alert">        <i class="fas fa-info-circle"></i> Tamaño máximo 5MB, formatos soportados: jpeg, jpg, png    </div>    <input #fileUploader class="form-control" type="file" (change)="file_selected($event)"></div><button type="button" class="btn btn-primary mb-5" (click)="create_request()">    <i class="fas fa-paper-plane"></i> Enviar Solicitud</button><button type="button" class="btn btn-danger mb-5" (click)="reset()">    <i class="fas fa-ban"></i> Limpiar Formulario</button></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'BlankPageComponent', 'selector': 'app-blank-page'},{'name': 'CareersPageComponent', 'selector': 'app-careers-page'},{'name': 'DashboardPageComponent', 'selector': 'app-dashboard-page'},{'name': 'DeniedPageComponent', 'selector': 'app-denied-page'},{'name': 'FacultiesPageComponent', 'selector': 'app-faculties-page'},{'name': 'LayoutComponent', 'selector': 'app-layout'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NewRequestPageComponent', 'selector': 'app-new-request-page'},{'name': 'NotFoundPageComponent', 'selector': 'app-not-found-page'},{'name': 'PasswordRecoveryComponent', 'selector': 'app-password-recovery'},{'name': 'PasswordRecoveryPageComponent', 'selector': 'app-password-recovery-page'},{'name': 'ProfilePageComponent', 'selector': 'app-profile-page'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'RequestsPageComponent', 'selector': 'app-requests-page'},{'name': 'RequestViewerPageComponent', 'selector': 'app-request-viewer-page'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SubjectsPageComponent', 'selector': 'app-subjects-page'},{'name': 'UsersPageComponent', 'selector': 'app-users-page'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'NewRequestPageComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'NewRequestPageComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -18,6 +18,11 @@ export class RequestService {
     return this.http.get(environment.api + 'requests', this.options).toPromise();
   }
 
+  getById(id: number): Promise<any>{
+    return this.http.get(environment.api + 'requests/'+id, this.options).toPromise();
+  }
+
+
   getByCareer(id: number): Promise<any>{
     return this.http.get(environment.api + 'careers/'+id+'/requests', this.options).toPromise();
   }
@@ -31,13 +36,12 @@ export class RequestService {
     return this.http.post(environment.api + 'requests', data, this.options).toPromise();
   }
 
-  update(id: number): Promise<any> {
-    const data = {  };
+  update(id: number, request_status: number, parameters: any, attachment_id?: number): Promise<any> {
+    const data = { request_status: request_status, parameters: JSON.stringify(parameters), attachment_id: attachment_id };
     return this.http.put(environment.api + 'requests/'+id, data, this.options).toPromise();
   }
 
   delete(id: number): Promise<any> {
-    const data = { id: id };
     return this.http.delete(environment.api + 'requests/'+id, this.options).toPromise();
   }
 }

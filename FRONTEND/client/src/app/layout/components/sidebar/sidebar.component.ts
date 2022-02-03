@@ -85,6 +85,11 @@ export class SidebarComponent implements OnInit {
           icon: 'fas fa-book',
           link: '/admin/subjects'
         },
+        {
+          name: 'Solicitudes',
+          icon: 'fas fa-folder-open',
+          link: '/admin/requests'
+        },
       ]
     },
     // cuenta

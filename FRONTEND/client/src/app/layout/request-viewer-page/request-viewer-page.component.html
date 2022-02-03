@@ -1,0 +1,139 @@
+<ng-container *ngIf="isLoaded">
+  <h1 class="display-5 mb-5">Solicitud #{{request.id}}</h1>
+  <div class="mb-5">
+    <p class="lead"><i class="fas fa-list"></i> <b>Tipo de solicitud:</b> {{request_types[request.request_type-1].name}}</p>
+    <p class="lead"><i class="fas fa-info-circle"></i> <b>Estado:</b> <span class="badge rounded-pill bg-primary">{{request_statuses[request.request_status-1].name}}</span></p>
+    <p class="lead"><i class="far fa-calendar-alt"></i> <b>Fecha:</b> {{request.created_at}}</p>
+    <p class="lead"><i class="fas fa-user"></i> <b>Nombre del estudiante:</b> {{request.student_name}}</p>
+    <p class="lead"><i class="fas fa-id-card"></i> <b>No. de cédula del estudiante:</b> {{request.student_identification}}</p>
+    <p class="lead"><i class="fas fa-graduation-cap"></i> <b>Carrera:</b> {{request.career_name}}</p>
+  </div>
+  <div class="mb-5 table-responsive">
+    <ng-container *ngIf="request.request_type == 1; else labelRetirar">
+      <label class="form-label"><i class="fas fa-book"></i> Materias a modificar</label>
+    </ng-container>
+    <ng-template #labelRetirar>
+      <label class="form-label"><i class="fas fa-book"></i> Materias a retirar</label>
+    </ng-template>
+    <table class="table table-bordered table-hover">
+      <thead class="table-light">
+        <tr>
+          <th scope="col">Código</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Créditos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let subject of this.request.subjects">
+          <th scope="row">{{subject.code}}</th>
+          <td>{{subject.name}}</td>
+          <td>{{subject.credits}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mb-5">
+    <p class="lead"><i class="fas fa-comments"></i> <b>Mensajes</b></p>
+    <div class="row d-flex flex-column align-items-start mb-5" *ngIf="request.parameters.student_message">
+      <div class="col-lg-6 col-md-12">
+        <p><i class="fas fa-user"></i> {{request.student_name}} (Estudiante)</p>
+        <div class="p-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+          <p class="small mb-0">{{request.parameters.student_message}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex flex-column align-items-end mb-5" *ngIf="request.parameters.accountant_message">
+      <div class="col-lg-6 col-md-12">
+        <p class="text-end"><i class="fas fa-user"></i> Dirección de Contabilidad</p>
+        <div class="p-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
+          <p class="small mb-0">{{request.parameters.accountant_message}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex flex-column align-items-end mb-5" *ngIf="request.parameters.director_message">
+      <div class="col-lg-6 col-md-12">
+        <p class="text-end"><i class="fas fa-user"></i> {{request.director_name}} (Director de Carrera)</p>
+        <div class="p-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
+          <p class="small mb-0">{{request.parameters.director_message}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex flex-column align-items-end mb-5" *ngIf="request.parameters.dean_message">
+      <div class="col-lg-6 col-md-12">
+        <p class="text-end"><i class="fas fa-user"></i> {{request.dean_name}} (Decano)</p>
+        <div class="p-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
+          <p class="small mb-0">{{request.parameters.dean_message}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mb-5 table-responsive">
+    <p class="lead"><i class="fas fa-file"></i> <b>Archivos adjuntos</b></p>
+    <table class="table table-bordered table-hover">
+      <thead class="table-light">
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Formato</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let attachment of this.request.attachments">
+          <th scope="row">{{attachment.file_name}}</th>
+          <td>{{attachment.file_type}}</td>
+          <td>{{attachment_types[attachment.attachment_type-1].name}}</td>
+          <td>
+            <div class="d-grid gap-2 d-md-block">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fileViewerModal" (click)="get_attachment(attachment.id)" *ngIf="['image/jpeg', 'image/png'].includes(attachment.file_type)">
+                <i class="fas fa-eye"></i>
+              </button>
+              <button type="button" class="btn btn-success" (click)="download_attachment(attachment.id)">
+                <i class="fas fa-download"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-container *ngIf="isAllowed">
+    <div class="mb-5">
+      <p class="lead"><i class="fas fa-reply"></i> <b>Responder a esta solicitud</b></p>
+      <label class="form-label"><i class="fas fa-edit"></i> Deje un mensaje *</label>
+      <textarea class="form-control" rows="5" [(ngModel)]="this.replyMessage"></textarea>
+    </div>
+    <div class="mb-5">
+      <label class="form-label"><i class="fas fa-paperclip"></i> Adjunte un archivo</label><br>
+      <div class="alert alert-warning" role="alert">
+        <i class="fas fa-info-circle"></i> Tamaño máximo 10MB
+      </div>
+      <input class="form-control" type="file" (change)="file_selected($event)">
+    </div>
+    <button type="button" class="btn btn-success mb-5" (click)="update_request(1)">
+      <i class="fas fa-check"></i> Aprobar solicitud
+    </button>
+    <button type="button" class="btn btn-danger mb-5" (click)="update_request(2)">
+      <i class="fas fa-times"></i> Rechazar solicitud
+    </button>
+  </ng-container>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="fileViewerModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Visor de Archivos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src={{imgBase64}} class="img-fluid">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-ban"></i> Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</ng-container>

@@ -12,7 +12,7 @@ class RequestAttachmentController extends Controller
     {
         $attachments = RequestAttachment::all();
         foreach ($attachments as $attachment) {
-            $attachment->file_content = Storage::disk('attachments')->get($attachment->file_path);
+            $attachment->file_content = base64_encode(Storage::disk('attachments')->get($attachment->file_path));
         }
         return response()->json($attachments, 200);
     }
@@ -23,7 +23,7 @@ class RequestAttachmentController extends Controller
         // get file from storage
         $content = Storage::disk('attachments')->get($response->file_path);
         // return DB values plus file in base64
-        $response->file_content = $content;
+        $response->file_content = base64_encode($content);
         return response()->json($response, 200);
     }
     

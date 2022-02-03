@@ -54,8 +54,7 @@ export class NewRequestPageComponent implements OnInit {
 
   ngOnInit(): void {
     const token: string = sessionStorage.getItem('token') as string;
-    const decoded: any = jwt_decode(token);
-    this.user = decoded;
+    this.user = jwt_decode(token);;
     this.refresh();
   }
 

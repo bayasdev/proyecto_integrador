@@ -40,8 +40,7 @@ export class ProfilePageComponent implements OnInit {
     this.password_confirm = '';
     this.new_password = '';
     const token: string = sessionStorage.getItem('token') as string;
-    const decoded: any = jwt_decode(token);
-    this.user = decoded;
+    this.user = jwt_decode(token);;
   }
   
   validate_email(): boolean {

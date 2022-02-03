@@ -1,59 +1,46 @@
-version: '3'
-
-networks:
-  smcar:
-    ipam:
-      config:
-        - subnet: 172.30.0.0/24
+version: '3.8'
 
 services:
   web:
     ports:
+    - "80:80"
+    - "443:443"
     - "8443:8443"
-    - "8442:8442"
     image: nginx:latest
     restart: always
     volumes:
-    - ./public_html:/public_html
+    - ./var/www/html:/var/www/html
     - ./conf.d:/etc/nginx/conf.d
-    - ./ssl_certs:/etc/nginx/ssl_certificates
+    - ./ssl_certificates:/etc/nginx/ssl_certificates
     - ./ssl_keys:/etc/nginx/ssl_keys
     - ./logs:/var/log/nginx
-    networks:
-      smcar:
-        ipv4_address: 172.30.0.11
     environment:
-      TZ: America/Bogota
+      TZ: America/Guayaquil
     links:
     - php
   php:
     image: geminis3/php:fpm-lumen
     restart: always
     volumes:
-    - ./public_html:/public_html
-    - ./php_confs/php.ini:/usr/local/etc/php/php.ini
-    - ./php_confs/www.conf:/usr/local/etc/php-fpm.d/www.conf
-    networks:
-      smcar:
-        ipv4_address: 172.30.0.12
+    - ./var/www/html:/var/www/html
     environment:
-      TZ: America/Bogota
+      TZ: America/Guayaquil
       PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:~/.composer/vendor/bin
     links:
     - postgres
+
   postgres:
     image: postgres:latest
     restart: always
     ports:
       - 5432:5432
-    networks:
-      smcar:
-        ipv4_address: 172.30.0.13
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
     environment:
+      TZ: America/Guayaquil
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+
   pgadmin4:
     image: dpage/pgadmin4:latest
     restart: always
@@ -61,11 +48,8 @@ services:
       - 8082:80
     volumes:
       - ./pgadmin_data:/var/lib/pgadmin
-    networks:
-      smcar:
-        ipv4_address: 172.30.0.14
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@smcar.com
+      PGADMIN_DEFAULT_EMAIL: admin@bayas.dev
       PGADMIN_DEFAULT_PASSWORD: admin
     links:
     - postgres

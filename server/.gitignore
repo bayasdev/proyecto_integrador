@@ -1,0 +1,5 @@
+/logs
+/pgadmin_data
+/postgres_data
+/ssl_certificates
+/ssl_keys

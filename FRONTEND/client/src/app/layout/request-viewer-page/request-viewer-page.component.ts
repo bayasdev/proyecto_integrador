@@ -77,7 +77,7 @@ export class RequestViewerPageComponent implements OnInit {
 
   imgBase64!: any;
 
-  isAllowed: boolean = true;
+  isAllowed: boolean = false;
 
   allowStatus!: number;
 
@@ -104,26 +104,28 @@ export class RequestViewerPageComponent implements OnInit {
       });
     }
     
-    refresh(){
+    async refresh(){
+      // debe estar await
       this.get_request();
       // logic to check if it's allowed to reply to request
       // also check if request belongs to them
       // accountant
-      // if(this.user.role == 4 && this.request.request_status == 1){
-      //   this.isAllowed = true;
-      //   this.allowStatus = 2;
-      //   this.rejectStatus = 3;
-      // // director
-      // } else if (this.user.role == 3 && this.user.sub == this.request.director_id && this.request.request_status == 2){
-      //   this.isAllowed = true;
-      //   this.allowStatus = 4;
-      //   this.rejectStatus = 5;
-      // // dean
-      // } else if (this.request.request_type == 2 && this.user.role == 2 && this.user.sub == this.request.dean_id && this.request.request_status == 4){
-      //   this.isAllowed = true;
-      //   this.allowStatus = 6;
-      //   this.rejectStatus = 7;
-      // }
+      // debe ser asincrono
+      if(this.user.role == 4){
+        this.isAllowed = true;
+        this.allowStatus = 2;
+        this.rejectStatus = 3;
+      // director
+      } else if (this.user.role == 3 && this.user.sub == this.request.director_id && this.request.request_status == 2){
+        this.isAllowed = true;
+        this.allowStatus = 4;
+        this.rejectStatus = 5;
+      // dean
+      } else if (this.request.request_type == 2 && this.user.role == 2 && this.user.sub == this.request.dean_id && this.request.request_status == 4){
+        this.isAllowed = true;
+        this.allowStatus = 6;
+        this.rejectStatus = 7;
+      }
     }
     
     get_request(){
@@ -133,7 +135,10 @@ export class RequestViewerPageComponent implements OnInit {
         this.spinner.hide();
         this.request = r;
         this.request.created_at = this.request.created_at.replace(/T.*$/,"");
-        this.isLoaded = true;
+        // don't let students that don't own the request to view it
+        if (this.user.role != 5 || this.request.student_id == this.user.sub) {
+          this.isLoaded = true;
+        }
       }).catch( e => {
         this.spinner.hide();
         this.toastr.error('Ocurrió un error', 'Error');
@@ -187,9 +192,6 @@ export class RequestViewerPageComponent implements OnInit {
     
     update_request(type: number){
       this.spinner.show();
-      let prueba = this.request.parameters;
-      prueba.accountant_message = this.replyMessage;
-      console.log(prueba);
       if (this.replyMessage == ''){
         this.spinner.hide();
         this.toastr.error('El campo de mensaje no puede estar vacio.', 'Error');
@@ -199,15 +201,20 @@ export class RequestViewerPageComponent implements OnInit {
         this.toastr.error('El archivo es muy grande.', 'Error');
         return;
       } else {
-        let status!: number;
-        switch (type) {
-          case 1:
-            status = 2;
-            break;
+        // add the message
+        switch (this.user.role)  {
           case 2:
-            status = 3;
+            this.request.parameters.dean_message = this.replyMessage;
+            break;
+          case 3:
+            this.request.parameters.director_message = this.replyMessage;
+            break;
+          case 4:
+            this.request.parameters.accountant_message = this.replyMessage;
             break;
         }
+        // status for buttons
+        let status = type == 1? this.allowStatus: this.rejectStatus;
         // convert file input to base64
         const reader = new FileReader();
         reader.readAsDataURL(this.file);
@@ -216,7 +223,7 @@ export class RequestViewerPageComponent implements OnInit {
           // upload file to storage and wait for id
           this.requestAttachmentDataService.create(this.file.name, this.file.type, base64, 2).then( r => {
             // now create the request
-            this.requestDataService.update(this.request.id, status, prueba, r.id).then( r => {
+            this.requestDataService.update(this.request.id, status, this.request.parameters, r.id).then( r => {
               this.spinner.hide();
               this.toastr.success('La solicitud ha sido actualizada correctamente.', 'Solicitud Actualizada')
               this.refresh();

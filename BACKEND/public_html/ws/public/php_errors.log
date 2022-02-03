@@ -1,2 +1,0 @@
-[13-Jan-2022 09:06:45 America/Bogota] PHP Warning:  require_once(/public_html/ws/bootstrap/../vendor/autoload.php): failed to open stream: No such file or directory in /public_html/ws/bootstrap/app.php on line 3
-[13-Jan-2022 09:06:45 America/Bogota] PHP Fatal error:  require_once(): Failed opening required '/public_html/ws/bootstrap/../vendor/autoload.php' (include_path='.:/usr/local/lib/php') in /public_html/ws/bootstrap/app.php on line 3

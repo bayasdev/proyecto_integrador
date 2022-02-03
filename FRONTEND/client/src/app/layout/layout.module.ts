@@ -1,4 +1,3 @@
-import { CatalogService } from 'src/app/services/catalog.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -18,8 +17,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     CommonModule,
     LayoutRoutingModule
   ],
-  providers: [
-    CatalogService
-  ]
+  providers: []
 })
 export class LayoutModule { }

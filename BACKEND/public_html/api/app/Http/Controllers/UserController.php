@@ -63,7 +63,7 @@ class UserController extends Controller
         // send mail
         $message = 'Su contraseña de acceso al sistema es: '.$new_password;
         $subject = 'Te damos la bienvenida al '.env('MAIL_FROM_NAME');
-        // $this->send_mail('mail', $request->email, $request->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+        $this->send_mail('mail', $request->email, $request->name, $subject, $message, env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
         return response()->json($user, 201);
     }
     

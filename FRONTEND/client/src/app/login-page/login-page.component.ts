@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment';
 export class LoginPageComponent implements OnInit {
 
   opcion_seleccionada: string = 'Autenticación';
-  ws_assets: string = environment.ws_assets + 'login/';
   
   constructor(private spinner: NgxSpinnerService) { }
 

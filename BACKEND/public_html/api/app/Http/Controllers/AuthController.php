@@ -48,7 +48,7 @@ class AuthController extends Controller
         ]);
         $user = User::where('email', $request->email)->first();
         if (!$user) {
-            return response()->json(['message' => 'Correo y/o contraseña incorrectos'], 401);
+            return response()->json(['message' => 'Correo y/o contraseña incorrectos, intento fallido registrado'], 401);
         // if counter >=3 account is locked
         } else if ($user->attempts >= 3) {
             return response()->json(['message' => 'Su cuenta ha sido bloqueada por superar el límite de intentos fallidos'], 401);
@@ -66,7 +66,7 @@ class AuthController extends Controller
             User::where('id', $user->id)->update([
                 'attempts' => $user->attempts + 1
             ]);
-            return response()->json(['message' => 'Credenciales Incorrectas, intento fallido registrado'], 401);
+            return response()->json(['message' => 'Correo y/o contraseña incorrectos, intento fallido registrado'], 401);
         }
     }
     

@@ -21,17 +21,21 @@ class Request extends Model
     * @var array
     */
     protected $hidden = [];
-    
+
+    protected $casts = [
+        'parameters' => 'json',
+    ];
+
     // relations
     
     public function students()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class, 'student_id');
     }
     
     public function careers()
     {
-        return $this->hasOne(Career::class);
+        return $this->belongsTo(Career::class, 'career_id');
     }
     
     public function subjects()

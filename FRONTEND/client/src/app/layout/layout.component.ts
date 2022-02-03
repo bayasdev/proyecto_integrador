@@ -1,4 +1,3 @@
-import { CatalogService } from 'src/app/services/catalog.service';
 import { Component, OnInit } from '@angular/core';
 import jwt_decode from "jwt-decode";
 
@@ -13,8 +12,7 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit(): void {
     const token: string = sessionStorage.getItem('token') as string;
-    const decoded: any = jwt_decode(token);
-    this.user = decoded;
+    this.user = jwt_decode(token);
   }
 
 }

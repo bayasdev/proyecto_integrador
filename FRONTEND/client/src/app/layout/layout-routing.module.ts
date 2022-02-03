@@ -29,6 +29,10 @@ const routes: Routes = [
         path: 'profile',
         loadChildren: () => import('src/app/layout/profile-page/profile-page.module').then(m => m.ProfilePageModule)
       },
+      {
+        path: 'request-viewer',
+        loadChildren: () => import('src/app/layout/request-viewer-page/request-viewer-page.module').then(m => m.RequestViewerPageModule)
+      },
       
       // Estudiante
       // Crear solicitud
@@ -73,6 +77,15 @@ const routes: Routes = [
       {
         path: 'admin/subjects',
         loadChildren: () => import('src/app/layout/admin/subjects-page/subjects-page.module').then(m => m.SubjectsPageModule),
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 1
+        }
+      },
+      // Todas las solicitudes
+      {
+        path: 'admin/requests',
+        loadChildren: () => import('src/app/layout/admin/requests-page/requests-page.module').then(m => m.RequestsPageModule),
         canActivate: [RoleGuard],
         data: {
           expectedRole: 1

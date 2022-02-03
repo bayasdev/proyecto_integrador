@@ -23,5 +23,10 @@ class User extends Model
     protected $hidden = [
         'password', 'attempts', 'last_login',
     ];
+
+    public function requests()
+    {
+        return $this->hasOne(Request::class);
+    }
 }
 

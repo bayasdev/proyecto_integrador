@@ -20,9 +20,7 @@ class Subject extends Model
     *
     * @var array
     */
-    protected $hidden = [
-        
-    ];
+    protected $hidden = [];
     
     function careers()
     {

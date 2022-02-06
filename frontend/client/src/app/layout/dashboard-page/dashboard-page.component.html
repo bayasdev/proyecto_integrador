@@ -11,8 +11,8 @@
         <p class="lead">Hemos preparado para tí los siguientes servicios:</p>
         <div class="mb-5 d-grid gap-2 d-md-block">
             <!-- TODO: redirect user to request type -->
-            <a [routerLink]="['/student/new-request']" class="btn btn-success"><i class="far fa-calendar-check"></i> Modificar mi carga académica</a>
-            <a [routerLink]="['/student/new-request']" class="btn btn-warning"><i class="far fa-calendar-minus"></i> Retirar asignaturas</a>
+            <a [routerLink]="['/student/new-request']" [queryParams]="{type: 1}" class="btn btn-success"><i class="far fa-calendar-check"></i> Modificar mi carga académica</a>
+            <a [routerLink]="['/student/new-request']" [queryParams]="{type: 2}" class="btn btn-warning"><i class="far fa-calendar-minus"></i> Retirar asignaturas</a>
             <a [routerLink]="['/student/requests']" class="btn btn-outline-secondary"><i class="fas fa-history"></i> Historial de solicitudes</a>
         </div>
     </div>

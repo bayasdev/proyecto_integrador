@@ -105,13 +105,14 @@ export class RequestViewerPageComponent implements OnInit {
     }
     
     async refresh(){
-      // debe estar await
-      this.get_request();
+      // asynchronously get requests
+      await this.get_request();
+
       // logic to check if it's allowed to reply to request
       // also check if request belongs to them
+
       // accountant
-      // debe ser asincrono
-      if(this.user.role == 4){
+      if(this.user.role == 4 && this.request.request_status == 1){
         this.isAllowed = true;
         this.allowStatus = 2;
         this.rejectStatus = 3;
@@ -125,25 +126,26 @@ export class RequestViewerPageComponent implements OnInit {
         this.isAllowed = true;
         this.allowStatus = 6;
         this.rejectStatus = 7;
+      } else {
+        this.isAllowed = false;
       }
     }
     
-    get_request(){
+    async get_request(): Promise<any>{
       this.spinner.show();
       this.request = [];
-      this.requestDataService.getById(this.id_request).then( r => {
-        this.spinner.hide();
-        this.request = r;
+      this.isLoaded = false; // reset flag
+      try {
+        this.request = await this.requestDataService.getById(this.id_request);
         this.request.created_at = this.request.created_at.replace(/T.*$/,"");
         // don't let students that don't own the request to view it
         if (this.user.role != 5 || this.request.student_id == this.user.sub) {
           this.isLoaded = true;
         }
-      }).catch( e => {
-        this.spinner.hide();
+      } catch (e) {
         this.toastr.error('Ocurrió un error', 'Error');
-        // console.log(e);
-      });
+      }
+      this.spinner.hide();
     }
     
     async get_attachment(id: number): Promise<any>{
@@ -192,16 +194,10 @@ export class RequestViewerPageComponent implements OnInit {
     
     update_request(type: number){
       this.spinner.show();
-      if (this.replyMessage == ''){
-        this.spinner.hide();
-        this.toastr.error('El campo de mensaje no puede estar vacio.', 'Error');
-        return;
-      } else if (this.file.size > 10485760) {
-        this.spinner.hide();
-        this.toastr.error('El archivo es muy grande.', 'Error');
-        return;
-      } else {
-        // add the message
+      // set status for buttons
+      let status = type == 1? this.allowStatus: this.rejectStatus;
+      // add reply message accordingly
+      if (this.replyMessage != ''){
         switch (this.user.role)  {
           case 2:
             this.request.parameters.dean_message = this.replyMessage;
@@ -213,8 +209,18 @@ export class RequestViewerPageComponent implements OnInit {
             this.request.parameters.accountant_message = this.replyMessage;
             break;
         }
-        // status for buttons
-        let status = type == 1? this.allowStatus: this.rejectStatus;
+      } else {
+        this.spinner.hide();
+        this.toastr.error('El campo de mensaje no puede estar vacio.', 'Error');
+        return;
+      }
+      // if there's a file selected upload it
+      if (this.file) {
+        if (this.file.size > 10485760) {
+          this.spinner.hide();
+          this.toastr.error('El archivo es muy grande.', 'Error');
+          return; 
+        }
         // convert file input to base64
         const reader = new FileReader();
         reader.readAsDataURL(this.file);
@@ -222,7 +228,7 @@ export class RequestViewerPageComponent implements OnInit {
           const base64 = (<string>reader.result).split(',')[1];
           // upload file to storage and wait for id
           this.requestAttachmentDataService.create(this.file.name, this.file.type, base64, 2).then( r => {
-            // now create the request
+            // now update the request
             this.requestDataService.update(this.request.id, status, this.request.parameters, r.id).then( r => {
               this.spinner.hide();
               this.toastr.success('La solicitud ha sido actualizada correctamente.', 'Solicitud Actualizada')
@@ -230,6 +236,13 @@ export class RequestViewerPageComponent implements OnInit {
             }).catch( e => { console.log(e) });
           }).catch( e => { console.log(e) });
         }
+      // else just update the request
+      } else {
+        this.requestDataService.update(this.request.id, status, this.request.parameters).then( r => {
+          this.spinner.hide();
+          this.toastr.success('La solicitud ha sido actualizada correctamente.', 'Solicitud Actualizada')
+          this.refresh();
+        }).catch( e => { console.log(e) });
       }
     }
     

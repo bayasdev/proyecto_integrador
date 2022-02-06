@@ -6,6 +6,7 @@ import { SubjectService } from 'src/app/services/subject.service';
 import { RequestService } from 'src/app/services/request.service';
 import { RequestAttachmentService } from 'src/app/services/request-attachment.service';
 import jwt_decode from "jwt-decode";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-new-request-page',
@@ -46,6 +47,7 @@ export class NewRequestPageComponent implements OnInit {
 
   constructor(private spinner: NgxSpinnerService,
               private toastr: ToastrService,
+              private route: ActivatedRoute,
               private subjectDataService: SubjectService,
               private careerDataService: CareerService,
               private requestDataService: RequestService,
@@ -53,9 +55,14 @@ export class NewRequestPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const token: string = sessionStorage.getItem('token') as string;
-    this.user = jwt_decode(token);;
-    this.refresh();
+    this.route.queryParams.subscribe((params: any) => {
+      const token: string = sessionStorage.getItem('token') as string;
+      this.user = jwt_decode(token);
+      if (params.type) {
+        this.new_request.type = Number(params.type);
+      }
+      this.refresh();
+    });
   }
 
   refresh() {

@@ -1,0 +1,30 @@
+<h1 class="display-5 mb-5">Mis Solicitudes</h1>
+<div class="table-responsive mb-5">
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Status</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let request of requests">
+                <th scope="row">{{request.id}}</th>
+                <td>{{request_types[request.request_type-1].name}}</td>
+                <td>{{request_statuses[request.request_status-1].name}}</td>
+                <td>
+                    <div class="d-grid gap-2 d-md-block">
+                        <a class="btn btn-primary" [routerLink]="['/request-viewer']" [queryParams]="{id: request.id}">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<button type="button" class="btn btn-primary mb-5" (click)="refresh()">
+    <i class="fas fa-redo"></i> Refrescar
+</button>

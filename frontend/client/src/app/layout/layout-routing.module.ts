@@ -39,10 +39,19 @@ const routes: Routes = [
       {
         path: 'student/new-request',
         loadChildren: () => import('src/app/layout/student/new-request-page/new-request-page.module').then(m => m.NewRequestPageModule),
-        // canActivate: [RoleGuard],
-        // data: {
-        //   expectedRole: 5
-        // }
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 5
+        }
+      },
+      // ver solicitudes
+      {
+        path: 'student/requests',
+        loadChildren: () => import('src/app/layout/student/my-requests-page/my-requests-page.module').then(m => m.MyRequestsPageModule),
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 5
+        }
       },
       
       // Admin

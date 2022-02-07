@@ -39,7 +39,7 @@ export class SidebarComponent implements OnInit {
     // servicios
     {
       name: 'SERVICIOS',
-      expectedRole: 99,
+      expectedRole: 5,
       items: [
         {
           name: 'Crear Solicitud',
@@ -51,7 +51,7 @@ export class SidebarComponent implements OnInit {
     // historico
     {
       name: 'HISTÓRICO',
-      expectedRole: 99,
+      expectedRole: 5,
       items: [
         {
           name: 'Mis Solicitudes',

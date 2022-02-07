@@ -22,6 +22,10 @@ export class RequestService {
     return this.http.get(environment.api + 'requests/'+id, this.options).toPromise();
   }
 
+  getByStudent(id: number): Promise<any>{
+    return this.http.get(environment.api + 'students/'+id+'/requests', this.options).toPromise();
+  }
+
 
   getByCareer(id: number): Promise<any>{
     return this.http.get(environment.api + 'careers/'+id+'/requests', this.options).toPromise();

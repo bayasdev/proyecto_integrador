@@ -54,6 +54,9 @@ $router->group(['prefix' => 'api/v2'], function () use ($router) {
         // retrieve subjects by career
         $router->get('careers/{id}/subjects',  ['uses' => 'SubjectController@showAllByCareer']);
         $router->get('careers',  ['uses' => 'CareerController@showAllCareers']);
+
+        // student
+        $router->get('students/{id}/requests', ['uses' => 'RequestController@showAllByStudent']);
     });
 
     // administration

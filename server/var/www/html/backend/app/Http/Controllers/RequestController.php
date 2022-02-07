@@ -24,6 +24,12 @@ class RequestController extends Controller
         }
         return response()->json($petitions);
     }
+
+    public function showAllByStudent($id)
+    {
+        $petitions = Petition::where('student_id', $id)->get();
+        return response()->json($petitions);
+    }
     
     public function showOneRequest($id)
     {

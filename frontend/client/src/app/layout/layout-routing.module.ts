@@ -53,7 +53,18 @@ const routes: Routes = [
           expectedRole: 5
         }
       },
-      
+
+      // Contabilidad
+      // ver todas las solicitudes
+      {
+        path: 'accountant/requests',
+        loadChildren: () => import('src/app/layout/admin/requests-page/requests-page.module').then(m => m.RequestsPageModule),
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 4
+        }
+      },
+
       // Admin
       // Usuarios
       {

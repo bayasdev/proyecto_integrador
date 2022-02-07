@@ -23,7 +23,7 @@
                         <a class="btn btn-primary" [routerLink]="['/request-viewer']" [queryParams]="{id: request.id}">
                             <i class="fas fa-eye"></i>
                         </a>
-                        <button type="button" class="btn btn-danger" (click)="delete_request(request.id)">
+                        <button type="button" class="btn btn-danger" (click)="delete_request(request.id)" *ngIf="user.role == 1">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>

@@ -60,6 +60,22 @@ export class SidebarComponent implements OnInit {
         }
       ]
     },
+    {
+      name: 'SOLICITUDES',
+      expectedRole: 4,
+      items: [
+        {
+          name: 'Solicitudes en curso',
+          icon: 'fas fa-check',
+          link: '/accountant/requests/active'
+        },
+        {
+          name: 'Todas las Solicitudes',
+          icon: 'fas fa-history',
+          link: '/accountant/requests'
+        }
+      ]
+    },
     // admin
     {
       name: 'ADMINISTRACIÓN',

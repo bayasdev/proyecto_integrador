@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { RequestService } from 'src/app/services/request.service';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-requests-page',
@@ -9,6 +10,8 @@ import { RequestService } from 'src/app/services/request.service';
   styleUrls: ['./requests-page.component.scss']
 })
 export class RequestsPageComponent implements OnInit {
+
+  user: any = {};
 
   requests: any[] = []
 
@@ -61,6 +64,8 @@ export class RequestsPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    const token: string = sessionStorage.getItem('token') as string;
+    this.user = jwt_decode(token);
     this.refresh();
   }
 

@@ -9,6 +9,29 @@ import { Component, Input, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
   @Input('user') user: any = {};
 
+  roles = [
+    {
+      id: 1,
+      name: 'Administrador'
+    },
+    {
+      id: 2,
+      name: 'Decano'
+    },
+    {
+      id: 3,
+      name: 'Director de Carrera'
+    },
+    {
+      id: 4,
+      name: 'Contabilidad'
+    },
+    {
+      id: 5,
+      name: 'Estudiante'
+    },
+  ];
+
   constructor(private router: Router) {
   }
 

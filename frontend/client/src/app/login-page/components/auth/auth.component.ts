@@ -19,7 +19,6 @@ export class AuthComponent implements OnInit {
 
   constructor( private authDataService: AuthService,
                private spinner: NgxSpinnerService,
-               private toastr: ToastrService,
                private router: Router) { }
 
   ngOnInit(): void {
@@ -40,11 +39,6 @@ export class AuthComponent implements OnInit {
 
   login() {
     this.spinner.show();
-    if(this.captcha == undefined || this.captcha == null){
-      this.spinner.hide();
-      this.toastr.error('Debe completar el Captcha', 'Captcha Incorrecto');
-      return;
-    }
     this.authDataService.login(this.email, this.password).then( r => {
       this.spinner.hide();
       sessionStorage.setItem('token', r.token);

@@ -6,6 +6,7 @@ import { RequestAttachmentService } from 'src/app/services/request-attachment.se
 import { RequestService } from 'src/app/services/request.service';
 import { saveAs } from 'file-saver';
 import jwt_decode from "jwt-decode";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-request-viewer-page',
@@ -18,58 +19,11 @@ export class RequestViewerPageComponent implements OnInit {
 
   request: any = {};
   
-  request_types = [
-    {
-      id: 1,
-      name: 'Modificación de Carga Académica'
-    },
-    {
-      id: 2,
-      name: 'Retiro en Asignatura'
-    },
-  ];
+  request_types = environment.request_types;
+
+  request_statuses = environment.request_statuses;
   
-  request_statuses = [
-    {
-      id: 1,
-      name: 'Pago Pendiente'
-    },
-    {
-      id: 2,
-      name: 'Pago Aprobado'
-    },
-    {
-      id: 3,
-      name: 'Pago Rechazado'
-    },
-    {
-      id: 4,
-      name: 'Aprobado por Director'
-    },
-    {
-      id: 5,
-      name: 'Rechazado por Director'
-    },
-    {
-      id: 6,
-      name: 'Aprobado por Decano'
-    },
-    {
-      id: 7,
-      name: 'Rechazado por Decano'
-    },
-  ];
-  
-  attachment_types = [
-    {
-      id: 1,
-      name: 'Comprobante de Pago'
-    },
-    {
-      id: 2,
-      name: 'Otros'
-    }
-  ]
+  attachment_types = environment.attachment_types;
   
   id_request!: number;
   

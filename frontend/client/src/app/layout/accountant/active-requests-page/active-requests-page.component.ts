@@ -1,17 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { RequestService } from 'src/app/services/request.service';
-import jwt_decode from "jwt-decode";
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-my-requests-page',
-  templateUrl: './my-requests-page.component.html',
-  styleUrls: ['./my-requests-page.component.scss']
+  selector: 'app-active-requests-page',
+  templateUrl: './active-requests-page.component.html',
+  styleUrls: ['./active-requests-page.component.scss']
 })
-export class MyRequestsPageComponent implements OnInit {
-
-  user: any = {};
+export class ActiveRequestsPageComponent implements OnInit {
 
   requests: any[] = []
 
@@ -25,8 +22,6 @@ export class MyRequestsPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const token: string = sessionStorage.getItem('token') as string;
-    this.user = jwt_decode(token);
     this.refresh();
   }
 
@@ -37,7 +32,7 @@ export class MyRequestsPageComponent implements OnInit {
   get_requests(){
     this.spinner.show();
     this.requests = [];
-    this.requestDataService.getByStudent(this.user.sub).then( r => {
+    this.requestDataService.getPendingPayment().then( r => {
       this.spinner.hide();
       this.requests = r;
     }).catch( e => { console.log(e) });

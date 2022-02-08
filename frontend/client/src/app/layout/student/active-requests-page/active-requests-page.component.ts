@@ -5,11 +5,11 @@ import jwt_decode from "jwt-decode";
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-my-requests-page',
-  templateUrl: './my-requests-page.component.html',
-  styleUrls: ['./my-requests-page.component.scss']
+  selector: 'app-active-requests-page',
+  templateUrl: './active-requests-page.component.html',
+  styleUrls: ['./active-requests-page.component.scss']
 })
-export class MyRequestsPageComponent implements OnInit {
+export class ActiveRequestsPageComponent implements OnInit {
 
   user: any = {};
 
@@ -37,7 +37,7 @@ export class MyRequestsPageComponent implements OnInit {
   get_requests(){
     this.spinner.show();
     this.requests = [];
-    this.requestDataService.getByStudent(this.user.sub).then( r => {
+    this.requestDataService.getActiveByStudent(this.user.sub).then( r => {
       this.spinner.hide();
       this.requests = r;
     }).catch( e => { console.log(e) });

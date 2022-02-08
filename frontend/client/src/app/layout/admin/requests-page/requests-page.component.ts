@@ -3,6 +3,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { RequestService } from 'src/app/services/request.service';
 import jwt_decode from "jwt-decode";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-requests-page',
@@ -15,47 +16,9 @@ export class RequestsPageComponent implements OnInit {
 
   requests: any[] = []
 
-  request_types = [
-    {
-      id: 1,
-      name: 'Modificación de Carga Académica'
-    },
-    {
-      id: 2,
-      name: 'Retiro en Asignatura'
-    },
-  ]
+  request_types = environment.request_types;
 
-  request_statuses = [
-    {
-      id: 1,
-      name: 'Pago Pendiente'
-    },
-    {
-      id: 2,
-      name: 'Pago Aprobado'
-    },
-    {
-      id: 3,
-      name: 'Pago Rechazado'
-    },
-    {
-      id: 4,
-      name: 'Aprobado por Director'
-    },
-    {
-      id: 5,
-      name: 'Rechazado por Director'
-    },
-    {
-      id: 6,
-      name: 'Aprobado por Decano'
-    },
-    {
-      id: 7,
-      name: 'Rechazado por Decano'
-    },
-  ]
+  request_statuses = environment.request_statuses;
 
   constructor(
     private toastr: ToastrService,
@@ -76,10 +39,22 @@ export class RequestsPageComponent implements OnInit {
   get_requests(){
     this.spinner.show();
     this.requests = [];
-    this.requestDataService.get().then( r => {
-      this.spinner.hide();
-      this.requests = r;
-    }).catch( e => { console.log(e) });
+    if (this.user.role == 1 || this.user.role == 4){
+      this.requestDataService.get().then( r => {
+        this.spinner.hide();
+        this.requests = r;
+      }).catch( e => { console.log(e) });
+    } else if (this.user.role == 3) {
+      this.requestDataService.getByDirector(this.user.sub).then( r => {
+        this.spinner.hide();
+        this.requests = r;
+      }).catch( e => { console.log(e) });
+    } else if (this.user.role == 2){
+      this.requestDataService.getByDean(this.user.sub).then( r => {
+        this.spinner.hide();
+        this.requests = r;
+      }).catch( e => { console.log(e) });
+    }
   }
 
   delete_request(id: number){

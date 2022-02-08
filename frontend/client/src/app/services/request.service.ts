@@ -26,9 +26,28 @@ export class RequestService {
     return this.http.get(environment.api + 'students/'+id+'/requests', this.options).toPromise();
   }
 
+  getActiveByStudent(id: number): Promise<any>{
+    return this.http.get(environment.api + 'students/'+id+'/requests/active', this.options).toPromise();
+  }
 
-  getByCareer(id: number): Promise<any>{
-    return this.http.get(environment.api + 'careers/'+id+'/requests', this.options).toPromise();
+  getPendingPayment(): Promise<any>{
+    return this.http.get(environment.api + 'accountants/requests/active', this.options).toPromise();
+  }
+
+  getByDirector(id: number): Promise<any>{
+    return this.http.get(environment.api + 'directors/'+id+'/requests', this.options).toPromise();
+  }
+
+  getActiveByDirector(id: number): Promise<any>{
+    return this.http.get(environment.api + 'directors/'+id+'/requests/active', this.options).toPromise();
+  }
+
+  getByDean(id: number): Promise<any>{
+    return this.http.get(environment.api + 'deans/'+id+'/requests', this.options).toPromise();
+  }
+
+  getActiveByDean(id: number): Promise<any>{
+    return this.http.get(environment.api + 'deans/'+id+'/requests/active', this.options).toPromise();
   }
 
   create(student_id: number, career_id: number, request_type: number, parameters: any, attachment_id: number, subjects: any): Promise<any> {

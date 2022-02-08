@@ -48,31 +48,71 @@ export class SidebarComponent implements OnInit {
         }
       ]
     },
-    // historico
+    // historico student
     {
       name: 'HISTÓRICO',
       expectedRole: 5,
       items: [
         {
-          name: 'Mis Solicitudes',
+          name: 'Solicitudes en curso',
+          icon: 'fas fa-sync',
+          link: '/student/active-requests'
+        },
+        {
+          name: 'Todas mis Solicitudes',
           icon: 'fas fa-history',
           link: '/student/requests'
         }
       ]
     },
+    // accountant
     {
       name: 'SOLICITUDES',
       expectedRole: 4,
       items: [
         {
-          name: 'Solicitudes en curso',
-          icon: 'fas fa-check',
-          link: '/accountant/requests/active'
+          name: 'Solicitudes pendientes',
+          icon: 'fas fa-sync',
+          link: '/accountant/active-requests'
         },
         {
           name: 'Todas las Solicitudes',
           icon: 'fas fa-history',
           link: '/accountant/requests'
+        }
+      ]
+    },
+    // director
+    {
+      name: 'SOLICITUDES',
+      expectedRole: 3,
+      items: [
+        {
+          name: 'Solicitudes pendientes',
+          icon: 'fas fa-sync',
+          link: '/director/active-requests'
+        },
+        {
+          name: 'Todas las Solicitudes',
+          icon: 'fas fa-history',
+          link: '/director/requests'
+        }
+      ]
+    },
+    // dean
+    {
+      name: 'SOLICITUDES',
+      expectedRole: 2,
+      items: [
+        {
+          name: 'Solicitudes pendientes',
+          icon: 'fas fa-sync',
+          link: '/dean/active-requests'
+        },
+        {
+          name: 'Todas las Solicitudes',
+          icon: 'fas fa-history',
+          link: '/dean/requests'
         }
       ]
     },

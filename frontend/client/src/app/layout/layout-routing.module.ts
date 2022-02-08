@@ -53,6 +53,14 @@ const routes: Routes = [
           expectedRole: 5
         }
       },
+      {
+        path: 'student/active-requests',
+        loadChildren: () => import('src/app/layout/student/active-requests-page/active-requests-page.module').then(m => m.ActiveRequestsPageModule),
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 5
+        }
+      },
 
       // Contabilidad
       // ver todas las solicitudes
@@ -64,7 +72,55 @@ const routes: Routes = [
           expectedRole: 4
         }
       },
+      // ver pagos pendientes
+      {
+        path: 'accountant/active-requests',
+        loadChildren: () => import('src/app/layout/accountant/active-requests-page/active-requests-page.module').then(m => m.ActiveRequestsPageModule),
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 4
+        }
+      },
 
+      // director
+      // todas
+      {
+        path: 'director/requests',
+        loadChildren: () => import('src/app/layout/admin/requests-page/requests-page.module').then(m => m.RequestsPageModule),
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 3
+        }
+      },
+      // pendientes
+      {
+        path: 'director/active-requests',
+        loadChildren: () => import('src/app/layout/director/active-requests-page/active-requests-page.module').then(m => m.ActiveRequestsPageModule),
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 3
+        }
+      },
+
+      // decano
+      // todas
+      {
+        path: 'dean/requests',
+        loadChildren: () => import('src/app/layout/admin/requests-page/requests-page.module').then(m => m.RequestsPageModule),
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 2
+        }
+      },
+      {
+        path: 'dean/active-requests',
+        loadChildren: () => import('src/app/layout/dean/active-requests-page/active-requests-page.module').then(m => m.ActiveRequestsPageModule),
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 2
+        }
+      },
+      
       // Admin
       // Usuarios
       {

@@ -53,7 +53,6 @@ $router->group(['prefix' => 'api/v2'], function () use ($router) {
         // retrieve subjects by career
         $router->get('careers/{id}/subjects',  ['uses' => 'SubjectController@showAllByCareer']);
         $router->get('careers',  ['uses' => 'CareerController@showAllCareers']);
-        
     });
 
     // administration
@@ -86,7 +85,6 @@ $router->group(['prefix' => 'api/v2'], function () use ($router) {
         $router->put('faculties/{id}', ['uses' => 'FacultyController@update']);
 
         //  Careers
-        $router->get('careers',  ['uses' => 'CareerController@showAllCareers']);
         $router->get('careers/{id}', ['uses' => 'CareerController@showOneCareer']);
         $router->post('careers', ['uses' => 'CareerController@create']);
         $router->delete('careers/{id}', ['uses' => 'CareerController@delete']);
@@ -101,6 +99,9 @@ $router->group(['prefix' => 'api/v2'], function () use ($router) {
 
         // requests
         $router->delete('requests/{id}', ['uses' => 'RequestController@delete']);
+
+        // totals for dashboard
+        $router->get('totals',  ['uses' => 'TotalsController@getTotals']);
     });
 
     // dean

@@ -10,7 +10,6 @@ use App\Models\RequestAttachment;
 use App\Models\User;
 use App\Models\Faculty;
 use App\Models\Career;
-use Exception;
 
 class RequestController extends Controller
 {

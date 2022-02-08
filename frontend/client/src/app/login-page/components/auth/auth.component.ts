@@ -3,7 +3,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-auth',

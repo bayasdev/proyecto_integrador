@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-auth',
@@ -14,8 +15,11 @@ export class AuthComponent implements OnInit {
   email: string = '';
   password: string = '';
 
+  captcha: any;
+
   constructor( private authDataService: AuthService,
                private spinner: NgxSpinnerService,
+               private toastr: ToastrService,
                private router: Router) { }
 
   ngOnInit(): void {
@@ -36,6 +40,11 @@ export class AuthComponent implements OnInit {
 
   login() {
     this.spinner.show();
+    if(this.captcha == undefined || this.captcha == null){
+      this.spinner.hide();
+      this.toastr.error('Debe completar el Captcha', 'Captcha Incorrecto');
+      return;
+    }
     this.authDataService.login(this.email, this.password).then( r => {
       this.spinner.hide();
       sessionStorage.setItem('token', r.token);
@@ -48,4 +57,5 @@ export class AuthComponent implements OnInit {
       });
     });
   }
+
 }

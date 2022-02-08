@@ -4,7 +4,12 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
+  template: `<re-captcha
+    (resolved)="resolved($event)"
+    (error)="errored($event)"
+    errorMode="handled"
+  ></re-captcha>`,
 })
 export class LoginPageComponent implements OnInit {
 

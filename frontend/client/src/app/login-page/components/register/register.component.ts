@@ -21,6 +21,8 @@ export class RegisterComponent implements OnInit {
 
   cedula_validada: boolean = false;
 
+  captcha: any;
+
   constructor(private authDataService: AuthService,
               private spinner: NgxSpinnerService,
               private toastr: ToastrService) { }
@@ -138,6 +140,9 @@ export class RegisterComponent implements OnInit {
     if (this.name == '') {
       this.errores.push( { title: 'Nombre Completo Incorrecto', message: 'Debe ingresar el Nombre Completo'} );
     }
+    if(this.captcha == undefined || this.captcha == null){
+      this.errores.push( { title: 'Captcha Incorrecto', message: 'Debe completar el Captcha'} );
+    }
     if (this.errores.length > 0) {
       this.errores.forEach((error: any) => {
         this.toastr.error(error.message, error.title);
@@ -159,4 +164,5 @@ export class RegisterComponent implements OnInit {
       });
     });
   }
+
 }

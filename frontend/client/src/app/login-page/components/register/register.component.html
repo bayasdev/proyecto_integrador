@@ -10,6 +10,9 @@
   <label for="correo" class="form-label">Correo electrónico <span *ngIf="!email_validated" class="ms-2 badge bg-danger">Incorrecto</span></label>
   <input type="email" class="form-control" id="correo" [(ngModel)]="email" (input)="validate_email()">
 </div>
+<div class="mb-5">
+  <re-captcha [(ngModel)]="captcha"></re-captcha>
+</div>
 <div class="d-grid gap-2">
   <button type="button" class="btn btn-primary" (click)="register()"><i class="fas fa-user-plus"></i> Registrarse</button>
   <button type="button" class="btn btn-success" (click)="change_page('Autenticación')"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</button>

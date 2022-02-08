@@ -17,6 +17,8 @@ export class PasswordRecoveryComponent implements OnInit {
   errores: any[] = [];
   email_validated: boolean = false;
 
+  captcha: any;
+
   constructor(private authDataService: AuthService,
               private spinner: NgxSpinnerService,
               private toastr: ToastrService) { }
@@ -55,6 +57,9 @@ export class PasswordRecoveryComponent implements OnInit {
 
   password_recovery() {
     this.validate_email();
+    if(this.captcha == undefined || this.captcha == null){
+      this.errores.push( { title: 'Captcha Incorrecto', message: 'Debe completar el Captcha'} );
+    }
     if (this.errores.length > 0) {
       this.errores.forEach((error: any) => {
         this.toastr.error(error.message, error.title);
@@ -74,5 +79,9 @@ export class PasswordRecoveryComponent implements OnInit {
         this.email_validated = false;
       });
     });
+  }
+
+  resolved(captchaResponse: string) {
+    console.log(`Resolved captcha with response: ${captchaResponse}`);
   }
 }

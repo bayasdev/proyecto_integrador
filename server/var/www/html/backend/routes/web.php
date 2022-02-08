@@ -48,16 +48,12 @@ $router->group(['prefix' => 'api/v2'], function () use ($router) {
         $router->get('requests',  ['uses' => 'RequestController@showAllRequests']);
         $router->get('requests/{id}', ['uses' => 'RequestController@showOneRequest']);
         $router->post('requests', ['uses' => 'RequestController@create']);
-        $router->delete('requests/{id}', ['uses' => 'RequestController@delete']);
         $router->put('requests/{id}', ['uses' => 'RequestController@update']);
 
         // retrieve subjects by career
         $router->get('careers/{id}/subjects',  ['uses' => 'SubjectController@showAllByCareer']);
         $router->get('careers',  ['uses' => 'CareerController@showAllCareers']);
-
-        // student
-        $router->get('students/{id}/requests', ['uses' => 'RequestController@showAllByStudent']);
-        $router->get('students/{id}/requests/active', ['uses' => 'RequestController@showAllActiveByStudent']);
+        
     });
 
     // administration
@@ -90,7 +86,7 @@ $router->group(['prefix' => 'api/v2'], function () use ($router) {
         $router->put('faculties/{id}', ['uses' => 'FacultyController@update']);
 
         //  Careers
-        // $router->get('careers',  ['uses' => 'CareerController@showAllCareers']);
+        $router->get('careers',  ['uses' => 'CareerController@showAllCareers']);
         $router->get('careers/{id}', ['uses' => 'CareerController@showOneCareer']);
         $router->post('careers', ['uses' => 'CareerController@create']);
         $router->delete('careers/{id}', ['uses' => 'CareerController@delete']);
@@ -102,5 +98,31 @@ $router->group(['prefix' => 'api/v2'], function () use ($router) {
         $router->post('subjects', ['uses' => 'SubjectController@create']);
         $router->delete('subjects/{id}', ['uses' => 'SubjectController@delete']);
         $router->put('subjects/{id}', ['uses' => 'SubjectController@update']);
+
+        // requests
+        $router->delete('requests/{id}', ['uses' => 'RequestController@delete']);
+    });
+
+    // dean
+    $router->group(['middleware' => ['auth:2']], function () use ($router){
+        $router->get('deans/{id}/requests', ['uses' => 'RequestController@showAllByDean']);
+        $router->get('deans/{id}/requests/active', ['uses' => 'RequestController@showAllActiveByDean']);
+    });
+
+    // director
+    $router->group(['middleware' => ['auth:3']], function () use ($router){
+        $router->get('directors/{id}/requests', ['uses' => 'RequestController@showAllByDirector']);
+        $router->get('directors/{id}/requests/active', ['uses' => 'RequestController@showAllActiveByDirector']);
+    });
+
+    // accountant
+    $router->group(['middleware' => ['auth:4']], function () use ($router){
+        $router->get('accountants/requests/active', ['uses' => 'RequestController@showAllPendingPayment']);
+    });
+
+    // student
+    $router->group(['middleware' => ['auth:5']], function () use ($router){
+        $router->get('students/{id}/requests', ['uses' => 'RequestController@showAllByStudent']);
+        $router->get('students/{id}/requests/active', ['uses' => 'RequestController@showAllActiveByStudent']);
     });
 });

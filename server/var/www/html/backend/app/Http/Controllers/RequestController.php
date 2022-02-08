@@ -9,6 +9,7 @@ use App\Models\Request as Petition;
 use App\Models\RequestAttachment;
 use App\Models\User;
 use App\Models\Faculty;
+use App\Models\Career;
 use Exception;
 
 class RequestController extends Controller
@@ -34,6 +35,42 @@ class RequestController extends Controller
     public function showAllActiveByStudent($id)
     {
         $petitions = Petition::where('student_id', $id)->whereNotIn('request_status', [3, 5, 7])->get();
+        return response()->json($petitions);
+    }
+
+    public function showAllPendingPayment()
+    {
+        $petitions = Petition::where('request_status', 1)->get();
+        return response()->json($petitions);
+    }
+
+    public function showAllByDirector($id)
+    {
+        $career = Career::where('director_id', $id)->value('id');
+        $petitions = Petition::where('career_id', $career)->get();
+        return response()->json($petitions);
+    }
+
+    public function showAllActiveByDirector($id)
+    {
+        $career = Career::where('director_id', $id)->value('id');
+        $petitions = Petition::where('career_id', $career)->where('request_status', 2)->get();
+        return response()->json($petitions);
+    }
+
+    public function showAllByDean($id)
+    {
+        $faculty = Faculty::where('dean_id', $id)->value('id');
+        $career = Career::where('faculty_id', $faculty)->value('id');
+        $petitions = Petition::where('career_id', $career)->where('request_type', 2)->get();
+        return response()->json($petitions);
+    }
+
+    public function showAllActiveByDean($id)
+    {
+        $faculty = Faculty::where('dean_id', $id)->value('id');
+        $career = Career::where('faculty_id', $faculty)->value('id');
+        $petitions = Petition::where('career_id', $career)->where('request_type', 2)->where('request_status', 4)->get();
         return response()->json($petitions);
     }
     

@@ -44,7 +44,7 @@ export class AuthComponent implements OnInit {
       this.router.navigate(['/dashboard']);
     }).catch( e => {
       this.spinner.hide();
-      this.show_alert('Autenticación', e.error.message, 'error').then( response => {
+      this.show_alert('Iniciar Sesión', e.error.message, 'error').then( response => {
         this.email = '';
         this.password = '';
       });

@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginPageComponent implements OnInit {
 
-  opcion_seleccionada: string = 'Autenticación';
+  opcion_seleccionada: string = 'Iniciar Sesión';
   
   constructor(private spinner: NgxSpinnerService) { }
 

@@ -70,7 +70,7 @@ export class PasswordRecoveryComponent implements OnInit {
     this.authDataService.password_recovery(this.email).then( r => {
     this.spinner.hide();
       this.show_alert('Recuperar Contraseña', r.message, 'info').then( response => {
-        this.change_page('Autenticación');
+        this.change_page('Iniciar Sesión');
       });
     }).catch( e => {
       this.spinner.hide();

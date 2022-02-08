@@ -153,7 +153,7 @@ export class RegisterComponent implements OnInit {
     this.authDataService.register(this.email, this.identification, this.name).then( r => {
       this.spinner.hide();
       this.show_alert('Crear Cuenta', r.message, 'success').then( response => {
-        this.change_page('Autenticación');
+        this.change_page('Iniciar Sesión');
       });
     }).catch( e => {
       this.spinner.hide();

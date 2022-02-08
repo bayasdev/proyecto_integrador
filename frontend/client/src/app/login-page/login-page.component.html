@@ -5,27 +5,29 @@
       <p class="w-50 lead text-center">Recuerda que puedes realizar cambios a tu carga académica durante los primeros 30 días del periodo académico en curso.</p>
     </div>
     <div class="col-lg-5 col-md-12 col-sm-12 p-5">
-      <div class="mb-5 d-flex justify-content-end">
-        <a href="https://www.unibe.edu.ec/" target="_blank" class="nav-link"><i class="fas fa-home"></i> UNIB.E</a>
-      </div>
-      <div class="d-flex flex-column justify-content-center">
-        <div class="mb-5">
-          <img src="assets/img/smcar_logo.svg" width="200" class="img-fluid">
+      <div class="row d-flex h-100">
+        <div class="align-self-start">
+          <div class="mb-5 d-flex justify-content-end">
+            <a href="https://www.unibe.edu.ec/" target="_blank" class="text-decoration-none ms-auto"><i class="fas fa-home"></i> UNIB.E</a>
+          </div>
+          <img src="assets/img/smcar_logo.svg" width="200" class="img-fluid mb-5">
         </div>
-        <h1 class="col-12 mt-5 mb-2">{{opcion_seleccionada}}</h1>
-        <app-auth
-        *ngIf="opcion_seleccionada == 'Autenticación'"
-        (opcion)="opcion_seleccionada = $event"
-        ></app-auth>
-        <app-register
-        *ngIf="opcion_seleccionada == 'Crear Cuenta'"
-        (opcion)="opcion_seleccionada = $event"
-        ></app-register>
-        <app-password-recovery
-        *ngIf="opcion_seleccionada == 'Recuperar Contraseña'"
-        (opcion)="opcion_seleccionada = $event"
-        ></app-password-recovery>
-        <p class="text-muted text-center">&copy; Universidad Iberoamericana del Ecuador</p>
+        <div class="align-self-center">
+          <h1 class="mb-2">{{opcion_seleccionada}}</h1>
+          <app-auth
+          *ngIf="opcion_seleccionada == 'Iniciar Sesión'"
+          (opcion)="opcion_seleccionada = $event"
+          ></app-auth>
+          <app-register
+          *ngIf="opcion_seleccionada == 'Crear Cuenta'"
+          (opcion)="opcion_seleccionada = $event"
+          ></app-register>
+          <app-password-recovery
+          *ngIf="opcion_seleccionada == 'Recuperar Contraseña'"
+          (opcion)="opcion_seleccionada = $event"
+          ></app-password-recovery>
+        </div>
+        <p class="text-muted text-center align-self-end">&copy; Universidad Iberoamericana del Ecuador</p>
       </div>
     </div>
   </div>

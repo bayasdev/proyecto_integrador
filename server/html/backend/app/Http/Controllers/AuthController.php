@@ -42,10 +42,6 @@ class AuthController extends Controller
     
     public function login(Request $request)
     {
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
         $user = User::where('email', $request->email)->first();
         if (!$user) {
             return response()->json(['message' => 'Correo y/o contraseña incorrectos, intento fallido registrado'], 401);
@@ -72,9 +68,6 @@ class AuthController extends Controller
     
     public function passwordRecoveryRequest(Request $request)
     {
-        $this->validate($request, [
-            'email' => 'required|email'
-        ]);
         $user = User::where('email', $request->email)->first();
         if (!$user) {
             return response()->json(['message' => 'Ocurrió un error'], 400);

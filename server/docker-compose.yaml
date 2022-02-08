@@ -22,7 +22,7 @@ services:
     image: geminis3/php-fpm-laravel:8.1
     restart: always
     volumes:
-    - ./var/www/html:/var/www/html
+    - ./html:/var/www/html
     links:
     - postgres
 

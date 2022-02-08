@@ -30,6 +30,12 @@ class RequestController extends Controller
         $petitions = Petition::where('student_id', $id)->get();
         return response()->json($petitions);
     }
+
+    public function showAllActiveByStudent($id)
+    {
+        $petitions = Petition::where('student_id', $id)->whereNotIn('request_status', [3, 5, 7])->get();
+        return response()->json($petitions);
+    }
     
     public function showOneRequest($id)
     {

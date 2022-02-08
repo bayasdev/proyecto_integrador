@@ -57,6 +57,7 @@ $router->group(['prefix' => 'api/v2'], function () use ($router) {
 
         // student
         $router->get('students/{id}/requests', ['uses' => 'RequestController@showAllByStudent']);
+        $router->get('students/{id}/requests/active', ['uses' => 'RequestController@showAllActiveByStudent']);
     });
 
     // administration

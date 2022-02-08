@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 import { NgxSpinnerService } from 'ngx-spinner';
 import { RequestService } from 'src/app/services/request.service';
 import { environment } from 'src/environments/environment';
+import { TotalsService } from 'src/app/services/totals.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -20,10 +21,19 @@ export class DashboardPageComponent implements OnInit {
 
   request_statuses = environment.request_statuses;
 
+  user_total = 0;
+
+  request_total = 0;
+
+  career_total = 0;
+
+  file_total = 0;
+
   constructor(
     private datepipe: DatePipe,
     private spinner: NgxSpinnerService,
-    private requestDataService: RequestService
+    private requestDataService: RequestService,
+    private totalDataService: TotalsService
   ) {  }
 
   ngOnInit(): void {
@@ -33,10 +43,10 @@ export class DashboardPageComponent implements OnInit {
   }
 
   refresh() {
-    this.getActiveRequests();
+    this.getData();
   }
 
-  getActiveRequests(){
+  getData(){
     this.spinner.show();
     this.requests = [];
     if (this.user.role == 5){
@@ -60,7 +70,13 @@ export class DashboardPageComponent implements OnInit {
         this.requests = r;
       }).catch( e => { console.log(e) });
     } else {
-      // 
+      this.totalDataService.getTotals().then( r => {
+        this.spinner.hide();
+        this.user_total = r.users;
+        this.career_total = r.careers;
+        this.request_total = r.requests;
+        this.file_total = r.files;
+      }).catch( e => { console.log(e) });
     }
   }
 

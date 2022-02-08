@@ -381,7 +381,7 @@
     // servicios
     {
       name: &#x27;SERVICIOS&#x27;,
-      expectedRole: 99,
+      expectedRole: 5,
       items: [
         {
           name: &#x27;Crear Solicitud&#x27;,
@@ -390,15 +390,71 @@
         }
       ]
     },
-    // historico
+    // historico student
     {
       name: &#x27;HISTÓRICO&#x27;,
-      expectedRole: 99,
+      expectedRole: 5,
       items: [
         {
-          name: &#x27;Mis Solicitudes&#x27;,
+          name: &#x27;Solicitudes en curso&#x27;,
+          icon: &#x27;fas fa-sync&#x27;,
+          link: &#x27;/student/active-requests&#x27;
+        },
+        {
+          name: &#x27;Todas mis Solicitudes&#x27;,
           icon: &#x27;fas fa-history&#x27;,
           link: &#x27;/student/requests&#x27;
+        }
+      ]
+    },
+    // accountant
+    {
+      name: &#x27;SOLICITUDES&#x27;,
+      expectedRole: 4,
+      items: [
+        {
+          name: &#x27;Solicitudes pendientes&#x27;,
+          icon: &#x27;fas fa-sync&#x27;,
+          link: &#x27;/accountant/active-requests&#x27;
+        },
+        {
+          name: &#x27;Todas las Solicitudes&#x27;,
+          icon: &#x27;fas fa-history&#x27;,
+          link: &#x27;/accountant/requests&#x27;
+        }
+      ]
+    },
+    // director
+    {
+      name: &#x27;SOLICITUDES&#x27;,
+      expectedRole: 3,
+      items: [
+        {
+          name: &#x27;Solicitudes pendientes&#x27;,
+          icon: &#x27;fas fa-sync&#x27;,
+          link: &#x27;/director/active-requests&#x27;
+        },
+        {
+          name: &#x27;Todas las Solicitudes&#x27;,
+          icon: &#x27;fas fa-history&#x27;,
+          link: &#x27;/director/requests&#x27;
+        }
+      ]
+    },
+    // dean
+    {
+      name: &#x27;SOLICITUDES&#x27;,
+      expectedRole: 2,
+      items: [
+        {
+          name: &#x27;Solicitudes pendientes&#x27;,
+          icon: &#x27;fas fa-sync&#x27;,
+          link: &#x27;/dean/active-requests&#x27;
+        },
+        {
+          name: &#x27;Todas las Solicitudes&#x27;,
+          icon: &#x27;fas fa-history&#x27;,
+          link: &#x27;/dean/requests&#x27;
         }
       ]
     },
@@ -510,7 +566,7 @@ export class SidebarComponent implements OnInit {
     // servicios
     {
       name: &#x27;SERVICIOS&#x27;,
-      expectedRole: 99,
+      expectedRole: 5,
       items: [
         {
           name: &#x27;Crear Solicitud&#x27;,
@@ -519,15 +575,71 @@ export class SidebarComponent implements OnInit {
         }
       ]
     },
-    // historico
+    // historico student
     {
       name: &#x27;HISTÓRICO&#x27;,
-      expectedRole: 99,
+      expectedRole: 5,
       items: [
         {
-          name: &#x27;Mis Solicitudes&#x27;,
+          name: &#x27;Solicitudes en curso&#x27;,
+          icon: &#x27;fas fa-sync&#x27;,
+          link: &#x27;/student/active-requests&#x27;
+        },
+        {
+          name: &#x27;Todas mis Solicitudes&#x27;,
           icon: &#x27;fas fa-history&#x27;,
           link: &#x27;/student/requests&#x27;
+        }
+      ]
+    },
+    // accountant
+    {
+      name: &#x27;SOLICITUDES&#x27;,
+      expectedRole: 4,
+      items: [
+        {
+          name: &#x27;Solicitudes pendientes&#x27;,
+          icon: &#x27;fas fa-sync&#x27;,
+          link: &#x27;/accountant/active-requests&#x27;
+        },
+        {
+          name: &#x27;Todas las Solicitudes&#x27;,
+          icon: &#x27;fas fa-history&#x27;,
+          link: &#x27;/accountant/requests&#x27;
+        }
+      ]
+    },
+    // director
+    {
+      name: &#x27;SOLICITUDES&#x27;,
+      expectedRole: 3,
+      items: [
+        {
+          name: &#x27;Solicitudes pendientes&#x27;,
+          icon: &#x27;fas fa-sync&#x27;,
+          link: &#x27;/director/active-requests&#x27;
+        },
+        {
+          name: &#x27;Todas las Solicitudes&#x27;,
+          icon: &#x27;fas fa-history&#x27;,
+          link: &#x27;/director/requests&#x27;
+        }
+      ]
+    },
+    // dean
+    {
+      name: &#x27;SOLICITUDES&#x27;,
+      expectedRole: 2,
+      items: [
+        {
+          name: &#x27;Solicitudes pendientes&#x27;,
+          icon: &#x27;fas fa-sync&#x27;,
+          link: &#x27;/dean/active-requests&#x27;
+        },
+        {
+          name: &#x27;Todas las Solicitudes&#x27;,
+          icon: &#x27;fas fa-history&#x27;,
+          link: &#x27;/dean/requests&#x27;
         }
       ]
     },
@@ -679,7 +791,7 @@ $topNavbarHeight: 62px;
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><!-- start working on dynamic sidebar --><div class="offcanvas offcanvas-start bg-dark text-white sidebar-nav" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">  <div class="offcanvas-body px-0">    <nav class="navbar-dark">      <ul class="navbar-nav" *ngFor="let link of links">        <ng-container *ngIf="this.user.role == link.expectedRole || link.expectedRole == 99">          <li>            <div class="text-muted small fw-bold px-3">{{link.name}}</div>          </li>          <li *ngFor="let link_child of link.items">            <ng-container *ngIf="link_child.name != \'Cerrar sesión\'; else logOutLink">              <a [routerLink]="[link_child.link]" [routerLinkActive]="[\'active\']" class="nav-link px-3">                <i class="{{link_child.icon}} me-2"></i> {{link_child.name}}              </a>            </ng-container>            <ng-template #logOutLink>              <a (click)="logout()" class="nav-link px-3">                <i class="{{link_child.icon}} me-2"></i> {{link_child.name}}              </a>            </ng-template>          </li>          <li class="my-4">            <hr class="dropdown-divider">          </li>        </ng-container>      </ul>    </nav>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'BlankPageComponent', 'selector': 'app-blank-page'},{'name': 'CareersPageComponent', 'selector': 'app-careers-page'},{'name': 'DashboardPageComponent', 'selector': 'app-dashboard-page'},{'name': 'DeniedPageComponent', 'selector': 'app-denied-page'},{'name': 'FacultiesPageComponent', 'selector': 'app-faculties-page'},{'name': 'LayoutComponent', 'selector': 'app-layout'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NewRequestPageComponent', 'selector': 'app-new-request-page'},{'name': 'NotFoundPageComponent', 'selector': 'app-not-found-page'},{'name': 'PasswordRecoveryComponent', 'selector': 'app-password-recovery'},{'name': 'PasswordRecoveryPageComponent', 'selector': 'app-password-recovery-page'},{'name': 'ProfilePageComponent', 'selector': 'app-profile-page'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'RequestsPageComponent', 'selector': 'app-requests-page'},{'name': 'RequestViewerPageComponent', 'selector': 'app-request-viewer-page'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SubjectsPageComponent', 'selector': 'app-subjects-page'},{'name': 'UsersPageComponent', 'selector': 'app-users-page'}];
+    var COMPONENTS = [{'name': 'ActiveRequestsPageComponent', 'selector': 'app-active-requests-page'},{'name': 'ActiveRequestsPageComponent', 'selector': 'app-active-requests-page'},{'name': 'ActiveRequestsPageComponent', 'selector': 'app-active-requests-page'},{'name': 'ActiveRequestsPageComponent', 'selector': 'app-active-requests-page'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'BlankPageComponent', 'selector': 'app-blank-page'},{'name': 'CareersPageComponent', 'selector': 'app-careers-page'},{'name': 'DashboardPageComponent', 'selector': 'app-dashboard-page'},{'name': 'DeniedPageComponent', 'selector': 'app-denied-page'},{'name': 'FacultiesPageComponent', 'selector': 'app-faculties-page'},{'name': 'LayoutComponent', 'selector': 'app-layout'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'MyRequestsPageComponent', 'selector': 'app-my-requests-page'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NewRequestPageComponent', 'selector': 'app-new-request-page'},{'name': 'NotFoundPageComponent', 'selector': 'app-not-found-page'},{'name': 'PasswordRecoveryComponent', 'selector': 'app-password-recovery'},{'name': 'PasswordRecoveryPageComponent', 'selector': 'app-password-recovery-page'},{'name': 'ProfilePageComponent', 'selector': 'app-profile-page'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'RequestsPageComponent', 'selector': 'app-requests-page'},{'name': 'RequestViewerPageComponent', 'selector': 'app-request-viewer-page'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SubjectsPageComponent', 'selector': 'app-subjects-page'},{'name': 'UsersPageComponent', 'selector': 'app-users-page'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SidebarComponent'};
 </script>

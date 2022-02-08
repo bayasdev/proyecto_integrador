@@ -113,10 +113,86 @@ const routes: Routes &#x3D; [
       {
         path: &#x27;student/new-request&#x27;,
         loadChildren: () &#x3D;&gt; &quot;import(&#x27;src/app/layout/student/new-request-page/new-request-page.module&#x27;).then(m &#x3D;&gt; m.NewRequestPageModule)&quot;,
-        // canActivate: [RoleGuard],
-        // data: {
-        //   expectedRole: 5
-        // }
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 5
+        }
+      },
+      // ver solicitudes
+      {
+        path: &#x27;student/requests&#x27;,
+        loadChildren: () &#x3D;&gt; &quot;import(&#x27;src/app/layout/student/my-requests-page/my-requests-page.module&#x27;).then(m &#x3D;&gt; m.MyRequestsPageModule)&quot;,
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 5
+        }
+      },
+      {
+        path: &#x27;student/active-requests&#x27;,
+        loadChildren: () &#x3D;&gt; &quot;import(&#x27;src/app/layout/student/active-requests-page/active-requests-page.module&#x27;).then(m &#x3D;&gt; m.ActiveRequestsPageModule)&quot;,
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 5
+        }
+      },
+
+      // Contabilidad
+      // ver todas las solicitudes
+      {
+        path: &#x27;accountant/requests&#x27;,
+        loadChildren: () &#x3D;&gt; &quot;import(&#x27;src/app/layout/admin/requests-page/requests-page.module&#x27;).then(m &#x3D;&gt; m.RequestsPageModule)&quot;,
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 4
+        }
+      },
+      // ver pagos pendientes
+      {
+        path: &#x27;accountant/active-requests&#x27;,
+        loadChildren: () &#x3D;&gt; &quot;import(&#x27;src/app/layout/accountant/active-requests-page/active-requests-page.module&#x27;).then(m &#x3D;&gt; m.ActiveRequestsPageModule)&quot;,
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 4
+        }
+      },
+
+      // director
+      // todas
+      {
+        path: &#x27;director/requests&#x27;,
+        loadChildren: () &#x3D;&gt; &quot;import(&#x27;src/app/layout/admin/requests-page/requests-page.module&#x27;).then(m &#x3D;&gt; m.RequestsPageModule)&quot;,
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 3
+        }
+      },
+      // pendientes
+      {
+        path: &#x27;director/active-requests&#x27;,
+        loadChildren: () &#x3D;&gt; &quot;import(&#x27;src/app/layout/director/active-requests-page/active-requests-page.module&#x27;).then(m &#x3D;&gt; m.ActiveRequestsPageModule)&quot;,
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 3
+        }
+      },
+
+      // decano
+      // todas
+      {
+        path: &#x27;dean/requests&#x27;,
+        loadChildren: () &#x3D;&gt; &quot;import(&#x27;src/app/layout/admin/requests-page/requests-page.module&#x27;).then(m &#x3D;&gt; m.RequestsPageModule)&quot;,
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 2
+        }
+      },
+      {
+        path: &#x27;dean/active-requests&#x27;,
+        loadChildren: () &#x3D;&gt; &quot;import(&#x27;src/app/layout/dean/active-requests-page/active-requests-page.module&#x27;).then(m &#x3D;&gt; m.ActiveRequestsPageModule)&quot;,
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 2
+        }
       },
       
       // Admin

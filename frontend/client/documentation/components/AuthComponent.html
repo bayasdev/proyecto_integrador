@@ -679,7 +679,7 @@ export class AuthComponent implements OnInit {
       this.router.navigate([&#x27;/dashboard&#x27;]);
     }).catch( e &#x3D;&gt; {
       this.spinner.hide();
-      this.show_alert(&#x27;Autenticación&#x27;, e.error.message, &#x27;error&#x27;).then( response &#x3D;&gt; {
+      this.show_alert(&#x27;Iniciar Sesión&#x27;, e.error.message, &#x27;error&#x27;).then( response &#x3D;&gt; {
         this.email &#x3D; &#x27;&#x27;;
         this.password &#x3D; &#x27;&#x27;;
       });

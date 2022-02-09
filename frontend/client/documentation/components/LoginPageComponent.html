@@ -290,7 +290,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;Autenticación&#x27;</code>
+                        <i>Default value : </i><code>&#x27;Iniciar Sesión&#x27;</code>
                     </td>
                 </tr>
                     <tr>
@@ -323,7 +323,7 @@ import { environment } from &#x27;src/environments/environment&#x27;;
 })
 export class LoginPageComponent implements OnInit {
 
-  opcion_seleccionada: string &#x3D; &#x27;Autenticación&#x27;;
+  opcion_seleccionada: string &#x3D; &#x27;Iniciar Sesión&#x27;;
   
   constructor(private spinner: NgxSpinnerService) { }
 
@@ -343,28 +343,30 @@ export class LoginPageComponent implements OnInit {
       &lt;img src&#x3D;&quot;assets/img/auth/calendario.svg&quot; height&#x3D;&quot;400&quot; class&#x3D;&quot;mb-5&quot;&gt;
       &lt;p class&#x3D;&quot;w-50 lead text-center&quot;&gt;Recuerda que puedes realizar cambios a tu carga académica durante los primeros 30 días del periodo académico en curso.&lt;/p&gt;
     &lt;/div&gt;
-    &lt;div class&#x3D;&quot;col-lg-5 col-md-12 col-sm-12 p-5&quot;&gt;
-      &lt;div class&#x3D;&quot;mb-5 d-flex justify-content-end&quot;&gt;
-        &lt;a href&#x3D;&quot;https://www.unibe.edu.ec/&quot; target&#x3D;&quot;_blank&quot; class&#x3D;&quot;nav-link&quot;&gt;&lt;i class&#x3D;&quot;fas fa-home&quot;&gt;&lt;/i&gt; UNIB.E&lt;/a&gt;
-      &lt;/div&gt;
-      &lt;div class&#x3D;&quot;d-flex flex-column justify-content-center&quot;&gt;
-        &lt;div class&#x3D;&quot;mb-5&quot;&gt;
-          &lt;img src&#x3D;&quot;assets/img/smcar_logo.svg&quot; width&#x3D;&quot;200&quot; class&#x3D;&quot;img-fluid&quot;&gt;
+    &lt;div class&#x3D;&quot;col-lg-5 col-md-12 col-sm-12 py-5 px-lg-5 px-md-3&quot;&gt;
+      &lt;div class&#x3D;&quot;row d-flex h-100&quot;&gt;
+        &lt;div class&#x3D;&quot;align-self-start&quot;&gt;
+          &lt;div class&#x3D;&quot;mb-5 d-flex justify-content-end&quot;&gt;
+            &lt;a href&#x3D;&quot;https://www.unibe.edu.ec/&quot; target&#x3D;&quot;_blank&quot; class&#x3D;&quot;text-decoration-none ms-auto&quot;&gt;&lt;i class&#x3D;&quot;fas fa-home&quot;&gt;&lt;/i&gt; UNIB.E&lt;/a&gt;
+          &lt;/div&gt;
+          &lt;img src&#x3D;&quot;assets/img/smcar_logo.svg&quot; width&#x3D;&quot;200&quot; class&#x3D;&quot;img-fluid mb-5&quot;&gt;
         &lt;/div&gt;
-        &lt;h1 class&#x3D;&quot;col-12 mt-5 mb-2&quot;&gt;{{opcion_seleccionada}}&lt;/h1&gt;
-        &lt;app-auth
-        *ngIf&#x3D;&quot;opcion_seleccionada &#x3D;&#x3D; &#x27;Autenticación&#x27;&quot;
-        (opcion)&#x3D;&quot;opcion_seleccionada &#x3D; $event&quot;
-        &gt;&lt;/app-auth&gt;
-        &lt;app-register
-        *ngIf&#x3D;&quot;opcion_seleccionada &#x3D;&#x3D; &#x27;Crear Cuenta&#x27;&quot;
-        (opcion)&#x3D;&quot;opcion_seleccionada &#x3D; $event&quot;
-        &gt;&lt;/app-register&gt;
-        &lt;app-password-recovery
-        *ngIf&#x3D;&quot;opcion_seleccionada &#x3D;&#x3D; &#x27;Recuperar Contraseña&#x27;&quot;
-        (opcion)&#x3D;&quot;opcion_seleccionada &#x3D; $event&quot;
-        &gt;&lt;/app-password-recovery&gt;
-        &lt;p class&#x3D;&quot;text-muted text-center&quot;&gt;&amp;copy; Universidad Iberoamericana del Ecuador&lt;/p&gt;
+        &lt;div class&#x3D;&quot;align-self-center&quot;&gt;
+          &lt;h1 class&#x3D;&quot;mb-2&quot;&gt;{{opcion_seleccionada}}&lt;/h1&gt;
+          &lt;app-auth
+          *ngIf&#x3D;&quot;opcion_seleccionada &#x3D;&#x3D; &#x27;Iniciar Sesión&#x27;&quot;
+          (opcion)&#x3D;&quot;opcion_seleccionada &#x3D; $event&quot;
+          &gt;&lt;/app-auth&gt;
+          &lt;app-register
+          *ngIf&#x3D;&quot;opcion_seleccionada &#x3D;&#x3D; &#x27;Crear Cuenta&#x27;&quot;
+          (opcion)&#x3D;&quot;opcion_seleccionada &#x3D; $event&quot;
+          &gt;&lt;/app-register&gt;
+          &lt;app-password-recovery
+          *ngIf&#x3D;&quot;opcion_seleccionada &#x3D;&#x3D; &#x27;Recuperar Contraseña&#x27;&quot;
+          (opcion)&#x3D;&quot;opcion_seleccionada &#x3D; $event&quot;
+          &gt;&lt;/app-password-recovery&gt;
+        &lt;/div&gt;
+        &lt;p class&#x3D;&quot;text-muted text-center align-self-end&quot;&gt;&amp;copy; Universidad Iberoamericana del Ecuador&lt;/p&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;

@@ -631,7 +631,7 @@ export class RequestsPageComponent implements OnInit {
     this.requests &#x3D; [];
     this.requestDataService.delete(id).then( r &#x3D;&gt; {
       this.spinner.hide();
-      this.toastr.success(&#x27;Solciitud eliminada correctamente.&#x27;, &#x27;Solciitud Eliminada&#x27;);
+      this.toastr.success(&#x27;Solicitud eliminada correctamente.&#x27;, &#x27;Solicitud Eliminada&#x27;);
       this.refresh();
     }).catch( e &#x3D;&gt; { console.log(e) });
   }

@@ -8,8 +8,8 @@
     </div>
     <div class="col-lg-6 col-md-12">
         <label class="form-label"><i class="fas fa-graduation-cap"></i> Seleccione su carrera</label>
-        <select class="form-select" [(ngModel)]="new_request.career">
-            <option [ngValue]="career.id" *ngFor="let career of careers" (click)="get_subjects()">{{career.name}}</option>
+        <select class="form-select" [(ngModel)]="new_request.career" (click)="get_subjects()">
+            <option [ngValue]="career.id" *ngFor="let career of careers">{{career.name}}</option>
         </select>
     </div>
 </div>

@@ -167,9 +167,6 @@ class RequestController extends Controller
         }
 
         // handle email sending logic
-
-        // this code is horrible
-        // don't blame me >:(
         
         $statuses = [
             'Pago Pendiente',

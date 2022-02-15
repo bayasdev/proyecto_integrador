@@ -5,12 +5,12 @@ services:
     ports:
     - "443:443"
     - "8443:8443"
-    image: nginx:alpine
+    image: nginx:latest
     restart: always
     volumes:
     - ./html:/var/www/html
     - ./conf.d:/etc/nginx/conf.d
-    # - ./nginx.conf:/etc/nginx/nginx.conf
+    - ./nginx.conf:/etc/nginx/nginx.conf
     - ./ssl_certificates:/etc/nginx/ssl_certificates
     - ./ssl_keys:/etc/nginx/ssl_keys
     - ./logs:/var/log/nginx

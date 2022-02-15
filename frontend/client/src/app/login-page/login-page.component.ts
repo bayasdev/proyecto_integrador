@@ -1,6 +1,4 @@
-import { NgxSpinnerService } from 'ngx-spinner';
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -15,11 +13,10 @@ export class LoginPageComponent implements OnInit {
 
   opcion_seleccionada: string = 'Iniciar Sesión';
   
-  constructor(private spinner: NgxSpinnerService) { }
+  constructor() { }
 
   ngOnInit(): void {
     sessionStorage.clear();
-    this.spinner.hide();
   }
 
 }

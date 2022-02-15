@@ -48,7 +48,7 @@ class Authenticate
         try {
             $decoded = JWT::decode($token, new Key(env('JWT_SECRET'), 'HS256'));
             if ($decoded->role != $role && $role != 99) {
-                return response(['message' => $decoded->role.' : '.gettype($decoded->role)], 403);
+                return response(['message' => 'Acceso denegado'], 403);
             }
             $user = User::where('id',$decoded->sub)->first();
             $request->user = $user;

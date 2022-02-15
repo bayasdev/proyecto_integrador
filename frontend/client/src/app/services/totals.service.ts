@@ -9,12 +9,15 @@ export class TotalsService {
   options = {};
   headers = {};
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) { }
+
+  init(): void {
     this.headers = new HttpHeaders({'api_token': sessionStorage.getItem('token') as string});
     this.options = {headers: this.headers};
   }
 
   getTotals(): Promise<any>{
+    this.init();
     return this.http.get(environment.api + 'totals', this.options).toPromise();
   }
   

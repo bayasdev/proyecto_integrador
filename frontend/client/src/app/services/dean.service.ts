@@ -9,12 +9,15 @@ export class DeanService {
   options = {};
   headers = {}
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) { }
+
+  init(): void {
     this.headers = new HttpHeaders({'api_token': sessionStorage.getItem('token') as string});
     this.options = {headers: this.headers};
   }
 
   get(): Promise<any>{
+    this.init();
     return this.http.get(environment.api + 'deans', this.options).toPromise();
   }
 
